@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-04T04:32:33+00:00</updated>
+  <updated>2016-07-04T04:56:53+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,10 +18,7 @@
     <link href="http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
     <updated>2016-07-04T04:25:56+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<h4>For PPA</h4>
+    <content type="html"><![CDATA[<h4>For PPA</h4>
 
 <pre><code class="bash">$ sudo apt-get install python-software-properties
 $ sudo apt-get install software-properties-common
