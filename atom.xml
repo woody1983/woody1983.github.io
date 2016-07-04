@@ -4,7 +4,7 @@
   <title><![CDATA[Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-04T04:20:51+00:00</updated>
+  <updated>2016-07-04T04:30:10+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Build Rails Env on Ubuntu/Docker]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
+    <updated>2016-07-04T04:25:56+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
+    <content type="html"><![CDATA[<h4>For PPA</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install python-software-properties
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install software-properties-common
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Ruby 2.2</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-add-repository ppa:brightbox/ruby-ng
+</span><span class='line'><span class="nv">$ </span>sudo apt-get update
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install ruby2.2
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<h5>RedCloth</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install make g++
+</span><span class='line'>gem install RedCloth -v <span class="s1">&#39;4.2.9&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Octopress</h3>
+
+<p>Take a look on Offical site<a href="http://octopress.org/docs/blogging/">Octopress</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My Emacs24 Config]]></title>
