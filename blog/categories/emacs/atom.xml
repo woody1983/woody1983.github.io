@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Johnny's Blog]]></title>
-  <link href="http://woody1983.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Emacs | Johnny's Blog]]></title>
+  <link href="http://woody1983.github.io/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
   <updated>2016-07-04T04:15:27+00:00</updated>
   <id>http://woody1983.github.io/</id>
@@ -18,7 +18,7 @@
     <link href="http://woody1983.github.io/blog/2016/07/04/title/"/>
     <updated>2016-07-04T04:11:12+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/04/title</id>
-    <content type="html"><![CDATA[<div><script src='https://gist.github.com/ceb1c0b7147336f0aa6ae655f0ae3862.js'></script>
+    <content type="html"><![CDATA[<p><div><script src='https://gist.github.com/ceb1c0b7147336f0aa6ae655f0ae3862.js'></script>
 <noscript><pre><code>;;;;;;;;;;;;;;;;;;;;;;
 ;;     Set Tags  
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -128,9 +128,7 @@
          &quot;* %?\nEntered on %U\n  %i\n  %a&quot;)))
 
 </code></pre></noscript></div>
-
-
-
+</p>
 ]]></content>
   </entry>
   
