@@ -1,0 +1,44 @@
+---
+layout: post
+title: "Ansible MySQL DB Module"
+date: 2016-07-04 05:49:14 +0000
+comments: true
+categories: Ansible 
+---
+
+### Install MariaDB
+
+``` bash
+[ansible@woody-xu3 ~]$ sudo systemctl start mariadb.service 
+[ansible@woody-xu3 ~]$ sudo systemctl enable mariadb.service 
+```
+
+### Adding Ansible User
+``` sql
+grant all privileges on *.* to `ansible_db`@`localhost` identified by "123456";
+flush privileges;
+```
+
+### Playbook
+For Create Database.
+
+``` yaml
+--- # MYSQL_DB MODULE EXAMPLE
+- hosts: apacheserver
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Install the Python MySQL Support Libraries
+    yum: pkg=MySQL-python state=latest
+  - name: Create a New Test DB called MyNewDB
+    mysql_db: name=MyNewDB state=present login_user=ansible_db login_password=123456
+```
+
+For manager User
+``` yaml
+--- # MYSQL_USER MODULE EXAMPLE
+    - name: Create a new user called BOB and give him all access
+    mysql_user: name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456
+```

@@ -5,7 +5,7 @@ date: 2016-07-04 04:11:12 +0000
 comments: true
 categories: Emacs
 ---
-
+<!-- more -->
 * OS: MacOs
 * Emacs 24
 
@@ -13,7 +13,6 @@ categories: Emacs
 `load-theme`
 `load-file`
 
-<!-- more -->
 
 {% gist ceb1c0b7147336f0aa6ae655f0ae3862 %}
 

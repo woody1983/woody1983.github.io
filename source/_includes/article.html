@@ -28,7 +28,8 @@
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
   {% if excerpted == 'true' %}
     <footer>
-      <a class="read-more btn btn-default" href="{{ root_url }}{{ post.url }}">{{ site.excerpt_link }}</a>
+      <a class="read-more btn btn-default btn-small" href="{{ root_url }}{{ post.url }}">{{ site.excerpt_link }}</a>
+      <!--  mmmmmm -->
     </footer>
   {% endif %}
 {% else %}
