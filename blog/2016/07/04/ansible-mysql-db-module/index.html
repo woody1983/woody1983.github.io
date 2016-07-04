@@ -143,6 +143,8 @@
 
 <h3>Playbook</h3>
 
+<p>For Create Database.</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -165,6 +167,17 @@
 </span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
 </span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
 </span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For manager User</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_USER MODULE EXAMPLE</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a new user called BOB and give him all access</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>

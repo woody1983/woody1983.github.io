@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ansible | Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/blog/categories/ansible/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-04T06:30:48+00:00</updated>
+  <updated>2016-07-04T06:35:49+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -32,6 +32,8 @@ flush privileges;
 
 <h3>Playbook</h3>
 
+<p>For Create Database.</p>
+
 <pre><code class="yaml">--- # MYSQL_DB MODULE EXAMPLE
 - hosts: apacheserver
   user: ansible
@@ -44,6 +46,13 @@ flush privileges;
   - name: Create a New Test DB called MyNewDB
     mysql_db: name=MyNewDB state=present login_user=ansible_db login_password=123456
 </code></pre>
+
+<p>For manager User
+<code>yaml
+--- # MYSQL_USER MODULE EXAMPLE
+    - name: Create a new user called BOB and give him all access
+    mysql_user: name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456
+</code></p>
 ]]></content>
   </entry>
   
