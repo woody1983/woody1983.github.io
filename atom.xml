@@ -4,7 +4,7 @@
   <title><![CDATA[Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-04T04:30:10+00:00</updated>
+  <updated>2016-07-04T04:32:33+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,7 +18,10 @@
     <link href="http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
     <updated>2016-07-04T04:25:56+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
-    <content type="html"><![CDATA[<h4>For PPA</h4>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<h4>For PPA</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -36,9 +39,6 @@
 </span><span class='line'><span class="nv">$ </span>sudo apt-get update
 </span><span class='line'><span class="nv">$ </span>sudo apt-get install ruby2.2
 </span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
 
 
 <h5>RedCloth</h5>
@@ -61,7 +61,10 @@
     <link href="http://woody1983.github.io/blog/2016/07/04/title/"/>
     <updated>2016-07-04T04:11:12+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/04/title</id>
-    <content type="html"><![CDATA[<ul>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<ul>
 <li>OS: MacOs</li>
 <li>Emacs 24</li>
 </ul>
@@ -70,11 +73,6 @@
 <p><code>package-list-packages</code>
 <code>load-theme</code>
 <code>load-file</code></p>
-
-<!-- more -->
-
-
-
 
 <div><script src='https://gist.github.com/ceb1c0b7147336f0aa6ae655f0ae3862.js'></script>
 <noscript><pre><code>;;;;;;;;;;;;;;;;;;;;;;
