@@ -114,17 +114,66 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T04:25:56+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T04:11:12+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/" itemprop="url">Build Rails Env on Ubuntu/Docker</a></h2>
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/04/title/" itemprop="url">My Emacs24 Config</a></h2>
     
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><h4>For PPA</h4>
+  <div class="entry-content clearfix" itemprop="articleBody description"></div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default btn-small" href="/blog/2016/07/04/title/">Read on &rarr;</a>
+      <!--  mmmmmm -->
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T00:00:00+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/" itemprop="url">Build Rails Env on Ubuntu Slash Docker</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>0;136;0c&mdash;
+Layout: post
+title: &ldquo;Build Rails Env on Ubuntu/Docker&rdquo;
+date: 2016-07-04 04:25:56 +0000
+comments: true</p>
+
+<h2>categories: [Rails, Env, Ubuntu, Docker]</h2>
+
+<h4>For PPA</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -182,23 +231,72 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T04:11:12+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T00:00:00+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/04/title/" itemprop="url">My Emacs24 Config</a></h2>
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/04/ansible-mysql-db-module/" itemprop="url">Ansible Mysql Db Module</a></h2>
     
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"></div>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>0;136;0c&mdash;
+layout: post
+title: &ldquo;Ansible MySQL DB Module&rdquo;
+date: 2016-07-04 05:49:14 +0000
+comments: true</p>
+
+<h2>categories: Ansible </h2>
+
+<h3>Install MariaDB</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl start mariadb.service
+</span><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>mariadb.service
+</span><span class='line'>Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service to /usr/lib/systemd/system/mariadb.service.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Adding Ansible User</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="o">`</span><span class="n">ansible_db</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;123456&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Playbook</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_DB MODULE EXAMPLE</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apacheserver</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ansible</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">connection</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ssh</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">gather_facts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Install the Python MySQL Support Libraries</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
   
-  
-    <footer>
-      <a class="read-more btn btn-default btn-small" href="/blog/2016/07/04/title/">Read on &rarr;</a>
-      <!--  mmmmmm -->
-    </footer>
   
 
 
@@ -227,9 +325,11 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/">Build Rails Env on Ubuntu/Docker</a>
-    
     <a class="list-group-item " href="/blog/2016/07/04/title/">My Emacs24 Config</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/">Build Rails Env on Ubuntu Slash Docker</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/04/ansible-mysql-db-module/">Ansible Mysql Db Module</a>
     
   </div>
 </section>

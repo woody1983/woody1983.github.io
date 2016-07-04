@@ -4,7 +4,7 @@
   <title><![CDATA[Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-04T05:10:43+00:00</updated>
+  <updated>2016-07-04T05:52:05+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,46 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Build Rails Env on Ubuntu/Docker]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
-    <updated>2016-07-04T04:25:56+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
-    <content type="html"><![CDATA[<h4>For PPA</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install python-software-properties
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install software-properties-common
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Ruby 2.2</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-add-repository ppa:brightbox/ruby-ng
-</span><span class='line'><span class="nv">$ </span>sudo apt-get update
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install ruby2.2
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>RedCloth</h5>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install make g++
-</span><span class='line'>gem install RedCloth -v <span class="s1">&#39;4.2.9&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Octopress</h3>
-
-<p>Take a look on Offical site<a href="http://octopress.org/docs/blogging/">Octopress</a></p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[My Emacs24 Config]]></title>
@@ -183,6 +143,116 @@
 </code></pre></noscript></div>
 
 
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Build Rails Env on Ubuntu Slash Docker]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
+    <updated>2016-07-04T00:00:00+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
+    <content type="html"><![CDATA[<p>0;136;0c&mdash;
+Layout: post
+title: &ldquo;Build Rails Env on Ubuntu/Docker&rdquo;
+date: 2016-07-04 04:25:56 +0000
+comments: true</p>
+
+<h2>categories: [Rails, Env, Ubuntu, Docker]</h2>
+
+<h4>For PPA</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install python-software-properties
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install software-properties-common
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Ruby 2.2</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-add-repository ppa:brightbox/ruby-ng
+</span><span class='line'><span class="nv">$ </span>sudo apt-get update
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install ruby2.2
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h5>RedCloth</h5>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install make g++
+</span><span class='line'>gem install RedCloth -v <span class="s1">&#39;4.2.9&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Octopress</h3>
+
+<p>Take a look on Offical site<a href="http://octopress.org/docs/blogging/">Octopress</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ansible Mysql Db Module]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/"/>
+    <updated>2016-07-04T00:00:00+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module</id>
+    <content type="html"><![CDATA[<p>0;136;0c&mdash;
+layout: post
+title: &ldquo;Ansible MySQL DB Module&rdquo;
+date: 2016-07-04 05:49:14 +0000
+comments: true</p>
+
+<h2>categories: Ansible </h2>
+
+<h3>Install MariaDB</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl start mariadb.service
+</span><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>mariadb.service
+</span><span class='line'>Created symlink from /etc/systemd/system/multi-user.target.wants/mariadb.service to /usr/lib/systemd/system/mariadb.service.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Adding Ansible User</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="o">`</span><span class="n">ansible_db</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;123456&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Playbook</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_DB MODULE EXAMPLE</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apacheserver</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ansible</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">connection</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ssh</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">gather_facts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Install the Python MySQL Support Libraries</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
+</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
