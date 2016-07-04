@@ -4,7 +4,7 @@
   <title><![CDATA[Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-04T04:17:37+00:00</updated>
+  <updated>2016-07-04T04:20:51+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,9 +18,15 @@
     <link href="http://woody1983.github.io/blog/2016/07/04/title/"/>
     <updated>2016-07-04T04:11:12+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/04/title</id>
-    <content type="html"><![CDATA[<h3>My Emacs Config</h3>
+    <content type="html"><![CDATA[<ul>
+<li>OS: MacOs</li>
+<li>Emacs 24</li>
+</ul>
 
-<p>Just Basic using.</p>
+
+<p><code>package-list-packages</code>
+<code>load-theme</code>
+<code>load-file</code></p>
 
 <!-- more -->
 
