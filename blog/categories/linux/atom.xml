@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Johnny's Blog]]></title>
+  <link href="http://woody1983.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://woody1983.github.io/"/>
+  <updated>2016-07-05T06:56:04+00:00</updated>
+  <id>http://woody1983.github.io/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Essentials Certification]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification/"/>
+    <updated>2016-07-05T06:36:26+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification</id>
+    <content type="html"><![CDATA[<h2>Overview</h2>
+
+<h3>What is the LPI Linux Essentials Certification?</h3>
+
+<ul>
+<li>Vendor-Neutral program by the Linux Professional Institute</li>
+<li>It is the first stop course before the professional certifications by LPI</li>
+<li>It is an outstanding course for new users to Linux</li>
+</ul>
+
+
+<h3>Open Source Philosophy</h3>
+
+<ul>
+<li>So why would Linux just be given away?</li>
+<li>GNU - Gnu&rsquo;s Not Unix!</li>
+<li>GNU/Linux</li>
+<li>FSF - Free Software Foundation</li>
+<li>GNU C Compiler - gcc</li>
+<li>Linux Torvalds was heavily influenced by the GNU project in which his first Linux kernel was released under the GPL</li>
+<li>GPL = General Public License</li>
+<li>GPL: Require that the source code remain freely available to anyone who might want it.</li>
+</ul>
+
+
+<h3>Distributions</h3>
+
+<blockquote><p>You can think about Linux distributions as you think about ice cream brands. #funny</p></blockquote>
+
+<p>Each distributions has a kernel , utilities and configurations.</p>
+
+<h4>What could make up a full blown Linux distributions?</h4>
+
+<ul>
+<li>Linux kernel</li>
+<li>Core Unix tools</li>
+<li>Supplemental Software</li>
+<li>Startup scripts</li>
+<li>Installers</li>
+</ul>
+
+
+<h4>What distributions is right for our project?</h4>
+
+<ul>
+<li>Is the system going to be for desktop or server use?</li>
+<li>If this is for production then a commercial distribution might be best for your needs</li>
+<li>Does your system hardware support the distribution of choice?</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

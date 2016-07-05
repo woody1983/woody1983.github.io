@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Emacs | Johnny's Blog]]></title>
+  <link href="http://woody1983.github.io/blog/categories/emacs/atom.xml" rel="self"/>
+  <link href="http://woody1983.github.io/"/>
+  <updated>2016-07-05T06:56:04+00:00</updated>
+  <id>http://woody1983.github.io/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My Emacs24 Config]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/04/title/"/>
+    <updated>2016-07-04T04:11:12+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/04/title</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<ul>
+<li>OS: MacOs</li>
+<li>Emacs 24</li>
+</ul>
+
+
+<p><code>package-list-packages</code>
+<code>load-theme</code>
+<code>load-file</code></p>
+
+<p><div><script src='https://gist.github.com/ceb1c0b7147336f0aa6ae655f0ae3862.js'></script>
+<noscript><pre><code>;;;;;;;;;;;;;;;;;;;;;;
+;;     Set Tags  
+;;;;;;;;;;;;;;;;;;;;;;
+(setq org-todo-keywords
+      &#39;((sequence &quot;TODO(t)&quot; &quot;FEEDBACK&quot; &quot;VERIFY&quot; &quot;PENDING(p@)&quot; &quot;|&quot; &quot;DONE(d)&quot; &quot;NOTE(n)&quot;)
+        (sequence &quot;REPORT(r)&quot; &quot;BUG(b)&quot; &quot;KNOWNCAUSE(k)&quot; &quot;|&quot; &quot;FIXED(f!)&quot;)
+        (sequence &quot;|&quot; &quot;CANCELED(c!@)&quot; &quot;DELEGATED&quot;)))
+(setq org-log-done &#39;time)
+(setq org-log-done &#39;note)
+(setq org-tag-alist &#39;((&quot;@work&quot; . ?w)
+                      (&quot;@home&quot; . ?h)
+                      (&quot;@laptop&quot; . ?l)
+                      (&quot;read_book&quot; . ?b)
+                      (&quot;read_Kindle&quot; . ?k)
+                      (&quot;Life&quot; . ?f)
+                      (&quot;Grow&quot; . ?g)
+                      (&quot;Learn&quot; . ?e)))
+
+;;;;;;;;;;;;;;;;;;;;;;
+;;  Set word wrap
+;;;;;;;;;;;;;;;;;;;;;;
+(add-hook &#39;org-mode-hook (lambda () (setq truncate-lines nil)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Package
+;;;;;;;;;;;;;;;;;;;;;;
+(require &#39;package)
+(add-to-list &#39;package-archives
+             &#39;(&quot;melpa&quot; . &quot;http://melpa.milkbox.net/packages/&quot;))
+(add-to-list &#39;package-archives
+             &#39;(&quot;gnu&quot; . &quot;http://elpa.gnu.org/packages/&quot;))
+(package-initialize)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;nyan-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+(nyan-mode t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; ac-html
+;;;;;;;;;;;;;;;;;;;;;;
+(add-hook &#39;html-mode-hook &#39;ac-html-enable)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set priority
+;;;;;;;;;;;;;;;;;;;;;;
+
+(setq org-highest-priority ?A)
+(setq org-lowest-priority  ?E)
+(setq org-default-priority ?E)
+(setq org-priority-faces
+      &#39;((?A . (:background &quot;red&quot; :foreground &quot;white&quot; :weight bold))
+        (?B . (:background &quot;DarkOrange&quot; :foreground &quot;white&quot; :weight bold))
+        (?C . (:background &quot;yellow&quot; :foreground &quot;DarkGreen&quot; :weight bold))
+        (?D . (:background &quot;DodgerBlue&quot; :foreground &quot;black&quot; :weight bold))
+        (?E . (:background &quot;SkyBlue&quot; :foreground &quot;black&quot; :weight bold))
+        ))
+        
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Todo Faces
+;;;;;;;;;;;;;;;;;;;;;;
+
+(setq org-todo-keyword-faces
+      &#39;((&quot;DONE&quot; .      (:background &quot;black&quot; :foreground &quot;yellow&quot; :weight bold))
+        (&quot;PENDING&quot; .   (:background &quot;LightGreen&quot; :foreground &quot;gray&quot; :weight bold))
+        (&quot;VERIFY&quot; .    (:background &quot;black&quot; :foreground &quot;SkyBlue&quot; :weight bold))
+        (&quot;NOTE&quot; .      (:background &quot;black&quot; :foreground &quot;DarkOrange&quot; :weight bold))
+        ))
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Agenda
+;;;;;;;;;;;;;;;;;;;;;;
+(setq org-agenda-files (list &quot;~/org/work.org&quot;
+                             &quot;~/org/todo.org&quot;
+                             &quot;~/org/journal.org&quot;
+                             &quot;~/org/memo.org&quot;
+                             &quot;~/org/notes.org&quot;))
+(global-set-key &quot;\C-ca&quot; &#39;org-agenda)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Resolve clock
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key &quot;\C-ct&quot; &#39;org-resolve-clocks)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Capture
+;;;;;;;;;;;;;;;;;;;;;;
+
+;; Set default org file to store note
+;;(setq org-default-notes-file (concat org-directory &quot;~/notes.org&quot;))
+(define-key global-map &quot;\C-cc&quot; &#39;org-capture)
+
+(setq org-capture-templates
+      &#39;((&quot;t&quot; &quot;Todo&quot; entry (file+headline &quot;~/org/todo.org&quot; &quot;Tasks&quot;)
+         &quot;* TODO %?\n  %i\n  %a&quot;)
+        (&quot;w&quot; &quot;Work&quot; entry (file+headline &quot;~/org/work.org&quot; &quot;Work:&quot;)
+         &quot;* TODO %?\n  %i\n  %a&quot;)
+        (&quot;m&quot; &quot;Memo&quot; entry (file+datetree &quot;~/org/memo.org&quot; &quot;Memo&quot;)
+         &quot;* Memo %?\nEntered on %U\n %i\n Author: %n\n Tasks: %K\n&quot;)
+        (&quot;n&quot; &quot;Notes&quot; entry (file+datetree &quot;~/org/notes.org&quot; &quot;Notes&quot;)
+         &quot;* %^{Description}  %^g \n %? \n%n Added: %U&quot;)
+         (&quot;b&quot; &quot;Code &amp;Block&quot; entry (file+datetree &quot;~/org/block.org&quot;)
+         &quot;* Code : %? %^{Title code} %^g  \n #+BEGIN_SRC %^{Code Type} \n %^{code} \n #+END_SRC&quot;)
+        (&quot;j&quot; &quot;Journal&quot; entry (file+datetree &quot;~/org/journal.org&quot;)
+         &quot;* %?\nEntered on %U\n  %i\n  %a&quot;)))
+
+</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+</feed>
