@@ -4,7 +4,7 @@
   <title><![CDATA[Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-05T23:52:44+00:00</updated>
+  <updated>2016-07-06T00:38:50+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-05T23:56:44+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
+    <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update       <span class="c">#Update source</span>
+</span><span class='line'>apt-get upgrade      <span class="c">#Update all installed packages</span>
+</span><span class='line'>apt-get dist-upgrade <span class="c">#Update Distributions</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install &lt;pkg&gt; <span class="c">#Install </span>
+</span><span class='line'>apt-get install --reinstall &lt;pkg&gt; <span class="c">#Install again</span>
+</span><span class='line'>apt-get install -f &lt;pkg&gt; <span class="c">#Repair and install (dependency)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Remove</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get remove &lt;pkg&gt; <span class="c"># just remove </span>
+</span><span class='line'>apt-get purge &lt;pkg&gt;  <span class="c">#Remove include config files</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Download</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get <span class="nb">source</span> &lt;pkg&gt;   <span class="c">#Download source code</span>
+</span><span class='line'>apt-get download &lt;pkg&gt; <span class="c">#Download binary tar</span>
+</span><span class='line'>apt-get <span class="nb">source</span> -d &lt;pkg&gt; <span class="c">#Download and Compile</span>
+</span><span class='line'>apt-get build-dep &lt;pkg&gt; <span class="c">#Build pkg source code dependency environment (Compile Env?)</span>
+</span><span class='line'>apt-get clean        <span class="c">#Cleanup Cache (/var/cache/apt/archives/{,partial}.)downloaded source code</span>
+</span><span class='line'>apt-get autoclean <span class="c">#cleanup out of time source code within cache</span>
+</span><span class='line'>apt-get autoremove  <span class="c">#Remove auto install dependency pkg</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Search</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-cache status <span class="c">#Display system pkg total statistics information</span>
+</span><span class='line'>apt-cache search &lt;pkg&gt;   <span class="c">#Search pkg by key words</span>
+</span><span class='line'>apt-cache show &lt;pkg_name&gt; <span class="c">#display pkg more information</span>
+</span><span class='line'>apt-cache depends &lt;pkg&gt; <span class="c">#Lookup pkg dependency software.</span>
+</span><span class='line'>apt-cache rdepends &lt;pkg&gt; <span class="c">#View PKG is dependent on those packages</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux Essentials Certification]]></title>

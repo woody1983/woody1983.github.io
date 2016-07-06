@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual/</loc>
+<lastmod>2016-07-05T23:56:44+00:00</lastmod>
+</url>
+<url>
 <loc>http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification/</loc>
 <lastmod>2016-07-05T06:36:26+00:00</lastmod>
 </url>
@@ -48,5 +52,8 @@
 </url>
 <url>
 <loc>http://woody1983.github.io/blog/categories/course/</loc>
+</url>
+<url>
+<loc>http://woody1983.github.io/blog/categories/debian/</loc>
 </url>
 </urlset>
