@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vagrant | Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-12T06:40:49+00:00</updated>
+  <updated>2016-07-12T08:53:50+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,63 +18,38 @@
     <link href="http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/"/>
     <updated>2016-07-12T06:33:38+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
-    <content type="html"><![CDATA[<h3>First Step:</h3>
+    <content type="html"><![CDATA[<h3>Installing Virtualbox &amp; Vagrant</h3>
 
-<p>To build a user focus on Vagrant.</p>
-
-<pre><code class="bash">root$ adduser _username_
-visudo
+<pre><code class="bash">$ sudo apt-get install virtualbox
+$ sudo apt-get install vagrant
 </code></pre>
 
-<h3>Install VirtualBox</h3>
+<p>Install the dkms package to ensure that the VirtualBox host kernel modules</p>
 
-<pre><code class="bash">$sudo apt-get install dkms
-$wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
-$sudo apt-key add oracle_vbox.asc
-$sudo apt-get update 
-$sudo apt-get install virtualbox-4.3 -y
-$sudo apt-get update
-$sudo adduser _username_ vboxusers
+<pre><code class="bash">$ sudo apt-get install virtualbox-dkms
 </code></pre>
 
-<h3>Install Vagrant</h3>
+<h3>Get First Vagrant Machine</h3>
 
-<pre><code class="bash">$wget https://releases.hashicorp.com/vagrant/1.8.4/vagrant_1.8.4_x86_64.debsudo dpkg -i vagrant_1.8.4
-$sudo dpkg -i vagrant_1.8.4_x86_64.deb
-$vagrant init precise64 http://files.vagrantup.com/precise64.box
-$vagrant up
+<pre><code class="bash">$ vagrant box add precise32 http://files.vagrantup.com/precise32.box
+$ vagrant box add precise64 http://files.vagrantup.com/precise64.box
+</code></pre>
 
-Bringing machine 'default' up with 'virtualbox' provider...
-==&gt; default: Box 'precise64' could not be found. Attempting to find and install...
-    default: Box Provider: virtualbox
-    default: Box Version: &gt;= 0
-==&gt; default: Box file was not detected as metadata. Adding it directly...
-==&gt; default: Adding box 'precise64' (v0) for provider: virtualbox
-    default: Downloading: http://files.vagrantup.com/precise64.box
-==&gt; default: Successfully added box 'precise64' (v0) for 'virtualbox'!
-==&gt; default: Importing base box 'precise64'...
-==&gt; default: Matching MAC address for NAT networking...
-==&gt; default: Setting the name of the VM: woody_default_1468305179364_79438
-==&gt; default: Clearing any previously set network interfaces...
-==&gt; default: Preparing network interfaces based on configuration...
-    default: Adapter 1: nat
-==&gt; default: Forwarding ports...
-    default: 22 (guest) =&gt; 2222 (host) (adapter 1)
-==&gt; default: Booting VM...
-==&gt; default: Waiting for machine to boot. This may take a few minutes...
-The guest machine entered an invalid state while waiting for it
-to boot. Valid states are 'starting, running'. The machine is in the
-'poweroff' state. Please verify everything is configured
-properly and try again.
+<h3>Configure Project</h3>
 
-If the provider you're using has a GUI that comes with it,
-it is often helpful to open that and watch the machine, since the
-GUI often has more helpful error messages than Vagrant can retrieve.
-For example, if you're using VirtualBox, run `vagrant up` while the
-VirtualBox GUI is open.
+<pre><code class="bash">$ mkdir vagrant_project
+$ cd vagrant_project
+$ vagrant init
+</code></pre>
 
-The primary issue for this error is that the provider you're using
-is not properly configured. This is very rarely a Vagrant issue.
+<p>And Edit the <code>Vagrantfile</code> file</p>
+
+<pre><code class="bash">config.vm.box = "precise64"
+</code></pre>
+
+<h3>Start Environment</h3>
+
+<pre><code class="bash">~/vagrant_project_64$ vagrant up
 </code></pre>
 ]]></content>
   </entry>

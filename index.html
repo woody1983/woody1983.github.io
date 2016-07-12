@@ -127,113 +127,54 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><h3>First Step:</h3>
-
-<p>To build a user focus on Vagrant.</p>
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3>Installing Virtualbox &amp; Vagrant</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>root<span class="nv">$ </span>adduser _username_
-</span><span class='line'>visudo
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install virtualbox
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install vagrant
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Install VirtualBox</h3>
+<p>Install the dkms package to ensure that the VirtualBox host kernel modules</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install virtualbox-dkms
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Get First Vagrant Machine</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$sudo</span> apt-get install dkms
-</span><span class='line'><span class="nv">$wget</span> -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
-</span><span class='line'><span class="nv">$sudo</span> apt-key add oracle_vbox.asc
-</span><span class='line'><span class="nv">$sudo</span> apt-get update
-</span><span class='line'><span class="nv">$sudo</span> apt-get install virtualbox-4.3 -y
-</span><span class='line'><span class="nv">$sudo</span> apt-get update
-</span><span class='line'><span class="nv">$sudo</span> adduser _username_ vboxusers
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>vagrant box add precise32 http://files.vagrantup.com/precise32.box
+</span><span class='line'><span class="nv">$ </span>vagrant box add precise64 http://files.vagrantup.com/precise64.box
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Install Vagrant</h3>
+<h3>Configure Project</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$wget</span> https://releases.hashicorp.com/vagrant/1.8.4/vagrant_1.8.4_x86_64.debsudo dpkg -i vagrant_1.8.4
-</span><span class='line'><span class="nv">$sudo</span> dpkg -i vagrant_1.8.4_x86_64.deb
-</span><span class='line'><span class="nv">$vagrant</span> init precise64 http://files.vagrantup.com/precise64.box
-</span><span class='line'><span class="nv">$vagrant</span> up
-</span><span class='line'>
-</span><span class='line'>Bringing machine <span class="s1">&#39;default&#39;</span> up with <span class="s1">&#39;virtualbox&#39;</span> provider...
-</span><span class='line'><span class="o">==</span>&gt; default: Box <span class="s1">&#39;precise64&#39;</span> could not be found. Attempting to find and install...
-</span><span class='line'>    default: Box Provider: virtualbox
-</span><span class='line'>    default: Box Version: &gt;<span class="o">=</span> <span class="nv">0</span>
-</span><span class='line'><span class="o">==</span>&gt; default: Box file was not detected as metadata. Adding it directly...
-</span><span class='line'><span class="o">==</span>&gt; default: Adding box <span class="s1">&#39;precise64&#39;</span> <span class="o">(</span>v0<span class="o">)</span> <span class="k">for</span> provider: virtualbox
-</span><span class='line'>    default: Downloading: http://files.vagrantup.com/precise64.box
-</span><span class='line'><span class="o">==</span>&gt; default: Successfully added box <span class="s1">&#39;precise64&#39;</span> <span class="o">(</span>v0<span class="o">)</span> <span class="k">for</span> <span class="s1">&#39;virtualbox&#39;</span>!
-</span><span class='line'><span class="o">==</span>&gt; default: Importing base box <span class="s1">&#39;precise64&#39;</span>...
-</span><span class='line'><span class="o">==</span>&gt; default: Matching MAC address <span class="k">for</span> NAT networking...
-</span><span class='line'><span class="o">==</span>&gt; default: Setting the name of the VM: <span class="nv">woody_default_1468305179364_79438</span>
-</span><span class='line'><span class="o">==</span>&gt; default: Clearing any previously <span class="nb">set </span>network interfaces...
-</span><span class='line'><span class="o">==</span>&gt; default: Preparing network interfaces based on configuration...
-</span><span class='line'>    default: Adapter 1: <span class="nv">nat</span>
-</span><span class='line'><span class="o">==</span>&gt; default: Forwarding ports...
-</span><span class='line'>    default: <span class="m">22</span> <span class="o">(</span>guest<span class="o">)</span> <span class="o">=</span>&gt; <span class="m">2222</span> <span class="o">(</span>host<span class="o">)</span> <span class="o">(</span>adapter 1<span class="o">)</span>
-</span><span class='line'><span class="o">==</span>&gt; default: Booting VM...
-</span><span class='line'><span class="o">==</span>&gt; default: Waiting <span class="k">for</span> machine to boot. This may take a few minutes...
-</span><span class='line'>The guest machine entered an invalid state <span class="k">while</span> waiting <span class="k">for</span> it
-</span><span class='line'>to boot. Valid states are <span class="s1">&#39;starting, running&#39;</span>. The machine is in the
-</span><span class='line'><span class="s1">&#39;poweroff&#39;</span> state. Please verify everything is configured
-</span><span class='line'>properly and try again.
-</span><span class='line'>
-</span><span class='line'>If the provider you<span class="s1">&#39;re using has a GUI that comes with it,</span>
-</span><span class='line'><span class="s1">it is often helpful to open that and watch the machine, since the</span>
-</span><span class='line'><span class="s1">GUI often has more helpful error messages than Vagrant can retrieve.</span>
-</span><span class='line'><span class="s1">For example, if you&#39;</span>re using VirtualBox, run <span class="sb">`</span>vagrant up<span class="sb">`</span> <span class="k">while</span> the
-</span><span class='line'>VirtualBox GUI is open.
-</span><span class='line'>
-</span><span class='line'>The primary issue <span class="k">for</span> this error is that the provider you<span class="err">&#39;</span>re using
-</span><span class='line'>is not properly configured. This is very rarely a Vagrant issue.
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>mkdir vagrant_project
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>vagrant_project
+</span><span class='line'><span class="nv">$ </span>vagrant init
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>And Edit the <code>Vagrantfile</code> file</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>config.vm.box <span class="o">=</span> <span class="s2">&quot;precise64&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Start Environment</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>~/vagrant_project_64<span class="nv">$ </span>vagrant up
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
   
