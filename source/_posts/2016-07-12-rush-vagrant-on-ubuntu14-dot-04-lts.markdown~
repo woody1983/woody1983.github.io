@@ -1,0 +1,69 @@
+---
+layout: post
+title: "Rush Vagrant on Ubuntu14.04 LTS"
+date: 2016-07-12 06:33:38 +0000
+comments: true
+categories: [Vagrant, Ubuntu]
+---
+
+###First Step:
+To build a user focus on Vagrant.
+
+``` bash
+root$ adduser _username_
+visudo
+```
+
+### Install VirtualBox
+
+``` bash
+$sudo apt-get install dkms
+$wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+$sudo apt-key add oracle_vbox.asc
+$sudo apt-get update 
+$sudo apt-get install virtualbox-4.3 -y
+$sudo apt-get update
+$sudo adduser _username_ vboxusers
+```
+
+### Install Vagrant
+``` bash
+$wget https://releases.hashicorp.com/vagrant/1.8.4/vagrant_1.8.4_x86_64.debsudo dpkg -i vagrant_1.8.4
+$sudo dpkg -i vagrant_1.8.4_x86_64.deb
+$vagrant init precise64 http://files.vagrantup.com/precise64.box
+$vagrant up
+
+Bringing machine 'default' up with 'virtualbox' provider...
+==> default: Box 'precise64' could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: >= 0
+==> default: Box file was not detected as metadata. Adding it directly...
+==> default: Adding box 'precise64' (v0) for provider: virtualbox
+    default: Downloading: http://files.vagrantup.com/precise64.box
+==> default: Successfully added box 'precise64' (v0) for 'virtualbox'!
+==> default: Importing base box 'precise64'...
+==> default: Matching MAC address for NAT networking...
+==> default: Setting the name of the VM: woody_default_1468305179364_79438
+==> default: Clearing any previously set network interfaces...
+==> default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==> default: Forwarding ports...
+    default: 22 (guest) => 2222 (host) (adapter 1)
+==> default: Booting VM...
+==> default: Waiting for machine to boot. This may take a few minutes...
+The guest machine entered an invalid state while waiting for it
+to boot. Valid states are 'starting, running'. The machine is in the
+'poweroff' state. Please verify everything is configured
+properly and try again.
+
+If the provider you're using has a GUI that comes with it,
+it is often helpful to open that and watch the machine, since the
+GUI often has more helpful error messages than Vagrant can retrieve.
+For example, if you're using VirtualBox, run `vagrant up` while the
+VirtualBox GUI is open.
+
+The primary issue for this error is that the provider you're using
+is not properly configured. This is very rarely a Vagrant issue.
+```
+
+

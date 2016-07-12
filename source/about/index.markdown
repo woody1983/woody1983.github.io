@@ -8,3 +8,5 @@ footer: true
 ---
 
 > Let me think ...
+
+![Pied Piere](http://7xllrf.com1.z0.glb.clouddn.com/pied_piper.png)
