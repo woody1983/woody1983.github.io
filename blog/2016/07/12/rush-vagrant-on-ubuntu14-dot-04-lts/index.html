@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Ansible MySQL DB Module - Johnny's Blog</title>
+  <title>Rush Vagrant on Ubuntu14.04 LTS - Johnny's Blog</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/">
+  <link rel="canonical" href="http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Johnny's Blog" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/">
-  <meta property="og:title" content="Ansible MySQL DB Module - Johnny's Blog">
+  <meta property="og:url" content="http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/">
+  <meta property="og:title" content="Rush Vagrant on Ubuntu14.04 LTS - Johnny's Blog">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -113,40 +113,50 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T05:49:14+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-12T06:33:38+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Ansible MySQL DB Module
+        Rush Vagrant on Ubuntu14.04 LTS
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><h3>Install MariaDB</h3>
+<div class="entry-content clearfix" itemprop="articleBody description"><h3>First Step:</h3>
+
+<p>To build a user focus on Vagrant.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl start mariadb.service
-</span><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>mariadb.service
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root<span class="nv">$ </span>adduser _username_
+</span><span class='line'>visudo
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Adding Ansible User</h3>
+<h3>Install VirtualBox</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="o">`</span><span class="n">ansible_db</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;123456&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$sudo</span> apt-get install dkms
+</span><span class='line'><span class="nv">$wget</span> -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+</span><span class='line'><span class="nv">$sudo</span> apt-key add oracle_vbox.asc
+</span><span class='line'><span class="nv">$sudo</span> apt-get update
+</span><span class='line'><span class="nv">$sudo</span> apt-get install virtualbox-4.3 -y
+</span><span class='line'><span class="nv">$sudo</span> apt-get update
+</span><span class='line'><span class="nv">$sudo</span> adduser _username_ vboxusers
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Playbook</h3>
-
-<p>For Create Database.</p>
+<h3>Install Vagrant</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -159,29 +169,44 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_DB MODULE EXAMPLE</span>
-</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apacheserver</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ansible</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">connection</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ssh</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">gather_facts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Install the Python MySQL Support Libraries</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$wget</span> https://releases.hashicorp.com/vagrant/1.8.4/vagrant_1.8.4_x86_64.debsudo dpkg -i vagrant_1.8.4
+</span><span class='line'><span class="nv">$sudo</span> dpkg -i vagrant_1.8.4_x86_64.deb
+</span><span class='line'><span class="nv">$vagrant</span> init precise64 http://files.vagrantup.com/precise64.box
+</span><span class='line'><span class="nv">$vagrant</span> up
+</span><span class='line'>
+</span><span class='line'>Bringing machine <span class="s1">&#39;default&#39;</span> up with <span class="s1">&#39;virtualbox&#39;</span> provider...
+</span><span class='line'><span class="o">==</span>&gt; default: Box <span class="s1">&#39;precise64&#39;</span> could not be found. Attempting to find and install...
+</span><span class='line'>    default: Box Provider: virtualbox
+</span><span class='line'>    default: Box Version: &gt;<span class="o">=</span> <span class="nv">0</span>
+</span><span class='line'><span class="o">==</span>&gt; default: Box file was not detected as metadata. Adding it directly...
+</span><span class='line'><span class="o">==</span>&gt; default: Adding box <span class="s1">&#39;precise64&#39;</span> <span class="o">(</span>v0<span class="o">)</span> <span class="k">for</span> provider: virtualbox
+</span><span class='line'>    default: Downloading: http://files.vagrantup.com/precise64.box
+</span><span class='line'><span class="o">==</span>&gt; default: Successfully added box <span class="s1">&#39;precise64&#39;</span> <span class="o">(</span>v0<span class="o">)</span> <span class="k">for</span> <span class="s1">&#39;virtualbox&#39;</span>!
+</span><span class='line'><span class="o">==</span>&gt; default: Importing base box <span class="s1">&#39;precise64&#39;</span>...
+</span><span class='line'><span class="o">==</span>&gt; default: Matching MAC address <span class="k">for</span> NAT networking...
+</span><span class='line'><span class="o">==</span>&gt; default: Setting the name of the VM: <span class="nv">woody_default_1468305179364_79438</span>
+</span><span class='line'><span class="o">==</span>&gt; default: Clearing any previously <span class="nb">set </span>network interfaces...
+</span><span class='line'><span class="o">==</span>&gt; default: Preparing network interfaces based on configuration...
+</span><span class='line'>    default: Adapter 1: <span class="nv">nat</span>
+</span><span class='line'><span class="o">==</span>&gt; default: Forwarding ports...
+</span><span class='line'>    default: <span class="m">22</span> <span class="o">(</span>guest<span class="o">)</span> <span class="o">=</span>&gt; <span class="m">2222</span> <span class="o">(</span>host<span class="o">)</span> <span class="o">(</span>adapter 1<span class="o">)</span>
+</span><span class='line'><span class="o">==</span>&gt; default: Booting VM...
+</span><span class='line'><span class="o">==</span>&gt; default: Waiting <span class="k">for</span> machine to boot. This may take a few minutes...
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>For manager User</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_USER MODULE EXAMPLE</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a new user called BOB and give him all access</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
-</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -206,13 +231,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T05:49:14+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-12T06:33:38+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ansible/'>ansible</a>
+    <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>, <a class='category' href='/blog/categories/vagrant/'>vagrant</a>
   
 </span>
 
@@ -221,7 +246,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/" data-via="" data-counturl="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/" data-via="" data-counturl="http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/" >Tweet</a>
   
   
   
@@ -231,10 +256,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/" title="Previous Post: Build Rails Env on Ubuntu/Docker">&laquo; Build Rails Env on Ubuntu/Docker</a></li>
+            <li class="previous"><a href="/blog/2016/07/11/ansible-db-deployment-outline/" title="Previous Post: Ansible DB Deployment Outline">&laquo; Ansible DB Deployment Outline</a></li>
             
-            
-            <li class="next"><a href="/blog/2016/07/05/linux-essentials-certification/" title="Next Post: Linux Essentials Certification">Linux Essentials Certification &raquo;</a></li>
             
           </ul>
         
@@ -253,7 +276,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/">Rush Vagrant on Ubuntu14.04 LTS</a>
+    <a class="list-group-item active" href="/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/">Rush Vagrant on Ubuntu14.04 LTS</a>
     
     <a class="list-group-item " href="/blog/2016/07/11/ansible-db-deployment-outline/">Ansible DB Deployment Outline</a>
     
@@ -261,7 +284,7 @@
     
     <a class="list-group-item " href="/blog/2016/07/05/linux-essentials-certification/">Linux Essentials Certification</a>
     
-    <a class="list-group-item active" href="/blog/2016/07/04/ansible-mysql-db-module/">Ansible MySQL DB Module</a>
+    <a class="list-group-item " href="/blog/2016/07/04/ansible-mysql-db-module/">Ansible MySQL DB Module</a>
     
   </div>
 </section>

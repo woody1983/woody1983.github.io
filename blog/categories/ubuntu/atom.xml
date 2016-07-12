@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-12T05:46:57+00:00</updated>
+  <updated>2016-07-12T06:39:15+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rush Vagrant on Ubuntu14.04 LTS]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/"/>
+    <updated>2016-07-12T06:33:38+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
+    <content type="html"><![CDATA[<h3>First Step:</h3>
+
+<p>To build a user focus on Vagrant.</p>
+
+<pre><code class="bash">root$ adduser _username_
+visudo
+</code></pre>
+
+<h3>Install VirtualBox</h3>
+
+<pre><code class="bash">$sudo apt-get install dkms
+$wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+$sudo apt-key add oracle_vbox.asc
+$sudo apt-get update 
+$sudo apt-get install virtualbox-4.3 -y
+$sudo apt-get update
+$sudo adduser _username_ vboxusers
+</code></pre>
+
+<h3>Install Vagrant</h3>
+
+<pre><code class="bash">$wget https://releases.hashicorp.com/vagrant/1.8.4/vagrant_1.8.4_x86_64.debsudo dpkg -i vagrant_1.8.4
+$sudo dpkg -i vagrant_1.8.4_x86_64.deb
+$vagrant init precise64 http://files.vagrantup.com/precise64.box
+$vagrant up
+
+Bringing machine 'default' up with 'virtualbox' provider...
+==&gt; default: Box 'precise64' could not be found. Attempting to find and install...
+    default: Box Provider: virtualbox
+    default: Box Version: &gt;= 0
+==&gt; default: Box file was not detected as metadata. Adding it directly...
+==&gt; default: Adding box 'precise64' (v0) for provider: virtualbox
+    default: Downloading: http://files.vagrantup.com/precise64.box
+==&gt; default: Successfully added box 'precise64' (v0) for 'virtualbox'!
+==&gt; default: Importing base box 'precise64'...
+==&gt; default: Matching MAC address for NAT networking...
+==&gt; default: Setting the name of the VM: woody_default_1468305179364_79438
+==&gt; default: Clearing any previously set network interfaces...
+==&gt; default: Preparing network interfaces based on configuration...
+    default: Adapter 1: nat
+==&gt; default: Forwarding ports...
+    default: 22 (guest) =&gt; 2222 (host) (adapter 1)
+==&gt; default: Booting VM...
+==&gt; default: Waiting for machine to boot. This may take a few minutes...
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
