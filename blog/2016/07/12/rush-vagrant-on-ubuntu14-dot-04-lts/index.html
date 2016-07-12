@@ -181,6 +181,19 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$wget</span> https://releases.hashicorp.com/vagrant/1.8.4/vagrant_1.8.4_x86_64.debsudo dpkg -i vagrant_1.8.4
 </span><span class='line'><span class="nv">$sudo</span> dpkg -i vagrant_1.8.4_x86_64.deb
 </span><span class='line'><span class="nv">$vagrant</span> init precise64 http://files.vagrantup.com/precise64.box
@@ -204,6 +217,19 @@
 </span><span class='line'>    default: <span class="m">22</span> <span class="o">(</span>guest<span class="o">)</span> <span class="o">=</span>&gt; <span class="m">2222</span> <span class="o">(</span>host<span class="o">)</span> <span class="o">(</span>adapter 1<span class="o">)</span>
 </span><span class='line'><span class="o">==</span>&gt; default: Booting VM...
 </span><span class='line'><span class="o">==</span>&gt; default: Waiting <span class="k">for</span> machine to boot. This may take a few minutes...
+</span><span class='line'>The guest machine entered an invalid state <span class="k">while</span> waiting <span class="k">for</span> it
+</span><span class='line'>to boot. Valid states are <span class="s1">&#39;starting, running&#39;</span>. The machine is in the
+</span><span class='line'><span class="s1">&#39;poweroff&#39;</span> state. Please verify everything is configured
+</span><span class='line'>properly and try again.
+</span><span class='line'>
+</span><span class='line'>If the provider you<span class="s1">&#39;re using has a GUI that comes with it,</span>
+</span><span class='line'><span class="s1">it is often helpful to open that and watch the machine, since the</span>
+</span><span class='line'><span class="s1">GUI often has more helpful error messages than Vagrant can retrieve.</span>
+</span><span class='line'><span class="s1">For example, if you&#39;</span>re using VirtualBox, run <span class="sb">`</span>vagrant up<span class="sb">`</span> <span class="k">while</span> the
+</span><span class='line'>VirtualBox GUI is open.
+</span><span class='line'>
+</span><span class='line'>The primary issue <span class="k">for</span> this error is that the provider you<span class="err">&#39;</span>re using
+</span><span class='line'>is not properly configured. This is very rarely a Vagrant issue.
 </span></code></pre></td></tr></table></div></figure>
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vagrant | Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-12T06:39:15+00:00</updated>
+  <updated>2016-07-12T06:40:49+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -62,6 +62,19 @@ Bringing machine 'default' up with 'virtualbox' provider...
     default: 22 (guest) =&gt; 2222 (host) (adapter 1)
 ==&gt; default: Booting VM...
 ==&gt; default: Waiting for machine to boot. This may take a few minutes...
+The guest machine entered an invalid state while waiting for it
+to boot. Valid states are 'starting, running'. The machine is in the
+'poweroff' state. Please verify everything is configured
+properly and try again.
+
+If the provider you're using has a GUI that comes with it,
+it is often helpful to open that and watch the machine, since the
+GUI often has more helpful error messages than Vagrant can retrieve.
+For example, if you're using VirtualBox, run `vagrant up` while the
+VirtualBox GUI is open.
+
+The primary issue for this error is that the provider you're using
+is not properly configured. This is very rarely a Vagrant issue.
 </code></pre>
 ]]></content>
   </entry>
