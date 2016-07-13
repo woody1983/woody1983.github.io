@@ -9,6 +9,8 @@ categories: [Vagrant, Ubuntu]
 ### Installing Virtualbox & Vagrant
 
 ``` bash
+$ wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+$ sudo apt-key add oracle_vbox.asc
 $ sudo apt-get install virtualbox
 $ sudo apt-get install vagrant
 ```
@@ -38,10 +40,29 @@ And Edit the `Vagrantfile` file
 
 ``` bash
 config.vm.box = "precise64"
+#Synced Folder
+config.vm.synced_folder "src/", "/vagrant_data"
+#Forward Port
+config.vm.network "forwarded_port", guest: 80, host: 8080
+#Provision
+config.vm.provision "shell", path: "provision.sh"
 ```
 
 ### Start Environment
 
 ``` bash
 ~/vagrant_project_64$ vagrant up
+```
+
+Shell Script
+
+``` bash provision.sh
+#!/usr/bin/env bash
+
+echo "Installing Apache and setting apache up... please wait"
+apt-get update > /dev/null 2>&1
+apt-get install -y apache2 > /dev/null 2>&1
+
+rm -rf /var/www
+ln -fs /vagrant /var/www
 ```

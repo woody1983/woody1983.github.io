@@ -7,6 +7,6 @@ sharing: true
 footer: true
 ---
 
-> Let me think ...
+First thing, Welcome to Mutiny.
 
-![Pied Piere](http://7xllrf.com1.z0.glb.clouddn.com/pied_piper.png)
+![Mutiny](http://i2.cdn.turner.com/cnnnext/dam/assets/150527155424-halt-catch-fire-set-exlarge-169.jpg)
