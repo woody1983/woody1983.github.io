@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Debian | Johnny's Blog]]></title>
+  <title><![CDATA[Category: Debian | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/debian/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-13T02:50:36+00:00</updated>
+  <updated>2016-07-13T03:32:37+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
