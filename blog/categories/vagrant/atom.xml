@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vagrant | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-13T03:53:04+00:00</updated>
+  <updated>2016-07-13T08:52:19+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
+    <updated>2016-07-13T08:51:01+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
+    <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">Vagrant.configure("2") do |config|
+  # The most common configuration options are documented and commented below.
+  # For a complete reference, please see the online documentation at
+  # https://docs.vagrantup.com.
+
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://atlas.hashicorp.com/search.
+  config.vm.box = "precise32"
+  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+
+  # Setup for Web Server
+  config.vm.define "web" do |web|
+    web.vm.hostname = "web"
+    web.vm.box = "apache"
+    web.vm.network "private_network", type: "dhcp"
+    web.vm.network "forwarded_port", guest: 80, host: 8080
+    web.vm.provision "puppet" do |puppet|
+      puppet.manifests_path = "manifests"
+      puppet.manifest_file = "default.pp"
+    end
+  end
+
+  # Setup for MySQL DB Server
+  config.vm.define "db" do |db|
+    db.vm.hostname = "db"
+    db.vm.box = "mysql"
+    db.vm.network "private_network", type: "dhcp"
+  end
+
+
+end
+</code></pre>
+
+<pre><code class="ruby manifests/default.pp">exec { "apt-get update":
+        command =&gt; "/usr/bin/apt-get update",
+}
+
+package { "apache2":
+        require =&gt; Exec["apt-get update"],
+}
+
+file { "/var/www":
+         ensure =&gt; link,
+         target =&gt; "/vagrant",
+         force =&gt; true,
+}
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Installing Apache With Chef]]></title>
