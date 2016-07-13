@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-13T03:32:37+00:00</updated>
+  <updated>2016-07-13T03:53:04+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Apache With Chef]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
+    <updated>2016-07-13T03:48:11+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
+    <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
+    chef.add_recipe "vagrant_la"
+  end
+</code></pre>
+
+<h4>Tree cookbooks</h4>
+
+<pre><code class="">cookbooks:/
+---/vagrant_la
+   ---/recipes
+      ---/default.rb
+</code></pre>
+
+<pre><code class="ruby default.rb">execute "apt-get update"
+package "apache2"
+execute "rm -rf /var/www"
+link "/var/www" do
+       to "/vagrant"
+end
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rush Vagrant on Ubuntu14.04 LTS]]></title>

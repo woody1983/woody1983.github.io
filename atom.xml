@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-13T03:32:37+00:00</updated>
+  <updated>2016-07-13T03:53:04+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Apache With Chef]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
+    <updated>2016-07-13T03:48:11+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;chef_solo&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">add_recipe</span> <span class="s2">&quot;vagrant_la&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Tree cookbooks</h4>
+
+<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">cookbooks</span><span class="p">:</span><span class="sr">/</span>
+</span><span class='line'><span class="sr">---/</span><span class="n">vagrant_la</span>
+</span><span class='line'>   <span class="o">---/</span><span class="n">recipes</span>
+</span><span class='line'>      <span class="o">---/</span><span class="n">default</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">execute</span> <span class="s2">&quot;apt-get update&quot;</span>
+</span><span class='line'><span class="n">package</span> <span class="s2">&quot;apache2&quot;</span>
+</span><span class='line'><span class="n">execute</span> <span class="s2">&quot;rm -rf /var/www&quot;</span>
+</span><span class='line'><span class="n">link</span> <span class="s2">&quot;/var/www&quot;</span> <span class="k">do</span>
+</span><span class='line'>       <span class="n">to</span> <span class="s2">&quot;/vagrant&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rush Vagrant on Ubuntu14.04 LTS]]></title>

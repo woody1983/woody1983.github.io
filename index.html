@@ -117,6 +117,80 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-13T03:48:11+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/13/installing-apache-with-chef/" itemprop="url">Installing Apache With Chef</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;chef_solo&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">add_recipe</span> <span class="s2">&quot;vagrant_la&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Tree cookbooks</h4>
+
+<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">cookbooks</span><span class="p">:</span><span class="sr">/</span>
+</span><span class='line'><span class="sr">---/</span><span class="n">vagrant_la</span>
+</span><span class='line'>   <span class="o">---/</span><span class="n">recipes</span>
+</span><span class='line'>      <span class="o">---/</span><span class="n">default</span><span class="o">.</span><span class="n">rb</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">execute</span> <span class="s2">&quot;apt-get update&quot;</span>
+</span><span class='line'><span class="n">package</span> <span class="s2">&quot;apache2&quot;</span>
+</span><span class='line'><span class="n">execute</span> <span class="s2">&quot;rm -rf /var/www&quot;</span>
+</span><span class='line'><span class="n">link</span> <span class="s2">&quot;/var/www&quot;</span> <span class="k">do</span>
+</span><span class='line'>       <span class="n">to</span> <span class="s2">&quot;/vagrant&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-12T06:33:38+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -716,6 +790,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/07/13/installing-apache-with-chef/">Installing Apache With Chef</a>
+    
     <a class="list-group-item " href="/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/">Rush Vagrant on Ubuntu14.04 LTS</a>
     
     <a class="list-group-item " href="/blog/2016/07/11/ansible-db-deployment-outline/">Ansible DB Deployment Outline</a>
@@ -723,8 +799,6 @@
     <a class="list-group-item " href="/blog/2016/07/05/debian-slash-ubuntu-apt-manual/">Debian/Ubuntu Apt Manual</a>
     
     <a class="list-group-item " href="/blog/2016/07/05/linux-essentials-certification/">Linux Essentials Certification</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/04/ansible-mysql-db-module/">Ansible MySQL DB Module</a>
     
   </div>
 </section>
@@ -754,7 +828,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/ubuntu/index.html">
-        <span class="badge">3</span>
+        <span class="badge">4</span>
         ubuntu
       </a>
     
@@ -772,7 +846,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/linux/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         linux
       </a>
     
@@ -796,8 +870,14 @@
     
     
     <a class="list-group-item " href="/blog/categories/vagrant/index.html">
-        <span class="badge">1</span>
+        <span class="badge">2</span>
         vagrant
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/chef/index.html">
+        <span class="badge">1</span>
+        chef
       </a>
     
   </div>
