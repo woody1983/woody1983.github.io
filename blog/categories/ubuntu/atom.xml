@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | Johnny's Blog]]></title>
   <link href="http://woody1983.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-12T08:53:50+00:00</updated>
+  <updated>2016-07-13T02:50:36+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -20,7 +20,9 @@
     <id>http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
     <content type="html"><![CDATA[<h3>Installing Virtualbox &amp; Vagrant</h3>
 
-<pre><code class="bash">$ sudo apt-get install virtualbox
+<pre><code class="bash">$ wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+$ sudo apt-key add oracle_vbox.asc
+$ sudo apt-get install virtualbox
 $ sudo apt-get install vagrant
 </code></pre>
 
@@ -45,11 +47,29 @@ $ vagrant init
 <p>And Edit the <code>Vagrantfile</code> file</p>
 
 <pre><code class="bash">config.vm.box = "precise64"
+#Synced Folder
+config.vm.synced_folder "src/", "/vagrant_data"
+#Forward Port
+config.vm.network "forwarded_port", guest: 80, host: 8080
+#Provision
+config.vm.provision "shell", path: "provision.sh"
 </code></pre>
 
 <h3>Start Environment</h3>
 
 <pre><code class="bash">~/vagrant_project_64$ vagrant up
+</code></pre>
+
+<p>Shell Script</p>
+
+<pre><code class="bash provision.sh">#!/usr/bin/env bash
+
+echo "Installing Apache and setting apache up... please wait"
+apt-get update &gt; /dev/null 2&gt;&amp;1
+apt-get install -y apache2 &gt; /dev/null 2&gt;&amp;1
+
+rm -rf /var/www
+ln -fs /vagrant /var/www
 </code></pre>
 ]]></content>
   </entry>

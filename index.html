@@ -131,7 +131,11 @@
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install virtualbox
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
+</span><span class='line'><span class="nv">$ </span>sudo apt-key add oracle_vbox.asc
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install virtualbox
 </span><span class='line'><span class="nv">$ </span>sudo apt-get install vagrant
 </span></code></pre></td></tr></table></div></figure>
 
@@ -166,7 +170,19 @@
 <p>And Edit the <code>Vagrantfile</code> file</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>config.vm.box <span class="o">=</span> <span class="s2">&quot;precise64&quot;</span>
+</span><span class='line'><span class="c">#Synced Folder</span>
+</span><span class='line'>config.vm.synced_folder <span class="s2">&quot;src/&quot;</span>, <span class="s2">&quot;/vagrant_data&quot;</span>
+</span><span class='line'><span class="c">#Forward Port</span>
+</span><span class='line'>config.vm.network <span class="s2">&quot;forwarded_port&quot;</span>, guest: 80, host: 8080
+</span><span class='line'><span class="c">#Provision</span>
+</span><span class='line'>config.vm.provision <span class="s2">&quot;shell&quot;</span>, path: <span class="s2">&quot;provision.sh&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -174,6 +190,27 @@
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>~/vagrant_project_64<span class="nv">$ </span>vagrant up
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Shell Script</p>
+
+<figure class='code'><figcaption><span>provision.sh</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env bash</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Installing Apache and setting apache up... please wait&quot;</span>
+</span><span class='line'>apt-get update &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
+</span><span class='line'>apt-get install -y apache2 &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
+</span><span class='line'>
+</span><span class='line'>rm -rf /var/www
+</span><span class='line'>ln -fs /vagrant /var/www
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
