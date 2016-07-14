@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vagrant | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-13T08:52:19+00:00</updated>
+  <updated>2016-07-14T01:39:50+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The Vagrant's Networking]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking/"/>
+    <updated>2016-07-14T01:37:44+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking</id>
+    <content type="html"><![CDATA[<p>You can setuo Private network or Public network on vagrant.</p>
+
+<h3>Private networking</h3>
+
+<pre><code class="ruby Vagrantfile">Vagrant.configure("2") do |config|
+  config.vm.network "private_network", type:"dhcp"
+end
+</code></pre>
+
+<h3>Public networking</h3>
+
+<pre><code class="ruby Vagrantfile">#STATIC IP
+config.vm.network "public_network",ip: "192.168.1.1"
+
+#Default Interface
+config.vm.network "public_network",bridge: 'eb1: Wi-Fi(AirPort)'
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
