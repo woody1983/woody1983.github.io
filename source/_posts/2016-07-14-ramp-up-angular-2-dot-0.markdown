@@ -6,7 +6,7 @@ comments: true
 categories: Angular
 ---
 
-First things:
+First Things:
 
 ### Download Angular
 URL: [Angular](http://angularjs.org)
@@ -121,4 +121,5 @@ And change the HTML code
 ``` html
 <div class="product row" ng-repeat="product in store.products">
 ```
+
 **KeyWords** `ng-repeat`

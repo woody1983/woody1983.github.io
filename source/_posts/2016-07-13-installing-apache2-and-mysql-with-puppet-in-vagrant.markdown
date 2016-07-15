@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Installing Apache2 &amp; MySQL with Puppet in Vagrant"
-date: 2016-07-13 08:51:01 +0000
+date: 2016-07-13 08:52:01 +0000
 comments: true
 categories: [Vagrant, Puppet, Ubuntu]
 ---

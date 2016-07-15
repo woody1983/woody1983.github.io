@@ -12,7 +12,7 @@ categories: [Vagrant, Ubuntu, Linux, Chef]
   end
 ```
 
-#### Tree cookbooks
+#### Tree of Cookbooks
 
 ``` 
 cookbooks:/

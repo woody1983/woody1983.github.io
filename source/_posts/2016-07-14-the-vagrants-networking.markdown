@@ -6,7 +6,7 @@ comments: true
 categories: Vagrant
 ---
 
-You can setup Private network or Public network on vagrant.
+You can Setup Private network or Public network on vagrant.
 
 ### Private networking
 
