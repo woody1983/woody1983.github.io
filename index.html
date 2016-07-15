@@ -117,6 +117,140 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-15T04:22:21+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/15/install-jenkins-on-centos-7/" itemprop="url">Install Jenkins on CentOS 7</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3>First thing, ensure your server'8080 port is free</h3>
+
+<figure class='code'><figcaption><span>Download JDK by wget</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate --no-cookies --header <span class="s2">&quot;Cookie: oraclelicense=accept-securebackup-cookie&quot;</span> <span class="se">\</span>
+</span><span class='line'> http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.rpm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>sudo root</p>
+
+<figure class='code'><figcaption><span>Installing JDK</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$rpm</span> -Uvh jdk-8u25-linux-x64.rpm
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Configuration JDK</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
+</span><span class='line'>alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
+</span><span class='line'>alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
+</span><span class='line'>
+</span><span class='line'>alternatives --config java
+</span><span class='line'><span class="c">#Enter</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">#---Check or Verify</span>
+</span><span class='line'>java -version
+</span><span class='line'>javac -version
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>/etc/rc.d/rc.local</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="c"># THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># It is highly advisable to create own systemd services or udev rules</span>
+</span><span class='line'><span class="c"># to run scripts during boot instead of using this file.</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># In contrast to previous versions due to parallel execution during boot</span>
+</span><span class='line'><span class="c"># this script will NOT be run after all other services.</span>
+</span><span class='line'><span class="c">#</span>
+</span><span class='line'><span class="c"># Please note that you must run &#39;chmod +x /etc/rc.d/rc.local&#39; to ensure</span>
+</span><span class='line'><span class="c"># that this script will be executed during boot.</span>
+</span><span class='line'>
+</span><span class='line'>touch /var/lock/subsys/local
+</span><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/usr/java/latest&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Installing Jenkins</h3>
+
+<figure class='code'><figcaption><span>Get Repo for Jenkins</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+</span><span class='line'>sudo rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+</span><span class='line'>yum install jenkins
+</span><span class='line'>
+</span><span class='line'><span class="c">#Setup</span>
+</span><span class='line'>systemctl <span class="nb">enable </span>jenkins.service
+</span><span class='line'>
+</span><span class='line'><span class="c">#Restart</span>
+</span><span class='line'>systemctl restart jenkins.service
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Take a look at <a href="http://localhost:8080">http://localhost:8080</a></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-14T02:29:53+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -1049,74 +1183,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T04:25:56+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/" itemprop="url">Build Rails Env on Ubuntu/Docker</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h4>For PPA</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install python-software-properties
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install software-properties-common
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Ruby 2.2</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-add-repository ppa:brightbox/ruby-ng
-</span><span class='line'><span class="nv">$ </span>sudo apt-get update
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install ruby2.2
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>RedCloth</h5>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install make g++
-</span><span class='line'>gem install RedCloth -v <span class="s1">&#39;4.2.9&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Octopress</h3>
-
-<p>Take a look on Offical site<a href="http://octopress.org/docs/blogging/">Octopress</a></p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1140,6 +1206,8 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/07/15/install-jenkins-on-centos-7/">Install Jenkins on CentOS 7</a>
+    
     <a class="list-group-item " href="/blog/2016/07/14/ramp-up-angular-2-dot-0/">Ramp Up Angular 2.0</a>
     
     <a class="list-group-item " href="/blog/2016/07/14/the-vagrants-networking/">The Vagrant's Networking</a>
@@ -1147,8 +1215,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     <a class="list-group-item " href="/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/">Installing Apache2 &amp; MySQL With Puppet in Vagrant</a>
     
     <a class="list-group-item " href="/blog/2016/07/13/installing-apache-with-chef/">Installing Apache With Chef</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/">Rush Vagrant on Ubuntu14.04 LTS</a>
     
   </div>
 </section>
@@ -1196,7 +1262,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     
     
     <a class="list-group-item " href="/blog/categories/linux/index.html">
-        <span class="badge">3</span>
+        <span class="badge">4</span>
         linux
       </a>
     
@@ -1240,6 +1306,12 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     <a class="list-group-item " href="/blog/categories/angular/index.html">
         <span class="badge">1</span>
         angular
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jenkins/index.html">
+        <span class="badge">1</span>
+        jenkins
       </a>
     
   </div>
