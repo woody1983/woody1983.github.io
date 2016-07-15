@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Linux | Johnny's Blog]]></title>
+  <title><![CDATA[Category: Linux | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-05T06:56:04+00:00</updated>
+  <updated>2016-07-15T04:30:42+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,144 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Install Jenkins on CentOS 7]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/"/>
+    <updated>2016-07-15T04:22:21+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7</id>
+    <content type="html"><![CDATA[<h3>First thing, ensure your server'8080 port is free</h3>
+
+<pre><code class="bash Download JDK by wget">wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+ http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.rpm
+</code></pre>
+
+<p>sudo root</p>
+
+<pre><code class="bash Installing JDK">$rpm -Uvh jdk-8u25-linux-x64.rpm
+</code></pre>
+
+<p>Configuration JDK</p>
+
+<pre><code class="bash">alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
+alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
+alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
+
+alternatives --config java
+#Enter
+
+#---Check or Verify
+java -version
+javac -version
+</code></pre>
+
+<pre><code class="bash /etc/rc.d/rc.local">#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+
+touch /var/lock/subsys/local
+export JAVA_HOME="/usr/java/latest"
+</code></pre>
+
+<h3>Installing Jenkins</h3>
+
+<pre><code class="bash Get Repo for Jenkins">sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum install jenkins
+
+#Setup
+systemctl enable jenkins.service
+
+#Restart
+systemctl restart jenkins.service
+</code></pre>
+
+<p>Take a look at <a href="http://localhost:8080">http://localhost:8080</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Apache With Chef]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
+    <updated>2016-07-13T03:48:11+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
+    <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
+    chef.add_recipe "vagrant_la"
+  end
+</code></pre>
+
+<h4>Tree cookbooks</h4>
+
+<pre><code class="">cookbooks:/
+---/vagrant_la
+   ---/recipes
+      ---/default.rb
+</code></pre>
+
+<pre><code class="ruby default.rb">execute "apt-get update"
+package "apache2"
+execute "rm -rf /var/www"
+link "/var/www" do
+       to "/vagrant"
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-05T23:56:44+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
+    <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
+
+<pre><code class="bash">apt-get update       #Update source
+apt-get upgrade      #Update all installed packages
+apt-get dist-upgrade #Update Distributions
+</code></pre>
+
+<h3>Install</h3>
+
+<pre><code class="bash">apt-get install &lt;pkg&gt; #Install 
+apt-get install --reinstall &lt;pkg&gt; #Install again
+apt-get install -f &lt;pkg&gt; #Repair and install (dependency)
+</code></pre>
+
+<h3>Remove</h3>
+
+<pre><code class="bash">apt-get remove &lt;pkg&gt; # just remove 
+apt-get purge &lt;pkg&gt;  #Remove include config files
+</code></pre>
+
+<h3>Download</h3>
+
+<pre><code class="bash">apt-get source &lt;pkg&gt;   #Download source code
+apt-get download &lt;pkg&gt; #Download binary tar
+apt-get source -d &lt;pkg&gt; #Download and Compile
+apt-get build-dep &lt;pkg&gt; #Build pkg source code dependency environment (Compile Env?)
+apt-get clean        #Cleanup Cache (/var/cache/apt/archives/{,partial}.)downloaded source code
+apt-get autoclean #cleanup out of time source code within cache
+apt-get autoremove  #Remove auto install dependency pkg
+</code></pre>
+
+<h3>Search</h3>
+
+<pre><code class="bash">apt-cache status #Display system pkg total statistics information
+apt-cache search &lt;pkg&gt;   #Search pkg by key words
+apt-cache show &lt;pkg_name&gt; #display pkg more information
+apt-cache depends &lt;pkg&gt; #Lookup pkg dependency software.
+apt-cache rdepends &lt;pkg&gt; #View PKG is dependent on those packages
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux Essentials Certification]]></title>
