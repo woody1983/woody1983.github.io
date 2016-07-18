@@ -36,18 +36,22 @@ also bootstrap.min.css
 #### Create a Store Module
 
 ``` js app.js
+
 var app;
 var app = angular.module("gemStore",[]);
+
 ```
 
 #### Attach module to HTML Pages
 
-**KeyWords** `ng-app`
+KeyWords: `ng-app`
 
-``` html
+``` html index.html
+
 <html ng-app="gemStore">
 ...
 </html>
+
 ```
 
 #### Create a controller
@@ -93,24 +97,26 @@ Assign it to the `product` property of `"StoreController`
 
 #### Show or Hide
 
-``` html
+```html
+
 <button ng-show="store.product.canPurchase">Add to Cart</button>
+
 ```
 
 If the canPurchase equal `true`, the Button should be display on pages.
 
-``` html
+```html
 <div class="product row" ng-hide="store.product.soldOut">
-
 </div>
 ```
 
 #### More Gems
 
-``` js app.js
-  app.controller('StoreController', function(){
+```js app.js
+
+app.controller('StoreController', function(){
     this.products = gems;
-  });
+});
 
 ```
 
