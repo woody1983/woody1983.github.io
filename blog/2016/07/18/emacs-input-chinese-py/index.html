@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Install Jenkins on CentOS 7 - Mutiny Theory</title>
+  <title>Emacs Input Chinese-py - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/">
+  <link rel="canonical" href="http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/">
-  <meta property="og:title" content="Install Jenkins on CentOS 7 - Mutiny Theory">
+  <meta property="og:url" content="http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/">
+  <meta property="og:title" content="Emacs Input Chinese-py - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -113,117 +113,22 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-15T04:22:21+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-18T23:26:17+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Install Jenkins on CentOS 7
+        Emacs Input Chinese-py
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><h3>First thing, ensure your server'8080 port is free</h3>
+<div class="entry-content clearfix" itemprop="articleBody description"><p><code>C-\</code> choose <code>chinese-py</code></p>
 
-<figure class='code'><figcaption><span>Download JDK by wget</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate --no-cookies --header <span class="s2">&quot;Cookie: oraclelicense=accept-securebackup-cookie&quot;</span> <span class="se">\</span>
-</span><span class='line'> http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.rpm
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>sudo root</p>
-
-<figure class='code'><figcaption><span>Installing JDK</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$rpm</span> -Uvh jdk-8u25-linux-x64.rpm
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Configuration JDK</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
-</span><span class='line'>alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
-</span><span class='line'>alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
-</span><span class='line'>
-</span><span class='line'>alternatives --config java
-</span><span class='line'><span class="c">#Enter</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#---Check or Verify</span>
-</span><span class='line'>java -version
-</span><span class='line'>javac -version
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/rc.d/rc.local</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'><span class="c"># THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># It is highly advisable to create own systemd services or udev rules</span>
-</span><span class='line'><span class="c"># to run scripts during boot instead of using this file.</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># In contrast to previous versions due to parallel execution during boot</span>
-</span><span class='line'><span class="c"># this script will NOT be run after all other services.</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># Please note that you must run &#39;chmod +x /etc/rc.d/rc.local&#39; to ensure</span>
-</span><span class='line'><span class="c"># that this script will be executed during boot.</span>
-</span><span class='line'>
-</span><span class='line'>touch /var/lock/subsys/local
-</span><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/usr/java/latest&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Installing Jenkins</h3>
-
-<figure class='code'><figcaption><span>Get Repo for Jenkins</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
-</span><span class='line'>sudo rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
-</span><span class='line'>yum install jenkins
-</span><span class='line'>
-</span><span class='line'><span class="c">#Setup</span>
-</span><span class='line'>systemctl <span class="nb">enable </span>jenkins.service
-</span><span class='line'>
-</span><span class='line'><span class="c">#Restart</span>
-</span><span class='line'>systemctl restart jenkins.service
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Take a look at <a href="http://localhost:8080">http://localhost:8080</a></p>
+<p>So Let&rsquo;s Enjoy it.</p>
 </div>
 
 
@@ -247,13 +152,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-15T04:22:21+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-18T23:26:17+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/jenkins/'>jenkins</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
+    <a class='category' href='/blog/categories/emacs/'>emacs</a>
   
 </span>
 
@@ -262,7 +167,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/" data-via="" data-counturl="http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/" data-via="" data-counturl="http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/" >Tweet</a>
   
   
   
@@ -272,10 +177,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/14/ramp-up-angular-2-dot-0/" title="Previous Post: Ramp Up Angular 2.0">&laquo; Ramp Up Angular 2.0</a></li>
+            <li class="previous"><a href="/blog/2016/07/15/install-jenkins-on-centos-7/" title="Previous Post: Install Jenkins on CentOS 7">&laquo; Install Jenkins on CentOS 7</a></li>
             
-            
-            <li class="next"><a href="/blog/2016/07/18/emacs-input-chinese-py/" title="Next Post: Emacs input Chinese-py">Emacs input Chinese-py &raquo;</a></li>
             
           </ul>
         
@@ -300,9 +203,9 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2016/07/18/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
+    <a class="list-group-item active" href="/blog/2016/07/18/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
     
-    <a class="list-group-item active" href="/blog/2016/07/15/install-jenkins-on-centos-7/">Install Jenkins on CentOS 7</a>
+    <a class="list-group-item " href="/blog/2016/07/15/install-jenkins-on-centos-7/">Install Jenkins on CentOS 7</a>
     
     <a class="list-group-item " href="/blog/2016/07/14/ramp-up-angular-2-dot-0/">Ramp Up Angular 2.0</a>
     
@@ -442,8 +345,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/';
-        var disqus_url = 'http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/';
+        var disqus_identifier = 'http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/';
+        var disqus_url = 'http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/';
         var disqus_script = 'embed.js';
       
     (function () {

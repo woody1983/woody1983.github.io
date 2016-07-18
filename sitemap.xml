@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/</loc>
+<lastmod>2016-07-18T23:26:17+00:00</lastmod>
+</url>
+<url>
 <loc>http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/</loc>
 <lastmod>2016-07-15T04:22:21+00:00</lastmod>
 </url>
@@ -14,7 +18,7 @@
 </url>
 <url>
 <loc>http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/</loc>
-<lastmod>2016-07-13T08:51:01+00:00</lastmod>
+<lastmod>2016-07-13T08:52:01+00:00</lastmod>
 </url>
 <url>
 <loc>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/</loc>

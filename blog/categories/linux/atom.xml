@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-15T05:43:33+00:00</updated>
+  <updated>2016-07-18T23:36:33+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -86,7 +86,7 @@ systemctl restart jenkins.service
   end
 </code></pre>
 
-<h4>Tree cookbooks</h4>
+<h4>Tree of Cookbooks</h4>
 
 <pre><code class="">cookbooks:/
 ---/vagrant_la

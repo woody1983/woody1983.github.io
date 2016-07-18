@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-15T05:43:33+00:00</updated>
+  <updated>2016-07-18T23:36:33+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/"/>
+    <updated>2016-07-18T23:26:17+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py</id>
+    <content type="html"><![CDATA[<p><code>C-\</code> choose <code>chinese-py</code></p>
+
+<p>So Let&rsquo;s Enjoy it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install Jenkins on CentOS 7]]></title>
@@ -124,7 +135,7 @@
     <link href="http://woody1983.github.io/blog/2016/07/14/ramp-up-angular-2-dot-0/"/>
     <updated>2016-07-14T02:29:53+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/14/ramp-up-angular-2-dot-0</id>
-    <content type="html"><![CDATA[<p>First things:</p>
+    <content type="html"><![CDATA[<p>First Things:</p>
 
 <h3>Download Angular</h3>
 
@@ -176,9 +187,9 @@ also bootstrap.min.css</p>
 
 <h4>Attach module to HTML Pages</h4>
 
-<p><strong>KeyWords</strong> <code>ng-app</code></p>
+<p>KeyWords: <code>ng-app</code></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>index.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html</span> <span class="na">ng-app=</span><span class="s">&quot;gemStore&quot;</span><span class="nt">&gt;</span>
@@ -257,9 +268,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;product row&quot;</span> <span class="na">ng-hide=</span><span class="s">&quot;store.product.soldOut&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>
 </span><span class='line'><span class="nt">&lt;/div&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -269,13 +278,13 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 <figure class='code'><figcaption><span>app.js</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'>  <span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;StoreController&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">app</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">&#39;StoreController&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
 </span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">products</span> <span class="o">=</span> <span class="nx">gems</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><strong>KeyWords</strong> : <code>s</code></p>
+<p>KeyWords : <code>s</code></p>
 
 <p>And change the HTML code</p>
 
@@ -293,7 +302,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     <link href="http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking/"/>
     <updated>2016-07-14T01:37:44+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking</id>
-    <content type="html"><![CDATA[<p>You can setup Private network or Public network on vagrant.</p>
+    <content type="html"><![CDATA[<p>You can Setup Private network or Public network on vagrant.</p>
 
 <h3>Private networking</h3>
 
@@ -326,7 +335,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
     <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
-    <updated>2016-07-13T08:51:01+00:00</updated>
+    <updated>2016-07-13T08:52:01+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -440,7 +449,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Tree cookbooks</h4>
+<h4>Tree of Cookbooks</h4>
 
 <figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
