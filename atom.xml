@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-18T23:36:33+00:00</updated>
+  <updated>2016-07-18T23:42:36+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -284,7 +284,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>KeyWords : <code>s</code></p>
+<p><strong>KeyWords</strong> : <code>s</code></p>
 
 <p>And change the HTML code</p>
 

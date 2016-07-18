@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Angular | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/angular/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-18T23:36:33+00:00</updated>
+  <updated>2016-07-18T23:42:36+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -124,7 +124,7 @@ If the canPurchase equal `true`, the Button should be display on pages.
 });</p>
 
 <pre><code>
-KeyWords : `s`
+**KeyWords** : `s`
 
 And change the HTML code
 </code></pre>
