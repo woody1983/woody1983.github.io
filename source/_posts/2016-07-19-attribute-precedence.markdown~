@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Attribute Precedence"
+date: 2016-07-19 07:20:01 +0000
+comments: true
+categories: Chef
+---
+
+![Levels of precedence](http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG)
+
+Thanks Linux Academy.
