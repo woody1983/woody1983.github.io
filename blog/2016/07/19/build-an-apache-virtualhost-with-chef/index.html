@@ -196,12 +196,93 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS
-<code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS</p>
+
+<p><code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
 
 <h4>Step 3 At node, run chef-client</h4>
 
 <p>Just one command <code>chef-client</code></p>
+
+<h4>Attributes &amp; Template</h4>
+
+<p>We need setup two httpd.conf files for VirtualHost. So</p>
+
+<figure class='code'><figcaption><span>templates/default/vhost.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>#vhost template file
+</span><span class='line'><span class="err">&lt;</span>% if @port == 80 -%&gt;
+</span><span class='line'>  NameVirtualHost *:80
+</span><span class='line'><span class="err">&lt;</span>% end -%&gt;
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;VirtualHost</span> <span class="err">*</span><span class="na">:</span><span class="err">&lt;%=</span> <span class="err">@</span><span class="na">port</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
+</span><span class='line'>
+</span><span class='line'>  ServerName <span class="err">&lt;</span>%= @domain %&gt;
+</span><span class='line'>  DocumentRoot <span class="err">&lt;</span>%= @document_root %&gt;
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;Directory</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      Options FollowSymLinks
+</span><span class='line'>    AllowOverride None
+</span><span class='line'>  <span class="nt">&lt;/Directory&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;Directory</span> <span class="err">&lt;%=</span> <span class="err">@</span><span class="na">document_root</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
+</span><span class='line'>      Options Indexes FollowSymLinks MultiViews
+</span><span class='line'>    AllowOverride None
+</span><span class='line'>    Order allow,deny
+</span><span class='line'>    allow from all
+</span><span class='line'>  <span class="nt">&lt;/Directory&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/VirtualHost&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>attributes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832.mylabserver.com&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832b&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b.mylabserver.com&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>      
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Run chef-client again!</h4>
 </div>
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chef | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/chef/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T06:26:17+00:00</updated>
+  <updated>2016-07-19T06:32:56+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -64,12 +64,57 @@ service "httpd" do
 end
 </code></pre>
 
-<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS
-<code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS</p>
+
+<p><code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
 
 <h4>Step 3 At node, run chef-client</h4>
 
 <p>Just one command <code>chef-client</code></p>
+
+<h4>Attributes &amp; Template</h4>
+
+<p>We need setup two httpd.conf files for VirtualHost. So</p>
+
+<pre><code class="html templates/default/vhost.erb">
+#vhost template file
+&lt;% if @port == 80 -%&gt;
+  NameVirtualHost *:80
+&lt;% end -%&gt;
+
+&lt;VirtualHost *:&lt;%= @port %&gt; &gt;
+
+  ServerName &lt;%= @domain %&gt;
+  DocumentRoot &lt;%= @document_root %&gt;
+
+  &lt;Directory /&gt;
+      Options FollowSymLinks
+      AllowOverride None
+  &lt;/Directory&gt;
+
+  &lt;Directory &lt;%= @document_root %&gt; &gt;
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride None
+      Order allow,deny
+      allow from all
+  &lt;/Directory&gt;
+
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<pre><code class="ruby attributes/default.rb">
+default["apache"]["sites"]["johnny-hsu19832"] = {
+  "port" =&gt; 80,
+    "domain" =&gt; "johnny-hsu19832.mylabserver.com"
+    }
+
+default["apache"]["sites"]["johnny-hsu19832b"] = {
+  "port" =&gt; 80,
+    "domain" =&gt; "johnny-hsu19832b.mylabserver.com"
+    }
+</code></pre>
+
+<h4>Run chef-client again!</h4>
 ]]></content>
   </entry>
   
