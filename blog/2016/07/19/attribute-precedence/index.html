@@ -128,7 +128,31 @@
 
 <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
 
-<p>Thanks Linux Academy.</p>
+<h2>Key Concepts</h2>
+
+<blockquote><p>Attributes are specific details about a node.</p></blockquote>
+
+<h3>Attributes describe</h3>
+
+<ul>
+<li>The current state of the node</li>
+<li>What the state of the node was at the end of the previous chef-client run</li>
+<li>What the state of the node should be at the end of the current chef-client run</li>
+</ul>
+
+
+<p>After the node object is rebuilt in the chef run,all attributes loaded in the chef-client are then compared. The node is updated based on attribute precedence and at the very end of the convergence(chef-client)the node object is uploaded to the chef server</p>
+
+<ul>
+<li>Node object defines the current state of the node(made up of attributes)</li>
+<li>Node object is stored on the chef server so that can be searched</li>
+<li>Node object is updated at each convergence</li>
+</ul>
+
+
+<p>If there are attributes with the same names then attributes precedence determines which attribute is applied to the node and the node object.</p>
+
+<blockquote><p>Thanks Linux Academy.</p></blockquote>
 </div>
 
 
