@@ -117,6 +117,108 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-05T23:56:44+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/05/debian-slash-ubuntu-apt-manual/" itemprop="url">Debian/Ubuntu Apt Manual</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3>Update or Upgrade</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update       <span class="c">#Update source</span>
+</span><span class='line'>apt-get upgrade      <span class="c">#Update all installed packages</span>
+</span><span class='line'>apt-get dist-upgrade <span class="c">#Update Distributions</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install &lt;pkg&gt; <span class="c">#Install </span>
+</span><span class='line'>apt-get install --reinstall &lt;pkg&gt; <span class="c">#Install again</span>
+</span><span class='line'>apt-get install -f &lt;pkg&gt; <span class="c">#Repair and install (dependency)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Remove</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get remove &lt;pkg&gt; <span class="c"># just remove </span>
+</span><span class='line'>apt-get purge &lt;pkg&gt;  <span class="c">#Remove include config files</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Download</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get <span class="nb">source</span> &lt;pkg&gt;   <span class="c">#Download source code</span>
+</span><span class='line'>apt-get download &lt;pkg&gt; <span class="c">#Download binary tar</span>
+</span><span class='line'>apt-get <span class="nb">source</span> -d &lt;pkg&gt; <span class="c">#Download and Compile</span>
+</span><span class='line'>apt-get build-dep &lt;pkg&gt; <span class="c">#Build pkg source code dependency environment (Compile Env?)</span>
+</span><span class='line'>apt-get clean        <span class="c">#Cleanup Cache (/var/cache/apt/archives/{,partial}.)downloaded source code</span>
+</span><span class='line'>apt-get autoclean <span class="c">#cleanup out of time source code within cache</span>
+</span><span class='line'>apt-get autoremove  <span class="c">#Remove auto install dependency pkg</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Search</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-cache status <span class="c">#Display system pkg total statistics information</span>
+</span><span class='line'>apt-cache search &lt;pkg&gt;   <span class="c">#Search pkg by key words</span>
+</span><span class='line'>apt-cache show &lt;pkg_name&gt; <span class="c">#display pkg more information</span>
+</span><span class='line'>apt-cache depends &lt;pkg&gt; <span class="c">#Lookup pkg dependency software.</span>
+</span><span class='line'>apt-cache rdepends &lt;pkg&gt; <span class="c">#View PKG is dependent on those packages</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-05T06:36:26+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -409,6 +511,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
+    
     <a class="list-group-item " href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
     
     <a class="list-group-item " href="/blog/2016/07/18/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
@@ -416,8 +520,6 @@
     <a class="list-group-item " href="/blog/2016/07/15/install-jenkins-on-centos-7/">Install Jenkins on CentOS 7</a>
     
     <a class="list-group-item " href="/blog/2016/07/14/ramp-up-angular-2-dot-0/">Ramp Up Angular 2.0</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/14/the-vagrants-networking/">The Vagrant's Networking</a>
     
   </div>
 </section>
@@ -495,7 +597,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/chef/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         chef
       </a>
     

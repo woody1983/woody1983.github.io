@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T06:32:56+00:00</updated>
+  <updated>2016-07-19T07:21:37+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Attribute Precedence]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/19/attribute-precedence/"/>
+    <updated>2016-07-19T07:20:01+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/19/attribute-precedence</id>
+    <content type="html"><![CDATA[<p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
+
+<p>Thanks Linux Academy.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
