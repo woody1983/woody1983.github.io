@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chef | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/chef/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:24:27+00:00</updated>
+  <updated>2016-07-19T07:46:22+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
+    <updated>2016-07-19T07:42:33+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef</id>
+    <content type="html"><![CDATA[<p>Change the Recipes file</p>
+
+<pre><code class="ruby recipes/default.rb">
+template "/content/sites/#{sitename}/index.html" do
+    source "index.html.erb"
+    mode "0644"
+    variables(
+        :site_title =&gt; data["site_title"],
+        :comingsoon =&gt; "Coming Soon!"
+    )
+end
+</code></pre>
+
+<p>Adding something about HTMl element</p>
+
+<pre><code class="ruby attributes/default.rb">
+default["apache"]["sites"]["johnny-hsu19832"] = {
+  "site_title" =&gt; "johnny-hsu19832 websites coming soon",
+  "port" =&gt; 80,
+  "domain" =&gt; "johnny-hsu19832.mylabserver.com"
+}
+
+default["apache"]["sites"]["johnny-hsu19832b"] = {
+  "site_title" =&gt; "johnny-hsu19832b websites coming soon!",
+  "port" =&gt; 80,
+  "domain" =&gt; "johnny-hsu19832b.mylabserver.com"
+}           
+</code></pre>
+
+<pre><code class="erb templates/default/index.html.erb">
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;title&gt;&lt;%= @site_title %&gt;&lt;/title&gt;
+  &lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;&lt;%= @site_title %&gt;&lt;/h1&gt;
+  &lt;h2&gt;&lt;%= @comingsoon %&gt;&lt;/h2&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Attribute Precedence]]></title>

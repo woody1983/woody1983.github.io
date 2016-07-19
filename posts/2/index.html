@@ -117,6 +117,89 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-11T03:46:49+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/11/ansible-db-deployment-outline/" itemprop="url">Ansible DB Deployment Outline</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3>Outline</h3>
+
+<ul>
+<li>Installing and Configuring a MariaDB Server (master)</li>
+<li>The installation will be done with the ansible user</li>
+<li>The installation needs to be done with sudo privileges</li>
+<li>The connection used is ssh</li>
+<li>gathering of facts needs to be on</li>
+</ul>
+
+
+<h3>What do we need to know?</h3>
+
+<ul>
+<li>the package name f the Db server</li>
+<li>the group/host of the master server</li>
+<li>the directory for installing the db(if not default)</li>
+<li>the version of the db</li>
+<li>the distribution it is installed on</li>
+</ul>
+
+
+<h3>What needs to be done/installed</h3>
+
+<ul>
+<li>install the MariaDB server and utilities</li>
+<li>root password install
+
+<ul>
+<li>waitfor the db service to be started
+
+<ul>
+<li>takes place manually after the mysql-secure-installation run</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>install the mysql/mariadb configuration file ( if needed)</li>
+<li>copy the mysql/mariadb database backup to the home directory</li>
+<li>import the database(s)</li>
+<li>add a cron job for nightly backups</li>
+</ul>
+
+
+<h3>Testing the db</h3>
+
+<p>run a MYSQL command and register the output as JSON format to determine success</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-05T23:56:44+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -511,6 +594,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/07/19/html-templates-dynamically-with-chef/">HTML Templates Dynamically With Chef</a>
+    
     <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
     
     <a class="list-group-item " href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
@@ -518,8 +603,6 @@
     <a class="list-group-item " href="/blog/2016/07/18/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
     
     <a class="list-group-item " href="/blog/2016/07/15/install-jenkins-on-centos-7/">Install Jenkins on CentOS 7</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/14/ramp-up-angular-2-dot-0/">Ramp Up Angular 2.0</a>
     
   </div>
 </section>
@@ -597,7 +680,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/chef/index.html">
-        <span class="badge">3</span>
+        <span class="badge">4</span>
         chef
       </a>
     

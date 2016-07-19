@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:24:27+00:00</updated>
+  <updated>2016-07-19T07:46:22+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
+    <updated>2016-07-19T07:42:33+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef</id>
+    <content type="html"><![CDATA[<p>Change the Recipes file</p>
+
+<figure class='code'><figcaption><span>recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">template</span> <span class="s2">&quot;/content/sites/</span><span class="si">#{</span><span class="n">sitename</span><span class="si">}</span><span class="s2">/index.html&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">source</span> <span class="s2">&quot;index.html.erb&quot;</span>
+</span><span class='line'>  <span class="n">mode</span> <span class="s2">&quot;0644&quot;</span>
+</span><span class='line'>  <span class="n">variables</span><span class="p">(</span>
+</span><span class='line'>      <span class="ss">:site_title</span> <span class="o">=&gt;</span> <span class="n">data</span><span class="o">[</span><span class="s2">&quot;site_title&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>      <span class="ss">:comingsoon</span> <span class="o">=&gt;</span> <span class="s2">&quot;Coming Soon!&quot;</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Adding something about HTMl element</p>
+
+<figure class='code'><figcaption><span>attributes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;site_title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832 websites coming soon&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832.mylabserver.com&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832b&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;site_title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b websites coming soon!&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b.mylabserver.com&quot;</span>
+</span><span class='line'><span class="p">}</span>          
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>templates/default/index.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">&lt;html&gt;</span>
+</span><span class='line'><span class="x">  &lt;head&gt;</span>
+</span><span class='line'><span class="x">      &lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@site_title</span> <span class="cp">%&gt;</span><span class="x">&lt;/title&gt;</span>
+</span><span class='line'><span class="x">  &lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="x">&lt;body&gt;</span>
+</span><span class='line'><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@site_title</span> <span class="cp">%&gt;</span><span class="x">&lt;/h1&gt;</span>
+</span><span class='line'><span class="x">  &lt;h2&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@comingsoon</span> <span class="cp">%&gt;</span><span class="x">&lt;/h2&gt;</span>
+</span><span class='line'><span class="x">&lt;/body&gt;</span>
+</span><span class='line'><span class="x">&lt;/html&gt;</span>
+</span><span class='line'><span class="x">          </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Attribute Precedence]]></title>
