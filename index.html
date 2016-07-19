@@ -117,6 +117,118 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T06:12:32+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" itemprop="url">Build an Apache VirtualHost With Chef</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>For this example, we need two Linux instances, I choose CentOS 7.</p>
+
+<ul>
+<li>mutiny-1.mylabserver.com 192.168.100.1</li>
+<li>mutiny-2.mylabserver.com 192.168.100.100</li>
+</ul>
+
+
+<h4>Step 1 Build Chef Workstation</h4>
+
+<p>Download the <code>chef-starter.zip</code> to mutiny-1.mylabserver.com.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root<span class="nv">$ </span>hostname workstation
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">exec </span>bash
+</span><span class='line'>
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd</span>
+</span><span class='line'>root<span class="nv">$ </span>unzip chef-starter.zip
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd </span>chef-repo
+</span><span class='line'>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'><span class="c">#------Install Chef-------</span>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'>root<span class="nv">$ </span>curl -L https://www.opscode.com/chef/install.sh <span class="p">|</span> sudo bash
+</span><span class='line'>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'><span class="c">#------Install Node-------</span>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'>root<span class="nv">$ </span>knife bootstrap mutiny-2.mylabserver.com -x root -P __passwd__ -N linuxnode
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Step 2 Create Cookbook</h4>
+
+<p><code>knife cookbook create apache</code> Build a Cookbook based on apache</p>
+
+<p>Just need install apache package</p>
+
+<figure class='code'><figcaption><span>cookbook/apache/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">service</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="o">[</span><span class="ss">:enable</span><span class="p">,</span> <span class="ss">:start</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS
+<code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+
+<h4>Step 3 At node, run chef-client</h4>
+
+<p>Just one command <code>chef-client</code></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-18T23:26:17+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -1041,92 +1153,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-05T06:36:26+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/05/linux-essentials-certification/" itemprop="url">Linux Essentials Certification</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h2>Overview</h2>
-
-<h3>What is the LPI Linux Essentials Certification?</h3>
-
-<ul>
-<li>Vendor-Neutral program by the Linux Professional Institute</li>
-<li>It is the first stop course before the professional certifications by LPI</li>
-<li>It is an outstanding course for new users to Linux</li>
-</ul>
-
-
-<h3>Open Source Philosophy</h3>
-
-<ul>
-<li>So why would Linux just be given away?</li>
-<li>GNU - Gnu&rsquo;s Not Unix!</li>
-<li>GNU/Linux</li>
-<li>FSF - Free Software Foundation</li>
-<li>GNU C Compiler - gcc</li>
-<li>Linux Torvalds was heavily influenced by the GNU project in which his first Linux kernel was released under the GPL</li>
-<li>GPL = General Public License</li>
-<li>GPL: Require that the source code remain freely available to anyone who might want it.</li>
-</ul>
-
-
-<h3>Distributions</h3>
-
-<blockquote><p>You can think about Linux distributions as you think about ice cream brands. #funny</p></blockquote>
-
-<p>Each distributions has a kernel , utilities and configurations.</p>
-
-<h4>What could make up a full blown Linux distributions?</h4>
-
-<ul>
-<li>Linux kernel</li>
-<li>Core Unix tools</li>
-<li>Supplemental Software</li>
-<li>Startup scripts</li>
-<li>Installers</li>
-</ul>
-
-
-<h4>What distributions is right for our project?</h4>
-
-<ul>
-<li>Is the system going to be for desktop or server use?</li>
-<li>If this is for production then a commercial distribution might be best for your needs</li>
-<li>Does your system hardware support the distribution of choice?</li>
-</ul>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1150,6 +1176,8 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
+    
     <a class="list-group-item " href="/blog/2016/07/18/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
     
     <a class="list-group-item " href="/blog/2016/07/15/install-jenkins-on-centos-7/">Install Jenkins on CentOS 7</a>
@@ -1157,8 +1185,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     <a class="list-group-item " href="/blog/2016/07/14/ramp-up-angular-2-dot-0/">Ramp Up Angular 2.0</a>
     
     <a class="list-group-item " href="/blog/2016/07/14/the-vagrants-networking/">The Vagrant's Networking</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/">Installing Apache2 &amp; MySQL With Puppet in Vagrant</a>
     
   </div>
 </section>
@@ -1206,7 +1232,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     
     
     <a class="list-group-item " href="/blog/categories/linux/index.html">
-        <span class="badge">4</span>
+        <span class="badge">5</span>
         linux
       </a>
     
@@ -1236,7 +1262,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     
     
     <a class="list-group-item " href="/blog/categories/chef/index.html">
-        <span class="badge">1</span>
+        <span class="badge">2</span>
         chef
       </a>
     
@@ -1256,6 +1282,12 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     <a class="list-group-item " href="/blog/categories/jenkins/index.html">
         <span class="badge">1</span>
         jenkins
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/apache/index.html">
+        <span class="badge">1</span>
+        apache
       </a>
     
   </div>

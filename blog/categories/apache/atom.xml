@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Chef | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/chef/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Apache | Mutiny Theory]]></title>
+  <link href="http://woody1983.github.io/blog/categories/apache/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
   <updated>2016-07-19T06:26:17+00:00</updated>
   <id>http://woody1983.github.io/</id>
@@ -70,34 +70,6 @@ end
 <h4>Step 3 At node, run chef-client</h4>
 
 <p>Just one command <code>chef-client</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Installing Apache With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T03:48:11+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
-    <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
-    chef.add_recipe "vagrant_la"
-  end
-</code></pre>
-
-<h4>Tree of Cookbooks</h4>
-
-<pre><code class="">cookbooks:/
----/vagrant_la
-   ---/recipes
-      ---/default.rb
-</code></pre>
-
-<pre><code class="ruby default.rb">execute "apt-get update"
-package "apache2"
-execute "rm -rf /var/www"
-link "/var/www" do
-       to "/vagrant"
-end
-</code></pre>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-18T23:42:36+00:00</updated>
+  <updated>2016-07-19T06:26:17+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
+    <updated>2016-07-19T06:12:32+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
+    <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
+
+<ul>
+<li>mutiny-1.mylabserver.com 192.168.100.1</li>
+<li>mutiny-2.mylabserver.com 192.168.100.100</li>
+</ul>
+
+
+<h4>Step 1 Build Chef Workstation</h4>
+
+<p>Download the <code>chef-starter.zip</code> to mutiny-1.mylabserver.com.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root<span class="nv">$ </span>hostname workstation
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">exec </span>bash
+</span><span class='line'>
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd</span>
+</span><span class='line'>root<span class="nv">$ </span>unzip chef-starter.zip
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd </span>chef-repo
+</span><span class='line'>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'><span class="c">#------Install Chef-------</span>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'>root<span class="nv">$ </span>curl -L https://www.opscode.com/chef/install.sh <span class="p">|</span> sudo bash
+</span><span class='line'>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'><span class="c">#------Install Node-------</span>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'>root<span class="nv">$ </span>knife bootstrap mutiny-2.mylabserver.com -x root -P __passwd__ -N linuxnode
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Step 2 Create Cookbook</h4>
+
+<p><code>knife cookbook create apache</code> Build a Cookbook based on apache</p>
+
+<p>Just need install apache package</p>
+
+<figure class='code'><figcaption><span>cookbook/apache/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">service</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="o">[</span><span class="ss">:enable</span><span class="p">,</span> <span class="ss">:start</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS
+<code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+
+<h4>Step 3 At node, run chef-client</h4>
+
+<p>Just one command <code>chef-client</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
