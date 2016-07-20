@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Build an Apache VirtualHost With Chef - Mutiny Theory</title>
+  <meta name="author" content="Johnny Hsu">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">
+  <meta property="og:title" content="Build an Apache VirtualHost With Chef - Mutiny Theory">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Mutiny Theory</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li >
+                    <a href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="mutiny.work">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Mutiny Theory" />
+    
+    <meta itemprop="url" content="http://mutiny.work" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T14:12:32+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Build an Apache VirtualHost With Chef
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><p>For this example, we need two Linux instances, I choose CentOS 7.</p>
+
+<ul>
+<li>mutiny-1.mylabserver.com 192.168.100.1</li>
+<li>mutiny-2.mylabserver.com 192.168.100.100</li>
+</ul>
+
+
+<h4>Step 1 Build Chef Workstation</h4>
+
+<p>Download the <code>chef-starter.zip</code> to mutiny-1.mylabserver.com.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root<span class="nv">$ </span>hostname workstation
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">exec </span>bash
+</span><span class='line'>
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd</span>
+</span><span class='line'>root<span class="nv">$ </span>unzip chef-starter.zip
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd </span>chef-repo
+</span><span class='line'>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'><span class="c">#------Install Chef-------</span>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'>root<span class="nv">$ </span>curl -L https://www.opscode.com/chef/install.sh <span class="p">|</span> sudo bash
+</span><span class='line'>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'><span class="c">#------Install Node-------</span>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'>root<span class="nv">$ </span>knife bootstrap mutiny-2.mylabserver.com -x root -P __passwd__ -N linuxnode
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Step 2 Create Cookbook</h4>
+
+<p><code>knife cookbook create apache</code> Build a Cookbook based on apache</p>
+
+<p>Just need install apache package</p>
+
+<figure class='code'><figcaption><span>cookbook/apache/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">service</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="o">[</span><span class="ss">:enable</span><span class="p">,</span> <span class="ss">:start</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS</p>
+
+<p><code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+
+<h4>Step 3 At node, run chef-client</h4>
+
+<p>Just one command <code>chef-client</code></p>
+
+<h4>Attributes &amp; Template</h4>
+
+<p>We need setup two httpd.conf files for VirtualHost. So</p>
+
+<figure class='code'><figcaption><span>templates/default/vhost.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>#vhost template file
+</span><span class='line'><span class="err">&lt;</span>% if @port == 80 -%&gt;
+</span><span class='line'>  NameVirtualHost *:80
+</span><span class='line'><span class="err">&lt;</span>% end -%&gt;
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;VirtualHost</span> <span class="err">*</span><span class="na">:</span><span class="err">&lt;%=</span> <span class="err">@</span><span class="na">port</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
+</span><span class='line'>
+</span><span class='line'>  ServerName <span class="err">&lt;</span>%= @domain %&gt;
+</span><span class='line'>  DocumentRoot <span class="err">&lt;</span>%= @document_root %&gt;
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;Directory</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      Options FollowSymLinks
+</span><span class='line'>    AllowOverride None
+</span><span class='line'>  <span class="nt">&lt;/Directory&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;Directory</span> <span class="err">&lt;%=</span> <span class="err">@</span><span class="na">document_root</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
+</span><span class='line'>      Options Indexes FollowSymLinks MultiViews
+</span><span class='line'>    AllowOverride None
+</span><span class='line'>    Order allow,deny
+</span><span class='line'>    allow from all
+</span><span class='line'>  <span class="nt">&lt;/Directory&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/VirtualHost&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>attributes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832.mylabserver.com&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832b&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b.mylabserver.com&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>      
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Run chef-client again!</h4>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Johnny Hsu</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T14:12:32+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/apache/'>apache</a>, <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/07/19/emacs-input-chinese-py/" title="Previous Post: Emacs input Chinese-py">&laquo; Emacs input Chinese-py</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/07/19/attribute-precedence/" title="Next Post: Attribute Precedence">Attribute Precedence &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h2>Comments</h2>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/07/20/recipe-includes-and-dependencies/">Recipe Includes and Dependencies</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/html-templates-dynamically-with-chef/">HTML Templates Dynamically With Chef</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
+    
+    <a class="list-group-item active" href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/emacs/index.html">
+        <span class="badge">2</span>
+        emacs
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/rails/index.html">
+        <span class="badge">1</span>
+        rails
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/env/index.html">
+        <span class="badge">1</span>
+        env
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/ubuntu/index.html">
+        <span class="badge">5</span>
+        ubuntu
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/docker/index.html">
+        <span class="badge">1</span>
+        docker
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/ansible/index.html">
+        <span class="badge">2</span>
+        ansible
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/linux/index.html">
+        <span class="badge">6</span>
+        linux
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/course/index.html">
+        <span class="badge">1</span>
+        course
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/debian/index.html">
+        <span class="badge">1</span>
+        debian
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/mysql/index.html">
+        <span class="badge">1</span>
+        mysql
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/vagrant/index.html">
+        <span class="badge">4</span>
+        vagrant
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/chef/index.html">
+        <span class="badge">5</span>
+        chef
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/puppet/index.html">
+        <span class="badge">1</span>
+        puppet
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/angular/index.html">
+        <span class="badge">1</span>
+        angular
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jenkins/index.html">
+        <span class="badge">1</span>
+        jenkins
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/apache/index.html">
+        <span class="badge">1</span>
+        apache
+      </a>
+    
+  </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - Johnny Hsu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'woodyxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/';
+        var disqus_url = 'http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>

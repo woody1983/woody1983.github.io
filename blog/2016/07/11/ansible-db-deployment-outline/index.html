@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Ansible DB Deployment Outline - Mutiny Theory</title>
+  <meta name="author" content="Johnny Hsu">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/">
+  <meta property="og:title" content="Ansible DB Deployment Outline - Mutiny Theory">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Mutiny Theory</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li >
+                    <a href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="mutiny.work">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Mutiny Theory" />
+    
+    <meta itemprop="url" content="http://mutiny.work" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-11T11:46:49+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Ansible DB Deployment Outline
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><h3>Outline</h3>
+
+<ul>
+<li>Installing and Configuring a MariaDB Server (master)</li>
+<li>The installation will be done with the ansible user</li>
+<li>The installation needs to be done with sudo privileges</li>
+<li>The connection used is ssh</li>
+<li>gathering of facts needs to be on</li>
+</ul>
+
+
+<h3>What do we need to know?</h3>
+
+<ul>
+<li>the package name f the Db server</li>
+<li>the group/host of the master server</li>
+<li>the directory for installing the db(if not default)</li>
+<li>the version of the db</li>
+<li>the distribution it is installed on</li>
+</ul>
+
+
+<h3>What needs to be done/installed</h3>
+
+<ul>
+<li>install the MariaDB server and utilities</li>
+<li>root password install
+
+<ul>
+<li>waitfor the db service to be started
+
+<ul>
+<li>takes place manually after the mysql-secure-installation run</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>install the mysql/mariadb configuration file ( if needed)</li>
+<li>copy the mysql/mariadb database backup to the home directory</li>
+<li>import the database(s)</li>
+<li>add a cron job for nightly backups</li>
+</ul>
+
+
+<h3>Testing the db</h3>
+
+<p>run a MYSQL command and register the output as JSON format to determine success</p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Johnny Hsu</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-11T11:46:49+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ansible/'>ansible</a>, <a class='category' href='/blog/categories/mysql/'>mysql</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/07/06/debian-slash-ubuntu-apt-manual/" title="Previous Post: Debian/Ubuntu Apt Manual">&laquo; Debian/Ubuntu Apt Manual</a></li>
+            
+            
+            <li class="next"><a href="/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/" title="Next Post: Rush Vagrant on Ubuntu14.04 LTS">Rush Vagrant on Ubuntu14.04 LTS &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h2>Comments</h2>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2016/07/20/recipe-includes-and-dependencies/">Recipe Includes and Dependencies</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/html-templates-dynamically-with-chef/">HTML Templates Dynamically With Chef</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/emacs/index.html">
+        <span class="badge">2</span>
+        emacs
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/rails/index.html">
+        <span class="badge">1</span>
+        rails
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/env/index.html">
+        <span class="badge">1</span>
+        env
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/ubuntu/index.html">
+        <span class="badge">5</span>
+        ubuntu
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/docker/index.html">
+        <span class="badge">1</span>
+        docker
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/ansible/index.html">
+        <span class="badge">2</span>
+        ansible
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/linux/index.html">
+        <span class="badge">6</span>
+        linux
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/course/index.html">
+        <span class="badge">1</span>
+        course
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/debian/index.html">
+        <span class="badge">1</span>
+        debian
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/mysql/index.html">
+        <span class="badge">1</span>
+        mysql
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/vagrant/index.html">
+        <span class="badge">4</span>
+        vagrant
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/chef/index.html">
+        <span class="badge">5</span>
+        chef
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/puppet/index.html">
+        <span class="badge">1</span>
+        puppet
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/angular/index.html">
+        <span class="badge">1</span>
+        angular
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jenkins/index.html">
+        <span class="badge">1</span>
+        jenkins
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/apache/index.html">
+        <span class="badge">1</span>
+        apache
+      </a>
+    
+  </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - Johnny Hsu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'woodyxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/';
+        var disqus_url = 'http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>

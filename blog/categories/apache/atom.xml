@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Apache | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/apache/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-20T22:58:00+08:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
+    <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
+    <updated>2016-07-19T14:12:32+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
+    <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
+
+<ul>
+<li>mutiny-1.mylabserver.com 192.168.100.1</li>
+<li>mutiny-2.mylabserver.com 192.168.100.100</li>
+</ul>
+
+
+<h4>Step 1 Build Chef Workstation</h4>
+
+<p>Download the <code>chef-starter.zip</code> to mutiny-1.mylabserver.com.</p>
+
+<pre><code class="bash">root$ hostname workstation
+root$ exec bash
+
+root$ cd
+root$ unzip chef-starter.zip
+root$ cd chef-repo
+
+#-------------------------
+#------Install Chef-------
+#-------------------------
+root$ curl -L https://www.opscode.com/chef/install.sh | sudo bash
+
+#-------------------------
+#------Install Node-------
+#-------------------------
+root$ knife bootstrap mutiny-2.mylabserver.com -x root -P __passwd__ -N linuxnode
+</code></pre>
+
+<h4>Step 2 Create Cookbook</h4>
+
+<p><code>knife cookbook create apache</code> Build a Cookbook based on apache</p>
+
+<p>Just need install apache package</p>
+
+<pre><code class="ruby cookbook/apache/recipes/default.rb">
+package "httpd" do
+  action :install
+end
+
+service "httpd" do
+  action [:enable, :start]
+end
+</code></pre>
+
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS</p>
+
+<p><code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+
+<h4>Step 3 At node, run chef-client</h4>
+
+<p>Just one command <code>chef-client</code></p>
+
+<h4>Attributes &amp; Template</h4>
+
+<p>We need setup two httpd.conf files for VirtualHost. So</p>
+
+<pre><code class="html templates/default/vhost.erb">
+#vhost template file
+&lt;% if @port == 80 -%&gt;
+  NameVirtualHost *:80
+&lt;% end -%&gt;
+
+&lt;VirtualHost *:&lt;%= @port %&gt; &gt;
+
+  ServerName &lt;%= @domain %&gt;
+  DocumentRoot &lt;%= @document_root %&gt;
+
+  &lt;Directory /&gt;
+      Options FollowSymLinks
+      AllowOverride None
+  &lt;/Directory&gt;
+
+  &lt;Directory &lt;%= @document_root %&gt; &gt;
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride None
+      Order allow,deny
+      allow from all
+  &lt;/Directory&gt;
+
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<pre><code class="ruby attributes/default.rb">
+default["apache"]["sites"]["johnny-hsu19832"] = {
+  "port" =&gt; 80,
+    "domain" =&gt; "johnny-hsu19832.mylabserver.com"
+    }
+
+default["apache"]["sites"]["johnny-hsu19832b"] = {
+  "port" =&gt; 80,
+    "domain" =&gt; "johnny-hsu19832b.mylabserver.com"
+    }
+</code></pre>
+
+<h4>Run chef-client again!</h4>
+]]></content>
+  </entry>
+  
+</feed>
