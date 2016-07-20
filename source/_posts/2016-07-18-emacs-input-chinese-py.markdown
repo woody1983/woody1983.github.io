@@ -8,6 +8,6 @@ categories: Emacs
 
 `C-\` choose `chinese-py`
 
-So Let's Enjoy it.
+So, Let's Enjoy it.
 
 
