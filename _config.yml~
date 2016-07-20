@@ -64,7 +64,7 @@ blog_index_asides: [asides/recent_posts.html, custom/asides/category_list.html]
 # ----------------------- #
 
 # Github repositories
-github_user:
+github_user: woody1983
 github_repo_count: 5
 github_show_profile_link: true
 github_skip_forks: true
