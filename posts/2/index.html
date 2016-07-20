@@ -117,6 +117,370 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-11T03:46:49+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/11/ansible-db-deployment-outline/" itemprop="url">Ansible DB Deployment Outline</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3>Outline</h3>
+
+<ul>
+<li>Installing and Configuring a MariaDB Server (master)</li>
+<li>The installation will be done with the ansible user</li>
+<li>The installation needs to be done with sudo privileges</li>
+<li>The connection used is ssh</li>
+<li>gathering of facts needs to be on</li>
+</ul>
+
+
+<h3>What do we need to know?</h3>
+
+<ul>
+<li>the package name f the Db server</li>
+<li>the group/host of the master server</li>
+<li>the directory for installing the db(if not default)</li>
+<li>the version of the db</li>
+<li>the distribution it is installed on</li>
+</ul>
+
+
+<h3>What needs to be done/installed</h3>
+
+<ul>
+<li>install the MariaDB server and utilities</li>
+<li>root password install
+
+<ul>
+<li>waitfor the db service to be started
+
+<ul>
+<li>takes place manually after the mysql-secure-installation run</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>install the mysql/mariadb configuration file ( if needed)</li>
+<li>copy the mysql/mariadb database backup to the home directory</li>
+<li>import the database(s)</li>
+<li>add a cron job for nightly backups</li>
+</ul>
+
+
+<h3>Testing the db</h3>
+
+<p>run a MYSQL command and register the output as JSON format to determine success</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-05T23:56:44+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/05/debian-slash-ubuntu-apt-manual/" itemprop="url">Debian/Ubuntu Apt Manual</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3>Update or Upgrade</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update       <span class="c">#Update source</span>
+</span><span class='line'>apt-get upgrade      <span class="c">#Update all installed packages</span>
+</span><span class='line'>apt-get dist-upgrade <span class="c">#Update Distributions</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install &lt;pkg&gt; <span class="c">#Install </span>
+</span><span class='line'>apt-get install --reinstall &lt;pkg&gt; <span class="c">#Install again</span>
+</span><span class='line'>apt-get install -f &lt;pkg&gt; <span class="c">#Repair and install (dependency)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Remove</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get remove &lt;pkg&gt; <span class="c"># just remove </span>
+</span><span class='line'>apt-get purge &lt;pkg&gt;  <span class="c">#Remove include config files</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Download</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get <span class="nb">source</span> &lt;pkg&gt;   <span class="c">#Download source code</span>
+</span><span class='line'>apt-get download &lt;pkg&gt; <span class="c">#Download binary tar</span>
+</span><span class='line'>apt-get <span class="nb">source</span> -d &lt;pkg&gt; <span class="c">#Download and Compile</span>
+</span><span class='line'>apt-get build-dep &lt;pkg&gt; <span class="c">#Build pkg source code dependency environment (Compile Env?)</span>
+</span><span class='line'>apt-get clean        <span class="c">#Cleanup Cache (/var/cache/apt/archives/{,partial}.)downloaded source code</span>
+</span><span class='line'>apt-get autoclean <span class="c">#cleanup out of time source code within cache</span>
+</span><span class='line'>apt-get autoremove  <span class="c">#Remove auto install dependency pkg</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Search</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-cache status <span class="c">#Display system pkg total statistics information</span>
+</span><span class='line'>apt-cache search &lt;pkg&gt;   <span class="c">#Search pkg by key words</span>
+</span><span class='line'>apt-cache show &lt;pkg_name&gt; <span class="c">#display pkg more information</span>
+</span><span class='line'>apt-cache depends &lt;pkg&gt; <span class="c">#Lookup pkg dependency software.</span>
+</span><span class='line'>apt-cache rdepends &lt;pkg&gt; <span class="c">#View PKG is dependent on those packages</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-05T06:36:26+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/05/linux-essentials-certification/" itemprop="url">Linux Essentials Certification</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h2>Overview</h2>
+
+<h3>What is the LPI Linux Essentials Certification?</h3>
+
+<ul>
+<li>Vendor-Neutral program by the Linux Professional Institute</li>
+<li>It is the first stop course before the professional certifications by LPI</li>
+<li>It is an outstanding course for new users to Linux</li>
+</ul>
+
+
+<h3>Open Source Philosophy</h3>
+
+<ul>
+<li>So why would Linux just be given away?</li>
+<li>GNU - Gnu&rsquo;s Not Unix!</li>
+<li>GNU/Linux</li>
+<li>FSF - Free Software Foundation</li>
+<li>GNU C Compiler - gcc</li>
+<li>Linux Torvalds was heavily influenced by the GNU project in which his first Linux kernel was released under the GPL</li>
+<li>GPL = General Public License</li>
+<li>GPL: Require that the source code remain freely available to anyone who might want it.</li>
+</ul>
+
+
+<h3>Distributions</h3>
+
+<blockquote><p>You can think about Linux distributions as you think about ice cream brands. #funny</p></blockquote>
+
+<p>Each distributions has a kernel , utilities and configurations.</p>
+
+<h4>What could make up a full blown Linux distributions?</h4>
+
+<ul>
+<li>Linux kernel</li>
+<li>Core Unix tools</li>
+<li>Supplemental Software</li>
+<li>Startup scripts</li>
+<li>Installers</li>
+</ul>
+
+
+<h4>What distributions is right for our project?</h4>
+
+<ul>
+<li>Is the system going to be for desktop or server use?</li>
+<li>If this is for production then a commercial distribution might be best for your needs</li>
+<li>Does your system hardware support the distribution of choice?</li>
+</ul>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T05:49:14+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/04/ansible-mysql-db-module/" itemprop="url">Ansible MySQL DB Module</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3>Install MariaDB</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl start mariadb.service
+</span><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>mariadb.service
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Adding Ansible User</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="o">`</span><span class="n">ansible_db</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;123456&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Playbook</h3>
+
+<p>For Create Database.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_DB MODULE EXAMPLE</span>
+</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apacheserver</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ansible</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">connection</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ssh</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">gather_facts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Install the Python MySQL Support Libraries</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
+</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For manager User</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_USER MODULE EXAMPLE</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a new user called BOB and give him all access</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T04:25:56+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -230,15 +594,15 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/07/19/html-templates-dynamically-with-chef/">HTML Templates Dynamically With Chef</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/18/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
+    
     <a class="list-group-item " href="/blog/2016/07/15/install-jenkins-on-centos-7/">Install Jenkins on CentOS 7</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/14/ramp-up-angular-2-dot-0/">Ramp Up Angular 2.0</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/14/the-vagrants-networking/">The Vagrant's Networking</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/">Installing Apache2 &amp; MySQL With Puppet in Vagrant</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/13/installing-apache-with-chef/">Installing Apache With Chef</a>
     
   </div>
 </section>
@@ -250,7 +614,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/emacs/index.html">
-        <span class="badge">1</span>
+        <span class="badge">2</span>
         emacs
       </a>
     
@@ -286,7 +650,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/linux/index.html">
-        <span class="badge">4</span>
+        <span class="badge">5</span>
         linux
       </a>
     
@@ -316,7 +680,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/chef/index.html">
-        <span class="badge">1</span>
+        <span class="badge">4</span>
         chef
       </a>
     
@@ -336,6 +700,12 @@
     <a class="list-group-item " href="/blog/categories/jenkins/index.html">
         <span class="badge">1</span>
         jenkins
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/apache/index.html">
+        <span class="badge">1</span>
+        apache
       </a>
     
   </div>

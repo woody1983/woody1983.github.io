@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Emacs | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-15T05:43:33+00:00</updated>
+  <updated>2016-07-19T07:46:22+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/"/>
+    <updated>2016-07-18T23:26:17+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py</id>
+    <content type="html"><![CDATA[<p><code>C-\</code> choose <code>chinese-py</code></p>
+
+<p>So Let&rsquo;s Enjoy it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My Emacs24 Config]]></title>

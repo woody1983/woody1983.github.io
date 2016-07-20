@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Ansible MySQL DB Module - Mutiny Theory</title>
+  <title>Build an Apache VirtualHost With Chef - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/">
+  <link rel="canonical" href="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/">
-  <meta property="og:title" content="Ansible MySQL DB Module - Mutiny Theory">
+  <meta property="og:url" content="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">
+  <meta property="og:title" content="Build an Apache VirtualHost With Chef - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -113,40 +113,30 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T05:49:14+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T06:12:32+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Ansible MySQL DB Module
+        Build an Apache VirtualHost With Chef
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><h3>Install MariaDB</h3>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>For this example, we need two Linux instances, I choose CentOS 7.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl start mariadb.service
-</span><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>mariadb.service
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Adding Ansible User</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="o">`</span><span class="n">ansible_db</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;123456&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>mutiny-1.mylabserver.com 192.168.100.1</li>
+<li>mutiny-2.mylabserver.com 192.168.100.100</li>
+</ul>
 
 
-<h3>Playbook</h3>
+<h4>Step 1 Build Chef Workstation</h4>
 
-<p>For Create Database.</p>
+<p>Download the <code>chef-starter.zip</code> to mutiny-1.mylabserver.com.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -159,30 +149,140 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_DB MODULE EXAMPLE</span>
-</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apacheserver</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ansible</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">connection</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ssh</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">gather_facts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Install the Python MySQL Support Libraries</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>root<span class="nv">$ </span>hostname workstation
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">exec </span>bash
+</span><span class='line'>
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd</span>
+</span><span class='line'>root<span class="nv">$ </span>unzip chef-starter.zip
+</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd </span>chef-repo
+</span><span class='line'>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'><span class="c">#------Install Chef-------</span>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'>root<span class="nv">$ </span>curl -L https://www.opscode.com/chef/install.sh <span class="p">|</span> sudo bash
+</span><span class='line'>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'><span class="c">#------Install Node-------</span>
+</span><span class='line'><span class="c">#-------------------------</span>
+</span><span class='line'>root<span class="nv">$ </span>knife bootstrap mutiny-2.mylabserver.com -x root -P __passwd__ -N linuxnode
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>For manager User</p>
+<h4>Step 2 Create Cookbook</h4>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p><code>knife cookbook create apache</code> Build a Cookbook based on apache</p>
+
+<p>Just need install apache package</p>
+
+<figure class='code'><figcaption><span>cookbook/apache/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_USER MODULE EXAMPLE</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a new user called BOB and give him all access</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">service</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="o">[</span><span class="ss">:enable</span><span class="p">,</span> <span class="ss">:start</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS</p>
+
+<p><code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+
+<h4>Step 3 At node, run chef-client</h4>
+
+<p>Just one command <code>chef-client</code></p>
+
+<h4>Attributes &amp; Template</h4>
+
+<p>We need setup two httpd.conf files for VirtualHost. So</p>
+
+<figure class='code'><figcaption><span>templates/default/vhost.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>#vhost template file
+</span><span class='line'><span class="err">&lt;</span>% if @port == 80 -%&gt;
+</span><span class='line'>  NameVirtualHost *:80
+</span><span class='line'><span class="err">&lt;</span>% end -%&gt;
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;VirtualHost</span> <span class="err">*</span><span class="na">:</span><span class="err">&lt;%=</span> <span class="err">@</span><span class="na">port</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
+</span><span class='line'>
+</span><span class='line'>  ServerName <span class="err">&lt;</span>%= @domain %&gt;
+</span><span class='line'>  DocumentRoot <span class="err">&lt;</span>%= @document_root %&gt;
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;Directory</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      Options FollowSymLinks
+</span><span class='line'>    AllowOverride None
+</span><span class='line'>  <span class="nt">&lt;/Directory&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;Directory</span> <span class="err">&lt;%=</span> <span class="err">@</span><span class="na">document_root</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
+</span><span class='line'>      Options Indexes FollowSymLinks MultiViews
+</span><span class='line'>    AllowOverride None
+</span><span class='line'>    Order allow,deny
+</span><span class='line'>    allow from all
+</span><span class='line'>  <span class="nt">&lt;/Directory&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/VirtualHost&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>attributes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>    <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832.mylabserver.com&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832b&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b.mylabserver.com&quot;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>      
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Run chef-client again!</h4>
 </div>
 
 
@@ -206,13 +306,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T05:49:14+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T06:12:32+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ansible/'>ansible</a>
+    <a class='category' href='/blog/categories/apache/'>apache</a>, <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
   
 </span>
 
@@ -221,7 +321,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/" data-via="" data-counturl="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" data-via="" data-counturl="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" >Tweet</a>
   
   
   
@@ -231,10 +331,10 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/" title="Previous Post: Build Rails Env on Ubuntu/Docker">&laquo; Build Rails Env on Ubuntu/Docker</a></li>
+            <li class="previous"><a href="/blog/2016/07/18/emacs-input-chinese-py/" title="Previous Post: Emacs input Chinese-py">&laquo; Emacs input Chinese-py</a></li>
             
             
-            <li class="next"><a href="/blog/2016/07/05/linux-essentials-certification/" title="Next Post: Linux Essentials Certification">Linux Essentials Certification &raquo;</a></li>
+            <li class="next"><a href="/blog/2016/07/19/attribute-precedence/" title="Next Post: Attribute Precedence">Attribute Precedence &raquo;</a></li>
             
           </ul>
         
@@ -263,7 +363,7 @@
     
     <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
     
-    <a class="list-group-item " href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
+    <a class="list-group-item active" href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
     
     <a class="list-group-item " href="/blog/2016/07/18/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
     
@@ -407,8 +507,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/';
-        var disqus_url = 'http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/';
+        var disqus_identifier = 'http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/';
+        var disqus_url = 'http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/';
         var disqus_script = 'embed.js';
       
     (function () {

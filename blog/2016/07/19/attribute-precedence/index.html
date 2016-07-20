@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Ansible MySQL DB Module - Mutiny Theory</title>
+  <title>Attribute Precedence - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/">
+  <link rel="canonical" href="http://woody1983.github.io/blog/2016/07/19/attribute-precedence/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/">
-  <meta property="og:title" content="Ansible MySQL DB Module - Mutiny Theory">
+  <meta property="og:url" content="http://woody1983.github.io/blog/2016/07/19/attribute-precedence/">
+  <meta property="og:title" content="Attribute Precedence - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -113,76 +113,46 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T05:49:14+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T07:20:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Ansible MySQL DB Module
+        Attribute Precedence
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><h3>Install MariaDB</h3>
+<div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl start mariadb.service
-</span><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>mariadb.service
-</span></code></pre></td></tr></table></div></figure>
+<h2>Key Concepts</h2>
 
+<blockquote><p>Attributes are specific details about a node.</p></blockquote>
 
-<h3>Adding Ansible User</h3>
+<h3>Attributes describe</h3>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="o">`</span><span class="n">ansible_db</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;123456&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>The current state of the node</li>
+<li>What the state of the node was at the end of the previous chef-client run</li>
+<li>What the state of the node should be at the end of the current chef-client run</li>
+</ul>
 
 
-<h3>Playbook</h3>
+<p>After the node object is rebuilt in the chef run,all attributes loaded in the chef-client are then compared. The node is updated based on attribute precedence and at the very end of the convergence(chef-client)the node object is uploaded to the chef server</p>
 
-<p>For Create Database.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_DB MODULE EXAMPLE</span>
-</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apacheserver</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ansible</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">connection</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ssh</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">gather_facts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Install the Python MySQL Support Libraries</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>Node object defines the current state of the node(made up of attributes)</li>
+<li>Node object is stored on the chef server so that can be searched</li>
+<li>Node object is updated at each convergence</li>
+</ul>
 
 
-<p>For manager User</p>
+<p>If there are attributes with the same names then attributes precedence determines which attribute is applied to the node and the node object.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_USER MODULE EXAMPLE</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a new user called BOB and give him all access</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<blockquote><p>Thanks Linux Academy.</p></blockquote>
 </div>
 
 
@@ -206,13 +176,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T05:49:14+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T07:20:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ansible/'>ansible</a>
+    <a class='category' href='/blog/categories/chef/'>chef</a>
   
 </span>
 
@@ -221,7 +191,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/" data-via="" data-counturl="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://woody1983.github.io/blog/2016/07/19/attribute-precedence/" data-via="" data-counturl="http://woody1983.github.io/blog/2016/07/19/attribute-precedence/" >Tweet</a>
   
   
   
@@ -231,10 +201,10 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/" title="Previous Post: Build Rails Env on Ubuntu/Docker">&laquo; Build Rails Env on Ubuntu/Docker</a></li>
+            <li class="previous"><a href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" title="Previous Post: Build an Apache VirtualHost with Chef">&laquo; Build an Apache VirtualHost with Chef</a></li>
             
             
-            <li class="next"><a href="/blog/2016/07/05/linux-essentials-certification/" title="Next Post: Linux Essentials Certification">Linux Essentials Certification &raquo;</a></li>
+            <li class="next"><a href="/blog/2016/07/19/html-templates-dynamically-with-chef/" title="Next Post: HTML Templates Dynamically with Chef">HTML Templates Dynamically with Chef &raquo;</a></li>
             
           </ul>
         
@@ -261,7 +231,7 @@
     
     <a class="list-group-item " href="/blog/2016/07/19/html-templates-dynamically-with-chef/">HTML Templates Dynamically With Chef</a>
     
-    <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
+    <a class="list-group-item active" href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
     
     <a class="list-group-item " href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
     
@@ -407,8 +377,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/';
-        var disqus_url = 'http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/';
+        var disqus_identifier = 'http://woody1983.github.io/blog/2016/07/19/attribute-precedence/';
+        var disqus_url = 'http://woody1983.github.io/blog/2016/07/19/attribute-precedence/';
         var disqus_script = 'embed.js';
       
     (function () {

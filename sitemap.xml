@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef/</loc>
+<lastmod>2016-07-19T07:42:33+00:00</lastmod>
+</url>
+<url>
+<loc>http://woody1983.github.io/blog/2016/07/19/attribute-precedence/</loc>
+<lastmod>2016-07-19T07:20:01+00:00</lastmod>
+</url>
+<url>
+<loc>http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/</loc>
+<lastmod>2016-07-19T06:12:32+00:00</lastmod>
+</url>
+<url>
+<loc>http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/</loc>
+<lastmod>2016-07-18T23:26:17+00:00</lastmod>
+</url>
+<url>
 <loc>http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/</loc>
 <lastmod>2016-07-15T04:22:21+00:00</lastmod>
 </url>
@@ -14,7 +30,7 @@
 </url>
 <url>
 <loc>http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/</loc>
-<lastmod>2016-07-13T08:51:01+00:00</lastmod>
+<lastmod>2016-07-13T08:52:01+00:00</lastmod>
 </url>
 <url>
 <loc>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/</loc>
@@ -101,6 +117,9 @@
 </url>
 <url>
 <loc>http://woody1983.github.io/blog/categories/jenkins/</loc>
+</url>
+<url>
+<loc>http://woody1983.github.io/blog/categories/apache/</loc>
 </url>
 <url>
 <loc>http://woody1983.github.io/posts/2/</loc>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Angular | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/angular/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-15T05:43:33+00:00</updated>
+  <updated>2016-07-19T07:46:22+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,7 +18,7 @@
     <link href="http://woody1983.github.io/blog/2016/07/14/ramp-up-angular-2-dot-0/"/>
     <updated>2016-07-14T02:29:53+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/14/ramp-up-angular-2-dot-0</id>
-    <content type="html"><![CDATA[<p>First things:</p>
+    <content type="html"><![CDATA[<p>First Things:</p>
 
 <h3>Download Angular</h3>
 
@@ -47,15 +47,17 @@ also bootstrap.min.css</p>
 
 <h4>Create a Store Module</h4>
 
-<pre><code class="js app.js">var app;
+<pre><code class="js app.js">
+var app;
 var app = angular.module("gemStore",[]);
 </code></pre>
 
 <h4>Attach module to HTML Pages</h4>
 
-<p><strong>KeyWords</strong> <code>ng-app</code></p>
+<p>KeyWords: <code>ng-app</code></p>
 
-<pre><code class="html">&lt;html ng-app="gemStore"&gt;
+<pre><code class="html index.html">
+&lt;html ng-app="gemStore"&gt;
 ...
 &lt;/html&gt;
 </code></pre>
@@ -103,15 +105,13 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 #### Show or Hide
 </code></pre>
 
-<p><button ng-show="store.product.canPurchase">Add to Cart</button>
-```</p>
+<p><button ng-show="store.product.canPurchase">Add to Cart</button></p>
 
-<p>If the canPurchase equal <code>true</code>, the Button should be display on pages.</p>
-
-<p>``` html</p>
+<pre><code>
+If the canPurchase equal `true`, the Button should be display on pages.
+</code></pre>
 
 <div class="product row" ng-hide="store.product.soldOut">
-
 </div>
 
 
@@ -119,9 +119,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 #### More Gems
 </code></pre>
 
-<p>  app.controller(&lsquo;StoreController&rsquo;, function(){
+<p>app.controller(&lsquo;StoreController&rsquo;, function(){
     this.products = gems;
-  });</p>
+});</p>
 
 <pre><code>
 **KeyWords** : `s`
@@ -130,8 +130,9 @@ And change the HTML code
 </code></pre>
 
 <p><div class="product row" ng-repeat="product in store.products">
-<code>``
-**KeyWords**</code>ng-repeat`</p>
+```</p>
+
+<p><strong>KeyWords</strong> <code>ng-repeat</code></p>
 ]]></content>
   </entry>
   

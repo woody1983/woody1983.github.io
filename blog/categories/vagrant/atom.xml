@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Vagrant | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-15T05:43:33+00:00</updated>
+  <updated>2016-07-19T07:46:22+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,7 +18,7 @@
     <link href="http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking/"/>
     <updated>2016-07-14T01:37:44+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking</id>
-    <content type="html"><![CDATA[<p>You can setup Private network or Public network on vagrant.</p>
+    <content type="html"><![CDATA[<p>You can Setup Private network or Public network on vagrant.</p>
 
 <h3>Private networking</h3>
 
@@ -41,7 +41,7 @@ config.vm.network "public_network",bridge: 'eb1: Wi-Fi(AirPort)'
   <entry>
     <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
     <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
-    <updated>2016-07-13T08:51:01+00:00</updated>
+    <updated>2016-07-13T08:52:01+00:00</updated>
     <id>http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
     <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
@@ -103,7 +103,7 @@ file { "/var/www":
   end
 </code></pre>
 
-<h4>Tree cookbooks</h4>
+<h4>Tree of Cookbooks</h4>
 
 <pre><code class="">cookbooks:/
 ---/vagrant_la
