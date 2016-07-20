@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Chef | Mutiny Theory]]></title>
   <link href="http://woody1983.github.io/blog/categories/chef/atom.xml" rel="self"/>
   <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:46:22+00:00</updated>
+  <updated>2016-07-20T09:05:56+00:00</updated>
   <id>http://woody1983.github.io/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Recipe Includes and Dependencies]]></title>
+    <link href="http://woody1983.github.io/blog/2016/07/20/recipe-includes-and-dependencies/"/>
+    <updated>2016-07-20T09:03:23+00:00</updated>
+    <id>http://woody1983.github.io/blog/2016/07/20/recipe-includes-and-dependencies</id>
+    <content type="html"><![CDATA[<p>Create a new cookbook</p>
+
+<pre><code>knife cookbook create php
+</code></pre>
+
+<p>Change the Recipes</p>
+
+<pre><code class="ruby php/recipes/default.rb">
+package "php" do
+  action :install
+end
+</code></pre>
+
+<p>Change the apache cookbook&rsquo;s metadata</p>
+
+<pre><code class="ruby apache/metadata.rb">
+### Added this
+depends "php"
+</code></pre>
+
+<pre><code class="ruby apache/recipes/default.rb">
+include_recipe "php::default"
+</code></pre>
+
+<p>So that all. Easy</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
