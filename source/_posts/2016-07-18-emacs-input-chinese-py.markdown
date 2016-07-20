@@ -8,6 +8,5 @@ categories: Emacs
 
 `C-\` choose `chinese-py`
 
-So, Let's Enjoy it.
-
+So, Let's Enjoy it. And take a try `拼音输入法`
 
