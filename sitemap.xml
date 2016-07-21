@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/</loc>
+<lastmod>2016-07-21T20:16:27+08:00</lastmod>
+</url>
+<url>
 <loc>http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/</loc>
 <lastmod>2016-07-20T23:07:53+08:00</lastmod>
 </url>
@@ -138,8 +142,5 @@
 </url>
 <url>
 <loc>http://mutiny.work/blog/categories/git/</loc>
-</url>
-<url>
-<loc>http://mutiny.work/posts/2/</loc>
 </url>
 </urlset>

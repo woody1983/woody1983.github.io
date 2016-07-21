@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Build an Apache VirtualHost With Chef - Mutiny Theory</title>
+  <title>Manage My Bill With Org Mode - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">
+  <link rel="canonical" href="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">
-  <meta property="og:title" content="Build an Apache VirtualHost With Chef - Mutiny Theory">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/">
+  <meta property="og:title" content="Manage My Bill With Org Mode - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -113,30 +113,27 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T14:12:32+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-21T20:16:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Build an Apache VirtualHost With Chef
+        Manage My Bill With Org Mode
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>For this example, we need two Linux instances, I choose CentOS 7.</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
 
-<ul>
-<li>mutiny-1.mylabserver.com 192.168.100.1</li>
-<li>mutiny-2.mylabserver.com 192.168.100.100</li>
-</ul>
+<p>Yeah, The <a href="http://orgmode.org">Org-mode</a> is really awesome!
+In this case, I want use the org-mode to manage my two credit card&rsquo;s information, So</p>
 
+<h4>First, I made the basic bill table</h4>
 
-<h4>Step 1 Build Chef Workstation</h4>
-
-<p>Download the <code>chef-starter.zip</code> to mutiny-1.mylabserver.com.</p>
+<p>In Normal days, I choose using credit card or cash as my payment method, I also using Wechat-Pay and Ali-Pay, But in fact these are bound by the credit card.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -154,61 +151,30 @@
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>root<span class="nv">$ </span>hostname workstation
-</span><span class='line'>root<span class="nv">$ </span><span class="nb">exec </span>bash
-</span><span class='line'>
-</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd</span>
-</span><span class='line'>root<span class="nv">$ </span>unzip chef-starter.zip
-</span><span class='line'>root<span class="nv">$ </span><span class="nb">cd </span>chef-repo
-</span><span class='line'>
-</span><span class='line'><span class="c">#-------------------------</span>
-</span><span class='line'><span class="c">#------Install Chef-------</span>
-</span><span class='line'><span class="c">#-------------------------</span>
-</span><span class='line'>root<span class="nv">$ </span>curl -L https://www.opscode.com/chef/install.sh <span class="p">|</span> sudo bash
-</span><span class='line'>
-</span><span class='line'><span class="c">#-------------------------</span>
-</span><span class='line'><span class="c">#------Install Node-------</span>
-</span><span class='line'><span class="c">#-------------------------</span>
-</span><span class='line'>root<span class="nv">$ </span>knife bootstrap mutiny-2.mylabserver.com -x root -P __passwd__ -N linuxnode
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">2016bill</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>       <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-12</span> <span class="nv">Sun&gt;</span> <span class="nv">| Lunch          |</span>  <span class="mf">43.97</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-15 Wed&gt; |</span> <span class="nv">Lunch</span>          <span class="nv">|  56.48 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-13</span> <span class="nv">Mon&gt;</span> <span class="nv">| Book           |</span>  <span class="mf">17.99</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-18 Sat&gt; |</span> <span class="nv">Flico</span> <span class="nv">Keyboard</span> <span class="nv">| 289.18 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-19</span> <span class="nv">Sun&gt;</span> <span class="nv">| By Coffce      |</span>  <span class="mf">99.96</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-20 Mon&gt; |</span> <span class="nv">Supplies</span>       <span class="nv">|  58.26 |</span> <span class="nv">Cash</span>        <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-21</span> <span class="nv">Tue&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">18.99</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-22 Wed&gt; |</span> <span class="nv">Cookie</span>         <span class="nv">|   7.50 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">CMB</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-25</span> <span class="nv">Sat&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">21.49</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">VPS</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span>                  <span class="nv">| Total:         |</span> <span class="mf">623.80</span> <span class="nv">|             |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$3=vsum</span><span class="p">(</span><span class="nv">@2..@-1</span><span class="p">)</span><span class="c1">;%.2f</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Step 2 Create Cookbook</h4>
+<h4>The <code>2016bill</code> table</h4>
 
-<p><code>knife cookbook create apache</code> Build a Cookbook based on apache</p>
+<p>It just records the June 2016 payment info. And I make a other table <code>my-bull_bcm</code> to record The BCM Credit Card payment details.</p>
 
-<p>Just need install apache package</p>
-
-<figure class='code'><figcaption><span>cookbook/apache/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">service</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">action</span> <span class="o">[</span><span class="ss">:enable</span><span class="p">,</span> <span class="ss">:start</span><span class="o">]</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS</p>
-
-<p><code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
-
-<h4>Step 3 At node, run chef-client</h4>
-
-<p>Just one command <code>chef-client</code></p>
-
-<h4>Attributes &amp; Template</h4>
-
-<p>We need setup two httpd.conf files for VirtualHost. So</p>
-
-<figure class='code'><figcaption><span>templates/default/vhost.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -223,66 +189,42 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>#vhost template file
-</span><span class='line'><span class="err">&lt;</span>% if @port == 80 -%&gt;
-</span><span class='line'>  NameVirtualHost *:80
-</span><span class='line'><span class="err">&lt;</span>% end -%&gt;
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">NAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">BEGIN_SRC</span> <span class="nv">elisp</span> <span class="ss">:var</span> <span class="nv">tbl=2016bill</span> <span class="nv">val=</span><span class="s">&quot;Credit(BCM)&quot;</span> <span class="nv">val2=</span><span class="s">&quot;&lt;2016-06-15 Wed&gt;&quot;</span> <span class="ss">:colnames</span> <span class="nv">y</span>
+</span><span class='line'>    <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">row</span> <span class="nv">in</span> <span class="nv">tbl</span>
+</span><span class='line'>          <span class="nb">when</span> <span class="p">(</span><span class="nb">equal</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">3</span> <span class="nv">row</span><span class="p">)</span> <span class="nv">val</span><span class="p">)</span>
+</span><span class='line'>          <span class="nv">collect</span> <span class="nv">row</span> <span class="nv">into</span> <span class="nv">newtbl</span>
+</span><span class='line'>          <span class="nv">finally</span> <span class="nb">return</span> <span class="nv">newtbl</span><span class="p">)</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">END_SRC</span>
 </span><span class='line'>
-</span><span class='line'><span class="nt">&lt;VirtualHost</span> <span class="err">*</span><span class="na">:</span><span class="err">&lt;%=</span> <span class="err">@</span><span class="na">port</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
-</span><span class='line'>
-</span><span class='line'>  ServerName <span class="err">&lt;</span>%= @domain %&gt;
-</span><span class='line'>  DocumentRoot <span class="err">&lt;</span>%= @document_root %&gt;
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;Directory</span> <span class="nt">/&gt;</span>
-</span><span class='line'>      Options FollowSymLinks
-</span><span class='line'>    AllowOverride None
-</span><span class='line'>  <span class="nt">&lt;/Directory&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;Directory</span> <span class="err">&lt;%=</span> <span class="err">@</span><span class="na">document_root</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
-</span><span class='line'>      Options Indexes FollowSymLinks MultiViews
-</span><span class='line'>    AllowOverride None
-</span><span class='line'>    Order allow,deny
-</span><span class='line'>    allow from all
-</span><span class='line'>  <span class="nt">&lt;/Directory&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;/VirtualHost&gt;</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>         <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+------------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-15</span> <span class="nv">Wed&gt;</span> <span class="nv">| Supplies         |</span>  <span class="mf">56.48</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-13 Mon&gt; |</span> <span class="nv">Book</span>             <span class="nv">|  17.99 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-18</span> <span class="nv">Sat&gt;</span> <span class="nv">| Kinesis Keyboard |</span> <span class="mf">289.18</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">Toner</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="err">|</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>When I got the BCM Credit Card Payment information for the entire June. I need to know How much more money I will give to the Bank next month.</p>
 
-
-<figure class='code'><figcaption><span>attributes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
-</span><span class='line'>    <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832.mylabserver.com&quot;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  
-</span><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832b&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b.mylabserver.com&quot;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>      
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="nv">| Year/Month       |</span> <span class="nv">amount</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+--------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">[2016-June]</span>      <span class="nv">| 373.65 |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$2=vsum</span><span class="p">(</span><span class="nv">remote</span><span class="p">(</span><span class="nv">my-bill,</span> <span class="nv">@2$3..@&gt;$3</span><span class="p">))</span><span class="c1">;%.2f</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h4>Run chef-client again!</h4>
+<p>But It&rsquo;s not enough, Emacs and Org-mode is Powerfull. I need to learn more skills about Emacs.</p>
+
+<h4>Thanks SACHA, Thanks for your shared information and knowledge.</h4>
+
+<p><a href="http://sachachua.com/blog/">Sacha Blog</a> Living an Awesome Life.</p>
 </div>
 
 
@@ -306,13 +248,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T14:12:32+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-21T20:16:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/apache/'>apache</a>, <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
+    <a class='category' href='/blog/categories/emacs/'>emacs</a>
   
 </span>
 
@@ -321,7 +263,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/" >Tweet</a>
   
   
   
@@ -331,10 +273,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/19/emacs-input-chinese-py/" title="Previous Post: Emacs input Chinese-py">&laquo; Emacs input Chinese-py</a></li>
+            <li class="previous"><a href="/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/" title="Previous Post: rake gen_deploy rejected in Octopress">&laquo; rake gen_deploy rejected in Octopress</a></li>
             
-            
-            <li class="next"><a href="/blog/2016/07/19/attribute-precedence/" title="Next Post: Attribute Precedence">Attribute Precedence &raquo;</a></li>
             
           </ul>
         
@@ -359,7 +299,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2016/07/21/manage-my-bill-with-org-mode/">Manage My Bill With Org Mode</a>
+    <a class="list-group-item active" href="/blog/2016/07/21/manage-my-bill-with-org-mode/">Manage My Bill With Org Mode</a>
     
     <a class="list-group-item " href="/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/">Rake Gen_deploy Rejected in Octopress</a>
     
@@ -519,8 +459,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/';
-        var disqus_url = 'http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/';
+        var disqus_identifier = 'http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/';
+        var disqus_url = 'http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/';
         var disqus_script = 'embed.js';
       
     (function () {
