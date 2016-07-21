@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Emacs | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/emacs/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:46:22+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/emacs/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-21T21:29:34+08:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -14,21 +14,90 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/"/>
-    <updated>2016-07-18T23:26:17+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py</id>
-    <content type="html"><![CDATA[<p><code>C-\</code> choose <code>chinese-py</code></p>
+    <title type="html"><![CDATA[Manage My Bill With Org Mode]]></title>
+    <link href="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/"/>
+    <updated>2016-07-21T20:16:27+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode</id>
+    <content type="html"><![CDATA[<p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
 
-<p>So Let&rsquo;s Enjoy it.</p>
+<p>Yeah, The <a href="http://orgmode.org">Org-mode</a> is really awesome!
+In this case, I want use the org-mode to manage my two credit card&rsquo;s information, So</p>
+
+<h4>First, I made the basic bill table</h4>
+
+<p>In Normal days, I choose using credit card or cash as my payment method, I also using Wechat-Pay and Ali-Pay, But in fact these are bound by the credit card.</p>
+
+<pre><code class="lisp">#+TBLNAME: 2016bill
+| Date             | Category       | Amount | Payment     |
+|------------------+----------------+--------+-------------|
+| &lt;2016-06-12 Sun&gt; | Lunch          |  43.97 | Cash        |
+| &lt;2016-06-15 Wed&gt; | Lunch          |  56.48 | Credit(BCM) |
+| &lt;2016-06-13 Mon&gt; | Book           |  17.99 | Credit(BCM) |
+| &lt;2016-06-18 Sat&gt; | Flico Keyboard | 289.18 | Credit(BCM) |
+| &lt;2016-06-19 Sun&gt; | By Coffce      |  99.96 | Cash        |
+| &lt;2016-06-20 Mon&gt; | Supplies       |  58.26 | Cash        |
+| &lt;2016-06-21 Tue&gt; | Books          |  18.99 | Credit(CMB) |
+| &lt;2016-06-22 Wed&gt; | Cookie         |   7.50 | Credit(CMB) |
+| &lt;2016-06-25 Sat&gt; | Books          |  21.49 | Credit(CMB) |
+| &lt;2016-06-28 Tue&gt; | VPS Service    |     10 | Credit(BCM) |
+|------------------+----------------+--------+-------------|
+|                  | Total:         | 623.80 |             |
+#+TBLFM: @&gt;$3=vsum(@2..@-1);%.2f
+</code></pre>
+
+<h4>The <code>2016bill</code> table</h4>
+
+<p>It just records the June 2016 payment info. And I make a other table <code>my-bull_bcm</code> to record The BCM Credit Card payment details.</p>
+
+<pre><code class="lisp">#+NAME: my-bill_bcm
+#+BEGIN_SRC elisp :var tbl=2016bill val="Credit(BCM)" val2="&lt;2016-06-15 Wed&gt;" :colnames y
+    (cl-loop for row in tbl
+          when (equal (nth 3 row) val)
+          collect row into newtbl
+          finally return newtbl)
+#+END_SRC
+
+#+TBLNAME: my-bill_bcm
+| Date             | Category         | Amount | Payment     |
+|------------------+------------------+--------+-------------|
+| &lt;2016-06-15 Wed&gt; | Supplies         |  56.48 | Credit(BCM) |
+| &lt;2016-06-13 Mon&gt; | Book             |  17.99 | Credit(BCM) |
+| &lt;2016-06-18 Sat&gt; | Kinesis Keyboard | 289.18 | Credit(BCM) |
+| &lt;2016-06-28 Tue&gt; | Toner Service    |     10 | Credit(BCM) |
+</code></pre>
+
+<p>When I got the BCM Credit Card Payment information for the entire June. I need to know How much more money I will give to the Bank next month.</p>
+
+<pre><code class="lisp">| Year/Month       | amount |
+|------------------+--------|
+| [2016-June]      | 373.65 |
+#+TBLFM: @&gt;$2=vsum(remote(my-bill, @2$3..@&gt;$3));%.2f
+</code></pre>
+
+<p>But It&rsquo;s not enough, Emacs and Org-mode is Powerfull. I need to learn more skills about Emacs.</p>
+
+<h4>Thanks SACHA, Thanks for your shared information and knowledge.</h4>
+
+<p><a href="http://sachachua.com/blog/">Sacha Blog</a> Living an Awesome Life.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
+    <link href="http://mutiny.work/blog/2016/07/19/emacs-input-chinese-py/"/>
+    <updated>2016-07-19T07:26:17+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/emacs-input-chinese-py</id>
+    <content type="html"><![CDATA[<p>Just Input the <code>C-\</code> choose <code>chinese-py</code></p>
+
+<p>So, Let&rsquo;s Enjoy it. And take a try <code>拼音输入法</code></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[My Emacs24 Config]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/04/title/"/>
-    <updated>2016-07-04T04:11:12+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/04/title</id>
+    <link href="http://mutiny.work/blog/2016/07/04/title/"/>
+    <updated>2016-07-04T12:11:12+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/04/title</id>
     <content type="html"><![CDATA[<!-- more -->
 
 

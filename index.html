@@ -14,14 +14,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://woody1983.github.io/">
+  <link rel="canonical" href="http://mutiny.work/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://woody1983.github.io/">
+  <meta property="og:url" content="http://mutiny.work/">
   <meta property="og:title" content="Mutiny Theory">
   
 
@@ -76,7 +76,7 @@
             </ul>
             
                 <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
-                    <input type="hidden" name="sitesearch" value="woody1983.github.io">
+                    <input type="hidden" name="sitesearch" value="mutiny.work">
                     <div class="form-group">
                         <input class="form-control" type="text" name="q" placeholder="Search">
                     </div>
@@ -95,7 +95,7 @@
     <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
     <meta itemprop="name" content="Mutiny Theory" />
     
-    <meta itemprop="url" content="http://woody1983.github.io" />
+    <meta itemprop="url" content="http://mutiny.work" />
       
       
       
@@ -117,7 +117,284 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T07:42:33+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-21T20:16:27+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/21/manage-my-bill-with-org-mode/" itemprop="url">Manage My Bill With Org Mode</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
+
+<p>Yeah, The <a href="http://orgmode.org">Org-mode</a> is really awesome!
+In this case, I want use the org-mode to manage my two credit card&rsquo;s information, So</p>
+
+<h4>First, I made the basic bill table</h4>
+
+<p>In Normal days, I choose using credit card or cash as my payment method, I also using Wechat-Pay and Ali-Pay, But in fact these are bound by the credit card.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">2016bill</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>       <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-12</span> <span class="nv">Sun&gt;</span> <span class="nv">| Lunch          |</span>  <span class="mf">43.97</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-15 Wed&gt; |</span> <span class="nv">Lunch</span>          <span class="nv">|  56.48 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-13</span> <span class="nv">Mon&gt;</span> <span class="nv">| Book           |</span>  <span class="mf">17.99</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-18 Sat&gt; |</span> <span class="nv">Flico</span> <span class="nv">Keyboard</span> <span class="nv">| 289.18 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-19</span> <span class="nv">Sun&gt;</span> <span class="nv">| By Coffce      |</span>  <span class="mf">99.96</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-20 Mon&gt; |</span> <span class="nv">Supplies</span>       <span class="nv">|  58.26 |</span> <span class="nv">Cash</span>        <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-21</span> <span class="nv">Tue&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">18.99</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-22 Wed&gt; |</span> <span class="nv">Cookie</span>         <span class="nv">|   7.50 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">CMB</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-25</span> <span class="nv">Sat&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">21.49</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">VPS</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span>                  <span class="nv">| Total:         |</span> <span class="mf">623.80</span> <span class="nv">|             |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$3=vsum</span><span class="p">(</span><span class="nv">@2..@-1</span><span class="p">)</span><span class="c1">;%.2f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>The <code>2016bill</code> table</h4>
+
+<p>It just records the June 2016 payment info. And I make a other table <code>my-bull_bcm</code> to record The BCM Credit Card payment details.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">NAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">BEGIN_SRC</span> <span class="nv">elisp</span> <span class="ss">:var</span> <span class="nv">tbl=2016bill</span> <span class="nv">val=</span><span class="s">&quot;Credit(BCM)&quot;</span> <span class="nv">val2=</span><span class="s">&quot;&lt;2016-06-15 Wed&gt;&quot;</span> <span class="ss">:colnames</span> <span class="nv">y</span>
+</span><span class='line'>    <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">row</span> <span class="nv">in</span> <span class="nv">tbl</span>
+</span><span class='line'>          <span class="nb">when</span> <span class="p">(</span><span class="nb">equal</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">3</span> <span class="nv">row</span><span class="p">)</span> <span class="nv">val</span><span class="p">)</span>
+</span><span class='line'>          <span class="nv">collect</span> <span class="nv">row</span> <span class="nv">into</span> <span class="nv">newtbl</span>
+</span><span class='line'>          <span class="nv">finally</span> <span class="nb">return</span> <span class="nv">newtbl</span><span class="p">)</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">END_SRC</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>         <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+------------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-15</span> <span class="nv">Wed&gt;</span> <span class="nv">| Supplies         |</span>  <span class="mf">56.48</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-13 Mon&gt; |</span> <span class="nv">Book</span>             <span class="nv">|  17.99 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-18</span> <span class="nv">Sat&gt;</span> <span class="nv">| Kinesis Keyboard |</span> <span class="mf">289.18</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">Toner</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="err">|</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When I got the BCM Credit Card Payment information for the entire June. I need to know How much more money I will give to the Bank next month.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="nv">| Year/Month       |</span> <span class="nv">amount</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+--------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">[2016-June]</span>      <span class="nv">| 373.65 |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$2=vsum</span><span class="p">(</span><span class="nv">remote</span><span class="p">(</span><span class="nv">my-bill,</span> <span class="nv">@2$3..@&gt;$3</span><span class="p">))</span><span class="c1">;%.2f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But It&rsquo;s not enough, Emacs and Org-mode is Powerfull. I need to learn more skills about Emacs.</p>
+
+<h4>Thanks SACHA, Thanks for your shared information and knowledge.</h4>
+
+<p><a href="http://sachachua.com/blog/">Sacha Blog</a> Living an Awesome Life.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-20T23:07:53+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/" itemprop="url">Rake Gen_deploy Rejected in Octopress</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>I cloned my octopress blog Repository based on the github.pages.
+So , When i run <code>rake deploy</code> then I got a Error about</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">## Pushing generated _deploy website</span>
+</span><span class='line'>To https://github.com/woody1983/woody1983.github.io.git
+</span><span class='line'> ! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; master <span class="o">(</span>non-fast-forward<span class="o">)</span>
+</span><span class='line'>error: failed to push some refs to <span class="s1">&#39;https://github.com/woody1983/woody1983.github.io.git&#39;</span>
+</span><span class='line'>hint: Updates were rejected because the tip of your current branch is behind
+</span><span class='line'>hint: its remote counterpart. Integrate the remote changes <span class="o">(</span>e.g.
+</span><span class='line'>hint: <span class="s1">&#39;git pull ...&#39;</span><span class="o">)</span> before pushing again.
+</span><span class='line'>hint: See the <span class="s1">&#39;Note about fast-forwards&#39;</span> in <span class="s1">&#39;git push --help&#39;</span> <span class="k">for</span> details.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I Googled a lot and finally solved this problem.</p>
+
+<p>Change the current directory</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>octopress/_deploy
+</span><span class='line'>git pull origin master
+</span><span class='line'><span class="nb">cd</span> ..
+</span><span class='line'>rake deploy
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-20T17:03:23+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/20/recipe-includes-and-dependencies/" itemprop="url">Recipe Includes and Dependencies</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Create a new cookbook</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>knife cookbook create php</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change the Recipes</p>
+
+<figure class='code'><figcaption><span>php/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s2">&quot;php&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change the apache cookbook&rsquo;s metadata</p>
+
+<figure class='code'><figcaption><span>apache/metadata.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">### Added this</span>
+</span><span class='line'><span class="n">depends</span> <span class="s2">&quot;php&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>apache/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">include_recipe</span> <span class="s2">&quot;php::default&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So that all. Easy</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T15:42:33+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
@@ -229,7 +506,7 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T07:20:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T15:20:01+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
@@ -292,7 +569,7 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T06:12:32+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T14:12:32+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
@@ -485,19 +762,19 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-18T23:26:17+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T07:26:17+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/18/emacs-input-chinese-py/" itemprop="url">Emacs Input Chinese-py</a></h2>
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/19/emacs-input-chinese-py/" itemprop="url">Emacs Input Chinese-py</a></h2>
     
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p><code>C-\</code> choose <code>chinese-py</code></p>
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Just Input the <code>C-\</code> choose <code>chinese-py</code></p>
 
-<p>So Let&rsquo;s Enjoy it.</p>
+<p>So, Let&rsquo;s Enjoy it. And take a try <code>拼音输入法</code></p>
 </div>
   
   
@@ -524,7 +801,7 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-15T04:22:21+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-15T12:22:21+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
@@ -658,7 +935,7 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-14T02:29:53+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-14T10:29:53+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
@@ -853,7 +1130,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-14T01:37:44+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-14T09:37:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
@@ -897,333 +1174,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-13T08:52:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/" itemprop="url">Installing Apache2 &amp; MySQL With Puppet in Vagrant</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>  <span class="c1"># The most common configuration options are documented and commented below.</span>
-</span><span class='line'>  <span class="c1"># For a complete reference, please see the online documentation at</span>
-</span><span class='line'>  <span class="c1"># https://docs.vagrantup.com.</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Every Vagrant development environment requires a box. You can search for</span>
-</span><span class='line'>  <span class="c1"># boxes at https://atlas.hashicorp.com/search.</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;precise32&quot;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">&quot;http://files.vagrantup.com/precise32.box&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Setup for Web Server</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;web&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">web</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;web&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;apache&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;forwarded_port&quot;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">8080</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;puppet&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">puppet</span><span class="o">|</span>
-</span><span class='line'>      <span class="n">puppet</span><span class="o">.</span><span class="n">manifests_path</span> <span class="o">=</span> <span class="s2">&quot;manifests&quot;</span>
-</span><span class='line'>      <span class="n">puppet</span><span class="o">.</span><span class="n">manifest_file</span> <span class="o">=</span> <span class="s2">&quot;default.pp&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Setup for MySQL DB Server</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;db&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">db</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;db&quot;</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;mysql&quot;</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>manifests/default.pp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">exec</span> <span class="p">{</span> <span class="s2">&quot;apt-get update&quot;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">command</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/apt-get update&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">package</span> <span class="p">{</span> <span class="s2">&quot;apache2&quot;</span><span class="p">:</span>
-</span><span class='line'>        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Exec</span><span class="o">[</span><span class="s2">&quot;apt-get update&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">file</span> <span class="p">{</span> <span class="s2">&quot;/var/www&quot;</span><span class="p">:</span>
-</span><span class='line'>         <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">link</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">target</span> <span class="o">=&gt;</span> <span class="s2">&quot;/vagrant&quot;</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">force</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-13T03:48:11+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/13/installing-apache-with-chef/" itemprop="url">Installing Apache With Chef</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;chef_solo&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">add_recipe</span> <span class="s2">&quot;vagrant_la&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Tree of Cookbooks</h4>
-
-<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">cookbooks</span><span class="p">:</span><span class="sr">/</span>
-</span><span class='line'><span class="sr">---/</span><span class="n">vagrant_la</span>
-</span><span class='line'>   <span class="o">---/</span><span class="n">recipes</span>
-</span><span class='line'>      <span class="o">---/</span><span class="n">default</span><span class="o">.</span><span class="n">rb</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">execute</span> <span class="s2">&quot;apt-get update&quot;</span>
-</span><span class='line'><span class="n">package</span> <span class="s2">&quot;apache2&quot;</span>
-</span><span class='line'><span class="n">execute</span> <span class="s2">&quot;rm -rf /var/www&quot;</span>
-</span><span class='line'><span class="n">link</span> <span class="s2">&quot;/var/www&quot;</span> <span class="k">do</span>
-</span><span class='line'>       <span class="n">to</span> <span class="s2">&quot;/vagrant&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-12T06:33:38+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/" itemprop="url">Rush Vagrant on Ubuntu14.04 LTS</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h3>Installing Virtualbox &amp; Vagrant</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
-</span><span class='line'><span class="nv">$ </span>sudo apt-key add oracle_vbox.asc
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install virtualbox
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install vagrant
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Install the dkms package to ensure that the VirtualBox host kernel modules</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install virtualbox-dkms
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Get First Vagrant Machine</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>vagrant box add precise32 http://files.vagrantup.com/precise32.box
-</span><span class='line'><span class="nv">$ </span>vagrant box add precise64 http://files.vagrantup.com/precise64.box
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Configure Project</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>mkdir vagrant_project
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>vagrant_project
-</span><span class='line'><span class="nv">$ </span>vagrant init
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And Edit the <code>Vagrantfile</code> file</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>config.vm.box <span class="o">=</span> <span class="s2">&quot;precise64&quot;</span>
-</span><span class='line'><span class="c">#Synced Folder</span>
-</span><span class='line'>config.vm.synced_folder <span class="s2">&quot;src/&quot;</span>, <span class="s2">&quot;/vagrant_data&quot;</span>
-</span><span class='line'><span class="c">#Forward Port</span>
-</span><span class='line'>config.vm.network <span class="s2">&quot;forwarded_port&quot;</span>, guest: 80, host: 8080
-</span><span class='line'><span class="c">#Provision</span>
-</span><span class='line'>config.vm.provision <span class="s2">&quot;shell&quot;</span>, path: <span class="s2">&quot;provision.sh&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Start Environment</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>~/vagrant_project_64<span class="nv">$ </span>vagrant up
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Shell Script</p>
-
-<figure class='code'><figcaption><span>provision.sh</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Installing Apache and setting apache up... please wait&quot;</span>
-</span><span class='line'>apt-get update &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
-</span><span class='line'>apt-get install -y apache2 &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
-</span><span class='line'>
-</span><span class='line'>rm -rf /var/www
-</span><span class='line'>ln -fs /vagrant /var/www
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1247,15 +1197,15 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/07/21/manage-my-bill-with-org-mode/">Manage My Bill With Org Mode</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/">Rake Gen_deploy Rejected in Octopress</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/20/recipe-includes-and-dependencies/">Recipe Includes and Dependencies</a>
+    
     <a class="list-group-item " href="/blog/2016/07/19/html-templates-dynamically-with-chef/">HTML Templates Dynamically With Chef</a>
     
     <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/">Build an Apache VirtualHost With Chef</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/18/emacs-input-chinese-py/">Emacs Input Chinese-py</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/15/install-jenkins-on-centos-7/">Install Jenkins on CentOS 7</a>
     
   </div>
 </section>
@@ -1267,7 +1217,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     
     
     <a class="list-group-item " href="/blog/categories/emacs/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         emacs
       </a>
     
@@ -1303,7 +1253,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     
     
     <a class="list-group-item " href="/blog/categories/linux/index.html">
-        <span class="badge">5</span>
+        <span class="badge">6</span>
         linux
       </a>
     
@@ -1333,7 +1283,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     
     
     <a class="list-group-item " href="/blog/categories/chef/index.html">
-        <span class="badge">4</span>
+        <span class="badge">5</span>
         chef
       </a>
     
@@ -1359,6 +1309,18 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     <a class="list-group-item " href="/blog/categories/apache/index.html">
         <span class="badge">1</span>
         apache
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/ruby/index.html">
+        <span class="badge">1</span>
+        ruby
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/git/index.html">
+        <span class="badge">1</span>
+        git
       </a>
     
   </div>

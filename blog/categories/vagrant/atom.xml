@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Vagrant | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:46:22+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/vagrant/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-21T21:29:34+08:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Vagrant's Networking]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking/"/>
-    <updated>2016-07-14T01:37:44+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking</id>
+    <link href="http://mutiny.work/blog/2016/07/14/the-vagrants-networking/"/>
+    <updated>2016-07-14T09:37:44+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/14/the-vagrants-networking</id>
     <content type="html"><![CDATA[<p>You can Setup Private network or Public network on vagrant.</p>
 
 <h3>Private networking</h3>
@@ -40,9 +40,9 @@ config.vm.network "public_network",bridge: 'eb1: Wi-Fi(AirPort)'
   
   <entry>
     <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
-    <updated>2016-07-13T08:52:01+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
+    <link href="http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
+    <updated>2016-07-13T16:52:01+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
     <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -95,9 +95,9 @@ file { "/var/www":
   
   <entry>
     <title type="html"><![CDATA[Installing Apache With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T03:48:11+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/13/installing-apache-with-chef/"/>
+    <updated>2016-07-13T11:48:11+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/13/installing-apache-with-chef</id>
     <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "vagrant_la"
   end
@@ -123,9 +123,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Rush Vagrant on Ubuntu14.04 LTS]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/"/>
-    <updated>2016-07-12T06:33:38+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
+    <link href="http://mutiny.work/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/"/>
+    <updated>2016-07-12T14:33:38+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
     <content type="html"><![CDATA[<h3>Installing Virtualbox &amp; Vagrant</h3>
 
 <pre><code class="bash">$ wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Linux | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/linux/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:46:22+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-21T21:29:34+08:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
-    <updated>2016-07-19T06:12:32+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
+    <updated>2016-07-19T14:12:32+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
     <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
 
 <ul>
@@ -120,9 +120,9 @@ default["apache"]["sites"]["johnny-hsu19832b"] = {
   
   <entry>
     <title type="html"><![CDATA[Install Jenkins on CentOS 7]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/"/>
-    <updated>2016-07-15T04:22:21+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7</id>
+    <link href="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/"/>
+    <updated>2016-07-15T12:22:21+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7</id>
     <content type="html"><![CDATA[<h3>First thing, ensure your server'8080 port is free</h3>
 
 <pre><code class="bash Download JDK by wget">wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
@@ -183,9 +183,9 @@ systemctl restart jenkins.service
   
   <entry>
     <title type="html"><![CDATA[Installing Apache With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T03:48:11+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/13/installing-apache-with-chef/"/>
+    <updated>2016-07-13T11:48:11+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/13/installing-apache-with-chef</id>
     <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "vagrant_la"
   end
@@ -211,9 +211,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
-    <updated>2016-07-05T23:56:44+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
+    <link href="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-06T07:56:44+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual</id>
     <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
 
 <pre><code class="bash">apt-get update       #Update source
@@ -257,60 +257,18 @@ apt-cache rdepends &lt;pkg&gt; #View PKG is dependent on those packages
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Linux Essentials Certification]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification/"/>
-    <updated>2016-07-05T06:36:26+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification</id>
-    <content type="html"><![CDATA[<h2>Overview</h2>
-
-<h3>What is the LPI Linux Essentials Certification?</h3>
-
-<ul>
-<li>Vendor-Neutral program by the Linux Professional Institute</li>
-<li>It is the first stop course before the professional certifications by LPI</li>
-<li>It is an outstanding course for new users to Linux</li>
+    <title type="html"><![CDATA[Hands-On Package Management APT/YUM]]></title>
+    <link href="http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum/"/>
+    <updated>2016-07-05T23:25:14+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum</id>
+    <content type="html"><![CDATA[<ul>
+<li>apt-get update                <code>Update source</code></li>
+<li>apt-get upgrade               <code>Update any installed software</code></li>
+<li>apt-get dist-upgrade          <code>Distributions update like 10.0 --- 11.0</code></li>
 </ul>
 
 
-<h3>Open Source Philosophy</h3>
-
-<ul>
-<li>So why would Linux just be given away?</li>
-<li>GNU - Gnu&rsquo;s Not Unix!</li>
-<li>GNU/Linux</li>
-<li>FSF - Free Software Foundation</li>
-<li>GNU C Compiler - gcc</li>
-<li>Linux Torvalds was heavily influenced by the GNU project in which his first Linux kernel was released under the GPL</li>
-<li>GPL = General Public License</li>
-<li>GPL: Require that the source code remain freely available to anyone who might want it.</li>
-</ul>
-
-
-<h3>Distributions</h3>
-
-<blockquote><p>You can think about Linux distributions as you think about ice cream brands. #funny</p></blockquote>
-
-<p>Each distributions has a kernel , utilities and configurations.</p>
-
-<h4>What could make up a full blown Linux distributions?</h4>
-
-<ul>
-<li>Linux kernel</li>
-<li>Core Unix tools</li>
-<li>Supplemental Software</li>
-<li>Startup scripts</li>
-<li>Installers</li>
-</ul>
-
-
-<h4>What distributions is right for our project?</h4>
-
-<ul>
-<li>Is the system going to be for desktop or server use?</li>
-<li>If this is for production then a commercial distribution might be best for your needs</li>
-<li>Does your system hardware support the distribution of choice?</li>
-</ul>
-
+<p><a href="http://rsljdkt.iteye.com/blog/1142463">About apt</a></p>
 ]]></content>
   </entry>
   

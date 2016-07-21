@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Chef | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/chef/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:46:22+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/chef/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-21T21:29:34+08:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -14,10 +14,43 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Recipe Includes and Dependencies]]></title>
+    <link href="http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies/"/>
+    <updated>2016-07-20T17:03:23+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies</id>
+    <content type="html"><![CDATA[<p>Create a new cookbook</p>
+
+<pre><code>knife cookbook create php
+</code></pre>
+
+<p>Change the Recipes</p>
+
+<pre><code class="ruby php/recipes/default.rb">
+package "php" do
+  action :install
+end
+</code></pre>
+
+<p>Change the apache cookbook&rsquo;s metadata</p>
+
+<pre><code class="ruby apache/metadata.rb">
+### Added this
+depends "php"
+</code></pre>
+
+<pre><code class="ruby apache/recipes/default.rb">
+include_recipe "php::default"
+</code></pre>
+
+<p>So that all. Easy</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
-    <updated>2016-07-19T07:42:33+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
+    <updated>2016-07-19T15:42:33+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef</id>
     <content type="html"><![CDATA[<p>Change the Recipes file</p>
 
 <pre><code class="ruby recipes/default.rb">
@@ -64,9 +97,9 @@ default["apache"]["sites"]["johnny-hsu19832b"] = {
   
   <entry>
     <title type="html"><![CDATA[Attribute Precedence]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/attribute-precedence/"/>
-    <updated>2016-07-19T07:20:01+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/attribute-precedence</id>
+    <link href="http://mutiny.work/blog/2016/07/19/attribute-precedence/"/>
+    <updated>2016-07-19T15:20:01+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/attribute-precedence</id>
     <content type="html"><![CDATA[<p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
 
 <h2>Key Concepts</h2>
@@ -99,9 +132,9 @@ default["apache"]["sites"]["johnny-hsu19832b"] = {
   
   <entry>
     <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
-    <updated>2016-07-19T06:12:32+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
+    <updated>2016-07-19T14:12:32+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
     <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
 
 <ul>
@@ -204,9 +237,9 @@ default["apache"]["sites"]["johnny-hsu19832b"] = {
   
   <entry>
     <title type="html"><![CDATA[Installing Apache With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T03:48:11+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/13/installing-apache-with-chef/"/>
+    <updated>2016-07-13T11:48:11+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/13/installing-apache-with-chef</id>
     <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "vagrant_la"
   end

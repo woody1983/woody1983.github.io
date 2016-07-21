@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Debian | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/debian/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:46:22+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/debian/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-21T21:29:34+08:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
-    <updated>2016-07-05T23:56:44+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
+    <link href="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-06T07:56:44+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual</id>
     <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
 
 <pre><code class="bash">apt-get update       #Update source

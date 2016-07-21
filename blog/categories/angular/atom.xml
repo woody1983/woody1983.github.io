@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Angular | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/angular/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:46:22+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/angular/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-21T21:29:34+08:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ramp Up Angular 2.0]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/14/ramp-up-angular-2-dot-0/"/>
-    <updated>2016-07-14T02:29:53+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/14/ramp-up-angular-2-dot-0</id>
+    <link href="http://mutiny.work/blog/2016/07/14/ramp-up-angular-2-dot-0/"/>
+    <updated>2016-07-14T10:29:53+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/14/ramp-up-angular-2-dot-0</id>
     <content type="html"><![CDATA[<p>First Things:</p>
 
 <h3>Download Angular</h3>

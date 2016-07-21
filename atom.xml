@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-19T07:46:22+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-21T21:29:34+08:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -14,10 +14,203 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Manage My Bill With Org Mode]]></title>
+    <link href="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/"/>
+    <updated>2016-07-21T20:16:27+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode</id>
+    <content type="html"><![CDATA[<p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
+
+<p>Yeah, The <a href="http://orgmode.org">Org-mode</a> is really awesome!
+In this case, I want use the org-mode to manage my two credit card&rsquo;s information, So</p>
+
+<h4>First, I made the basic bill table</h4>
+
+<p>In Normal days, I choose using credit card or cash as my payment method, I also using Wechat-Pay and Ali-Pay, But in fact these are bound by the credit card.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">2016bill</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>       <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-12</span> <span class="nv">Sun&gt;</span> <span class="nv">| Lunch          |</span>  <span class="mf">43.97</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-15 Wed&gt; |</span> <span class="nv">Lunch</span>          <span class="nv">|  56.48 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-13</span> <span class="nv">Mon&gt;</span> <span class="nv">| Book           |</span>  <span class="mf">17.99</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-18 Sat&gt; |</span> <span class="nv">Flico</span> <span class="nv">Keyboard</span> <span class="nv">| 289.18 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-19</span> <span class="nv">Sun&gt;</span> <span class="nv">| By Coffce      |</span>  <span class="mf">99.96</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-20 Mon&gt; |</span> <span class="nv">Supplies</span>       <span class="nv">|  58.26 |</span> <span class="nv">Cash</span>        <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-21</span> <span class="nv">Tue&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">18.99</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-22 Wed&gt; |</span> <span class="nv">Cookie</span>         <span class="nv">|   7.50 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">CMB</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-25</span> <span class="nv">Sat&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">21.49</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">VPS</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span>                  <span class="nv">| Total:         |</span> <span class="mf">623.80</span> <span class="nv">|             |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$3=vsum</span><span class="p">(</span><span class="nv">@2..@-1</span><span class="p">)</span><span class="c1">;%.2f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>The <code>2016bill</code> table</h4>
+
+<p>It just records the June 2016 payment info. And I make a other table <code>my-bull_bcm</code> to record The BCM Credit Card payment details.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">NAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">BEGIN_SRC</span> <span class="nv">elisp</span> <span class="ss">:var</span> <span class="nv">tbl=2016bill</span> <span class="nv">val=</span><span class="s">&quot;Credit(BCM)&quot;</span> <span class="nv">val2=</span><span class="s">&quot;&lt;2016-06-15 Wed&gt;&quot;</span> <span class="ss">:colnames</span> <span class="nv">y</span>
+</span><span class='line'>    <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">row</span> <span class="nv">in</span> <span class="nv">tbl</span>
+</span><span class='line'>          <span class="nb">when</span> <span class="p">(</span><span class="nb">equal</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">3</span> <span class="nv">row</span><span class="p">)</span> <span class="nv">val</span><span class="p">)</span>
+</span><span class='line'>          <span class="nv">collect</span> <span class="nv">row</span> <span class="nv">into</span> <span class="nv">newtbl</span>
+</span><span class='line'>          <span class="nv">finally</span> <span class="nb">return</span> <span class="nv">newtbl</span><span class="p">)</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">END_SRC</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>         <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+------------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-15</span> <span class="nv">Wed&gt;</span> <span class="nv">| Supplies         |</span>  <span class="mf">56.48</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-13 Mon&gt; |</span> <span class="nv">Book</span>             <span class="nv">|  17.99 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-18</span> <span class="nv">Sat&gt;</span> <span class="nv">| Kinesis Keyboard |</span> <span class="mf">289.18</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">Toner</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="err">|</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When I got the BCM Credit Card Payment information for the entire June. I need to know How much more money I will give to the Bank next month.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="nv">| Year/Month       |</span> <span class="nv">amount</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+--------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">[2016-June]</span>      <span class="nv">| 373.65 |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$2=vsum</span><span class="p">(</span><span class="nv">remote</span><span class="p">(</span><span class="nv">my-bill,</span> <span class="nv">@2$3..@&gt;$3</span><span class="p">))</span><span class="c1">;%.2f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But It&rsquo;s not enough, Emacs and Org-mode is Powerfull. I need to learn more skills about Emacs.</p>
+
+<h4>Thanks SACHA, Thanks for your shared information and knowledge.</h4>
+
+<p><a href="http://sachachua.com/blog/">Sacha Blog</a> Living an Awesome Life.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rake Gen_deploy Rejected in Octopress]]></title>
+    <link href="http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/"/>
+    <updated>2016-07-20T23:07:53+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress</id>
+    <content type="html"><![CDATA[<p>I cloned my octopress blog Repository based on the github.pages.
+So , When i run <code>rake deploy</code> then I got a Error about</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">## Pushing generated _deploy website</span>
+</span><span class='line'>To https://github.com/woody1983/woody1983.github.io.git
+</span><span class='line'> ! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; master <span class="o">(</span>non-fast-forward<span class="o">)</span>
+</span><span class='line'>error: failed to push some refs to <span class="s1">&#39;https://github.com/woody1983/woody1983.github.io.git&#39;</span>
+</span><span class='line'>hint: Updates were rejected because the tip of your current branch is behind
+</span><span class='line'>hint: its remote counterpart. Integrate the remote changes <span class="o">(</span>e.g.
+</span><span class='line'>hint: <span class="s1">&#39;git pull ...&#39;</span><span class="o">)</span> before pushing again.
+</span><span class='line'>hint: See the <span class="s1">&#39;Note about fast-forwards&#39;</span> in <span class="s1">&#39;git push --help&#39;</span> <span class="k">for</span> details.
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I Googled a lot and finally solved this problem.</p>
+
+<p>Change the current directory</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>octopress/_deploy
+</span><span class='line'>git pull origin master
+</span><span class='line'><span class="nb">cd</span> ..
+</span><span class='line'>rake deploy
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Recipe Includes and Dependencies]]></title>
+    <link href="http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies/"/>
+    <updated>2016-07-20T17:03:23+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies</id>
+    <content type="html"><![CDATA[<p>Create a new cookbook</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>knife cookbook create php</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change the Recipes</p>
+
+<figure class='code'><figcaption><span>php/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s2">&quot;php&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change the apache cookbook&rsquo;s metadata</p>
+
+<figure class='code'><figcaption><span>apache/metadata.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">### Added this</span>
+</span><span class='line'><span class="n">depends</span> <span class="s2">&quot;php&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>apache/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">include_recipe</span> <span class="s2">&quot;php::default&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So that all. Easy</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
-    <updated>2016-07-19T07:42:33+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
+    <updated>2016-07-19T15:42:33+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef</id>
     <content type="html"><![CDATA[<p>Change the Recipes file</p>
 
 <figure class='code'><figcaption><span>recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -99,9 +292,9 @@
   
   <entry>
     <title type="html"><![CDATA[Attribute Precedence]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/attribute-precedence/"/>
-    <updated>2016-07-19T07:20:01+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/attribute-precedence</id>
+    <link href="http://mutiny.work/blog/2016/07/19/attribute-precedence/"/>
+    <updated>2016-07-19T15:20:01+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/attribute-precedence</id>
     <content type="html"><![CDATA[<p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
 
 <h2>Key Concepts</h2>
@@ -134,9 +327,9 @@
   
   <entry>
     <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
-    <updated>2016-07-19T06:12:32+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
+    <updated>2016-07-19T14:12:32+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
     <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
 
 <ul>
@@ -299,20 +492,20 @@
   
   <entry>
     <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py/"/>
-    <updated>2016-07-18T23:26:17+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/18/emacs-input-chinese-py</id>
-    <content type="html"><![CDATA[<p><code>C-\</code> choose <code>chinese-py</code></p>
+    <link href="http://mutiny.work/blog/2016/07/19/emacs-input-chinese-py/"/>
+    <updated>2016-07-19T07:26:17+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/emacs-input-chinese-py</id>
+    <content type="html"><![CDATA[<p>Just Input the <code>C-\</code> choose <code>chinese-py</code></p>
 
-<p>So Let&rsquo;s Enjoy it.</p>
+<p>So, Let&rsquo;s Enjoy it. And take a try <code>拼音输入法</code></p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Install Jenkins on CentOS 7]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7/"/>
-    <updated>2016-07-15T04:22:21+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/15/install-jenkins-on-centos-7</id>
+    <link href="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/"/>
+    <updated>2016-07-15T12:22:21+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7</id>
     <content type="html"><![CDATA[<h3>First thing, ensure your server'8080 port is free</h3>
 
 <figure class='code'><figcaption><span>Download JDK by wget</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -416,9 +609,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ramp Up Angular 2.0]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/14/ramp-up-angular-2-dot-0/"/>
-    <updated>2016-07-14T02:29:53+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/14/ramp-up-angular-2-dot-0</id>
+    <link href="http://mutiny.work/blog/2016/07/14/ramp-up-angular-2-dot-0/"/>
+    <updated>2016-07-14T10:29:53+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/14/ramp-up-angular-2-dot-0</id>
     <content type="html"><![CDATA[<p>First Things:</p>
 
 <h3>Download Angular</h3>
@@ -583,9 +776,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[The Vagrant's Networking]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking/"/>
-    <updated>2016-07-14T01:37:44+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/14/the-vagrants-networking</id>
+    <link href="http://mutiny.work/blog/2016/07/14/the-vagrants-networking/"/>
+    <updated>2016-07-14T09:37:44+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/14/the-vagrants-networking</id>
     <content type="html"><![CDATA[<p>You can Setup Private network or Public network on vagrant.</p>
 
 <h3>Private networking</h3>
@@ -618,9 +811,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
-    <updated>2016-07-13T08:52:01+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
+    <link href="http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
+    <updated>2016-07-13T16:52:01+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -721,9 +914,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[Installing Apache With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T03:48:11+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
+    <link href="http://mutiny.work/blog/2016/07/13/installing-apache-with-chef/"/>
+    <updated>2016-07-13T11:48:11+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/13/installing-apache-with-chef</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -767,9 +960,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[Rush Vagrant on Ubuntu14.04 LTS]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/"/>
-    <updated>2016-07-12T06:33:38+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
+    <link href="http://mutiny.work/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/"/>
+    <updated>2016-07-12T14:33:38+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
     <content type="html"><![CDATA[<h3>Installing Virtualbox &amp; Vagrant</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -861,9 +1054,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[Ansible DB Deployment Outline]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/11/ansible-db-deployment-outline/"/>
-    <updated>2016-07-11T03:46:49+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/11/ansible-db-deployment-outline</id>
+    <link href="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/"/>
+    <updated>2016-07-11T11:46:49+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline</id>
     <content type="html"><![CDATA[<h3>Outline</h3>
 
 <ul>
@@ -916,9 +1109,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
-    <updated>2016-07-05T23:56:44+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
+    <link href="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-06T07:56:44+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual</id>
     <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -989,10 +1182,26 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Hands-On Package Management APT/YUM]]></title>
+    <link href="http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum/"/>
+    <updated>2016-07-05T23:25:14+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum</id>
+    <content type="html"><![CDATA[<ul>
+<li>apt-get update                <code>Update source</code></li>
+<li>apt-get upgrade               <code>Update any installed software</code></li>
+<li>apt-get dist-upgrade          <code>Distributions update like 10.0 --- 11.0</code></li>
+</ul>
+
+
+<p><a href="http://rsljdkt.iteye.com/blog/1142463">About apt</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Linux Essentials Certification]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification/"/>
-    <updated>2016-07-05T06:36:26+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification</id>
+    <link href="http://mutiny.work/blog/2016/07/05/linux-essentials-certification/"/>
+    <updated>2016-07-05T14:36:26+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/05/linux-essentials-certification</id>
     <content type="html"><![CDATA[<h2>Overview</h2>
 
 <h3>What is the LPI Linux Essentials Certification?</h3>
@@ -1048,9 +1257,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[Ansible MySQL DB Module]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module/"/>
-    <updated>2016-07-04T05:49:14+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/04/ansible-mysql-db-module</id>
+    <link href="http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module/"/>
+    <updated>2016-07-04T13:49:14+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module</id>
     <content type="html"><![CDATA[<h3>Install MariaDB</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1113,9 +1322,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[Build Rails Env on Ubuntu/Docker]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
-    <updated>2016-07-04T04:25:56+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
+    <link href="http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
+    <updated>2016-07-04T12:25:56+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
     <content type="html"><![CDATA[<h4>For PPA</h4>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1153,9 +1362,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[My Emacs24 Config]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/04/title/"/>
-    <updated>2016-07-04T04:11:12+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/04/title</id>
+    <link href="http://mutiny.work/blog/2016/07/04/title/"/>
+    <updated>2016-07-04T12:11:12+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/04/title</id>
     <content type="html"><![CDATA[<!-- more -->
 
 
