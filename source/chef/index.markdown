@@ -1,0 +1,9 @@
+---
+layout: page
+navbar: DevOps
+title: "chef"
+date: 2016-07-25 21:55
+comments: true
+sharing: true
+footer: true
+---
