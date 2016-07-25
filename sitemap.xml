@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/</loc>
+<lastmod>2016-07-25T15:07:18+08:00</lastmod>
+</url>
+<url>
+<loc>http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/</loc>
+<lastmod>2016-07-25T11:05:01+08:00</lastmod>
+</url>
+<url>
 <loc>http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/</loc>
 <lastmod>2016-07-21T20:16:27+08:00</lastmod>
 </url>
@@ -85,6 +93,15 @@
 </url>
 <url>
 <loc>http://mutiny.work/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/chef/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/vagrant/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/ansible/</loc>
 </url>
 <url>
 <loc>http://mutiny.work/about/</loc>
