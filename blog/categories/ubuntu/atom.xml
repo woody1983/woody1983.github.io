@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-21T21:29:34+08:00</updated>
+  <updated>2016-07-25T21:59:43+08:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,61 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Make Chef Supprot More Platform]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/"/>
+    <updated>2016-07-25T11:05:01+08:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform</id>
+    <content type="html"><![CDATA[<p>First , Change the attribute, set two plotform on this.</p>
+
+<pre><code class="ruby">
+default["apache"]["sites"]["johnny-hsu198323"] = {
+  "site_title" =&gt; "johnny-hsu198323 websites coming soon!",
+  "port" =&gt; 80,
+  "domain" =&gt; "johnny-hsu198323.mylabserver.com"
+}
+
+case node["platform"]
+  when "centos"
+  default["apache"]["package"]="httpd"
+  when "ubuntu"
+  default["apache"]["package"]="apache2"
+end
+</code></pre>
+
+<p>And ,change the Recipes</p>
+
+<pre><code class="ruby assign the node for platform">
+if node["platfomr"] == "ubuntu"
+  execute "apt-get update -y" 
+end
+
+package "apache2"  do
+    package_name node["apache"]["package"]
+end
+</code></pre>
+
+<p>Change</p>
+
+<pre><code class="ruby  templatr location is different">
+if node["platform"] == "ubuntu"
+  template_localtion = "/etc/apache2/sites-enabled/#{sitename}.conf"
+  elsif node["platform"] == "centos"
+  template_localtion = "/etc/httpd/conf.d/#{sitename}.conf"
+end
+</code></pre>
+
+<pre><code class="ruby Service name is also different">
+service "httpd" do
+  service_name node["apache"]["package"]
+  action [:enable, :start]
+end
+
+#include_recipe "php::default"
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
@@ -201,36 +256,6 @@ apt-cache show &lt;pkg_name&gt; #display pkg more information
 apt-cache depends &lt;pkg&gt; #Lookup pkg dependency software.
 apt-cache rdepends &lt;pkg&gt; #View PKG is dependent on those packages
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Build Rails Env on Ubuntu/Docker]]></title>
-    <link href="http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
-    <updated>2016-07-04T12:25:56+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
-    <content type="html"><![CDATA[<h4>For PPA</h4>
-
-<pre><code class="bash">$ sudo apt-get install python-software-properties
-$ sudo apt-get install software-properties-common
-</code></pre>
-
-<h4>Ruby 2.2</h4>
-
-<pre><code class="bash">$ sudo apt-add-repository ppa:brightbox/ruby-ng
-$ sudo apt-get update
-$ sudo apt-get install ruby2.2
-</code></pre>
-
-<h5>RedCloth</h5>
-
-<pre><code class="bash">apt-get install make g++
-gem install RedCloth -v '4.2.9'
-</code></pre>
-
-<h3>Octopress</h3>
-
-<p>Take a look on Offical site<a href="http://octopress.org/docs/blogging/">Octopress</a></p>
 ]]></content>
   </entry>
   
