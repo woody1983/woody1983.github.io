@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Debian/Ubuntu Apt Manual - Mutiny Theory</title>
+  <title>Emacs Input Chinese-py - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/">
+  <link rel="canonical" href="http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/">
-  <meta property="og:title" content="Debian/Ubuntu Apt Manual - Mutiny Theory">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/">
+  <meta property="og:title" content="Emacs Input Chinese-py - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -113,85 +113,22 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-06T07:56:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-18T23:26:17+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Debian/Ubuntu Apt Manual
+        Emacs Input Chinese-py
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><h3>Update or Upgrade</h3>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>Just Input the <code>C-\</code> choose <code>chinese-py</code></p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get update       <span class="c">#Update source</span>
-</span><span class='line'>apt-get upgrade      <span class="c">#Update all installed packages</span>
-</span><span class='line'>apt-get dist-upgrade <span class="c">#Update Distributions</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Install</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install &lt;pkg&gt; <span class="c">#Install </span>
-</span><span class='line'>apt-get install --reinstall &lt;pkg&gt; <span class="c">#Install again</span>
-</span><span class='line'>apt-get install -f &lt;pkg&gt; <span class="c">#Repair and install (dependency)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Remove</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get remove &lt;pkg&gt; <span class="c"># just remove </span>
-</span><span class='line'>apt-get purge &lt;pkg&gt;  <span class="c">#Remove include config files</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Download</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get <span class="nb">source</span> &lt;pkg&gt;   <span class="c">#Download source code</span>
-</span><span class='line'>apt-get download &lt;pkg&gt; <span class="c">#Download binary tar</span>
-</span><span class='line'>apt-get <span class="nb">source</span> -d &lt;pkg&gt; <span class="c">#Download and Compile</span>
-</span><span class='line'>apt-get build-dep &lt;pkg&gt; <span class="c">#Build pkg source code dependency environment (Compile Env?)</span>
-</span><span class='line'>apt-get clean        <span class="c">#Cleanup Cache (/var/cache/apt/archives/{,partial}.)downloaded source code</span>
-</span><span class='line'>apt-get autoclean <span class="c">#cleanup out of time source code within cache</span>
-</span><span class='line'>apt-get autoremove  <span class="c">#Remove auto install dependency pkg</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Search</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-cache status <span class="c">#Display system pkg total statistics information</span>
-</span><span class='line'>apt-cache search &lt;pkg&gt;   <span class="c">#Search pkg by key words</span>
-</span><span class='line'>apt-cache show &lt;pkg_name&gt; <span class="c">#display pkg more information</span>
-</span><span class='line'>apt-cache depends &lt;pkg&gt; <span class="c">#Lookup pkg dependency software.</span>
-</span><span class='line'>apt-cache rdepends &lt;pkg&gt; <span class="c">#View PKG is dependent on those packages</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p>So, Let&rsquo;s Enjoy it. And take a try <code>拼音输入法</code></p>
 </div>
 
 
@@ -215,13 +152,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-06T07:56:44+08:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-18T23:26:17+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/debian/'>debian</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
+    <a class='category' href='/blog/categories/emacs/'>emacs</a>
   
 </span>
 
@@ -230,7 +167,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/" >Tweet</a>
   
   
   
@@ -240,10 +177,10 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/05/hands-on-package-management-apt-slash-yum/" title="Previous Post: Hands-On Package Management APT/YUM">&laquo; Hands-On Package Management APT/YUM</a></li>
+            <li class="previous"><a href="/blog/2016/07/15/install-jenkins-on-centos-7/" title="Previous Post: Install Jenkins on CentOS 7">&laquo; Install Jenkins on CentOS 7</a></li>
             
             
-            <li class="next"><a href="/blog/2016/07/11/ansible-db-deployment-outline/" title="Next Post: Ansible DB Deployment Outline">Ansible DB Deployment Outline &raquo;</a></li>
+            <li class="next"><a href="/blog/2016/07/19/build-an-apache-virtualhost-with-chef/" title="Next Post: Build an Apache VirtualHost with Chef">Build an Apache VirtualHost with Chef &raquo;</a></li>
             
           </ul>
         
@@ -268,15 +205,15 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/07/25/running-the-mit-scheme-in-emacs/">Running the MIT-Scheme in Emacs</a>
+    
+    <a class="list-group-item " href="/blog/2016/07/25/make-chef-supprot-more-platform/">Make Chef Supprot More Platform</a>
+    
     <a class="list-group-item " href="/blog/2016/07/21/manage-my-bill-with-org-mode/">Manage My Bill With Org Mode</a>
     
     <a class="list-group-item " href="/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/">Rake Gen_deploy Rejected in Octopress</a>
     
     <a class="list-group-item " href="/blog/2016/07/20/recipe-includes-and-dependencies/">Recipe Includes and Dependencies</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/19/html-templates-dynamically-with-chef/">HTML Templates Dynamically With Chef</a>
-    
-    <a class="list-group-item " href="/blog/2016/07/19/attribute-precedence/">Attribute Precedence</a>
     
   </div>
 </section>
@@ -293,7 +230,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/emacs/index.html">
-        <span class="badge">3</span>
+        <span class="badge">4</span>
         emacs
       </a>
     
@@ -311,7 +248,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/ubuntu/index.html">
-        <span class="badge">5</span>
+        <span class="badge">6</span>
         ubuntu
       </a>
     
@@ -359,7 +296,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/chef/index.html">
-        <span class="badge">5</span>
+        <span class="badge">6</span>
         chef
       </a>
     
@@ -428,8 +365,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/';
-        var disqus_url = 'http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/';
+        var disqus_identifier = 'http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/';
+        var disqus_url = 'http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/';
         var disqus_script = 'embed.js';
       
     (function () {

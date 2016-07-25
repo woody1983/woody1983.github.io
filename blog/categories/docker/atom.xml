@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Docker | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/docker/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-21T21:29:34+08:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Build Rails Env on Ubuntu/Docker]]></title>
     <link href="http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
-    <updated>2016-07-04T12:25:56+08:00</updated>
+    <updated>2016-07-04T04:25:56+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
     <content type="html"><![CDATA[<h4>For PPA</h4>
 

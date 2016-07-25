@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jenkins | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/jenkins/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-21T21:29:34+08:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Install Jenkins on CentOS 7]]></title>
     <link href="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/"/>
-    <updated>2016-07-15T12:22:21+08:00</updated>
+    <updated>2016-07-15T04:22:21+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7</id>
     <content type="html"><![CDATA[<h3>First thing, ensure your server'8080 port is free</h3>
 

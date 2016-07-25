@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-21T21:29:34+08:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Rake Gen_deploy Rejected in Octopress]]></title>
     <link href="http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/"/>
-    <updated>2016-07-20T23:07:53+08:00</updated>
+    <updated>2016-07-20T15:07:53+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress</id>
     <content type="html"><![CDATA[<p>I cloned my octopress blog Repository based on the github.pages.
 So , When i run <code>rake deploy</code> then I got a Error about</p>

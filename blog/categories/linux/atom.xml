@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-21T21:29:34+08:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
     <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
-    <updated>2016-07-19T14:12:32+08:00</updated>
+    <updated>2016-07-19T06:12:32+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
     <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
 
@@ -121,7 +121,7 @@ default["apache"]["sites"]["johnny-hsu19832b"] = {
   <entry>
     <title type="html"><![CDATA[Install Jenkins on CentOS 7]]></title>
     <link href="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/"/>
-    <updated>2016-07-15T12:22:21+08:00</updated>
+    <updated>2016-07-15T04:22:21+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7</id>
     <content type="html"><![CDATA[<h3>First thing, ensure your server'8080 port is free</h3>
 
@@ -184,7 +184,7 @@ systemctl restart jenkins.service
   <entry>
     <title type="html"><![CDATA[Installing Apache With Chef]]></title>
     <link href="http://mutiny.work/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T11:48:11+08:00</updated>
+    <updated>2016-07-13T03:48:11+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/13/installing-apache-with-chef</id>
     <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "vagrant_la"
@@ -211,9 +211,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
-    <link href="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/"/>
-    <updated>2016-07-06T07:56:44+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual</id>
+    <link href="http://mutiny.work/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-05T23:56:44+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
     <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
 
 <pre><code class="bash">apt-get update       #Update source
@@ -259,7 +259,7 @@ apt-cache rdepends &lt;pkg&gt; #View PKG is dependent on those packages
   <entry>
     <title type="html"><![CDATA[Hands-On Package Management APT/YUM]]></title>
     <link href="http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum/"/>
-    <updated>2016-07-05T23:25:14+08:00</updated>
+    <updated>2016-07-05T15:25:14+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum</id>
     <content type="html"><![CDATA[<ul>
 <li>apt-get update                <code>Update source</code></li>

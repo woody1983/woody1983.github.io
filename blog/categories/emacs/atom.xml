@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Emacs | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-21T21:29:34+08:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -14,9 +14,51 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Running the MIT-Scheme in Emacs]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/"/>
+    <updated>2016-07-25T07:07:18+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs</id>
+    <content type="html"><![CDATA[<p>Based on the Ubuntu14 OS platform. I choose the x64-version mit-scheme source code.</p>
+
+<p><a href="http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.tar.gz">GNU&rsquo;S mit-scheme</a></p>
+
+<pre><code class="bash">tar xvf mit-scheme-9.2-x86-64.tar.gz
+cd mit-scheme-9.2/src/
+apt-get install m4
+./configure
+#Build the software:
+make compile-microcode
+make install
+</code></pre>
+
+<p>I changed the .emacs config file yet.</p>
+
+<pre><code class="elisp">
+;;Always do syntax highlighting
+(global-font-lock-mode 1)
+;;Also highlight parens
+(setq show-paren-delay 0
+   show-paren-style 'parenthesis)
+(show-paren-mode 1)
+;;This is the binary name of my scheme implementation
+(setq scheme-program-name "mit-scheme")
+</code></pre>
+
+<p>When you setup mit-scheme finish. You should be restart the Emacs to reload your new configuration for this.
+And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it. Using the <code>C-x 2</code> to open a other window, running the <code>M+X run-scheme</code>.</p>
+
+<p>You get in the MIT-Scheme&rsquo;s REPL environment. Take a try <code>C-x C-e</code> to running the scheme code. and it should be return the resulte on the first window.</p>
+
+<pre><code class="scheme">(define (square x)(* x x))
+(square 9)
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Manage My Bill With Org Mode]]></title>
     <link href="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/"/>
-    <updated>2016-07-21T20:16:27+08:00</updated>
+    <updated>2016-07-21T12:16:27+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode</id>
     <content type="html"><![CDATA[<p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
 
@@ -84,9 +126,9 @@ In this case, I want use the org-mode to manage my two credit card&rsquo;s infor
   
   <entry>
     <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
-    <link href="http://mutiny.work/blog/2016/07/19/emacs-input-chinese-py/"/>
-    <updated>2016-07-19T07:26:17+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/19/emacs-input-chinese-py</id>
+    <link href="http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/"/>
+    <updated>2016-07-18T23:26:17+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py</id>
     <content type="html"><![CDATA[<p>Just Input the <code>C-\</code> choose <code>chinese-py</code></p>
 
 <p>So, Let&rsquo;s Enjoy it. And take a try <code>拼音输入法</code></p>
@@ -96,7 +138,7 @@ In this case, I want use the org-mode to manage my two credit card&rsquo;s infor
   <entry>
     <title type="html"><![CDATA[My Emacs24 Config]]></title>
     <link href="http://mutiny.work/blog/2016/07/04/title/"/>
-    <updated>2016-07-04T12:11:12+08:00</updated>
+    <updated>2016-07-04T04:11:12+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/04/title</id>
     <content type="html"><![CDATA[<!-- more -->
 

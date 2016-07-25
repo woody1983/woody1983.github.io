@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mysql | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-21T21:29:34+08:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Ansible DB Deployment Outline]]></title>
     <link href="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/"/>
-    <updated>2016-07-11T11:46:49+08:00</updated>
+    <updated>2016-07-11T03:46:49+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline</id>
     <content type="html"><![CDATA[<h3>Outline</h3>
 

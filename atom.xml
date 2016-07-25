@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-21T21:29:34+08:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -14,9 +14,163 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Running the MIT-Scheme in Emacs]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/"/>
+    <updated>2016-07-25T07:07:18+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs</id>
+    <content type="html"><![CDATA[<p>Based on the Ubuntu14 OS platform. I choose the x64-version mit-scheme source code.</p>
+
+<p><a href="http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.tar.gz">GNU&rsquo;S mit-scheme</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar xvf mit-scheme-9.2-x86-64.tar.gz
+</span><span class='line'><span class="nb">cd </span>mit-scheme-9.2/src/
+</span><span class='line'>apt-get install m4
+</span><span class='line'>./configure
+</span><span class='line'><span class="c">#Build the software:</span>
+</span><span class='line'>make compile-microcode
+</span><span class='line'>make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I changed the .emacs config file yet.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='elisp'><span class='line'><span class="c1">;;Always do syntax highlighting</span>
+</span><span class='line'><span class="p">(</span><span class="nv">global-font-lock-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="c1">;;Also highlight parens</span>
+</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">show-paren-delay</span> <span class="mi">0</span>
+</span><span class='line'>   <span class="nv">show-paren-style</span> <span class="ss">&#39;parenthesis</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="nv">show-paren-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="c1">;;This is the binary name of my scheme implementation</span>
+</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">scheme-program-name</span> <span class="s">&quot;mit-scheme&quot;</span><span class="p">)</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you setup mit-scheme finish. You should be restart the Emacs to reload your new configuration for this.
+And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it. Using the <code>C-x 2</code> to open a other window, running the <code>M+X run-scheme</code>.</p>
+
+<p>You get in the MIT-Scheme&rsquo;s REPL environment. Take a try <code>C-x C-e</code> to running the scheme code. and it should be return the resulte on the first window.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+</span><span class='line'><span class="p">(</span><span class="nf">square</span> <span class="mi">9</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Make Chef Supprot More Platform]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/"/>
+    <updated>2016-07-25T03:05:01+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform</id>
+    <content type="html"><![CDATA[<p>First , Change the attribute, set two plotform on this.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu198323&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;site_title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu198323 websites coming soon!&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu198323.mylabserver.com&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="k">case</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;platform&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s2">&quot;centos&quot;</span>
+</span><span class='line'>  <span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;package&quot;</span><span class="o">]=</span><span class="s2">&quot;httpd&quot;</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s2">&quot;ubuntu&quot;</span>
+</span><span class='line'>  <span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;package&quot;</span><span class="o">]=</span><span class="s2">&quot;apache2&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And ,change the Recipes</p>
+
+<figure class='code'><figcaption><span>assign the node for platform</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;platfomr&quot;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;ubuntu&quot;</span>
+</span><span class='line'>  <span class="n">execute</span> <span class="s2">&quot;apt-get update -y&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">package</span> <span class="s2">&quot;apache2&quot;</span>  <span class="k">do</span>
+</span><span class='line'>    <span class="n">package_name</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;package&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change</p>
+
+<figure class='code'><figcaption><span>templatr location is different</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;platform&quot;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;ubuntu&quot;</span>
+</span><span class='line'>  <span class="n">template_localtion</span> <span class="o">=</span> <span class="s2">&quot;/etc/apache2/sites-enabled/</span><span class="si">#{</span><span class="n">sitename</span><span class="si">}</span><span class="s2">.conf&quot;</span>
+</span><span class='line'>  <span class="k">elsif</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;platform&quot;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;centos&quot;</span>
+</span><span class='line'>  <span class="n">template_localtion</span> <span class="o">=</span> <span class="s2">&quot;/etc/httpd/conf.d/</span><span class="si">#{</span><span class="n">sitename</span><span class="si">}</span><span class="s2">.conf&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Service name is also different</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">service</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">service_name</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;package&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">action</span> <span class="o">[</span><span class="ss">:enable</span><span class="p">,</span> <span class="ss">:start</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>  
+</span><span class='line'><span class="c1">#include_recipe &quot;php::default&quot;</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Manage My Bill With Org Mode]]></title>
     <link href="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/"/>
-    <updated>2016-07-21T20:16:27+08:00</updated>
+    <updated>2016-07-21T12:16:27+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode</id>
     <content type="html"><![CDATA[<p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
 
@@ -123,7 +277,7 @@ In this case, I want use the org-mode to manage my two credit card&rsquo;s infor
   <entry>
     <title type="html"><![CDATA[Rake Gen_deploy Rejected in Octopress]]></title>
     <link href="http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/"/>
-    <updated>2016-07-20T23:07:53+08:00</updated>
+    <updated>2016-07-20T15:07:53+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress</id>
     <content type="html"><![CDATA[<p>I cloned my octopress blog Repository based on the github.pages.
 So , When i run <code>rake deploy</code> then I got a Error about</p>
@@ -167,7 +321,7 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   <entry>
     <title type="html"><![CDATA[Recipe Includes and Dependencies]]></title>
     <link href="http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies/"/>
-    <updated>2016-07-20T17:03:23+08:00</updated>
+    <updated>2016-07-20T09:03:23+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies</id>
     <content type="html"><![CDATA[<p>Create a new cookbook</p>
 
@@ -209,7 +363,7 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   <entry>
     <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
     <link href="http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
-    <updated>2016-07-19T15:42:33+08:00</updated>
+    <updated>2016-07-19T07:42:33+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef</id>
     <content type="html"><![CDATA[<p>Change the Recipes file</p>
 
@@ -293,7 +447,7 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   <entry>
     <title type="html"><![CDATA[Attribute Precedence]]></title>
     <link href="http://mutiny.work/blog/2016/07/19/attribute-precedence/"/>
-    <updated>2016-07-19T15:20:01+08:00</updated>
+    <updated>2016-07-19T07:20:01+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/19/attribute-precedence</id>
     <content type="html"><![CDATA[<p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
 
@@ -328,7 +482,7 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   <entry>
     <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
     <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
-    <updated>2016-07-19T14:12:32+08:00</updated>
+    <updated>2016-07-19T06:12:32+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
     <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
 
@@ -492,9 +646,9 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   
   <entry>
     <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
-    <link href="http://mutiny.work/blog/2016/07/19/emacs-input-chinese-py/"/>
-    <updated>2016-07-19T07:26:17+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/19/emacs-input-chinese-py</id>
+    <link href="http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/"/>
+    <updated>2016-07-18T23:26:17+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py</id>
     <content type="html"><![CDATA[<p>Just Input the <code>C-\</code> choose <code>chinese-py</code></p>
 
 <p>So, Let&rsquo;s Enjoy it. And take a try <code>拼音输入法</code></p>
@@ -504,7 +658,7 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   <entry>
     <title type="html"><![CDATA[Install Jenkins on CentOS 7]]></title>
     <link href="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/"/>
-    <updated>2016-07-15T12:22:21+08:00</updated>
+    <updated>2016-07-15T04:22:21+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7</id>
     <content type="html"><![CDATA[<h3>First thing, ensure your server'8080 port is free</h3>
 
@@ -610,7 +764,7 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   <entry>
     <title type="html"><![CDATA[Ramp Up Angular 2.0]]></title>
     <link href="http://mutiny.work/blog/2016/07/14/ramp-up-angular-2-dot-0/"/>
-    <updated>2016-07-14T10:29:53+08:00</updated>
+    <updated>2016-07-14T02:29:53+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/14/ramp-up-angular-2-dot-0</id>
     <content type="html"><![CDATA[<p>First Things:</p>
 
@@ -777,7 +931,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[The Vagrant's Networking]]></title>
     <link href="http://mutiny.work/blog/2016/07/14/the-vagrants-networking/"/>
-    <updated>2016-07-14T09:37:44+08:00</updated>
+    <updated>2016-07-14T01:37:44+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/14/the-vagrants-networking</id>
     <content type="html"><![CDATA[<p>You can Setup Private network or Public network on vagrant.</p>
 
@@ -812,7 +966,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
     <link href="http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
-    <updated>2016-07-13T16:52:01+08:00</updated>
+    <updated>2016-07-13T08:52:01+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -915,7 +1069,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[Installing Apache With Chef]]></title>
     <link href="http://mutiny.work/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T11:48:11+08:00</updated>
+    <updated>2016-07-13T03:48:11+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/13/installing-apache-with-chef</id>
     <content type="html"><![CDATA[<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -961,7 +1115,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[Rush Vagrant on Ubuntu14.04 LTS]]></title>
     <link href="http://mutiny.work/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/"/>
-    <updated>2016-07-12T14:33:38+08:00</updated>
+    <updated>2016-07-12T06:33:38+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
     <content type="html"><![CDATA[<h3>Installing Virtualbox &amp; Vagrant</h3>
 
@@ -1055,7 +1209,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[Ansible DB Deployment Outline]]></title>
     <link href="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/"/>
-    <updated>2016-07-11T11:46:49+08:00</updated>
+    <updated>2016-07-11T03:46:49+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline</id>
     <content type="html"><![CDATA[<h3>Outline</h3>
 
@@ -1109,9 +1263,9 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <entry>
     <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
-    <link href="http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual/"/>
-    <updated>2016-07-06T07:56:44+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/06/debian-slash-ubuntu-apt-manual</id>
+    <link href="http://mutiny.work/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-05T23:56:44+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
     <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -1184,7 +1338,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[Hands-On Package Management APT/YUM]]></title>
     <link href="http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum/"/>
-    <updated>2016-07-05T23:25:14+08:00</updated>
+    <updated>2016-07-05T15:25:14+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum</id>
     <content type="html"><![CDATA[<ul>
 <li>apt-get update                <code>Update source</code></li>
@@ -1200,7 +1354,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[Linux Essentials Certification]]></title>
     <link href="http://mutiny.work/blog/2016/07/05/linux-essentials-certification/"/>
-    <updated>2016-07-05T14:36:26+08:00</updated>
+    <updated>2016-07-05T06:36:26+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/05/linux-essentials-certification</id>
     <content type="html"><![CDATA[<h2>Overview</h2>
 
@@ -1258,7 +1412,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   <entry>
     <title type="html"><![CDATA[Ansible MySQL DB Module]]></title>
     <link href="http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module/"/>
-    <updated>2016-07-04T13:49:14+08:00</updated>
+    <updated>2016-07-04T05:49:14+00:00</updated>
     <id>http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module</id>
     <content type="html"><![CDATA[<h3>Install MariaDB</h3>
 
@@ -1316,180 +1470,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a new user called BOB and give him all access</span>
 </span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
 </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Build Rails Env on Ubuntu/Docker]]></title>
-    <link href="http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
-    <updated>2016-07-04T12:25:56+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
-    <content type="html"><![CDATA[<h4>For PPA</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install python-software-properties
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install software-properties-common
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Ruby 2.2</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-add-repository ppa:brightbox/ruby-ng
-</span><span class='line'><span class="nv">$ </span>sudo apt-get update
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install ruby2.2
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>RedCloth</h5>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install make g++
-</span><span class='line'>gem install RedCloth -v <span class="s1">&#39;4.2.9&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Octopress</h3>
-
-<p>Take a look on Offical site<a href="http://octopress.org/docs/blogging/">Octopress</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My Emacs24 Config]]></title>
-    <link href="http://mutiny.work/blog/2016/07/04/title/"/>
-    <updated>2016-07-04T12:11:12+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/04/title</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<ul>
-<li>OS: MacOs</li>
-<li>Emacs 24</li>
-</ul>
-
-
-<p><code>package-list-packages</code>
-<code>load-theme</code>
-<code>load-file</code></p>
-
-<div><script src='https://gist.github.com/ceb1c0b7147336f0aa6ae655f0ae3862.js'></script>
-<noscript><pre><code>;;;;;;;;;;;;;;;;;;;;;;
-;;     Set Tags  
-;;;;;;;;;;;;;;;;;;;;;;
-(setq org-todo-keywords
-      &#39;((sequence &quot;TODO(t)&quot; &quot;FEEDBACK&quot; &quot;VERIFY&quot; &quot;PENDING(p@)&quot; &quot;|&quot; &quot;DONE(d)&quot; &quot;NOTE(n)&quot;)
-        (sequence &quot;REPORT(r)&quot; &quot;BUG(b)&quot; &quot;KNOWNCAUSE(k)&quot; &quot;|&quot; &quot;FIXED(f!)&quot;)
-        (sequence &quot;|&quot; &quot;CANCELED(c!@)&quot; &quot;DELEGATED&quot;)))
-(setq org-log-done &#39;time)
-(setq org-log-done &#39;note)
-(setq org-tag-alist &#39;((&quot;@work&quot; . ?w)
-                      (&quot;@home&quot; . ?h)
-                      (&quot;@laptop&quot; . ?l)
-                      (&quot;read_book&quot; . ?b)
-                      (&quot;read_Kindle&quot; . ?k)
-                      (&quot;Life&quot; . ?f)
-                      (&quot;Grow&quot; . ?g)
-                      (&quot;Learn&quot; . ?e)))
-
-;;;;;;;;;;;;;;;;;;;;;;
-;;  Set word wrap
-;;;;;;;;;;;;;;;;;;;;;;
-(add-hook &#39;org-mode-hook (lambda () (setq truncate-lines nil)))
-
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Set Package
-;;;;;;;;;;;;;;;;;;;;;;
-(require &#39;package)
-(add-to-list &#39;package-archives
-             &#39;(&quot;melpa&quot; . &quot;http://melpa.milkbox.net/packages/&quot;))
-(add-to-list &#39;package-archives
-             &#39;(&quot;gnu&quot; . &quot;http://elpa.gnu.org/packages/&quot;))
-(package-initialize)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;
-        ;nyan-mode
-;;;;;;;;;;;;;;;;;;;;;;;;;;
-(nyan-mode t)
-
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; ac-html
-;;;;;;;;;;;;;;;;;;;;;;
-(add-hook &#39;html-mode-hook &#39;ac-html-enable)
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Set priority
-;;;;;;;;;;;;;;;;;;;;;;
-
-(setq org-highest-priority ?A)
-(setq org-lowest-priority  ?E)
-(setq org-default-priority ?E)
-(setq org-priority-faces
-      &#39;((?A . (:background &quot;red&quot; :foreground &quot;white&quot; :weight bold))
-        (?B . (:background &quot;DarkOrange&quot; :foreground &quot;white&quot; :weight bold))
-        (?C . (:background &quot;yellow&quot; :foreground &quot;DarkGreen&quot; :weight bold))
-        (?D . (:background &quot;DodgerBlue&quot; :foreground &quot;black&quot; :weight bold))
-        (?E . (:background &quot;SkyBlue&quot; :foreground &quot;black&quot; :weight bold))
-        ))
-        
-;;;;;;;;;;;;;;;;;;;;;;
-;; Set Todo Faces
-;;;;;;;;;;;;;;;;;;;;;;
-
-(setq org-todo-keyword-faces
-      &#39;((&quot;DONE&quot; .      (:background &quot;black&quot; :foreground &quot;yellow&quot; :weight bold))
-        (&quot;PENDING&quot; .   (:background &quot;LightGreen&quot; :foreground &quot;gray&quot; :weight bold))
-        (&quot;VERIFY&quot; .    (:background &quot;black&quot; :foreground &quot;SkyBlue&quot; :weight bold))
-        (&quot;NOTE&quot; .      (:background &quot;black&quot; :foreground &quot;DarkOrange&quot; :weight bold))
-        ))
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Set Agenda
-;;;;;;;;;;;;;;;;;;;;;;
-(setq org-agenda-files (list &quot;~/org/work.org&quot;
-                             &quot;~/org/todo.org&quot;
-                             &quot;~/org/journal.org&quot;
-                             &quot;~/org/memo.org&quot;
-                             &quot;~/org/notes.org&quot;))
-(global-set-key &quot;\C-ca&quot; &#39;org-agenda)
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Set Resolve clock
-;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key &quot;\C-ct&quot; &#39;org-resolve-clocks)
-
-;;;;;;;;;;;;;;;;;;;;;;
-;; Set Capture
-;;;;;;;;;;;;;;;;;;;;;;
-
-;; Set default org file to store note
-;;(setq org-default-notes-file (concat org-directory &quot;~/notes.org&quot;))
-(define-key global-map &quot;\C-cc&quot; &#39;org-capture)
-
-(setq org-capture-templates
-      &#39;((&quot;t&quot; &quot;Todo&quot; entry (file+headline &quot;~/org/todo.org&quot; &quot;Tasks&quot;)
-         &quot;* TODO %?\n  %i\n  %a&quot;)
-        (&quot;w&quot; &quot;Work&quot; entry (file+headline &quot;~/org/work.org&quot; &quot;Work:&quot;)
-         &quot;* TODO %?\n  %i\n  %a&quot;)
-        (&quot;m&quot; &quot;Memo&quot; entry (file+datetree &quot;~/org/memo.org&quot; &quot;Memo&quot;)
-         &quot;* Memo %?\nEntered on %U\n %i\n Author: %n\n Tasks: %K\n&quot;)
-        (&quot;n&quot; &quot;Notes&quot; entry (file+datetree &quot;~/org/notes.org&quot; &quot;Notes&quot;)
-         &quot;* %^{Description}  %^g \n %? \n%n Added: %U&quot;)
-         (&quot;b&quot; &quot;Code &amp;Block&quot; entry (file+datetree &quot;~/org/block.org&quot;)
-         &quot;* Code : %? %^{Title code} %^g  \n #+BEGIN_SRC %^{Code Type} \n %^{code} \n #+END_SRC&quot;)
-        (&quot;j&quot; &quot;Journal&quot; entry (file+datetree &quot;~/org/journal.org&quot;)
-         &quot;* %?\nEntered on %U\n  %i\n  %a&quot;)))
-
-</code></pre></noscript></div>
-
-
 
 ]]></content>
   </entry>
