@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-25T03:15:18+00:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Running the MIT-Scheme in Emacs]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/"/>
+    <updated>2016-07-25T07:07:18+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs</id>
+    <content type="html"><![CDATA[<p>Based on the Ubuntu14 OS platform. I choose the x64-version mit-scheme source code.</p>
+
+<p><a href="http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.tar.gz">GNU&rsquo;S mit-scheme</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar xvf mit-scheme-9.2-x86-64.tar.gz
+</span><span class='line'><span class="nb">cd </span>mit-scheme-9.2/src/
+</span><span class='line'>apt-get install m4
+</span><span class='line'>./configure
+</span><span class='line'><span class="c">#Build the software:</span>
+</span><span class='line'>make compile-microcode
+</span><span class='line'>make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I changed the .emacs config file yet.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='elisp'><span class='line'><span class="c1">;;Always do syntax highlighting</span>
+</span><span class='line'><span class="p">(</span><span class="nv">global-font-lock-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="c1">;;Also highlight parens</span>
+</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">show-paren-delay</span> <span class="mi">0</span>
+</span><span class='line'>   <span class="nv">show-paren-style</span> <span class="ss">&#39;parenthesis</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="nv">show-paren-mode</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'><span class="c1">;;This is the binary name of my scheme implementation</span>
+</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">scheme-program-name</span> <span class="s">&quot;mit-scheme&quot;</span><span class="p">)</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you setup mit-scheme finish. You should be restart the Emacs to reload your new configuration for this.
+And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it. Using the <code>C-x 2</code> to open a other window, running the <code>M+X run-scheme</code>.</p>
+
+<p>You get in the MIT-Scheme&rsquo;s REPL environment. Take a try <code>C-x C-e</code> to running the scheme code. and it should be return the resulte on the first window.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
+</span><span class='line'><span class="p">(</span><span class="nf">square</span> <span class="mi">9</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Make Chef Supprot More Platform]]></title>
@@ -1408,46 +1471,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Build Rails Env on Ubuntu/Docker]]></title>
-    <link href="http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
-    <updated>2016-07-04T04:25:56+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
-    <content type="html"><![CDATA[<h4>For PPA</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install python-software-properties
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install software-properties-common
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Ruby 2.2</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-add-repository ppa:brightbox/ruby-ng
-</span><span class='line'><span class="nv">$ </span>sudo apt-get update
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install ruby2.2
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h5>RedCloth</h5>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install make g++
-</span><span class='line'>gem install RedCloth -v <span class="s1">&#39;4.2.9&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Octopress</h3>
-
-<p>Take a look on Offical site<a href="http://octopress.org/docs/blogging/">Octopress</a></p>
 ]]></content>
   </entry>
   

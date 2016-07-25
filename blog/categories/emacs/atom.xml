@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Emacs | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-25T03:15:18+00:00</updated>
+  <updated>2016-07-25T07:17:18+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Running the MIT-Scheme in Emacs]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/"/>
+    <updated>2016-07-25T07:07:18+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs</id>
+    <content type="html"><![CDATA[<p>Based on the Ubuntu14 OS platform. I choose the x64-version mit-scheme source code.</p>
+
+<p><a href="http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.tar.gz">GNU&rsquo;S mit-scheme</a></p>
+
+<pre><code class="bash">tar xvf mit-scheme-9.2-x86-64.tar.gz
+cd mit-scheme-9.2/src/
+apt-get install m4
+./configure
+#Build the software:
+make compile-microcode
+make install
+</code></pre>
+
+<p>I changed the .emacs config file yet.</p>
+
+<pre><code class="elisp">
+;;Always do syntax highlighting
+(global-font-lock-mode 1)
+;;Also highlight parens
+(setq show-paren-delay 0
+   show-paren-style 'parenthesis)
+(show-paren-mode 1)
+;;This is the binary name of my scheme implementation
+(setq scheme-program-name "mit-scheme")
+</code></pre>
+
+<p>When you setup mit-scheme finish. You should be restart the Emacs to reload your new configuration for this.
+And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it. Using the <code>C-x 2</code> to open a other window, running the <code>M+X run-scheme</code>.</p>
+
+<p>You get in the MIT-Scheme&rsquo;s REPL environment. Take a try <code>C-x C-e</code> to running the scheme code. and it should be return the resulte on the first window.</p>
+
+<pre><code class="scheme">(define (square x)(* x x))
+(square 9)
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Manage My Bill With Org Mode]]></title>
