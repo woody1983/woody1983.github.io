@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Course | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/course/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-20T09:05:56+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/course/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-25T03:15:18+00:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Linux Essentials Certification]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification/"/>
+    <link href="http://mutiny.work/blog/2016/07/05/linux-essentials-certification/"/>
     <updated>2016-07-05T06:36:26+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/05/linux-essentials-certification</id>
+    <id>http://mutiny.work/blog/2016/07/05/linux-essentials-certification</id>
     <content type="html"><![CDATA[<h2>Overview</h2>
 
 <h3>What is the LPI Linux Essentials Certification?</h3>

@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://woody1983.github.io/sitemap.xml 
+Sitemap: http://mutiny.work/sitemap.xml 

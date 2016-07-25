@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Docker | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/docker/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-20T09:05:56+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/docker/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-25T03:15:18+00:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Build Rails Env on Ubuntu/Docker]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
+    <link href="http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker/"/>
     <updated>2016-07-04T04:25:56+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
+    <id>http://mutiny.work/blog/2016/07/04/build-rails-env-on-ubuntu-slash-docker</id>
     <content type="html"><![CDATA[<h4>For PPA</h4>
 
 <pre><code class="bash">$ sudo apt-get install python-software-properties

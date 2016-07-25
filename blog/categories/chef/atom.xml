@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Chef | Mutiny Theory]]></title>
-  <link href="http://woody1983.github.io/blog/categories/chef/atom.xml" rel="self"/>
-  <link href="http://woody1983.github.io/"/>
-  <updated>2016-07-20T09:05:56+00:00</updated>
-  <id>http://woody1983.github.io/</id>
+  <link href="http://mutiny.work/blog/categories/chef/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-07-25T03:15:18+00:00</updated>
+  <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
     
@@ -14,10 +14,65 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Make Chef Supprot More Platform]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/"/>
+    <updated>2016-07-25T03:05:01+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform</id>
+    <content type="html"><![CDATA[<p>First , Change the attribute, set two plotform on this.</p>
+
+<pre><code class="ruby">
+default["apache"]["sites"]["johnny-hsu198323"] = {
+  "site_title" =&gt; "johnny-hsu198323 websites coming soon!",
+  "port" =&gt; 80,
+  "domain" =&gt; "johnny-hsu198323.mylabserver.com"
+}
+
+case node["platform"]
+  when "centos"
+  default["apache"]["package"]="httpd"
+  when "ubuntu"
+  default["apache"]["package"]="apache2"
+end
+</code></pre>
+
+<p>And ,change the Recipes</p>
+
+<pre><code class="ruby assign the node for platform">
+if node["platfomr"] == "ubuntu"
+  execute "apt-get update -y" 
+end
+
+package "apache2"  do
+    package_name node["apache"]["package"]
+end
+</code></pre>
+
+<p>Change</p>
+
+<pre><code class="ruby  templatr location is different">
+if node["platform"] == "ubuntu"
+  template_localtion = "/etc/apache2/sites-enabled/#{sitename}.conf"
+  elsif node["platform"] == "centos"
+  template_localtion = "/etc/httpd/conf.d/#{sitename}.conf"
+end
+</code></pre>
+
+<pre><code class="ruby Service name is also different">
+service "httpd" do
+  service_name node["apache"]["package"]
+  action [:enable, :start]
+end
+
+#include_recipe "php::default"
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Recipe Includes and Dependencies]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/20/recipe-includes-and-dependencies/"/>
+    <link href="http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies/"/>
     <updated>2016-07-20T09:03:23+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/20/recipe-includes-and-dependencies</id>
+    <id>http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies</id>
     <content type="html"><![CDATA[<p>Create a new cookbook</p>
 
 <pre><code>knife cookbook create php
@@ -48,9 +103,9 @@ include_recipe "php::default"
   
   <entry>
     <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
+    <link href="http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
     <updated>2016-07-19T07:42:33+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/html-templates-dynamically-with-chef</id>
+    <id>http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef</id>
     <content type="html"><![CDATA[<p>Change the Recipes file</p>
 
 <pre><code class="ruby recipes/default.rb">
@@ -97,9 +152,9 @@ default["apache"]["sites"]["johnny-hsu19832b"] = {
   
   <entry>
     <title type="html"><![CDATA[Attribute Precedence]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/attribute-precedence/"/>
+    <link href="http://mutiny.work/blog/2016/07/19/attribute-precedence/"/>
     <updated>2016-07-19T07:20:01+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/attribute-precedence</id>
+    <id>http://mutiny.work/blog/2016/07/19/attribute-precedence</id>
     <content type="html"><![CDATA[<p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
 
 <h2>Key Concepts</h2>
@@ -132,9 +187,9 @@ default["apache"]["sites"]["johnny-hsu19832b"] = {
   
   <entry>
     <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
+    <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
     <updated>2016-07-19T06:12:32+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
+    <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
     <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
 
 <ul>
@@ -232,34 +287,6 @@ default["apache"]["sites"]["johnny-hsu19832b"] = {
 </code></pre>
 
 <h4>Run chef-client again!</h4>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Installing Apache With Chef]]></title>
-    <link href="http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T03:48:11+00:00</updated>
-    <id>http://woody1983.github.io/blog/2016/07/13/installing-apache-with-chef</id>
-    <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
-    chef.add_recipe "vagrant_la"
-  end
-</code></pre>
-
-<h4>Tree of Cookbooks</h4>
-
-<pre><code class="">cookbooks:/
----/vagrant_la
-   ---/recipes
-      ---/default.rb
-</code></pre>
-
-<pre><code class="ruby default.rb">execute "apt-get update"
-package "apache2"
-execute "rm -rf /var/www"
-link "/var/www" do
-       to "/vagrant"
-end
-</code></pre>
 ]]></content>
   </entry>
   

@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Installing Apache2 &amp; MySQL With Puppet in Vagrant - Mutiny Theory</title>
+  <title>Make Chef Supprot More Platform - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/">
+  <link rel="canonical" href="http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/">
-  <meta property="og:title" content="Installing Apache2 &amp; MySQL With Puppet in Vagrant - Mutiny Theory">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/">
+  <meta property="og:title" content="Make Chef Supprot More Platform - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -113,20 +113,22 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-13T08:52:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-25T03:05:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Installing Apache2 &amp; MySQL With Puppet in Vagrant
+        Make Chef Supprot More Platform
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>First , Change the attribute, set two plotform on this.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -138,87 +140,73 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>  <span class="c1"># The most common configuration options are documented and commented below.</span>
-</span><span class='line'>  <span class="c1"># For a complete reference, please see the online documentation at</span>
-</span><span class='line'>  <span class="c1"># https://docs.vagrantup.com.</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu198323&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>  <span class="s2">&quot;site_title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu198323 websites coming soon!&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
+</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu198323.mylabserver.com&quot;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'><span class="k">case</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;platform&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s2">&quot;centos&quot;</span>
+</span><span class='line'>  <span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;package&quot;</span><span class="o">]=</span><span class="s2">&quot;httpd&quot;</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s2">&quot;ubuntu&quot;</span>
+</span><span class='line'>  <span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;package&quot;</span><span class="o">]=</span><span class="s2">&quot;apache2&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And ,change the Recipes</p>
+
+<figure class='code'><figcaption><span>assign the node for platform</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;platfomr&quot;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;ubuntu&quot;</span>
+</span><span class='line'>  <span class="n">execute</span> <span class="s2">&quot;apt-get update -y&quot;</span>
+</span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="c1"># Every Vagrant development environment requires a box. You can search for</span>
-</span><span class='line'>  <span class="c1"># boxes at https://atlas.hashicorp.com/search.</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;precise32&quot;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">&quot;http://files.vagrantup.com/precise32.box&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Setup for Web Server</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;web&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">web</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;web&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;apache&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;forwarded_port&quot;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">8080</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;puppet&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">puppet</span><span class="o">|</span>
-</span><span class='line'>      <span class="n">puppet</span><span class="o">.</span><span class="n">manifests_path</span> <span class="o">=</span> <span class="s2">&quot;manifests&quot;</span>
-</span><span class='line'>      <span class="n">puppet</span><span class="o">.</span><span class="n">manifest_file</span> <span class="o">=</span> <span class="s2">&quot;default.pp&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Setup for MySQL DB Server</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;db&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">db</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;db&quot;</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;mysql&quot;</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
+</span><span class='line'><span class="n">package</span> <span class="s2">&quot;apache2&quot;</span>  <span class="k">do</span>
+</span><span class='line'>    <span class="n">package_name</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;package&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>  
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Change</p>
+
+<figure class='code'><figcaption><span>templatr location is different</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;platform&quot;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;ubuntu&quot;</span>
+</span><span class='line'>  <span class="n">template_localtion</span> <span class="o">=</span> <span class="s2">&quot;/etc/apache2/sites-enabled/</span><span class="si">#{</span><span class="n">sitename</span><span class="si">}</span><span class="s2">.conf&quot;</span>
+</span><span class='line'>  <span class="k">elsif</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;platform&quot;</span><span class="o">]</span> <span class="o">==</span> <span class="s2">&quot;centos&quot;</span>
+</span><span class='line'>  <span class="n">template_localtion</span> <span class="o">=</span> <span class="s2">&quot;/etc/httpd/conf.d/</span><span class="si">#{</span><span class="n">sitename</span><span class="si">}</span><span class="s2">.conf&quot;</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 
 
-<figure class='code'><figcaption><span>manifests/default.pp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Service name is also different</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">exec</span> <span class="p">{</span> <span class="s2">&quot;apt-get update&quot;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">command</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/apt-get update&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">package</span> <span class="p">{</span> <span class="s2">&quot;apache2&quot;</span><span class="p">:</span>
-</span><span class='line'>        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Exec</span><span class="o">[</span><span class="s2">&quot;apt-get update&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">file</span> <span class="p">{</span> <span class="s2">&quot;/var/www&quot;</span><span class="p">:</span>
-</span><span class='line'>         <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">link</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">target</span> <span class="o">=&gt;</span> <span class="s2">&quot;/vagrant&quot;</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">force</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">service</span> <span class="s2">&quot;httpd&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">service_name</span> <span class="n">node</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;package&quot;</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">action</span> <span class="o">[</span><span class="ss">:enable</span><span class="p">,</span> <span class="ss">:start</span><span class="o">]</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>  
+</span><span class='line'><span class="c1">#include_recipe &quot;php::default&quot;</span>
+</span><span class='line'>  
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
@@ -244,13 +232,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-13T08:52:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-25T03:05:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/puppet/'>puppet</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>, <a class='category' href='/blog/categories/vagrant/'>vagrant</a>
+    <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/ubuntu/'>ubuntu</a>
   
 </span>
 
@@ -259,7 +247,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/" >Tweet</a>
   
   
   
@@ -269,10 +257,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/13/installing-apache-with-chef/" title="Previous Post: Installing Apache with Chef">&laquo; Installing Apache with Chef</a></li>
+            <li class="previous"><a href="/blog/2016/07/21/manage-my-bill-with-org-mode/" title="Previous Post: Manage My Bill with Org mode">&laquo; Manage My Bill with Org mode</a></li>
             
-            
-            <li class="next"><a href="/blog/2016/07/14/the-vagrants-networking/" title="Next Post: The Vagrant's Networking">The Vagrant's Networking &raquo;</a></li>
             
           </ul>
         
@@ -297,7 +283,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2016/07/25/make-chef-supprot-more-platform/">Make Chef Supprot More Platform</a>
+    <a class="list-group-item active" href="/blog/2016/07/25/make-chef-supprot-more-platform/">Make Chef Supprot More Platform</a>
     
     <a class="list-group-item " href="/blog/2016/07/21/manage-my-bill-with-org-mode/">Manage My Bill With Org Mode</a>
     
@@ -457,8 +443,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/';
-        var disqus_url = 'http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/';
+        var disqus_identifier = 'http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/';
+        var disqus_url = 'http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/';
         var disqus_script = 'embed.js';
       
     (function () {

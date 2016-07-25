@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Install Jenkins on CentOS 7 - Mutiny Theory</title>
+  <title>Manage My Bill With Org Mode - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/">
+  <link rel="canonical" href="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/">
-  <meta property="og:title" content="Install Jenkins on CentOS 7 - Mutiny Theory">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/">
+  <meta property="og:title" content="Manage My Bill With Org Mode - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -113,63 +113,29 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-15T04:22:21+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-21T12:16:27+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Install Jenkins on CentOS 7
+        Manage My Bill With Org Mode
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><h3>First thing, ensure your server'8080 port is free</h3>
+<div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
 
-<figure class='code'><figcaption><span>Download JDK by wget</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate --no-cookies --header <span class="s2">&quot;Cookie: oraclelicense=accept-securebackup-cookie&quot;</span> <span class="se">\</span>
-</span><span class='line'> http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.rpm
-</span></code></pre></td></tr></table></div></figure>
+<p>Yeah, The <a href="http://orgmode.org">Org-mode</a> is really awesome!
+In this case, I want use the org-mode to manage my two credit card&rsquo;s information, So</p>
 
+<h4>First, I made the basic bill table</h4>
 
-<p>sudo root</p>
-
-<figure class='code'><figcaption><span>Installing JDK</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$rpm</span> -Uvh jdk-8u25-linux-x64.rpm
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Configuration JDK</p>
+<p>In Normal days, I choose using credit card or cash as my payment method, I also using Wechat-Pay and Ali-Pay, But in fact these are bound by the credit card.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
-</span><span class='line'>alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
-</span><span class='line'>alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
-</span><span class='line'>
-</span><span class='line'>alternatives --config java
-</span><span class='line'><span class="c">#Enter</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#---Check or Verify</span>
-</span><span class='line'>java -version
-</span><span class='line'>javac -version
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/rc.d/rc.local</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -183,26 +149,32 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'><span class="c"># THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># It is highly advisable to create own systemd services or udev rules</span>
-</span><span class='line'><span class="c"># to run scripts during boot instead of using this file.</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># In contrast to previous versions due to parallel execution during boot</span>
-</span><span class='line'><span class="c"># this script will NOT be run after all other services.</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># Please note that you must run &#39;chmod +x /etc/rc.d/rc.local&#39; to ensure</span>
-</span><span class='line'><span class="c"># that this script will be executed during boot.</span>
-</span><span class='line'>
-</span><span class='line'>touch /var/lock/subsys/local
-</span><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/usr/java/latest&quot;</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">2016bill</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>       <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-12</span> <span class="nv">Sun&gt;</span> <span class="nv">| Lunch          |</span>  <span class="mf">43.97</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-15 Wed&gt; |</span> <span class="nv">Lunch</span>          <span class="nv">|  56.48 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-13</span> <span class="nv">Mon&gt;</span> <span class="nv">| Book           |</span>  <span class="mf">17.99</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-18 Sat&gt; |</span> <span class="nv">Flico</span> <span class="nv">Keyboard</span> <span class="nv">| 289.18 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-19</span> <span class="nv">Sun&gt;</span> <span class="nv">| By Coffce      |</span>  <span class="mf">99.96</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-20 Mon&gt; |</span> <span class="nv">Supplies</span>       <span class="nv">|  58.26 |</span> <span class="nv">Cash</span>        <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-21</span> <span class="nv">Tue&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">18.99</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-22 Wed&gt; |</span> <span class="nv">Cookie</span>         <span class="nv">|   7.50 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">CMB</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-25</span> <span class="nv">Sat&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">21.49</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">VPS</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span>                  <span class="nv">| Total:         |</span> <span class="mf">623.80</span> <span class="nv">|             |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$3=vsum</span><span class="p">(</span><span class="nv">@2..@-1</span><span class="p">)</span><span class="c1">;%.2f</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h3>Installing Jenkins</h3>
+<h4>The <code>2016bill</code> table</h4>
 
-<figure class='code'><figcaption><span>Get Repo for Jenkins</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<p>It just records the June 2016 payment info. And I make a other table <code>my-bull_bcm</code> to record The BCM Credit Card payment details.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -211,19 +183,48 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
-</span><span class='line'>sudo rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
-</span><span class='line'>yum install jenkins
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">NAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">BEGIN_SRC</span> <span class="nv">elisp</span> <span class="ss">:var</span> <span class="nv">tbl=2016bill</span> <span class="nv">val=</span><span class="s">&quot;Credit(BCM)&quot;</span> <span class="nv">val2=</span><span class="s">&quot;&lt;2016-06-15 Wed&gt;&quot;</span> <span class="ss">:colnames</span> <span class="nv">y</span>
+</span><span class='line'>    <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">row</span> <span class="nv">in</span> <span class="nv">tbl</span>
+</span><span class='line'>          <span class="nb">when</span> <span class="p">(</span><span class="nb">equal</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">3</span> <span class="nv">row</span><span class="p">)</span> <span class="nv">val</span><span class="p">)</span>
+</span><span class='line'>          <span class="nv">collect</span> <span class="nv">row</span> <span class="nv">into</span> <span class="nv">newtbl</span>
+</span><span class='line'>          <span class="nv">finally</span> <span class="nb">return</span> <span class="nv">newtbl</span><span class="p">)</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">END_SRC</span>
 </span><span class='line'>
-</span><span class='line'><span class="c">#Setup</span>
-</span><span class='line'>systemctl <span class="nb">enable </span>jenkins.service
-</span><span class='line'>
-</span><span class='line'><span class="c">#Restart</span>
-</span><span class='line'>systemctl restart jenkins.service
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>         <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+------------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-15</span> <span class="nv">Wed&gt;</span> <span class="nv">| Supplies         |</span>  <span class="mf">56.48</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-13 Mon&gt; |</span> <span class="nv">Book</span>             <span class="nv">|  17.99 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-18</span> <span class="nv">Sat&gt;</span> <span class="nv">| Kinesis Keyboard |</span> <span class="mf">289.18</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">Toner</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="err">|</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Take a look at <a href="http://localhost:8080">http://localhost:8080</a></p>
+<p>When I got the BCM Credit Card Payment information for the entire June. I need to know How much more money I will give to the Bank next month.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="nv">| Year/Month       |</span> <span class="nv">amount</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+--------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">[2016-June]</span>      <span class="nv">| 373.65 |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$2=vsum</span><span class="p">(</span><span class="nv">remote</span><span class="p">(</span><span class="nv">my-bill,</span> <span class="nv">@2$3..@&gt;$3</span><span class="p">))</span><span class="c1">;%.2f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But It&rsquo;s not enough, Emacs and Org-mode is Powerfull. I need to learn more skills about Emacs.</p>
+
+<h4>Thanks SACHA, Thanks for your shared information and knowledge.</h4>
+
+<p><a href="http://sachachua.com/blog/">Sacha Blog</a> Living an Awesome Life.</p>
 </div>
 
 
@@ -247,13 +248,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-15T04:22:21+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-21T12:16:27+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/jenkins/'>jenkins</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
+    <a class='category' href='/blog/categories/emacs/'>emacs</a>
   
 </span>
 
@@ -262,7 +263,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/" >Tweet</a>
   
   
   
@@ -272,10 +273,10 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/14/ramp-up-angular-2-dot-0/" title="Previous Post: Ramp Up Angular 2.0">&laquo; Ramp Up Angular 2.0</a></li>
+            <li class="previous"><a href="/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/" title="Previous Post: rake gen_deploy rejected in Octopress">&laquo; rake gen_deploy rejected in Octopress</a></li>
             
             
-            <li class="next"><a href="/blog/2016/07/18/emacs-input-chinese-py/" title="Next Post: Emacs input Chinese-py">Emacs input Chinese-py &raquo;</a></li>
+            <li class="next"><a href="/blog/2016/07/25/make-chef-supprot-more-platform/" title="Next Post: Make Chef supprot more Platform">Make Chef supprot more Platform &raquo;</a></li>
             
           </ul>
         
@@ -302,7 +303,7 @@
     
     <a class="list-group-item " href="/blog/2016/07/25/make-chef-supprot-more-platform/">Make Chef Supprot More Platform</a>
     
-    <a class="list-group-item " href="/blog/2016/07/21/manage-my-bill-with-org-mode/">Manage My Bill With Org Mode</a>
+    <a class="list-group-item active" href="/blog/2016/07/21/manage-my-bill-with-org-mode/">Manage My Bill With Org Mode</a>
     
     <a class="list-group-item " href="/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/">Rake Gen_deploy Rejected in Octopress</a>
     
@@ -460,8 +461,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/';
-        var disqus_url = 'http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/';
+        var disqus_identifier = 'http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/';
+        var disqus_url = 'http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/';
         var disqus_script = 'embed.js';
       
     (function () {
