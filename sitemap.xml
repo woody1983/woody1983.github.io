@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/</loc>
+<lastmod>2016-08-01T01:43:09+00:00</lastmod>
+</url>
+<url>
 <loc>http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/</loc>
 <lastmod>2016-07-25T07:07:18+00:00</lastmod>
 </url>
@@ -98,6 +102,15 @@
 <loc>http://mutiny.work/about/</loc>
 </url>
 <url>
+<loc>http://mutiny.work/ansible/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/chef/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/vagrant/</loc>
+</url>
+<url>
 <loc>http://mutiny.work/blog/categories/emacs/</loc>
 </url>
 <url>
@@ -150,5 +163,20 @@
 </url>
 <url>
 <loc>http://mutiny.work/blog/categories/git/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/blog/categories/sicp/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/blog/categories/lisp/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/blog/categories/scheme/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/posts/2/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/posts/3/</loc>
 </url>
 </urlset>

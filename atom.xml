@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-25T07:17:18+00:00</updated>
+  <updated>2016-08-01T01:47:42+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,56 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SICP Ex1.5]]></title>
+    <link href="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/"/>
+    <updated>2016-08-01T01:43:09+00:00</updated>
+    <id>http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">largest-two-square-sum</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">y</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">z</span><span class="p">))</span>
+</span><span class='line'>   <span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">square</span> <span class="nv">y</span><span class="p">))</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)</span> <span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Running the MIT-Scheme in Emacs]]></title>
@@ -1405,71 +1455,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 <li>If this is for production then a commercial distribution might be best for your needs</li>
 <li>Does your system hardware support the distribution of choice?</li>
 </ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ansible MySQL DB Module]]></title>
-    <link href="http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module/"/>
-    <updated>2016-07-04T05:49:14+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module</id>
-    <content type="html"><![CDATA[<h3>Install MariaDB</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl start mariadb.service
-</span><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>mariadb.service
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Adding Ansible User</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="o">`</span><span class="n">ansible_db</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;123456&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Playbook</h3>
-
-<p>For Create Database.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_DB MODULE EXAMPLE</span>
-</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apacheserver</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ansible</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">connection</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ssh</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">gather_facts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Install the Python MySQL Support Libraries</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>For manager User</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_USER MODULE EXAMPLE</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a new user called BOB and give him all access</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>

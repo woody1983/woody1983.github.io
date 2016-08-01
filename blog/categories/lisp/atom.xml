@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Lisp | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/lisp/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-08-01T01:47:42+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SICP Ex1.5]]></title>
+    <link href="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/"/>
+    <updated>2016-08-01T01:43:09+00:00</updated>
+    <id>http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5</id>
+    <content type="html"><![CDATA[<pre><code class="scheme">(define
+  (largest-two-square-sum x y z)
+  (if (= x (larger x y))
+      (sum-of-squares x (larger y z))
+      (sum-of-squares y (larger x z))
+   )
+)
+
+(define
+  (larger x y)
+  (if (&gt; x y) x y)
+)
+
+(define
+  (sum-of-squares x y)
+  (+ (square x) (square y))
+)
+
+(define (square x)(* x x) )
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
