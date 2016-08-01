@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Lisp | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/lisp/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-08-01T06:35:33+00:00</updated>
+  <updated>2016-08-01T06:41:50+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[GNU Emacs and MIT Scheme on Mac OS X]]></title>
+    <link href="http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x/"/>
+    <updated>2016-08-01T06:37:51+00:00</updated>
+    <id>http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x</id>
+    <content type="html"><![CDATA[<p>First, download the MIT/GNU Scheme binary for Mac OS X and copy it to your Applications directory. Then configure Emacs to use the downloaded binary by adding the following lines to your <code>.emacs</code>.</p>
+
+<p><img src="http://i.imgur.com/1ZGjEDn.jpg" alt="sicp" /></p>
+
+<p>Via: <a href="http://praveen.kumar.in/2011/03/06/gnu-emacs-and-mit-scheme-on-mac-os-x/">Praveen&rsquo;s Blog</a></p>
+
+<pre><code class="scheme">
+(setq scheme-program-name "/Applications/mit-scheme.app/Contents/Resources/mit-scheme")
+(require 'xscheme)
+</code></pre>
+
+<pre><code class="scheme">
+; Compute the square root of a given number using successive
+; approximation.
+
+(define (sqrt value)
+  (define (is-good-enough? guess value)
+      (&lt; (abs (- (* guess guess) value)) 0.0000001))
+
+  (define (try guess value)
+    (if (is-good-enough? guess value)
+        guess
+        (try (/ (+ guess (/ value guess)) 2) value)))
+
+(try 1 value))
+
+(sqrt 4.0)
+</code></pre>
+
+<p>Invoke the Scheme process by <code>'M-x run-scheme'</code>. Send the Scheme buffer to the Scheme process by <code>'M-o'</code> and now you are able to run Scheme programs from Emacs.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[SICP Ex1.3]]></title>
