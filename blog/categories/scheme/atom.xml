@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Scheme | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/scheme/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-08-02T22:37:08+08:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SICP 1.2 Procedures and the Processes They Generate]]></title>
+    <link href="http://mutiny.work/blog/2016/08/02/sicp-1-dot-2-procedures-and-the-processes-they-generate/"/>
+    <updated>2016-08-02T22:10:51+08:00</updated>
+    <id>http://mutiny.work/blog/2016/08/02/sicp-1-dot-2-procedures-and-the-processes-they-generate</id>
+    <content type="html"><![CDATA[<p><img src="http://i.imgur.com/QCLvX22.gif" alt="sicp" /></p>
+
+<p>A section from the book , is very impressed me.</p>
+
+<blockquote><p>We have now considered the elements of programming: We have used primitive arithmetic operations, we have combined these operations, and we have abstracted these composite operations by defining them as compound procedures.</p>
+
+<p>But that is not enough to enable us to say that we know how to program. Our situation is analogous to that of someone who has learned the rules for now the pieces move in chess but knows nothing of typical <strong>openings</strong>, <strong>tactics</strong>, or <strong>strategy</strong>. Like the novice chess player, we don&rsquo;t yet know the common patterns of usage in the domain. We lack the knowledge of which moves are worth making (which  procedures are worth defining) We lack the experience to predict the consequences of making a move (executing a procedure).</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[GNU Emacs and MIT Scheme on Mac OS X]]></title>
+    <link href="http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x/"/>
+    <updated>2016-08-01T14:37:51+08:00</updated>
+    <id>http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x</id>
+    <content type="html"><![CDATA[<p>First, download the MIT/GNU Scheme binary for Mac OS X and copy it to your Applications directory. Then configure Emacs to use the downloaded binary by adding the following lines to your <code>.emacs</code>.</p>
+
+<p><img src="http://i.imgur.com/1ZGjEDn.jpg" alt="sicp" /></p>
+
+<p>Via: <a href="http://praveen.kumar.in/2011/03/06/gnu-emacs-and-mit-scheme-on-mac-os-x/">Praveen&rsquo;s Blog</a></p>
+
+<pre><code class="scheme">
+(setq scheme-program-name "/Applications/mit-scheme.app/Contents/Resources/mit-scheme")
+(require 'xscheme)
+</code></pre>
+
+<pre><code class="scheme">
+; Compute the square root of a given number using successive
+; approximation.
+
+(define (sqrt value)
+  (define (is-good-enough? guess value)
+      (&lt; (abs (- (* guess guess) value)) 0.0000001))
+
+  (define (try guess value)
+    (if (is-good-enough? guess value)
+        guess
+        (try (/ (+ guess (/ value guess)) 2) value)))
+
+(try 1 value))
+
+(sqrt 4.0)
+</code></pre>
+
+<p>Invoke the Scheme process by <code>'M-x run-scheme'</code>. Send the Scheme buffer to the Scheme process by <code>'M-o'</code> and now you are able to run Scheme programs from Emacs.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SICP Ex1.3]]></title>
+    <link href="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/"/>
+    <updated>2016-08-01T09:43:09+08:00</updated>
+    <id>http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5</id>
+    <content type="html"><![CDATA[<h2>Exercise 1.3</h2>
+
+<p>Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.</p>
+
+<p><img src="http://i.imgur.com/QCLvX22.gif" alt="sicp" /></p>
+
+<pre><code class="scheme">(define
+  (largest-two-square-sum x y z)
+  (if (= x (larger x y))
+      (sum-of-squares x (larger y z))
+      (sum-of-squares y (larger x z))
+   )
+)
+
+(define
+  (larger x y)
+  (if (&gt; x y) x y)
+)
+
+(define
+  (sum-of-squares x y)
+  (+ (square x) (square y))
+)
+
+(define (square x)(* x x) )
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
