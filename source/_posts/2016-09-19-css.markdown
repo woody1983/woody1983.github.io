@@ -1,0 +1,17 @@
+---
+layout: post
+title: "CSS Basic Ⅰ"
+date: 2016-09-19 05:53:14 +0000
+comments: true
+categories: CSS
+---
+
+```css
+#class {
+	posistion: relative;
+	left:0px;
+	top:0px;
+}
+```
+
+>Wait
