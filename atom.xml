@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-07-25T21:59:43+08:00</updated>
+  <updated>2016-08-02T22:37:08+08:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,134 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SICP 1.2 Procedures and the Processes They Generate]]></title>
+    <link href="http://mutiny.work/blog/2016/08/02/sicp-1-dot-2-procedures-and-the-processes-they-generate/"/>
+    <updated>2016-08-02T22:10:51+08:00</updated>
+    <id>http://mutiny.work/blog/2016/08/02/sicp-1-dot-2-procedures-and-the-processes-they-generate</id>
+    <content type="html"><![CDATA[<p><img src="http://i.imgur.com/QCLvX22.gif" alt="sicp" /></p>
+
+<p>A section from the book , is very impressed me.</p>
+
+<blockquote><p>We have now considered the elements of programming: We have used primitive arithmetic operations, we have combined these operations, and we have abstracted these composite operations by defining them as compound procedures.</p>
+
+<p>But that is not enough to enable us to say that we know how to program. Our situation is analogous to that of someone who has learned the rules for now the pieces move in chess but knows nothing of typical <strong>openings</strong>, <strong>tactics</strong>, or <strong>strategy</strong>. Like the novice chess player, we don&rsquo;t yet know the common patterns of usage in the domain. We lack the knowledge of which moves are worth making (which  procedures are worth defining) We lack the experience to predict the consequences of making a move (executing a procedure).</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[GNU Emacs and MIT Scheme on Mac OS X]]></title>
+    <link href="http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x/"/>
+    <updated>2016-08-01T14:37:51+08:00</updated>
+    <id>http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x</id>
+    <content type="html"><![CDATA[<p>First, download the MIT/GNU Scheme binary for Mac OS X and copy it to your Applications directory. Then configure Emacs to use the downloaded binary by adding the following lines to your <code>.emacs</code>.</p>
+
+<p><img src="http://i.imgur.com/1ZGjEDn.jpg" alt="sicp" /></p>
+
+<p>Via: <a href="http://praveen.kumar.in/2011/03/06/gnu-emacs-and-mit-scheme-on-mac-os-x/">Praveen&rsquo;s Blog</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="nf">setq</span> <span class="nv">scheme-program-name</span> <span class="s">&quot;/Applications/mit-scheme.app/Contents/Resources/mit-scheme&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;xscheme</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="c1">; Compute the square root of a given number using successive</span>
+</span><span class='line'><span class="c1">; approximation.</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">sqrt </span><span class="nv">value</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">is-good-enough?</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nb">* </span><span class="nv">guess</span> <span class="nv">guess</span><span class="p">)</span> <span class="nv">value</span><span class="p">))</span> <span class="mf">0.0000001</span><span class="p">))</span>
+</span><span class='line'>  
+</span><span class='line'>  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">try</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">is-good-enough?</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
+</span><span class='line'>        <span class="nv">guess</span>
+</span><span class='line'>        <span class="p">(</span><span class="nf">try</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="nv">guess</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">value</span> <span class="nv">guess</span><span class="p">))</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">value</span><span class="p">)))</span>
+</span><span class='line'>                  
+</span><span class='line'><span class="p">(</span><span class="nf">try</span> <span class="mi">1</span> <span class="nv">value</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">sqrt </span><span class="mf">4.0</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Invoke the Scheme process by <code>'M-x run-scheme'</code>. Send the Scheme buffer to the Scheme process by <code>'M-o'</code> and now you are able to run Scheme programs from Emacs.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SICP Ex1.3]]></title>
+    <link href="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/"/>
+    <updated>2016-08-01T09:43:09+08:00</updated>
+    <id>http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5</id>
+    <content type="html"><![CDATA[<h2>Exercise 1.3</h2>
+
+<p>Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.</p>
+
+<p><img src="http://i.imgur.com/QCLvX22.gif" alt="sicp" /></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">largest-two-square-sum</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">y</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">z</span><span class="p">))</span>
+</span><span class='line'>   <span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">square</span> <span class="nv">y</span><span class="p">))</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)</span> <span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Running the MIT-Scheme in Emacs]]></title>
@@ -1331,145 +1459,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hands-On Package Management APT/YUM]]></title>
-    <link href="http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum/"/>
-    <updated>2016-07-05T23:25:14+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum</id>
-    <content type="html"><![CDATA[<ul>
-<li>apt-get update                <code>Update source</code></li>
-<li>apt-get upgrade               <code>Update any installed software</code></li>
-<li>apt-get dist-upgrade          <code>Distributions update like 10.0 --- 11.0</code></li>
-</ul>
-
-
-<p><a href="http://rsljdkt.iteye.com/blog/1142463">About apt</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux Essentials Certification]]></title>
-    <link href="http://mutiny.work/blog/2016/07/05/linux-essentials-certification/"/>
-    <updated>2016-07-05T14:36:26+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/05/linux-essentials-certification</id>
-    <content type="html"><![CDATA[<h2>Overview</h2>
-
-<h3>What is the LPI Linux Essentials Certification?</h3>
-
-<ul>
-<li>Vendor-Neutral program by the Linux Professional Institute</li>
-<li>It is the first stop course before the professional certifications by LPI</li>
-<li>It is an outstanding course for new users to Linux</li>
-</ul>
-
-
-<h3>Open Source Philosophy</h3>
-
-<ul>
-<li>So why would Linux just be given away?</li>
-<li>GNU - Gnu&rsquo;s Not Unix!</li>
-<li>GNU/Linux</li>
-<li>FSF - Free Software Foundation</li>
-<li>GNU C Compiler - gcc</li>
-<li>Linux Torvalds was heavily influenced by the GNU project in which his first Linux kernel was released under the GPL</li>
-<li>GPL = General Public License</li>
-<li>GPL: Require that the source code remain freely available to anyone who might want it.</li>
-</ul>
-
-
-<h3>Distributions</h3>
-
-<blockquote><p>You can think about Linux distributions as you think about ice cream brands. #funny</p></blockquote>
-
-<p>Each distributions has a kernel , utilities and configurations.</p>
-
-<h4>What could make up a full blown Linux distributions?</h4>
-
-<ul>
-<li>Linux kernel</li>
-<li>Core Unix tools</li>
-<li>Supplemental Software</li>
-<li>Startup scripts</li>
-<li>Installers</li>
-</ul>
-
-
-<h4>What distributions is right for our project?</h4>
-
-<ul>
-<li>Is the system going to be for desktop or server use?</li>
-<li>If this is for production then a commercial distribution might be best for your needs</li>
-<li>Does your system hardware support the distribution of choice?</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ansible MySQL DB Module]]></title>
-    <link href="http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module/"/>
-    <updated>2016-07-04T13:49:14+08:00</updated>
-    <id>http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module</id>
-    <content type="html"><![CDATA[<h3>Install MariaDB</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl start mariadb.service
-</span><span class='line'><span class="o">[</span>ansible@woody-xu3 ~<span class="o">]</span><span class="nv">$ </span>sudo systemctl <span class="nb">enable </span>mariadb.service
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Adding Ansible User</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">grant</span> <span class="k">all</span> <span class="k">privileges</span> <span class="k">on</span> <span class="o">*</span><span class="p">.</span><span class="o">*</span> <span class="k">to</span> <span class="o">`</span><span class="n">ansible_db</span><span class="o">`@`</span><span class="n">localhost</span><span class="o">`</span> <span class="n">identified</span> <span class="k">by</span> <span class="ss">&quot;123456&quot;</span><span class="p">;</span>
-</span><span class='line'><span class="n">flush</span> <span class="k">privileges</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Playbook</h3>
-
-<p>For Create Database.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_DB MODULE EXAMPLE</span>
-</span><span class='line'><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apacheserver</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ansible</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">connection</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ssh</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">gather_facts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">yes</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Install the Python MySQL Support Libraries</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">yum</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=MySQL-python state=latest</span>
-</span><span class='line'>  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a New Test DB called MyNewDB</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_db</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=MyNewDB state=present login_user=ansible_db login_password=123456</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>For manager User</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span> <span class="c1"># MYSQL_USER MODULE EXAMPLE</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create a new user called BOB and give him all access</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">mysql_user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456</span>
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
