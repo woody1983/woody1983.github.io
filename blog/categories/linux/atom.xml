@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-11-30T03:47:12+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
+    <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
+    <updated>2016-07-19T06:12:32+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
+    <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
+
+<ul>
+<li>mutiny-1.mylabserver.com 192.168.100.1</li>
+<li>mutiny-2.mylabserver.com 192.168.100.100</li>
+</ul>
+
+
+<h4>Step 1 Build Chef Workstation</h4>
+
+<p>Download the <code>chef-starter.zip</code> to mutiny-1.mylabserver.com.</p>
+
+<pre><code class="bash">root$ hostname workstation
+root$ exec bash
+
+root$ cd
+root$ unzip chef-starter.zip
+root$ cd chef-repo
+
+#-------------------------
+#------Install Chef-------
+#-------------------------
+root$ curl -L https://www.opscode.com/chef/install.sh | sudo bash
+
+#-------------------------
+#------Install Node-------
+#-------------------------
+root$ knife bootstrap mutiny-2.mylabserver.com -x root -P __passwd__ -N linuxnode
+</code></pre>
+
+<h4>Step 2 Create Cookbook</h4>
+
+<p><code>knife cookbook create apache</code> Build a Cookbook based on apache</p>
+
+<p>Just need install apache package</p>
+
+<pre><code class="ruby cookbook/apache/recipes/default.rb">
+package "httpd" do
+  action :install
+end
+
+service "httpd" do
+  action [:enable, :start]
+end
+</code></pre>
+
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS</p>
+
+<p><code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+
+<h4>Step 3 At node, run chef-client</h4>
+
+<p>Just one command <code>chef-client</code></p>
+
+<h4>Attributes &amp; Template</h4>
+
+<p>We need setup two httpd.conf files for VirtualHost. So</p>
+
+<pre><code class="html templates/default/vhost.erb">
+#vhost template file
+&lt;% if @port == 80 -%&gt;
+  NameVirtualHost *:80
+&lt;% end -%&gt;
+
+&lt;VirtualHost *:&lt;%= @port %&gt; &gt;
+
+  ServerName &lt;%= @domain %&gt;
+  DocumentRoot &lt;%= @document_root %&gt;
+
+  &lt;Directory /&gt;
+      Options FollowSymLinks
+      AllowOverride None
+  &lt;/Directory&gt;
+
+  &lt;Directory &lt;%= @document_root %&gt; &gt;
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride None
+      Order allow,deny
+      allow from all
+  &lt;/Directory&gt;
+
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<pre><code class="ruby attributes/default.rb">
+default["apache"]["sites"]["johnny-hsu19832"] = {
+  "port" =&gt; 80,
+    "domain" =&gt; "johnny-hsu19832.mylabserver.com"
+    }
+
+default["apache"]["sites"]["johnny-hsu19832b"] = {
+  "port" =&gt; 80,
+    "domain" =&gt; "johnny-hsu19832b.mylabserver.com"
+    }
+</code></pre>
+
+<h4>Run chef-client again!</h4>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install Jenkins on CentOS 7]]></title>
+    <link href="http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7/"/>
+    <updated>2016-07-15T04:22:21+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/15/install-jenkins-on-centos-7</id>
+    <content type="html"><![CDATA[<h3>First thing, ensure your server'8080 port is free</h3>
+
+<pre><code class="bash Download JDK by wget">wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+ http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.rpm
+</code></pre>
+
+<p>sudo root</p>
+
+<pre><code class="bash Installing JDK">$rpm -Uvh jdk-8u25-linux-x64.rpm
+</code></pre>
+
+<p>Configuration JDK</p>
+
+<pre><code class="bash">alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
+alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
+alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
+
+alternatives --config java
+#Enter
+
+#---Check or Verify
+java -version
+javac -version
+</code></pre>
+
+<pre><code class="bash /etc/rc.d/rc.local">#!/bin/bash
+# THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES
+#
+# It is highly advisable to create own systemd services or udev rules
+# to run scripts during boot instead of using this file.
+#
+# In contrast to previous versions due to parallel execution during boot
+# this script will NOT be run after all other services.
+#
+# Please note that you must run 'chmod +x /etc/rc.d/rc.local' to ensure
+# that this script will be executed during boot.
+
+touch /var/lock/subsys/local
+export JAVA_HOME="/usr/java/latest"
+</code></pre>
+
+<h3>Installing Jenkins</h3>
+
+<pre><code class="bash Get Repo for Jenkins">sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+yum install jenkins
+
+#Setup
+systemctl enable jenkins.service
+
+#Restart
+systemctl restart jenkins.service
+</code></pre>
+
+<p>Take a look at <a href="http://localhost:8080">http://localhost:8080</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Installing Apache With Chef]]></title>
+    <link href="http://mutiny.work/blog/2016/07/13/installing-apache-with-chef/"/>
+    <updated>2016-07-13T03:48:11+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/13/installing-apache-with-chef</id>
+    <content type="html"><![CDATA[<pre><code class="ruby Vagrantfile">  config.vm.provision "chef_solo" do |chef|
+    chef.add_recipe "vagrant_la"
+  end
+</code></pre>
+
+<h4>Tree of Cookbooks</h4>
+
+<pre><code class="">cookbooks:/
+---/vagrant_la
+   ---/recipes
+      ---/default.rb
+</code></pre>
+
+<pre><code class="ruby default.rb">execute "apt-get update"
+package "apache2"
+execute "rm -rf /var/www"
+link "/var/www" do
+       to "/vagrant"
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
+    <link href="http://mutiny.work/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-05T23:56:44+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
+    <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
+
+<pre><code class="bash">apt-get update       #Update source
+apt-get upgrade      #Update all installed packages
+apt-get dist-upgrade #Update Distributions
+</code></pre>
+
+<h3>Install</h3>
+
+<pre><code class="bash">apt-get install &lt;pkg&gt; #Install 
+apt-get install --reinstall &lt;pkg&gt; #Install again
+apt-get install -f &lt;pkg&gt; #Repair and install (dependency)
+</code></pre>
+
+<h3>Remove</h3>
+
+<pre><code class="bash">apt-get remove &lt;pkg&gt; # just remove 
+apt-get purge &lt;pkg&gt;  #Remove include config files
+</code></pre>
+
+<h3>Download</h3>
+
+<pre><code class="bash">apt-get source &lt;pkg&gt;   #Download source code
+apt-get download &lt;pkg&gt; #Download binary tar
+apt-get source -d &lt;pkg&gt; #Download and Compile
+apt-get build-dep &lt;pkg&gt; #Build pkg source code dependency environment (Compile Env?)
+apt-get clean        #Cleanup Cache (/var/cache/apt/archives/{,partial}.)downloaded source code
+apt-get autoclean #cleanup out of time source code within cache
+apt-get autoremove  #Remove auto install dependency pkg
+</code></pre>
+
+<h3>Search</h3>
+
+<pre><code class="bash">apt-cache status #Display system pkg total statistics information
+apt-cache search &lt;pkg&gt;   #Search pkg by key words
+apt-cache show &lt;pkg_name&gt; #display pkg more information
+apt-cache depends &lt;pkg&gt; #Lookup pkg dependency software.
+apt-cache rdepends &lt;pkg&gt; #View PKG is dependent on those packages
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hands-On Package Management APT/YUM]]></title>
+    <link href="http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum/"/>
+    <updated>2016-07-05T15:25:14+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/05/hands-on-package-management-apt-slash-yum</id>
+    <content type="html"><![CDATA[<ul>
+<li>apt-get update                <code>Update source</code></li>
+<li>apt-get upgrade               <code>Update any installed software</code></li>
+<li>apt-get dist-upgrade          <code>Distributions update like 10.0 --- 11.0</code></li>
+</ul>
+
+
+<p><a href="http://rsljdkt.iteye.com/blog/1142463">About apt</a></p>
+]]></content>
+  </entry>
+  
+</feed>

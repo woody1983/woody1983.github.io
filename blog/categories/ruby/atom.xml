@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-11-30T03:47:12+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rake Gen_deploy Rejected in Octopress]]></title>
+    <link href="http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/"/>
+    <updated>2016-07-20T15:07:53+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress</id>
+    <content type="html"><![CDATA[<p>I cloned my octopress blog Repository based on the github.pages.
+So , When i run <code>rake deploy</code> then I got a Error about</p>
+
+<pre><code class="bash">
+## Pushing generated _deploy website
+To https://github.com/woody1983/woody1983.github.io.git
+ ! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/woody1983/woody1983.github.io.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre>
+
+<p>I Googled a lot and finally solved this problem.</p>
+
+<p>Change the current directory</p>
+
+<pre><code class="bash">cd octopress/_deploy
+git pull origin master
+cd ..
+rake deploy
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

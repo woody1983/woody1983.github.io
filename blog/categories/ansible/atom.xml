@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ansible | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/ansible/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-11-30T03:47:12+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ansible DB Deployment Outline]]></title>
+    <link href="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/"/>
+    <updated>2016-07-11T03:46:49+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline</id>
+    <content type="html"><![CDATA[<h3>Outline</h3>
+
+<ul>
+<li>Installing and Configuring a MariaDB Server (master)</li>
+<li>The installation will be done with the ansible user</li>
+<li>The installation needs to be done with sudo privileges</li>
+<li>The connection used is ssh</li>
+<li>gathering of facts needs to be on</li>
+</ul>
+
+
+<h3>What do we need to know?</h3>
+
+<ul>
+<li>the package name f the Db server</li>
+<li>the group/host of the master server</li>
+<li>the directory for installing the db(if not default)</li>
+<li>the version of the db</li>
+<li>the distribution it is installed on</li>
+</ul>
+
+
+<h3>What needs to be done/installed</h3>
+
+<ul>
+<li>install the MariaDB server and utilities</li>
+<li>root password install
+
+<ul>
+<li>waitfor the db service to be started
+
+<ul>
+<li>takes place manually after the mysql-secure-installation run</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>install the mysql/mariadb configuration file ( if needed)</li>
+<li>copy the mysql/mariadb database backup to the home directory</li>
+<li>import the database(s)</li>
+<li>add a cron job for nightly backups</li>
+</ul>
+
+
+<h3>Testing the db</h3>
+
+<p>run a MYSQL command and register the output as JSON format to determine success</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ansible MySQL DB Module]]></title>
+    <link href="http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module/"/>
+    <updated>2016-07-04T05:49:14+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/04/ansible-mysql-db-module</id>
+    <content type="html"><![CDATA[<h3>Install MariaDB</h3>
+
+<pre><code class="bash">[ansible@woody-xu3 ~]$ sudo systemctl start mariadb.service 
+[ansible@woody-xu3 ~]$ sudo systemctl enable mariadb.service 
+</code></pre>
+
+<h3>Adding Ansible User</h3>
+
+<pre><code class="sql">grant all privileges on *.* to `ansible_db`@`localhost` identified by "123456";
+flush privileges;
+</code></pre>
+
+<h3>Playbook</h3>
+
+<p>For Create Database.</p>
+
+<pre><code class="yaml">--- # MYSQL_DB MODULE EXAMPLE
+- hosts: apacheserver
+  user: ansible
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  - name: Install the Python MySQL Support Libraries
+    yum: pkg=MySQL-python state=latest
+  - name: Create a New Test DB called MyNewDB
+    mysql_db: name=MyNewDB state=present login_user=ansible_db login_password=123456
+</code></pre>
+
+<p>For manager User
+<code>yaml
+--- # MYSQL_USER MODULE EXAMPLE
+    - name: Create a new user called BOB and give him all access
+    mysql_user: name=bob password=123password priv=*.*:ALL state=present login_user=ansible_db login_password=123456
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Emacs | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/emacs/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-11-30T03:47:12+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[GNU Emacs and MIT Scheme on Mac OS X]]></title>
+    <link href="http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x/"/>
+    <updated>2016-08-01T06:37:51+00:00</updated>
+    <id>http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x</id>
+    <content type="html"><![CDATA[<p>First, download the MIT/GNU Scheme binary for Mac OS X and copy it to your Applications directory. Then configure Emacs to use the downloaded binary by adding the following lines to your <code>.emacs</code>.</p>
+
+<p><img src="http://i.imgur.com/1ZGjEDn.jpg" alt="sicp" /></p>
+
+<p>Via: <a href="http://praveen.kumar.in/2011/03/06/gnu-emacs-and-mit-scheme-on-mac-os-x/">Praveen&rsquo;s Blog</a></p>
+
+<pre><code class="scheme">
+(setq scheme-program-name "/Applications/mit-scheme.app/Contents/Resources/mit-scheme")
+(require 'xscheme)
+</code></pre>
+
+<pre><code class="scheme">
+; Compute the square root of a given number using successive
+; approximation.
+
+(define (sqrt value)
+  (define (is-good-enough? guess value)
+      (&lt; (abs (- (* guess guess) value)) 0.0000001))
+
+  (define (try guess value)
+    (if (is-good-enough? guess value)
+        guess
+        (try (/ (+ guess (/ value guess)) 2) value)))
+
+(try 1 value))
+
+(sqrt 4.0)
+</code></pre>
+
+<p>Invoke the Scheme process by <code>'M-x run-scheme'</code>. Send the Scheme buffer to the Scheme process by <code>'M-o'</code> and now you are able to run Scheme programs from Emacs.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Running the MIT-Scheme in Emacs]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/"/>
+    <updated>2016-07-25T07:07:18+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs</id>
+    <content type="html"><![CDATA[<p>Based on the Ubuntu14 OS platform. I choose the x64-version mit-scheme source code.</p>
+
+<p><a href="http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.tar.gz">GNU&rsquo;S mit-scheme</a></p>
+
+<pre><code class="bash">tar xvf mit-scheme-9.2-x86-64.tar.gz
+cd mit-scheme-9.2/src/
+apt-get install m4
+./configure
+#Build the software:
+make compile-microcode
+make install
+</code></pre>
+
+<p>I changed the .emacs config file yet.</p>
+
+<pre><code class="elisp">
+;;Always do syntax highlighting
+(global-font-lock-mode 1)
+;;Also highlight parens
+(setq show-paren-delay 0
+   show-paren-style 'parenthesis)
+(show-paren-mode 1)
+;;This is the binary name of my scheme implementation
+(setq scheme-program-name "mit-scheme")
+</code></pre>
+
+<p>When you setup mit-scheme finish. You should be restart the Emacs to reload your new configuration for this.
+And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it. Using the <code>C-x 2</code> to open a other window, running the <code>M+X run-scheme</code>.</p>
+
+<p>You get in the MIT-Scheme&rsquo;s REPL environment. Take a try <code>C-x C-e</code> to running the scheme code. and it should be return the resulte on the first window.</p>
+
+<pre><code class="scheme">(define (square x)(* x x))
+(square 9)
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Manage My Bill With Org Mode]]></title>
+    <link href="http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode/"/>
+    <updated>2016-07-21T12:16:27+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/21/manage-my-bill-with-org-mode</id>
+    <content type="html"><![CDATA[<p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
+
+<p>Yeah, The <a href="http://orgmode.org">Org-mode</a> is really awesome!
+In this case, I want use the org-mode to manage my two credit card&rsquo;s information, So</p>
+
+<h4>First, I made the basic bill table</h4>
+
+<p>In Normal days, I choose using credit card or cash as my payment method, I also using Wechat-Pay and Ali-Pay, But in fact these are bound by the credit card.</p>
+
+<pre><code class="lisp">#+TBLNAME: 2016bill
+| Date             | Category       | Amount | Payment     |
+|------------------+----------------+--------+-------------|
+| &lt;2016-06-12 Sun&gt; | Lunch          |  43.97 | Cash        |
+| &lt;2016-06-15 Wed&gt; | Lunch          |  56.48 | Credit(BCM) |
+| &lt;2016-06-13 Mon&gt; | Book           |  17.99 | Credit(BCM) |
+| &lt;2016-06-18 Sat&gt; | Flico Keyboard | 289.18 | Credit(BCM) |
+| &lt;2016-06-19 Sun&gt; | By Coffce      |  99.96 | Cash        |
+| &lt;2016-06-20 Mon&gt; | Supplies       |  58.26 | Cash        |
+| &lt;2016-06-21 Tue&gt; | Books          |  18.99 | Credit(CMB) |
+| &lt;2016-06-22 Wed&gt; | Cookie         |   7.50 | Credit(CMB) |
+| &lt;2016-06-25 Sat&gt; | Books          |  21.49 | Credit(CMB) |
+| &lt;2016-06-28 Tue&gt; | VPS Service    |     10 | Credit(BCM) |
+|------------------+----------------+--------+-------------|
+|                  | Total:         | 623.80 |             |
+#+TBLFM: @&gt;$3=vsum(@2..@-1);%.2f
+</code></pre>
+
+<h4>The <code>2016bill</code> table</h4>
+
+<p>It just records the June 2016 payment info. And I make a other table <code>my-bull_bcm</code> to record The BCM Credit Card payment details.</p>
+
+<pre><code class="lisp">#+NAME: my-bill_bcm
+#+BEGIN_SRC elisp :var tbl=2016bill val="Credit(BCM)" val2="&lt;2016-06-15 Wed&gt;" :colnames y
+    (cl-loop for row in tbl
+          when (equal (nth 3 row) val)
+          collect row into newtbl
+          finally return newtbl)
+#+END_SRC
+
+#+TBLNAME: my-bill_bcm
+| Date             | Category         | Amount | Payment     |
+|------------------+------------------+--------+-------------|
+| &lt;2016-06-15 Wed&gt; | Supplies         |  56.48 | Credit(BCM) |
+| &lt;2016-06-13 Mon&gt; | Book             |  17.99 | Credit(BCM) |
+| &lt;2016-06-18 Sat&gt; | Kinesis Keyboard | 289.18 | Credit(BCM) |
+| &lt;2016-06-28 Tue&gt; | Toner Service    |     10 | Credit(BCM) |
+</code></pre>
+
+<p>When I got the BCM Credit Card Payment information for the entire June. I need to know How much more money I will give to the Bank next month.</p>
+
+<pre><code class="lisp">| Year/Month       | amount |
+|------------------+--------|
+| [2016-June]      | 373.65 |
+#+TBLFM: @&gt;$2=vsum(remote(my-bill, @2$3..@&gt;$3));%.2f
+</code></pre>
+
+<p>But It&rsquo;s not enough, Emacs and Org-mode is Powerfull. I need to learn more skills about Emacs.</p>
+
+<h4>Thanks SACHA, Thanks for your shared information and knowledge.</h4>
+
+<p><a href="http://sachachua.com/blog/">Sacha Blog</a> Living an Awesome Life.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs Input Chinese-py]]></title>
+    <link href="http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py/"/>
+    <updated>2016-07-18T23:26:17+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/18/emacs-input-chinese-py</id>
+    <content type="html"><![CDATA[<p>Just Input the <code>C-\</code> choose <code>chinese-py</code></p>
+
+<p>So, Let&rsquo;s Enjoy it. And take a try <code>拼音输入法</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My Emacs24 Config]]></title>
+    <link href="http://mutiny.work/blog/2016/07/04/title/"/>
+    <updated>2016-07-04T04:11:12+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/04/title</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<ul>
+<li>OS: MacOs</li>
+<li>Emacs 24</li>
+</ul>
+
+
+<p><code>package-list-packages</code>
+<code>load-theme</code>
+<code>load-file</code></p>
+
+<p><div><script src='https://gist.github.com/ceb1c0b7147336f0aa6ae655f0ae3862.js'></script>
+<noscript><pre><code>;;;;;;;;;;;;;;;;;;;;;;
+;;     Set Tags  
+;;;;;;;;;;;;;;;;;;;;;;
+(setq org-todo-keywords
+      &#39;((sequence &quot;TODO(t)&quot; &quot;FEEDBACK&quot; &quot;VERIFY&quot; &quot;PENDING(p@)&quot; &quot;|&quot; &quot;DONE(d)&quot; &quot;NOTE(n)&quot;)
+        (sequence &quot;REPORT(r)&quot; &quot;BUG(b)&quot; &quot;KNOWNCAUSE(k)&quot; &quot;|&quot; &quot;FIXED(f!)&quot;)
+        (sequence &quot;|&quot; &quot;CANCELED(c!@)&quot; &quot;DELEGATED&quot;)))
+(setq org-log-done &#39;time)
+(setq org-log-done &#39;note)
+(setq org-tag-alist &#39;((&quot;@work&quot; . ?w)
+                      (&quot;@home&quot; . ?h)
+                      (&quot;@laptop&quot; . ?l)
+                      (&quot;read_book&quot; . ?b)
+                      (&quot;read_Kindle&quot; . ?k)
+                      (&quot;Life&quot; . ?f)
+                      (&quot;Grow&quot; . ?g)
+                      (&quot;Learn&quot; . ?e)))
+
+;;;;;;;;;;;;;;;;;;;;;;
+;;  Set word wrap
+;;;;;;;;;;;;;;;;;;;;;;
+(add-hook &#39;org-mode-hook (lambda () (setq truncate-lines nil)))
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Package
+;;;;;;;;;;;;;;;;;;;;;;
+(require &#39;package)
+(add-to-list &#39;package-archives
+             &#39;(&quot;melpa&quot; . &quot;http://melpa.milkbox.net/packages/&quot;))
+(add-to-list &#39;package-archives
+             &#39;(&quot;gnu&quot; . &quot;http://elpa.gnu.org/packages/&quot;))
+(package-initialize)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;nyan-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+(nyan-mode t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; ac-html
+;;;;;;;;;;;;;;;;;;;;;;
+(add-hook &#39;html-mode-hook &#39;ac-html-enable)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set priority
+;;;;;;;;;;;;;;;;;;;;;;
+
+(setq org-highest-priority ?A)
+(setq org-lowest-priority  ?E)
+(setq org-default-priority ?E)
+(setq org-priority-faces
+      &#39;((?A . (:background &quot;red&quot; :foreground &quot;white&quot; :weight bold))
+        (?B . (:background &quot;DarkOrange&quot; :foreground &quot;white&quot; :weight bold))
+        (?C . (:background &quot;yellow&quot; :foreground &quot;DarkGreen&quot; :weight bold))
+        (?D . (:background &quot;DodgerBlue&quot; :foreground &quot;black&quot; :weight bold))
+        (?E . (:background &quot;SkyBlue&quot; :foreground &quot;black&quot; :weight bold))
+        ))
+        
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Todo Faces
+;;;;;;;;;;;;;;;;;;;;;;
+
+(setq org-todo-keyword-faces
+      &#39;((&quot;DONE&quot; .      (:background &quot;black&quot; :foreground &quot;yellow&quot; :weight bold))
+        (&quot;PENDING&quot; .   (:background &quot;LightGreen&quot; :foreground &quot;gray&quot; :weight bold))
+        (&quot;VERIFY&quot; .    (:background &quot;black&quot; :foreground &quot;SkyBlue&quot; :weight bold))
+        (&quot;NOTE&quot; .      (:background &quot;black&quot; :foreground &quot;DarkOrange&quot; :weight bold))
+        ))
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Agenda
+;;;;;;;;;;;;;;;;;;;;;;
+(setq org-agenda-files (list &quot;~/org/work.org&quot;
+                             &quot;~/org/todo.org&quot;
+                             &quot;~/org/journal.org&quot;
+                             &quot;~/org/memo.org&quot;
+                             &quot;~/org/notes.org&quot;))
+(global-set-key &quot;\C-ca&quot; &#39;org-agenda)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Resolve clock
+;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key &quot;\C-ct&quot; &#39;org-resolve-clocks)
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Set Capture
+;;;;;;;;;;;;;;;;;;;;;;
+
+;; Set default org file to store note
+;;(setq org-default-notes-file (concat org-directory &quot;~/notes.org&quot;))
+(define-key global-map &quot;\C-cc&quot; &#39;org-capture)
+
+(setq org-capture-templates
+      &#39;((&quot;t&quot; &quot;Todo&quot; entry (file+headline &quot;~/org/todo.org&quot; &quot;Tasks&quot;)
+         &quot;* TODO %?\n  %i\n  %a&quot;)
+        (&quot;w&quot; &quot;Work&quot; entry (file+headline &quot;~/org/work.org&quot; &quot;Work:&quot;)
+         &quot;* TODO %?\n  %i\n  %a&quot;)
+        (&quot;m&quot; &quot;Memo&quot; entry (file+datetree &quot;~/org/memo.org&quot; &quot;Memo&quot;)
+         &quot;* Memo %?\nEntered on %U\n %i\n Author: %n\n Tasks: %K\n&quot;)
+        (&quot;n&quot; &quot;Notes&quot; entry (file+datetree &quot;~/org/notes.org&quot; &quot;Notes&quot;)
+         &quot;* %^{Description}  %^g \n %? \n%n Added: %U&quot;)
+         (&quot;b&quot; &quot;Code &amp;Block&quot; entry (file+datetree &quot;~/org/block.org&quot;)
+         &quot;* Code : %? %^{Title code} %^g  \n #+BEGIN_SRC %^{Code Type} \n %^{code} \n #+END_SRC&quot;)
+        (&quot;j&quot; &quot;Journal&quot; entry (file+datetree &quot;~/org/journal.org&quot;)
+         &quot;* %?\nEntered on %U\n  %i\n  %a&quot;)))
+
+</code></pre></noscript></div>
+</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Chef | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/chef/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-11-30T03:47:12+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Make Chef Supprot More Platform]]></title>
+    <link href="http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform/"/>
+    <updated>2016-07-25T03:05:01+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/25/make-chef-supprot-more-platform</id>
+    <content type="html"><![CDATA[<p>First , Change the attribute, set two plotform on this.</p>
+
+<pre><code class="ruby">
+default["apache"]["sites"]["johnny-hsu198323"] = {
+  "site_title" =&gt; "johnny-hsu198323 websites coming soon!",
+  "port" =&gt; 80,
+  "domain" =&gt; "johnny-hsu198323.mylabserver.com"
+}
+
+case node["platform"]
+  when "centos"
+  default["apache"]["package"]="httpd"
+  when "ubuntu"
+  default["apache"]["package"]="apache2"
+end
+</code></pre>
+
+<p>And ,change the Recipes</p>
+
+<pre><code class="ruby assign the node for platform">
+if node["platfomr"] == "ubuntu"
+  execute "apt-get update -y" 
+end
+
+package "apache2"  do
+    package_name node["apache"]["package"]
+end
+</code></pre>
+
+<p>Change</p>
+
+<pre><code class="ruby  templatr location is different">
+if node["platform"] == "ubuntu"
+  template_localtion = "/etc/apache2/sites-enabled/#{sitename}.conf"
+  elsif node["platform"] == "centos"
+  template_localtion = "/etc/httpd/conf.d/#{sitename}.conf"
+end
+</code></pre>
+
+<pre><code class="ruby Service name is also different">
+service "httpd" do
+  service_name node["apache"]["package"]
+  action [:enable, :start]
+end
+
+#include_recipe "php::default"
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Recipe Includes and Dependencies]]></title>
+    <link href="http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies/"/>
+    <updated>2016-07-20T09:03:23+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies</id>
+    <content type="html"><![CDATA[<p>Create a new cookbook</p>
+
+<pre><code>knife cookbook create php
+</code></pre>
+
+<p>Change the Recipes</p>
+
+<pre><code class="ruby php/recipes/default.rb">
+package "php" do
+  action :install
+end
+</code></pre>
+
+<p>Change the apache cookbook&rsquo;s metadata</p>
+
+<pre><code class="ruby apache/metadata.rb">
+### Added this
+depends "php"
+</code></pre>
+
+<pre><code class="ruby apache/recipes/default.rb">
+include_recipe "php::default"
+</code></pre>
+
+<p>So that all. Easy</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
+    <link href="http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
+    <updated>2016-07-19T07:42:33+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef</id>
+    <content type="html"><![CDATA[<p>Change the Recipes file</p>
+
+<pre><code class="ruby recipes/default.rb">
+template "/content/sites/#{sitename}/index.html" do
+    source "index.html.erb"
+    mode "0644"
+    variables(
+        :site_title =&gt; data["site_title"],
+        :comingsoon =&gt; "Coming Soon!"
+    )
+end
+</code></pre>
+
+<p>Adding something about HTMl element</p>
+
+<pre><code class="ruby attributes/default.rb">
+default["apache"]["sites"]["johnny-hsu19832"] = {
+  "site_title" =&gt; "johnny-hsu19832 websites coming soon",
+  "port" =&gt; 80,
+  "domain" =&gt; "johnny-hsu19832.mylabserver.com"
+}
+
+default["apache"]["sites"]["johnny-hsu19832b"] = {
+  "site_title" =&gt; "johnny-hsu19832b websites coming soon!",
+  "port" =&gt; 80,
+  "domain" =&gt; "johnny-hsu19832b.mylabserver.com"
+}           
+</code></pre>
+
+<pre><code class="erb templates/default/index.html.erb">
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;title&gt;&lt;%= @site_title %&gt;&lt;/title&gt;
+  &lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;&lt;%= @site_title %&gt;&lt;/h1&gt;
+  &lt;h2&gt;&lt;%= @comingsoon %&gt;&lt;/h2&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Attribute Precedence]]></title>
+    <link href="http://mutiny.work/blog/2016/07/19/attribute-precedence/"/>
+    <updated>2016-07-19T07:20:01+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/attribute-precedence</id>
+    <content type="html"><![CDATA[<p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
+
+<h2>Key Concepts</h2>
+
+<blockquote><p>Attributes are specific details about a node.</p></blockquote>
+
+<h3>Attributes describe</h3>
+
+<ul>
+<li>The current state of the node</li>
+<li>What the state of the node was at the end of the previous chef-client run</li>
+<li>What the state of the node should be at the end of the current chef-client run</li>
+</ul>
+
+
+<p>After the node object is rebuilt in the chef run,all attributes loaded in the chef-client are then compared. The node is updated based on attribute precedence and at the very end of the convergence(chef-client)the node object is uploaded to the chef server</p>
+
+<ul>
+<li>Node object defines the current state of the node(made up of attributes)</li>
+<li>Node object is stored on the chef server so that can be searched</li>
+<li>Node object is updated at each convergence</li>
+</ul>
+
+
+<p>If there are attributes with the same names then attributes precedence determines which attribute is applied to the node and the node object.</p>
+
+<blockquote><p>Thanks Linux Academy.</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Build an Apache VirtualHost With Chef]]></title>
+    <link href="http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef/"/>
+    <updated>2016-07-19T06:12:32+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/19/build-an-apache-virtualhost-with-chef</id>
+    <content type="html"><![CDATA[<p>For this example, we need two Linux instances, I choose CentOS 7.</p>
+
+<ul>
+<li>mutiny-1.mylabserver.com 192.168.100.1</li>
+<li>mutiny-2.mylabserver.com 192.168.100.100</li>
+</ul>
+
+
+<h4>Step 1 Build Chef Workstation</h4>
+
+<p>Download the <code>chef-starter.zip</code> to mutiny-1.mylabserver.com.</p>
+
+<pre><code class="bash">root$ hostname workstation
+root$ exec bash
+
+root$ cd
+root$ unzip chef-starter.zip
+root$ cd chef-repo
+
+#-------------------------
+#------Install Chef-------
+#-------------------------
+root$ curl -L https://www.opscode.com/chef/install.sh | sudo bash
+
+#-------------------------
+#------Install Node-------
+#-------------------------
+root$ knife bootstrap mutiny-2.mylabserver.com -x root -P __passwd__ -N linuxnode
+</code></pre>
+
+<h4>Step 2 Create Cookbook</h4>
+
+<p><code>knife cookbook create apache</code> Build a Cookbook based on apache</p>
+
+<p>Just need install apache package</p>
+
+<pre><code class="ruby cookbook/apache/recipes/default.rb">
+package "httpd" do
+  action :install
+end
+
+service "httpd" do
+  action [:enable, :start]
+end
+</code></pre>
+
+<p><code>knife cookbook upload apache</code> Upload this cookbook to SaaS</p>
+
+<p><code>knife node run_list add linuxnode "recipe[apache]"</code> Add the recipes to run lists.</p>
+
+<h4>Step 3 At node, run chef-client</h4>
+
+<p>Just one command <code>chef-client</code></p>
+
+<h4>Attributes &amp; Template</h4>
+
+<p>We need setup two httpd.conf files for VirtualHost. So</p>
+
+<pre><code class="html templates/default/vhost.erb">
+#vhost template file
+&lt;% if @port == 80 -%&gt;
+  NameVirtualHost *:80
+&lt;% end -%&gt;
+
+&lt;VirtualHost *:&lt;%= @port %&gt; &gt;
+
+  ServerName &lt;%= @domain %&gt;
+  DocumentRoot &lt;%= @document_root %&gt;
+
+  &lt;Directory /&gt;
+      Options FollowSymLinks
+      AllowOverride None
+  &lt;/Directory&gt;
+
+  &lt;Directory &lt;%= @document_root %&gt; &gt;
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride None
+      Order allow,deny
+      allow from all
+  &lt;/Directory&gt;
+
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<pre><code class="ruby attributes/default.rb">
+default["apache"]["sites"]["johnny-hsu19832"] = {
+  "port" =&gt; 80,
+    "domain" =&gt; "johnny-hsu19832.mylabserver.com"
+    }
+
+default["apache"]["sites"]["johnny-hsu19832b"] = {
+  "port" =&gt; 80,
+    "domain" =&gt; "johnny-hsu19832b.mylabserver.com"
+    }
+</code></pre>
+
+<h4>Run chef-client again!</h4>
+]]></content>
+  </entry>
+  
+</feed>

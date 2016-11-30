@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Angular | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/angular/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-11-30T03:47:12+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ramp Up Angular 2.0]]></title>
+    <link href="http://mutiny.work/blog/2016/07/14/ramp-up-angular-2-dot-0/"/>
+    <updated>2016-07-14T02:29:53+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/14/ramp-up-angular-2-dot-0</id>
+    <content type="html"><![CDATA[<p>First Things:</p>
+
+<h3>Download Angular</h3>
+
+<p>URL: <a href="http://angularjs.org">Angular</a>
+We&rsquo;ll need angular.min.js</p>
+
+<h3>Download BootStrap</h3>
+
+<p>URL: <a href="http://getbootstrap.com">BootStrap</a>
+also bootstrap.min.css</p>
+
+<h3>Ramp up</h3>
+
+<pre><code class="html index.html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel="stylesheet" type="text/css" href="bootstrap.min.css" /&gt;
+    &lt;script type="text/javascript" src="angular.min.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="app.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h4>Create a Store Module</h4>
+
+<pre><code class="js app.js">
+var app;
+var app = angular.module("gemStore",[]);
+</code></pre>
+
+<h4>Attach module to HTML Pages</h4>
+
+<p>KeyWords: <code>ng-app</code></p>
+
+<pre><code class="html index.html">
+&lt;html ng-app="gemStore"&gt;
+...
+&lt;/html&gt;
+</code></pre>
+
+<h4>Create a controller</h4>
+
+<pre><code class="js app.js">(function(){
+  var gem = { name: 'Azurite', price: 2.95 };
+  var app = angular.module('gemStore', []);
+  app.controller('StoreController', function(){
+
+  });
+})();
+</code></pre>
+
+<h4>Attach Controller on HTML page and alias it to other name</h4>
+
+<p><strong>KeyWords</strong> <code>ng-controller</code></p>
+
+<pre><code class="html">&lt;body ng-controller="StoreController as store"&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>Added a <code>gem</code> object to represent one of the products in our <code>gemStore</code>.
+Assign it to the <code>product</code> property of <code>"StoreController</code></p>
+
+<pre><code class="js">  app.controller('StoreController', function(){
+    this.product = gem;
+  });
+</code></pre>
+
+<h4>Display name on the HTML</h4>
+
+<p>``` html</p>
+
+<div class="product row">
+      <h3>
+        
+        <em class="pull-right"></em>
+      </h3>
+</div>
+
+
+<pre><code>
+#### Show or Hide
+</code></pre>
+
+<p><button ng-show="store.product.canPurchase">Add to Cart</button></p>
+
+<pre><code>
+If the canPurchase equal `true`, the Button should be display on pages.
+</code></pre>
+
+<div class="product row" ng-hide="store.product.soldOut">
+</div>
+
+
+<pre><code>
+#### More Gems
+</code></pre>
+
+<p>app.controller(&lsquo;StoreController&rsquo;, function(){
+    this.products = gems;
+});</p>
+
+<pre><code>
+**KeyWords** : `s`
+
+And change the HTML code
+</code></pre>
+
+<p><div class="product row" ng-repeat="product in store.products">
+```</p>
+
+<p><strong>KeyWords</strong> <code>ng-repeat</code></p>
+]]></content>
+  </entry>
+  
+</feed>

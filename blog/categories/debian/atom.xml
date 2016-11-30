@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Debian | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/debian/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-11-30T03:47:12+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Debian/Ubuntu Apt Manual]]></title>
+    <link href="http://mutiny.work/blog/2016/07/05/debian-slash-ubuntu-apt-manual/"/>
+    <updated>2016-07-05T23:56:44+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/05/debian-slash-ubuntu-apt-manual</id>
+    <content type="html"><![CDATA[<h3>Update or Upgrade</h3>
+
+<pre><code class="bash">apt-get update       #Update source
+apt-get upgrade      #Update all installed packages
+apt-get dist-upgrade #Update Distributions
+</code></pre>
+
+<h3>Install</h3>
+
+<pre><code class="bash">apt-get install &lt;pkg&gt; #Install 
+apt-get install --reinstall &lt;pkg&gt; #Install again
+apt-get install -f &lt;pkg&gt; #Repair and install (dependency)
+</code></pre>
+
+<h3>Remove</h3>
+
+<pre><code class="bash">apt-get remove &lt;pkg&gt; # just remove 
+apt-get purge &lt;pkg&gt;  #Remove include config files
+</code></pre>
+
+<h3>Download</h3>
+
+<pre><code class="bash">apt-get source &lt;pkg&gt;   #Download source code
+apt-get download &lt;pkg&gt; #Download binary tar
+apt-get source -d &lt;pkg&gt; #Download and Compile
+apt-get build-dep &lt;pkg&gt; #Build pkg source code dependency environment (Compile Env?)
+apt-get clean        #Cleanup Cache (/var/cache/apt/archives/{,partial}.)downloaded source code
+apt-get autoclean #cleanup out of time source code within cache
+apt-get autoremove  #Remove auto install dependency pkg
+</code></pre>
+
+<h3>Search</h3>
+
+<pre><code class="bash">apt-cache status #Display system pkg total statistics information
+apt-cache search &lt;pkg&gt;   #Search pkg by key words
+apt-cache show &lt;pkg_name&gt; #display pkg more information
+apt-cache depends &lt;pkg&gt; #Lookup pkg dependency software.
+apt-cache rdepends &lt;pkg&gt; #View PKG is dependent on those packages
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
