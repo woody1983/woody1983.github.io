@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-11-30T04:02:02+00:00</updated>
+  <updated>2016-11-30T04:22:19+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jekyll 2.5.3 Error: Pygments Can't Parse Unknown Language]]></title>
+    <link href="http://mutiny.work/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language/"/>
+    <updated>2016-11-30T04:06:03+00:00</updated>
+    <id>http://mutiny.work/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language</id>
+    <content type="html"><![CDATA[<h3>Solution:</h3>
+
+<ul>
+<li>1.在```和[language]中间添加空格;</li>
+<li>2.``` [language]代码块必须和其它的文本用一个空白行隔开。</li>
+</ul>
+
+
+<p>Posted by <a href="http://blog.splane.space/blog/2016/04/09/pygments-parse-problem-when-trying-to-update-octopress/">Andrew Yang</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[About Preview on Octopress]]></title>
@@ -33,6 +50,37 @@
 <p>Take a try</p>
 
 <p>Thank for <a href="http://devopsy.com/blog/2012/10/04/octopress-on-cloud9/">Max Lincoln Blog&rsquo;s post</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rake Gen_deploy Rejected in Octopress]]></title>
+    <link href="http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/"/>
+    <updated>2016-07-20T15:07:53+00:00</updated>
+    <id>http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress</id>
+    <content type="html"><![CDATA[<p>I cloned my octopress blog Repository based on the github.pages.
+So , When i run <code>rake deploy</code> then I got a Error about</p>
+
+<pre><code class="bash">
+## Pushing generated _deploy website
+To https://github.com/woody1983/woody1983.github.io.git
+ ! [rejected]        master -&gt; master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/woody1983/woody1983.github.io.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</code></pre>
+
+<p>I Googled a lot and finally solved this problem.</p>
+
+<p>Change the current directory</p>
+
+<pre><code class="bash">cd octopress/_deploy
+git pull origin master
+cd ..
+rake deploy
+</code></pre>
 ]]></content>
   </entry>
   

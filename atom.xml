@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-11-30T04:02:02+00:00</updated>
+  <updated>2016-11-30T04:22:19+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jekyll 2.5.3 Error: Pygments Can't Parse Unknown Language]]></title>
+    <link href="http://mutiny.work/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language/"/>
+    <updated>2016-11-30T04:06:03+00:00</updated>
+    <id>http://mutiny.work/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language</id>
+    <content type="html"><![CDATA[<h3>Solution:</h3>
+
+<ul>
+<li>1.在```和[language]中间添加空格;</li>
+<li>2.``` [language]代码块必须和其它的文本用一个空白行隔开。</li>
+</ul>
+
+
+<p>Posted by <a href="http://blog.splane.space/blog/2016/04/09/pygments-parse-problem-when-trying-to-update-octopress/">Andrew Yang</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[About Preview on Octopress]]></title>
@@ -1314,52 +1331,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span><span class='line'>         <span class="n">target</span> <span class="o">=&gt;</span> <span class="s2">&quot;/vagrant&quot;</span><span class="p">,</span>
 </span><span class='line'>         <span class="n">force</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Installing Apache With Chef]]></title>
-    <link href="http://mutiny.work/blog/2016/07/13/installing-apache-with-chef/"/>
-    <updated>2016-07-13T03:48:11+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/13/installing-apache-with-chef</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;chef_solo&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">chef</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">chef</span><span class="o">.</span><span class="n">add_recipe</span> <span class="s2">&quot;vagrant_la&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Tree of Cookbooks</h4>
-
-<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">cookbooks</span><span class="p">:</span><span class="sr">/</span>
-</span><span class='line'><span class="sr">---/</span><span class="n">vagrant_la</span>
-</span><span class='line'>   <span class="o">---/</span><span class="n">recipes</span>
-</span><span class='line'>      <span class="o">---/</span><span class="n">default</span><span class="o">.</span><span class="n">rb</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">execute</span> <span class="s2">&quot;apt-get update&quot;</span>
-</span><span class='line'><span class="n">package</span> <span class="s2">&quot;apache2&quot;</span>
-</span><span class='line'><span class="n">execute</span> <span class="s2">&quot;rm -rf /var/www&quot;</span>
-</span><span class='line'><span class="n">link</span> <span class="s2">&quot;/var/www&quot;</span> <span class="k">do</span>
-</span><span class='line'>       <span class="n">to</span> <span class="s2">&quot;/vagrant&quot;</span>
-</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
