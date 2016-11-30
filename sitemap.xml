@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://mutiny.work/blog/2016/11/30/orid/</loc>
+<lastmod>2016-11-30T03:55:32+00:00</lastmod>
+</url>
+<url>
 <loc>http://mutiny.work/blog/2016/09/20/cphr/</loc>
 <lastmod>2016-09-20T00:55:22+00:00</lastmod>
 </url>
@@ -187,6 +191,9 @@
 </url>
 <url>
 <loc>http://mutiny.work/blog/categories/note/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/blog/categories/orid/</loc>
 </url>
 <url>
 <loc>http://mutiny.work/posts/2/</loc>

@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-11-30T03:47:12+00:00</updated>
+  <updated>2016-11-30T03:56:36+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ORID]]></title>
+    <link href="http://mutiny.work/blog/2016/11/30/orid/"/>
+    <updated>2016-11-30T03:55:32+00:00</updated>
+    <id>http://mutiny.work/blog/2016/11/30/orid</id>
+    <content type="html"><![CDATA[<h3>ORID 思考框架</h3>
+
+<p>Objective
+关于今天的工作 你记得什么？完成了什么？</p>
+
+<p>Reflective
+你要如何形容今天的情绪？
+今天的高峰是什么？
+今天的低点是什么？</p>
+
+<p>Interpretive
+我们今天学到了什么？
+今天一个重要的领悟是什么？</p>
+
+<p>Decisional
+我们会如何用一句话形容今天的工作？
+有哪些工作需要明天继续努力？</p>
+
+<p>遇到生活中的[bug] 就是做错的事情 记下来</p>
+
+<pre><code>为什么会发生这个的原因
+我做错了什么
+正确又该怎么办
+</code></pre>
+
+<!-- more -->
+
+
+<p>分层理解ORID</p>
+
+<p>O-客观性层次（The Objective Level）<strong>：</strong>这个层次的问题问的是事实和外在的现状。</p>
+
+<p>R-反应性层次（The Reflective Level）：这个层次的问题是问对于之前的事实和现状，你的即时反应和内在回应，比如你的情绪、感觉、脑海中的影像，以及客观事实带来的联想，内在体会等等。</p>
+
+<p>I-诠释性层次（The Interpretive Level）：这个层次的问题是寻找意义、价值、重要性以及含义。</p>
+
+<p>D-决定性层次（The Decisional Level）：这个层次的问题是想找出决议，让对话画下句点，促使对方（团体）对未来下定决心。</p>
+
+<p>一段书摘
+我之前有說過，可以用 ORID 問好問題，也舉一個例子來說明，以下我就用王秀梗老師說的〈鳥〉來當作 ORID 的範例，如果我在上閱讀課時，我會這樣帶：</p>
+
+<p>先問 O 的問題：</p>
+
+<p>同學們，誰可以說一說，從這篇文章中你讀到什麼？
+有哪一些字、詞、句子最吸引你？</p>
+
+<p>再問 R 的問題：</p>
+
+<p>有沒有浮現一些畫面？說一說你看到的那個畫面。
+那個最吸引你的地方，你有什麼感覺？
+想像一下你是文章裡面的某一隻鳥，在面對你周遭的環境時，你有什麼感覺？
+你有沒有聯想到跟你類似或相關的事情？</p>
+
+<p>再深一點，問 I 的問題：</p>
+
+<p>所以你認為梁實秋要傳遞什麼訊息？
+你生命中有沒有跟文章裡所描述的狀況很像的地方？那是什麼狀況？</p>
+
+<p>最後，問 D 的問題：</p>
+
+<p>文章帶給你什麼啟發？
+有沒有什麼是你可以做的？
+文章帶給你什麼啟發？有沒有什麼是你可以做的？
+你想要作什麼樣的改變？</p>
+
+<p><a href="http://www.innofaci.com/2012/05/31/the-essential-skill-and-knowledge-you-need">http://www.innofaci.com/2012/05/31/the-essential-skill-and-knowledge-you-need</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CPHR]]></title>
@@ -1352,61 +1426,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span><span class='line'>ln -fs /vagrant /var/www
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ansible DB Deployment Outline]]></title>
-    <link href="http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline/"/>
-    <updated>2016-07-11T03:46:49+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/11/ansible-db-deployment-outline</id>
-    <content type="html"><![CDATA[<h3>Outline</h3>
-
-<ul>
-<li>Installing and Configuring a MariaDB Server (master)</li>
-<li>The installation will be done with the ansible user</li>
-<li>The installation needs to be done with sudo privileges</li>
-<li>The connection used is ssh</li>
-<li>gathering of facts needs to be on</li>
-</ul>
-
-
-<h3>What do we need to know?</h3>
-
-<ul>
-<li>the package name f the Db server</li>
-<li>the group/host of the master server</li>
-<li>the directory for installing the db(if not default)</li>
-<li>the version of the db</li>
-<li>the distribution it is installed on</li>
-</ul>
-
-
-<h3>What needs to be done/installed</h3>
-
-<ul>
-<li>install the MariaDB server and utilities</li>
-<li>root password install
-
-<ul>
-<li>waitfor the db service to be started
-
-<ul>
-<li>takes place manually after the mysql-secure-installation run</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>install the mysql/mariadb configuration file ( if needed)</li>
-<li>copy the mysql/mariadb database backup to the home directory</li>
-<li>import the database(s)</li>
-<li>add a cron job for nightly backups</li>
-</ul>
-
-
-<h3>Testing the db</h3>
-
-<p>run a MYSQL command and register the output as JSON format to determine success</p>
 ]]></content>
   </entry>
   
