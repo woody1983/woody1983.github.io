@@ -3,7 +3,7 @@ layout: post
 title: "rake gen_deploy rejected in Octopress"
 date: 2016-07-20 23:07:53 +0800
 comments: true
-categories: [Ruby, git] 
+categories: [Ruby, git, Octopress] 
 ---
 
 I cloned my octopress blog Repository based on the github.pages. 
