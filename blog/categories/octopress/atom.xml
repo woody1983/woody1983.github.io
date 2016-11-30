@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-11-30T04:02:02+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[About Preview on Octopress]]></title>
+    <link href="http://mutiny.work/blog/2016/11/30/about-preview-on-octopress/"/>
+    <updated>2016-11-30T03:58:51+00:00</updated>
+    <id>http://mutiny.work/blog/2016/11/30/about-preview-on-octopress</id>
+    <content type="html"><![CDATA[<blockquote><p>If I wanted to preview my OctoPress Blog on the An other client.</p></blockquote>
+
+<p>So I made one very minor change to the Rakefile. I had to change:</p>
+
+<pre><code class="diff">-server_port     = "4000"      # port for preview server eg. localhost:4000
++server_host     = ENV['IP'] ||= '0.0.0.0'     # server bind address for preview server
++server_port     = ENV['PORT'] ||= "4000"      # port for preview server eg. localhost:4000
+
+-  rackupPid = Process.spawn("rackup --port #{server_port}")
++  rackupPid = Process.spawn("rackup --host #{server_host} --port #{server_port}")
+</code></pre>
+
+<p>Take a try</p>
+
+<p>Thank for <a href="http://devopsy.com/blog/2012/10/04/octopress-on-cloud9/">Max Lincoln Blog&rsquo;s post</a></p>
+]]></content>
+  </entry>
+  
+</feed>

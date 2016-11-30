@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://mutiny.work/blog/2016/11/30/about-preview-on-octopress/</loc>
+<lastmod>2016-11-30T03:58:51+00:00</lastmod>
+</url>
+<url>
 <loc>http://mutiny.work/blog/2016/11/30/orid/</loc>
 <lastmod>2016-11-30T03:55:32+00:00</lastmod>
 </url>
@@ -194,6 +198,9 @@
 </url>
 <url>
 <loc>http://mutiny.work/blog/categories/orid/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/blog/categories/octopress/</loc>
 </url>
 <url>
 <loc>http://mutiny.work/posts/2/</loc>

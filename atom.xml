@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-11-30T03:56:36+00:00</updated>
+  <updated>2016-11-30T04:02:02+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[About Preview on Octopress]]></title>
+    <link href="http://mutiny.work/blog/2016/11/30/about-preview-on-octopress/"/>
+    <updated>2016-11-30T03:58:51+00:00</updated>
+    <id>http://mutiny.work/blog/2016/11/30/about-preview-on-octopress</id>
+    <content type="html"><![CDATA[<blockquote><p>If I wanted to preview my OctoPress Blog on the An other client.</p></blockquote>
+
+<p>So I made one very minor change to the Rakefile. I had to change:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gd">-server_port     = &quot;4000&quot;      # port for preview server eg. localhost:4000</span>
+</span><span class='line'><span class="gi">+server_host     = ENV[&#39;IP&#39;] ||= &#39;0.0.0.0&#39;     # server bind address for preview server</span>
+</span><span class='line'><span class="gi">+server_port     = ENV[&#39;PORT&#39;] ||= &quot;4000&quot;      # port for preview server eg. localhost:4000</span>
+</span><span class='line'>
+</span><span class='line'><span class="gd">-  rackupPid = Process.spawn(&quot;rackup --port #{server_port}&quot;)</span>
+</span><span class='line'><span class="gi">+  rackupPid = Process.spawn(&quot;rackup --host #{server_host} --port #{server_port}&quot;)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Take a try</p>
+
+<p>Thank for <a href="http://devopsy.com/blog/2012/10/04/octopress-on-cloud9/">Max Lincoln Blog&rsquo;s post</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ORID]]></title>
@@ -1330,100 +1360,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span><span class='line'><span class="n">link</span> <span class="s2">&quot;/var/www&quot;</span> <span class="k">do</span>
 </span><span class='line'>       <span class="n">to</span> <span class="s2">&quot;/vagrant&quot;</span>
 </span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rush Vagrant on Ubuntu14.04 LTS]]></title>
-    <link href="http://mutiny.work/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts/"/>
-    <updated>2016-07-12T06:33:38+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/12/rush-vagrant-on-ubuntu14-dot-04-lts</id>
-    <content type="html"><![CDATA[<h3>Installing Virtualbox &amp; Vagrant</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc
-</span><span class='line'><span class="nv">$ </span>sudo apt-key add oracle_vbox.asc
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install virtualbox
-</span><span class='line'><span class="nv">$ </span>sudo apt-get install vagrant
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Install the dkms package to ensure that the VirtualBox host kernel modules</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install virtualbox-dkms
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Get First Vagrant Machine</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>vagrant box add precise32 http://files.vagrantup.com/precise32.box
-</span><span class='line'><span class="nv">$ </span>vagrant box add precise64 http://files.vagrantup.com/precise64.box
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Configure Project</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>mkdir vagrant_project
-</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>vagrant_project
-</span><span class='line'><span class="nv">$ </span>vagrant init
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And Edit the <code>Vagrantfile</code> file</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>config.vm.box <span class="o">=</span> <span class="s2">&quot;precise64&quot;</span>
-</span><span class='line'><span class="c">#Synced Folder</span>
-</span><span class='line'>config.vm.synced_folder <span class="s2">&quot;src/&quot;</span>, <span class="s2">&quot;/vagrant_data&quot;</span>
-</span><span class='line'><span class="c">#Forward Port</span>
-</span><span class='line'>config.vm.network <span class="s2">&quot;forwarded_port&quot;</span>, guest: 80, host: 8080
-</span><span class='line'><span class="c">#Provision</span>
-</span><span class='line'>config.vm.provision <span class="s2">&quot;shell&quot;</span>, path: <span class="s2">&quot;provision.sh&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Start Environment</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>~/vagrant_project_64<span class="nv">$ </span>vagrant up
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Shell Script</p>
-
-<figure class='code'><figcaption><span>provision.sh</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env bash</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;Installing Apache and setting apache up... please wait&quot;</span>
-</span><span class='line'>apt-get update &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
-</span><span class='line'>apt-get install -y apache2 &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
-</span><span class='line'>
-</span><span class='line'>rm -rf /var/www
-</span><span class='line'>ln -fs /vagrant /var/www
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
