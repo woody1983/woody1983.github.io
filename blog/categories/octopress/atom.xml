@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-12-01T08:40:49+00:00</updated>
+  <updated>2016-12-01T08:43:25+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -24,33 +24,22 @@
 
 <p>这个功能很有意思 应该是这个theme作者留的一个彩蛋</p>
 
-<p>``` html source/_includes/custom/head.html</p>
+<pre><code class="erb source/_includes/custom/head.html ">
+  &lt;link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"&gt;
+  &lt;link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"&gt;
 
-<!-- ... -->
-
-
-<p>
-  <link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-</p>
-
-<!-- ... -->
-
-
-<pre><code>
-#### Example 
 </code></pre>
 
-<hr />
+<h4>Example</h4>
 
-<p>layout: post
-bootstrap_theme_url: <a href="http://bootswatch.com/flatly/bootstrap.min.css">http://bootswatch.com/flatly/bootstrap.min.css</a>
-title: &ldquo;pick a theme for only one page&rdquo;
-comments: true</p>
-
-<h2>categories: octopress</h2>
-
-<p>```</p>
+<pre><code class="ruby example front ">---
+layout: post
+bootstrap_theme_url: http://bootswatch.com/flatly/bootstrap.min.css
+title: "pick a theme for only one page"
+comments: true
+categories: octopress
+---
+</code></pre>
 
 <!-- more -->
 
