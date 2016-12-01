@@ -138,6 +138,69 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-14T01:37:44+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/14/the-vagrants-networking/" itemprop="url">The Vagrant's Networking</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>You can Setup Private network or Public network on vagrant.</p>
+
+<h3>Private networking</h3>
+
+<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span><span class="s2">&quot;dhcp&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Public networking</h3>
+
+<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#STATIC IP</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;public_network&quot;</span><span class="p">,</span><span class="ss">ip</span><span class="p">:</span> <span class="s2">&quot;192.168.1.1&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#Default Interface</span>
+</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;public_network&quot;</span><span class="p">,</span><span class="ss">bridge</span><span class="p">:</span> <span class="s1">&#39;eb1: Wi-Fi(AirPort)&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-13T08:52:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -922,52 +985,11 @@
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-04T04:11:12+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/04/title/" itemprop="url">My Emacs24 Config</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"></div>
-  
-  
-    <footer>
-      <a class="read-more btn btn-default btn-small" href="/blog/2016/07/04/title/">Read on &rarr;</a>
-      <!--  mmmmmm -->
-    </footer>
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
       
-        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+        <li class="previous"><a href="/posts/4">&larr;&nbsp;Older</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
       
@@ -986,6 +1008,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/12/01/docker-notes/">Dockerの仕事の記録</a>
+    
     <a class="list-group-item " href="/blog/2016/12/01/explain-ruby-installation/">Explain Ruby Installation</a>
     
     <a class="list-group-item " href="/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language/">Jekyll 2.5.3 Error: Pygments Can't Parse Unknown Language</a>
@@ -993,8 +1017,6 @@
     <a class="list-group-item " href="/blog/2016/11/30/about-preview-on-octopress/">About Preview on Octopress</a>
     
     <a class="list-group-item " href="/blog/2016/11/30/orid/">ORID</a>
-    
-    <a class="list-group-item " href="/blog/2016/09/20/cphr/">CPHR</a>
     
   </div>
 </section>
@@ -1102,7 +1124,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/ruby/index.html">
-        <span class="badge">2</span>
+        <span class="badge">3</span>
         ruby
       </a>
     
@@ -1114,7 +1136,7 @@
     
     
     <a class="list-group-item " href="/blog/categories/octopress/index.html">
-        <span class="badge">3</span>
+        <span class="badge">4</span>
         octopress
       </a>
     

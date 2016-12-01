@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-12-01T08:27:40+00:00</updated>
+  <updated>2016-12-01T08:40:49+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,174 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dockerの仕事の記録]]></title>
+    <link href="http://mutiny.work/blog/2016/12/01/docker-notes/"/>
+    <updated>2016-12-01T08:34:51+00:00</updated>
+    <id>http://mutiny.work/blog/2016/12/01/docker-notes</id>
+    <content type="html"><![CDATA[<blockquote><p>今天遇到了一些比较古怪的事情，要记录下来免得以后再浪费我时间.</p></blockquote>
+
+<h2>Pick a Theme for Only One Page</h2>
+
+<p>这个功能很有意思 应该是这个theme作者留的一个彩蛋</p>
+
+<figure class='code'><figcaption><span>source/_includes/custom/head.html </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- ... --&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;http://bootswatch.com/flatly/bootstrap.min.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c">&lt;!-- ... --&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Example</h4>
+
+<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">---</span>
+</span><span class='line'><span class="ss">layout</span><span class="p">:</span> <span class="n">post</span>
+</span><span class='line'><span class="ss">bootstrap_theme_url</span><span class="p">:</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">bootswatch</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">flatly</span><span class="o">/</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">min</span><span class="o">.</span><span class="n">css</span>
+</span><span class='line'><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;pick a theme for only one page&quot;</span>
+</span><span class='line'><span class="ss">comments</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'><span class="ss">categories</span><span class="p">:</span> <span class="n">octopress</span>
+</span><span class='line'><span class="o">---</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<!-- more -->
+
+
+<h2>Docker container 关闭后再进入丢失path的问题</h2>
+
+<p>我今天重启了一下Docker的主机 然后重新login到container的时候报错</p>
+
+<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># rvm list</span>
+</span><span class='line'><span class="ss">bash</span><span class="p">:</span> <span class="ss">rvm</span><span class="p">:</span> <span class="n">command</span> <span class="ow">not</span> <span class="n">found</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Exo me? 逗我呢&hellip; <code>stackoverflow</code>查了一圈都没看到 估计是问题太easy了 然后回顾了一下<code>rvm</code>安装过程 可能是丢失了一个步骤 最后得知</p>
+
+<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># source /etc/profile.d/rvm.sh</span>
+</span><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># rvm list</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rvm</span> <span class="n">rubies</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">ruby</span><span class="o">-</span><span class="mi">1</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="mi">3</span><span class="o">-</span><span class="n">p551</span> <span class="o">[</span> <span class="n">x86_64</span> <span class="o">]</span>
+</span><span class='line'><span class="o">=*</span> <span class="n">ruby</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">2</span> <span class="o">[</span> <span class="n">x86_64</span> <span class="o">]</span>
+</span><span class='line'>   <span class="n">ruby</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span> <span class="o">[</span> <span class="n">x86_64</span> <span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># =&gt; - current</span>
+</span><span class='line'><span class="c1"># =* - current &amp;&amp; default</span>
+</span><span class='line'><span class="c1">#  * - default</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Docker 编码|乱码问题</h2>
+
+<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># locale</span>
+</span><span class='line'><span class="no">LANG</span><span class="o">=</span>
+</span><span class='line'><span class="no">LANGUAGE</span><span class="o">=</span>
+</span><span class='line'><span class="no">LC_CTYPE</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_NUMERIC</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_TIME</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_COLLATE</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_MONETARY</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_MESSAGES</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_PAPER</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_NAME</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_ADDRESS</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_TELEPHONE</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_MEASUREMENT</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_IDENTIFICATION</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
+</span><span class='line'><span class="no">LC_ALL</span><span class="o">=</span>
+</span><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># export LANG=&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># locale</span>
+</span><span class='line'><span class="no">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+</span><span class='line'><span class="no">LANGUAGE</span><span class="o">=</span>
+</span><span class='line'><span class="no">LC_CTYPE</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_NUMERIC</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_TIME</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_COLLATE</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_MONETARY</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_MESSAGES</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_PAPER</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_NAME</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_ADDRESS</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_TELEPHONE</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_MEASUREMENT</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_IDENTIFICATION</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
+</span><span class='line'><span class="no">LC_ALL</span><span class="o">=</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>懒得描述了~</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Explain Ruby Installation]]></title>
@@ -1361,41 +1529,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 
 
 <p><strong>KeyWords</strong> <code>ng-repeat</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Vagrant's Networking]]></title>
-    <link href="http://mutiny.work/blog/2016/07/14/the-vagrants-networking/"/>
-    <updated>2016-07-14T01:37:44+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/14/the-vagrants-networking</id>
-    <content type="html"><![CDATA[<p>You can Setup Private network or Public network on vagrant.</p>
-
-<h3>Private networking</h3>
-
-<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span><span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Public networking</h3>
-
-<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#STATIC IP</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;public_network&quot;</span><span class="p">,</span><span class="ss">ip</span><span class="p">:</span> <span class="s2">&quot;192.168.1.1&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#Default Interface</span>
-</span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;public_network&quot;</span><span class="p">,</span><span class="ss">bridge</span><span class="p">:</span> <span class="s1">&#39;eb1: Wi-Fi(AirPort)&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
