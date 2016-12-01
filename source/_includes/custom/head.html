@@ -1,4 +1,9 @@
 <script src="{{ root_url }}/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
 
+<!-- Add this for // Pick a Theme for Only One Page -->
+{% if page.bootstrap_theme_url %}
+      <link href="{{ page.bootstrap_theme_url }}" rel="stylesheet" type="text/css">
+{% else %}
 <link href="{{ root_url }}/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="{{ root_url }}/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+{% endif %}
