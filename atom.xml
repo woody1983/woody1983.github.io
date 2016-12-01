@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-12-01T00:26:08+00:00</updated>
+  <updated>2016-12-01T02:33:22+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,13 +18,15 @@
     <link href="http://mutiny.work/blog/2016/12/01/explain-ruby-installation/"/>
     <updated>2016-12-01T00:20:15+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/01/explain-ruby-installation</id>
-    <content type="html"><![CDATA[<p>在irb启动的时候加载一个rrbconfig的Ruby库 而RbConfig则是一个API接口，可以得到很多关于Ruby安装的内部变异的配置信息。</p>
+    <content type="html"><![CDATA[<div class="alert alert-info">
+    <p>
+      <span class="glyphicon glyphicon-info-sign"></span>
+在irb启动的时候加载一个rrbconfig的Ruby库 而RbConfig则是一个API接口，可以得到很多关于Ruby安装的内部变异的配置信息。
+    </p>
+</div>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>RbConfig::CONFIG 是一个Hash类型的常量</span></code></pre></td></tr></table></div></figure>
 
-
-
+<p><code>RbConfig::CONFIG</code> 是一个Hash类型的常量</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
