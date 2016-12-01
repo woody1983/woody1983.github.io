@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-12-01T08:43:25+00:00</updated>
+  <updated>2016-12-01T08:50:19+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -24,11 +24,21 @@
 
 <p>这个功能很有意思 应该是这个theme作者留的一个彩蛋</p>
 
-<pre><code class="erb source/_includes/custom/head.html ">
-  &lt;link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"&gt;
-  &lt;link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"&gt;
+<p><code>source/_includes/custom/head.html</code> 修改这个文件</p>
 
-</code></pre>
+<p><div><script src='https://gist.github.com/152806322884b65ded244daff2faba5c.js'></script>
+<noscript><pre><code>&lt;!-- ... --&gt;
+
+{% if page.bootstrap_theme_url %}
+  &lt;link href=&quot;{{ page.bootstrap_theme_url }}&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+{% else %}
+  &lt;link href=&quot;{{ root_url }}/assets/bootstrap/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+  &lt;link href=&quot;{{ root_url }}/assets/bootstrap/dist/css/bootstrap-theme.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+{% endif %}
+
+&lt;!-- ... --&gt;
+</code></pre></noscript></div>
+</p>
 
 <h4>Example</h4>
 

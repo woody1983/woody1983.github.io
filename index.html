@@ -154,16 +154,20 @@
 
 <p>这个功能很有意思 应该是这个theme作者留的一个彩蛋</p>
 
-<figure class='code'><figcaption><span>source/_includes/custom/head.html </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x"></span>
-</span><span class='line'><span class="x">  &lt;link href=&quot;http://bootswatch.com/flatly/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</span>
-</span><span class='line'><span class="x"></span>
-</span></code></pre></td></tr></table></div></figure>
+<p><code>source/_includes/custom/head.html</code> 修改这个文件</p>
+
+<div><script src='https://gist.github.com/152806322884b65ded244daff2faba5c.js'></script>
+<noscript><pre><code>&lt;!-- ... --&gt;
+
+{% if page.bootstrap_theme_url %}
+  &lt;link href=&quot;{{ page.bootstrap_theme_url }}&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+{% else %}
+  &lt;link href=&quot;{{ root_url }}/assets/bootstrap/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+  &lt;link href=&quot;{{ root_url }}/assets/bootstrap/dist/css/bootstrap-theme.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+{% endif %}
+
+&lt;!-- ... --&gt;
+</code></pre></noscript></div>
 
 
 <h4>Example</h4>
