@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-11-30T04:23:50+00:00</updated>
+  <updated>2016-12-01T00:26:08+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,170 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Explain Ruby Installation]]></title>
+    <link href="http://mutiny.work/blog/2016/12/01/explain-ruby-installation/"/>
+    <updated>2016-12-01T00:20:15+00:00</updated>
+    <id>http://mutiny.work/blog/2016/12/01/explain-ruby-installation</id>
+    <content type="html"><![CDATA[<p>在irb启动的时候加载一个rrbconfig的Ruby库 而RbConfig则是一个API接口，可以得到很多关于Ruby安装的内部变异的配置信息。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>RbConfig::CONFIG 是一个Hash类型的常量</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@mutiny:~# rvm 2.1.0
+</span><span class='line'>root@mutiny:~# ruby --version
+</span><span class='line'>ruby 2.1.0p0 (2013-12-25 revision 44422) [x86_64-linux]
+</span><span class='line'>root@mutiny:~# irb --simple-prompt -rrbconfig
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["bindir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/bin"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["rubylibdir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["archdir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/x86_64-linux"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitedir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["vendordir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitelibdir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitearchdir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0/x86_64-linux"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby标准库子目录rubylibdir 里面都是用ruby编写的小工具的源代码 没事可以上去看看
+C语言扩展目录 RbConfig::CONFIG[“archdir“]
+site_ruby是用来存储用户和管理员安装的第三方扩展库文件 该目录中也有用户自己写的程序文件以及下载的工具包
+gems目录 如果找到了site_ruby其实也找到了gems的安装目录</p>
+
+<h4>检查加载目录的方法</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@mutiny:~# ruby -e "puts $:"
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0/x86_64-linux
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby/2.1.0
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby/2.1.0/x86_64-linux
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/x86_64-linux</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>再谈Load和require
+严格来说require是请求一个功能 load更像是请求加载一个文件 从两者的使用风格上就可以看出来</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;loadee.rb&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;./loadee.rb&quot;</span>
+</span><span class='line'><span class="n">require_relative</span> <span class="s2">&quot;loadee&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>第三种方式 是搜索相对于所在文件的目录来加载功能。</p>
+
+<h3>常用Ruby工具</h3>
+
+<ul>
+<li>ruby 解释器</li>
+<li>irb Ruby交互式解释器</li>
+<li>rdoc/ri Ruby文档工具</li>
+<li>rake Ruby的make工具 一套任务管理实用工具</li>
+<li>gem 一套Ruby库和应用程序包管理实用工具</li>
+<li>erb 一套模板系统</li>
+<li>testrb 一个用于测试框架的高级工具</li>
+</ul>
+
+
+<h3>解释器的命令行开关</h3>
+
+<ul>
+<li>ruby -c 不执行 但检查语法</li>
+<li>ruby -w 运行中给出警告信息</li>
+<li>ruby -e “puts “Code” 执行引号内的代码</li>
+<li>ruby -v 显示版本信息并执行详细模式</li>
+</ul>
+
+
+<h3>rake工具</h3>
+
+<p><code>一个例子</code> Rakefile.rb rake必须使用Ruby语法定义的任务</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:admin</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">desc</span> <span class="s2">&quot;Interactively delete all files in /tmp&quot;</span>
+</span><span class='line'>    <span class="n">task</span> <span class="ss">:clean_tmp</span> <span class="k">do</span>
+</span><span class='line'>        <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;/tmp/*&quot;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+</span><span class='line'>            <span class="k">next</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">file?</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span class='line'>            <span class="nb">print</span> <span class="s2">&quot;Delete </span><span class="si">#{</span><span class="n">f</span><span class="si">}</span><span class="s2">? &quot;</span>
+</span><span class='line'>            <span class="n">answer</span> <span class="o">=</span> <span class="vg">$stdin</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'>            <span class="k">case</span> <span class="n">answer</span>
+</span><span class='line'>            <span class="k">when</span> <span class="sr">/^y/</span>
+</span><span class='line'>                <span class="no">File</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">when</span> <span class="sr">/^q/</span>
+</span><span class='line'>                <span class="k">break</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>                            
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>还可以通过rake –tasks来查看已经定义过的任务列表，其实没有namespace也是可以的。
+但是如果你任务比较多的话，可以用命名空间的方法来区分不同类型的tasks</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jekyll 2.5.3 Error: Pygments Can't Parse Unknown Language]]></title>
@@ -1228,109 +1392,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 </span><span class='line'>
 </span><span class='line'><span class="c1">#Default Interface</span>
 </span><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;public_network&quot;</span><span class="p">,</span><span class="ss">bridge</span><span class="p">:</span> <span class="s1">&#39;eb1: Wi-Fi(AirPort)&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Installing Apache2 &amp; MySQL With Puppet in Vagrant]]></title>
-    <link href="http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/"/>
-    <updated>2016-07-13T08:52:01+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>  <span class="c1"># The most common configuration options are documented and commented below.</span>
-</span><span class='line'>  <span class="c1"># For a complete reference, please see the online documentation at</span>
-</span><span class='line'>  <span class="c1"># https://docs.vagrantup.com.</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Every Vagrant development environment requires a box. You can search for</span>
-</span><span class='line'>  <span class="c1"># boxes at https://atlas.hashicorp.com/search.</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;precise32&quot;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">&quot;http://files.vagrantup.com/precise32.box&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Setup for Web Server</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;web&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">web</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;web&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;apache&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;forwarded_port&quot;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">8080</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;puppet&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">puppet</span><span class="o">|</span>
-</span><span class='line'>      <span class="n">puppet</span><span class="o">.</span><span class="n">manifests_path</span> <span class="o">=</span> <span class="s2">&quot;manifests&quot;</span>
-</span><span class='line'>      <span class="n">puppet</span><span class="o">.</span><span class="n">manifest_file</span> <span class="o">=</span> <span class="s2">&quot;default.pp&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Setup for MySQL DB Server</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;db&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">db</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;db&quot;</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;mysql&quot;</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>manifests/default.pp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">exec</span> <span class="p">{</span> <span class="s2">&quot;apt-get update&quot;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">command</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/apt-get update&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">package</span> <span class="p">{</span> <span class="s2">&quot;apache2&quot;</span><span class="p">:</span>
-</span><span class='line'>        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Exec</span><span class="o">[</span><span class="s2">&quot;apt-get update&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">file</span> <span class="p">{</span> <span class="s2">&quot;/var/www&quot;</span><span class="p">:</span>
-</span><span class='line'>         <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">link</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">target</span> <span class="o">=&gt;</span> <span class="s2">&quot;/vagrant&quot;</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">force</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>

@@ -135,6 +135,141 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-21T12:16:27+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/21/manage-my-bill-with-org-mode/" itemprop="url">Manage My Bill With Org Mode</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="http://orgmode.org/img/org-mode-unicorn-logo.png" alt="orgmode" /></p>
+
+<p>Yeah, The <a href="http://orgmode.org">Org-mode</a> is really awesome!
+In this case, I want use the org-mode to manage my two credit card&rsquo;s information, So</p>
+
+<h4>First, I made the basic bill table</h4>
+
+<p>In Normal days, I choose using credit card or cash as my payment method, I also using Wechat-Pay and Ali-Pay, But in fact these are bound by the credit card.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">2016bill</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>       <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-12</span> <span class="nv">Sun&gt;</span> <span class="nv">| Lunch          |</span>  <span class="mf">43.97</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-15 Wed&gt; |</span> <span class="nv">Lunch</span>          <span class="nv">|  56.48 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-13</span> <span class="nv">Mon&gt;</span> <span class="nv">| Book           |</span>  <span class="mf">17.99</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-18 Sat&gt; |</span> <span class="nv">Flico</span> <span class="nv">Keyboard</span> <span class="nv">| 289.18 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-19</span> <span class="nv">Sun&gt;</span> <span class="nv">| By Coffce      |</span>  <span class="mf">99.96</span> <span class="nv">| Cash        |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-20 Mon&gt; |</span> <span class="nv">Supplies</span>       <span class="nv">|  58.26 |</span> <span class="nv">Cash</span>        <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-21</span> <span class="nv">Tue&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">18.99</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-22 Wed&gt; |</span> <span class="nv">Cookie</span>         <span class="nv">|   7.50 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">CMB</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-25</span> <span class="nv">Sat&gt;</span> <span class="nv">| Books          |</span>  <span class="mf">21.49</span> <span class="nv">| Credit(CMB) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">VPS</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+----------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span>                  <span class="nv">| Total:         |</span> <span class="mf">623.80</span> <span class="nv">|             |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$3=vsum</span><span class="p">(</span><span class="nv">@2..@-1</span><span class="p">)</span><span class="c1">;%.2f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>The <code>2016bill</code> table</h4>
+
+<p>It just records the June 2016 payment info. And I make a other table <code>my-bull_bcm</code> to record The BCM Credit Card payment details.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="o">#+</span><span class="nv">NAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">BEGIN_SRC</span> <span class="nv">elisp</span> <span class="ss">:var</span> <span class="nv">tbl=2016bill</span> <span class="nv">val=</span><span class="s">&quot;Credit(BCM)&quot;</span> <span class="nv">val2=</span><span class="s">&quot;&lt;2016-06-15 Wed&gt;&quot;</span> <span class="ss">:colnames</span> <span class="nv">y</span>
+</span><span class='line'>    <span class="p">(</span><span class="nv">cl-loop</span> <span class="nv">for</span> <span class="nv">row</span> <span class="nv">in</span> <span class="nv">tbl</span>
+</span><span class='line'>          <span class="nb">when</span> <span class="p">(</span><span class="nb">equal</span> <span class="p">(</span><span class="nb">nth</span> <span class="mi">3</span> <span class="nv">row</span><span class="p">)</span> <span class="nv">val</span><span class="p">)</span>
+</span><span class='line'>          <span class="nv">collect</span> <span class="nv">row</span> <span class="nv">into</span> <span class="nv">newtbl</span>
+</span><span class='line'>          <span class="nv">finally</span> <span class="nb">return</span> <span class="nv">newtbl</span><span class="p">)</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">END_SRC</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLNAME:</span> <span class="nv">my-bill_bcm</span>
+</span><span class='line'><span class="nv">| Date             |</span> <span class="nv">Category</span>         <span class="nv">| Amount |</span> <span class="nv">Payment</span>     <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+------------------+--------+-------------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-15</span> <span class="nv">Wed&gt;</span> <span class="nv">| Supplies         |</span>  <span class="mf">56.48</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-13 Mon&gt; |</span> <span class="nv">Book</span>             <span class="nv">|  17.99 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">&lt;2016-06-18</span> <span class="nv">Sat&gt;</span> <span class="nv">| Kinesis Keyboard |</span> <span class="mf">289.18</span> <span class="nv">| Credit(BCM) |</span>
+</span><span class='line'><span class="nv">| &lt;2016-06-28 Tue&gt; |</span> <span class="nv">Toner</span> <span class="nv">Service</span>    <span class="nv">|     10 |</span> <span class="nv">Credit</span><span class="p">(</span><span class="nv">BCM</span><span class="p">)</span> <span class="err">|</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When I got the BCM Credit Card Payment information for the entire June. I need to know How much more money I will give to the Bank next month.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='lisp'><span class='line'><span class="nv">| Year/Month       |</span> <span class="nv">amount</span> <span class="nv">|</span>
+</span><span class='line'><span class="nv">|------------------+--------|</span>
+</span><span class='line'><span class="nv">|</span> <span class="nv">[2016-June]</span>      <span class="nv">| 373.65 |</span>
+</span><span class='line'><span class="o">#+</span><span class="nv">TBLFM:</span> <span class="nv">@&gt;$2=vsum</span><span class="p">(</span><span class="nv">remote</span><span class="p">(</span><span class="nv">my-bill,</span> <span class="nv">@2$3..@&gt;$3</span><span class="p">))</span><span class="c1">;%.2f</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But It&rsquo;s not enough, Emacs and Org-mode is Powerfull. I need to learn more skills about Emacs.</p>
+
+<h4>Thanks SACHA, Thanks for your shared information and knowledge.</h4>
+
+<p><a href="http://sachachua.com/blog/">Sacha Blog</a> Living an Awesome Life.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-20T15:07:53+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -1057,137 +1192,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-13T08:52:01+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/13/installing-apache2-and-mysql-with-puppet-in-vagrant/" itemprop="url">Installing Apache2 &amp; MySQL With Puppet in Vagrant</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><figure class='code'><figcaption><span>Vagrantfile</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Vagrant</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>  <span class="c1"># The most common configuration options are documented and commented below.</span>
-</span><span class='line'>  <span class="c1"># For a complete reference, please see the online documentation at</span>
-</span><span class='line'>  <span class="c1"># https://docs.vagrantup.com.</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Every Vagrant development environment requires a box. You can search for</span>
-</span><span class='line'>  <span class="c1"># boxes at https://atlas.hashicorp.com/search.</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;precise32&quot;</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box_url</span> <span class="o">=</span> <span class="s2">&quot;http://files.vagrantup.com/precise32.box&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Setup for Web Server</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;web&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">web</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;web&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;apache&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;forwarded_port&quot;</span><span class="p">,</span> <span class="ss">guest</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span> <span class="ss">host</span><span class="p">:</span> <span class="mi">8080</span>
-</span><span class='line'>    <span class="n">web</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;puppet&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">puppet</span><span class="o">|</span>
-</span><span class='line'>      <span class="n">puppet</span><span class="o">.</span><span class="n">manifests_path</span> <span class="o">=</span> <span class="s2">&quot;manifests&quot;</span>
-</span><span class='line'>      <span class="n">puppet</span><span class="o">.</span><span class="n">manifest_file</span> <span class="o">=</span> <span class="s2">&quot;default.pp&quot;</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># Setup for MySQL DB Server</span>
-</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="s2">&quot;db&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">db</span><span class="o">|</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">hostname</span> <span class="o">=</span> <span class="s2">&quot;db&quot;</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;mysql&quot;</span>
-</span><span class='line'>    <span class="n">db</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">network</span> <span class="s2">&quot;private_network&quot;</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="s2">&quot;dhcp&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>manifests/default.pp</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">exec</span> <span class="p">{</span> <span class="s2">&quot;apt-get update&quot;</span><span class="p">:</span>
-</span><span class='line'>        <span class="n">command</span> <span class="o">=&gt;</span> <span class="s2">&quot;/usr/bin/apt-get update&quot;</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">package</span> <span class="p">{</span> <span class="s2">&quot;apache2&quot;</span><span class="p">:</span>
-</span><span class='line'>        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Exec</span><span class="o">[</span><span class="s2">&quot;apt-get update&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">file</span> <span class="p">{</span> <span class="s2">&quot;/var/www&quot;</span><span class="p">:</span>
-</span><span class='line'>         <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">link</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">target</span> <span class="o">=&gt;</span> <span class="s2">&quot;/vagrant&quot;</span><span class="p">,</span>
-</span><span class='line'>         <span class="n">force</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1211,6 +1215,8 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/12/01/explain-ruby-installation/">Explain Ruby Installation</a>
+    
     <a class="list-group-item " href="/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language/">Jekyll 2.5.3 Error: Pygments Can't Parse Unknown Language</a>
     
     <a class="list-group-item " href="/blog/2016/11/30/about-preview-on-octopress/">About Preview on Octopress</a>
@@ -1218,8 +1224,6 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     <a class="list-group-item " href="/blog/2016/11/30/orid/">ORID</a>
     
     <a class="list-group-item " href="/blog/2016/09/20/cphr/">CPHR</a>
-    
-    <a class="list-group-item " href="/blog/2016/08/02/sicp-1-dot-2-procedures-and-the-processes-they-generate/">SICP 1.2 Procedures and the Processes They Generate</a>
     
   </div>
 </section>
@@ -1327,7 +1331,7 @@ Assign it to the <code>product</code> property of <code>"StoreController</code><
     
     
     <a class="list-group-item " href="/blog/categories/ruby/index.html">
-        <span class="badge">1</span>
+        <span class="badge">2</span>
         ruby
       </a>
     

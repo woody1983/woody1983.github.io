@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-11-30T04:23:50+00:00</updated>
+  <updated>2016-12-01T00:26:08+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,117 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Explain Ruby Installation]]></title>
+    <link href="http://mutiny.work/blog/2016/12/01/explain-ruby-installation/"/>
+    <updated>2016-12-01T00:20:15+00:00</updated>
+    <id>http://mutiny.work/blog/2016/12/01/explain-ruby-installation</id>
+    <content type="html"><![CDATA[<p>在irb启动的时候加载一个rrbconfig的Ruby库 而RbConfig则是一个API接口，可以得到很多关于Ruby安装的内部变异的配置信息。</p>
+
+<pre><code>RbConfig::CONFIG 是一个Hash类型的常量
+</code></pre>
+
+<pre><code>root@mutiny:~# rvm 2.1.0
+root@mutiny:~# ruby --version
+ruby 2.1.0p0 (2013-12-25 revision 44422) [x86_64-linux]
+root@mutiny:~# irb --simple-prompt -rrbconfig
+&gt;&gt; RbConfig::CONFIG["bindir"]
+=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/bin"
+&gt;&gt; RbConfig::CONFIG["rubylibdir"]
+=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0"
+&gt;&gt; RbConfig::CONFIG["archdir"]
+=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/x86_64-linux"
+&gt;&gt; RbConfig::CONFIG["sitedir"]
+=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby"
+&gt;&gt; RbConfig::CONFIG["vendordir"]
+=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby"
+&gt;&gt; RbConfig::CONFIG["sitelibdir"]
+=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0"
+&gt;&gt; RbConfig::CONFIG["sitearchdir"]
+=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0/x86_64-linux"
+</code></pre>
+
+<p>Ruby标准库子目录rubylibdir 里面都是用ruby编写的小工具的源代码 没事可以上去看看
+C语言扩展目录 RbConfig::CONFIG[“archdir“]
+site_ruby是用来存储用户和管理员安装的第三方扩展库文件 该目录中也有用户自己写的程序文件以及下载的工具包
+gems目录 如果找到了site_ruby其实也找到了gems的安装目录</p>
+
+<h4>检查加载目录的方法</h4>
+
+<pre><code>root@mutiny:~# ruby -e "puts $:"
+/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0
+/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0/x86_64-linux
+/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby
+/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby/2.1.0
+/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby/2.1.0/x86_64-linux
+/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby
+/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0
+/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/x86_64-linux
+</code></pre>
+
+<!-- more -->
+
+
+<p>再谈Load和require
+严格来说require是请求一个功能 load更像是请求加载一个文件 从两者的使用风格上就可以看出来</p>
+
+<pre><code class="ruby">load "loadee.rb"
+require "./loadee.rb"
+require_relative "loadee"
+</code></pre>
+
+<p>第三种方式 是搜索相对于所在文件的目录来加载功能。</p>
+
+<h3>常用Ruby工具</h3>
+
+<ul>
+<li>ruby 解释器</li>
+<li>irb Ruby交互式解释器</li>
+<li>rdoc/ri Ruby文档工具</li>
+<li>rake Ruby的make工具 一套任务管理实用工具</li>
+<li>gem 一套Ruby库和应用程序包管理实用工具</li>
+<li>erb 一套模板系统</li>
+<li>testrb 一个用于测试框架的高级工具</li>
+</ul>
+
+
+<h3>解释器的命令行开关</h3>
+
+<ul>
+<li>ruby -c 不执行 但检查语法</li>
+<li>ruby -w 运行中给出警告信息</li>
+<li>ruby -e “puts “Code” 执行引号内的代码</li>
+<li>ruby -v 显示版本信息并执行详细模式</li>
+</ul>
+
+
+<h3>rake工具</h3>
+
+<p><code>一个例子</code> Rakefile.rb rake必须使用Ruby语法定义的任务</p>
+
+<pre><code class="ruby">namespace :admin do
+    desc "Interactively delete all files in /tmp"
+    task :clean_tmp do
+        Dir["/tmp/*"].each do |f|
+            next unless File.file?(f)
+            print "Delete #{f}? "
+            answer = $stdin.gets
+            case answer
+            when /^y/
+                File.unlink(f)
+            when /^q/
+                break
+            end
+        end
+    end                         
+end
+</code></pre>
+
+<p>还可以通过rake –tasks来查看已经定义过的任务列表，其实没有namespace也是可以的。
+但是如果你任务比较多的话，可以用命名空间的方法来区分不同类型的tasks</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rake Gen_deploy Rejected in Octopress]]></title>

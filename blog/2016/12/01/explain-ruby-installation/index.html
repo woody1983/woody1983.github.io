@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Running the MIT-Scheme in Emacs - Mutiny Theory</title>
+  <title>Explain Ruby Installation - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/">
+  <link rel="canonical" href="http://mutiny.work/blog/2016/12/01/explain-ruby-installation/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/">
-  <meta property="og:title" content="Running the MIT-Scheme in Emacs - Mutiny Theory">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/12/01/explain-ruby-installation/">
+  <meta property="og:title" content="Explain Ruby Installation - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -131,41 +131,137 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-25T07:07:18+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-01T00:20:15+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Running the MIT-Scheme in Emacs
+        Explain Ruby Installation
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>Based on the Ubuntu14 OS platform. I choose the x64-version mit-scheme source code.</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>在irb启动的时候加载一个rrbconfig的Ruby库 而RbConfig则是一个API接口，可以得到很多关于Ruby安装的内部变异的配置信息。</p>
 
-<p><a href="http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.tar.gz">GNU&rsquo;S mit-scheme</a></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>RbConfig::CONFIG 是一个Hash类型的常量</span></code></pre></td></tr></table></div></figure>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar xvf mit-scheme-9.2-x86-64.tar.gz
-</span><span class='line'><span class="nb">cd </span>mit-scheme-9.2/src/
-</span><span class='line'>apt-get install m4
-</span><span class='line'>./configure
-</span><span class='line'><span class="c">#Build the software:</span>
-</span><span class='line'>make compile-microcode
-</span><span class='line'>make install
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@mutiny:~# rvm 2.1.0
+</span><span class='line'>root@mutiny:~# ruby --version
+</span><span class='line'>ruby 2.1.0p0 (2013-12-25 revision 44422) [x86_64-linux]
+</span><span class='line'>root@mutiny:~# irb --simple-prompt -rrbconfig
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["bindir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/bin"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["rubylibdir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["archdir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/x86_64-linux"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitedir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["vendordir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitelibdir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0"
+</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitearchdir"]
+</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0/x86_64-linux"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ruby标准库子目录rubylibdir 里面都是用ruby编写的小工具的源代码 没事可以上去看看
+C语言扩展目录 RbConfig::CONFIG[“archdir“]
+site_ruby是用来存储用户和管理员安装的第三方扩展库文件 该目录中也有用户自己写的程序文件以及下载的工具包
+gems目录 如果找到了site_ruby其实也找到了gems的安装目录</p>
+
+<h4>检查加载目录的方法</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@mutiny:~# ruby -e "puts $:"
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0/x86_64-linux
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby/2.1.0
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby/2.1.0/x86_64-linux
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0
+</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/x86_64-linux</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>再谈Load和require
+严格来说require是请求一个功能 load更像是请求加载一个文件 从两者的使用风格上就可以看出来</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">load</span> <span class="s2">&quot;loadee.rb&quot;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s2">&quot;./loadee.rb&quot;</span>
+</span><span class='line'><span class="n">require_relative</span> <span class="s2">&quot;loadee&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>I changed the .emacs config file yet.</p>
+<p>第三种方式 是搜索相对于所在文件的目录来加载功能。</p>
+
+<h3>常用Ruby工具</h3>
+
+<ul>
+<li>ruby 解释器</li>
+<li>irb Ruby交互式解释器</li>
+<li>rdoc/ri Ruby文档工具</li>
+<li>rake Ruby的make工具 一套任务管理实用工具</li>
+<li>gem 一套Ruby库和应用程序包管理实用工具</li>
+<li>erb 一套模板系统</li>
+<li>testrb 一个用于测试框架的高级工具</li>
+</ul>
+
+
+<h3>解释器的命令行开关</h3>
+
+<ul>
+<li>ruby -c 不执行 但检查语法</li>
+<li>ruby -w 运行中给出警告信息</li>
+<li>ruby -e “puts “Code” 执行引号内的代码</li>
+<li>ruby -v 显示版本信息并执行详细模式</li>
+</ul>
+
+
+<h3>rake工具</h3>
+
+<p><code>一个例子</code> Rakefile.rb rake必须使用Ruby语法定义的任务</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -176,29 +272,34 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='elisp'><span class='line'><span class="c1">;;Always do syntax highlighting</span>
-</span><span class='line'><span class="p">(</span><span class="nv">global-font-lock-mode</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c1">;;Also highlight parens</span>
-</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">show-paren-delay</span> <span class="mi">0</span>
-</span><span class='line'>   <span class="nv">show-paren-style</span> <span class="ss">&#39;parenthesis</span><span class="p">)</span>
-</span><span class='line'><span class="p">(</span><span class="nv">show-paren-mode</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c1">;;This is the binary name of my scheme implementation</span>
-</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">scheme-program-name</span> <span class="s">&quot;mit-scheme&quot;</span><span class="p">)</span>
-</span><span class='line'>  
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">namespace</span> <span class="ss">:admin</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">desc</span> <span class="s2">&quot;Interactively delete all files in /tmp&quot;</span>
+</span><span class='line'>    <span class="n">task</span> <span class="ss">:clean_tmp</span> <span class="k">do</span>
+</span><span class='line'>        <span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;/tmp/*&quot;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+</span><span class='line'>            <span class="k">next</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">file?</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span class='line'>            <span class="nb">print</span> <span class="s2">&quot;Delete </span><span class="si">#{</span><span class="n">f</span><span class="si">}</span><span class="s2">? &quot;</span>
+</span><span class='line'>            <span class="n">answer</span> <span class="o">=</span> <span class="vg">$stdin</span><span class="o">.</span><span class="n">gets</span>
+</span><span class='line'>            <span class="k">case</span> <span class="n">answer</span>
+</span><span class='line'>            <span class="k">when</span> <span class="sr">/^y/</span>
+</span><span class='line'>                <span class="no">File</span><span class="o">.</span><span class="n">unlink</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">when</span> <span class="sr">/^q/</span>
+</span><span class='line'>                <span class="k">break</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>                            
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>When you setup mit-scheme finish. You should be restart the Emacs to reload your new configuration for this.
-And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it. Using the <code>C-x 2</code> to open a other window, running the <code>M+X run-scheme</code>.</p>
-
-<p>You get in the MIT-Scheme&rsquo;s REPL environment. Take a try <code>C-x C-e</code> to running the scheme code. and it should be return the resulte on the first window.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
-</span><span class='line'><span class="p">(</span><span class="nf">square</span> <span class="mi">9</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<p>还可以通过rake –tasks来查看已经定义过的任务列表，其实没有namespace也是可以的。
+但是如果你任务比较多的话，可以用命名空间的方法来区分不同类型的tasks</p>
 </div>
 
 
@@ -222,13 +323,13 @@ And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-25T07:07:18+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-01T00:20:15+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/emacs/'>emacs</a>
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -237,7 +338,7 @@ And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/12/01/explain-ruby-installation/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/12/01/explain-ruby-installation/" >Tweet</a>
   
   
   
@@ -247,10 +348,8 @@ And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/25/make-chef-supprot-more-platform/" title="Previous Post: Make Chef supprot more Platform">&laquo; Make Chef supprot more Platform</a></li>
+            <li class="previous"><a href="/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language/" title="Previous Post: jekyll 2.5.3 Error: Pygments can't parse unknown language">&laquo; jekyll 2.5.3 Error: Pygments can't parse unknown language</a></li>
             
-            
-            <li class="next"><a href="/blog/2016/08/01/sicp-ex1-dot-5/" title="Next Post: SICP Ex1.3">SICP Ex1.3 &raquo;</a></li>
             
           </ul>
         
@@ -275,7 +374,7 @@ And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2016/12/01/explain-ruby-installation/">Explain Ruby Installation</a>
+    <a class="list-group-item active" href="/blog/2016/12/01/explain-ruby-installation/">Explain Ruby Installation</a>
     
     <a class="list-group-item " href="/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language/">Jekyll 2.5.3 Error: Pygments Can't Parse Unknown Language</a>
     
@@ -471,8 +570,8 @@ And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/';
-        var disqus_url = 'http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/';
+        var disqus_identifier = 'http://mutiny.work/blog/2016/12/01/explain-ruby-installation/';
+        var disqus_url = 'http://mutiny.work/blog/2016/12/01/explain-ruby-installation/';
         var disqus_script = 'embed.js';
       
     (function () {
