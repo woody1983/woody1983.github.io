@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-12-01T08:50:19+00:00</updated>
+  <updated>2016-12-05T23:54:08+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Create a Draft Post With Octopress]]></title>
+    <link href="http://mutiny.work/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/"/>
+    <updated>2016-12-05T23:49:46+00:00</updated>
+    <id>http://mutiny.work/blog/2016/12/05/how-to-create-a-draft-post-with-octopress</id>
+    <content type="html"><![CDATA[<p>Insert <code>published: false into</code> the YAML frontmatter to make the post a draft. Here&rsquo;s an example:</p>
+
+<pre><code class="yaml">---
+layout: post
+title: 'How to Create a Draft Post with Octopress'
+date: 2013-08-19 21:52
+description: Learn how to create a draft post with the Octopress blogging framework
+keywords: Octopress, yaml, draft, draft post, how to, tip
+comments: true
+categories:
+published: false
+---
+</code></pre>
+
+<p>Blog posted By <a href="http://sweetme.at/2013/08/19/how-to-create-a-draft-post-with-octopress/">Chris Simpkins</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dockerの仕事の記録]]></title>

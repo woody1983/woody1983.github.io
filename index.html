@@ -138,6 +138,68 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-05T23:49:46+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/" itemprop="url">How to Create a Draft Post With Octopress</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Insert <code>published: false into</code> the YAML frontmatter to make the post a draft. Here&rsquo;s an example:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&#39;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Create</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Draft</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">Octopress&#39;</span>
+</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2013-08-19 21:52</span>
+</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Learn how to create a draft post with the Octopress blogging framework</span>
+</span><span class='line'><span class="l-Scalar-Plain">keywords</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress, yaml, draft, draft post, how to, tip</span>
+</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="l-Scalar-Plain">published</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class='line'><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Blog posted By <a href="http://sweetme.at/2013/08/19/how-to-create-a-draft-post-with-octopress/">Chris Simpkins</a></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-01T08:34:51+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -749,97 +811,6 @@ gems目录 如果找到了site_ruby其实也找到了gems的安装目录</p>
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-25T07:07:18+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/25/running-the-mit-scheme-in-emacs/" itemprop="url">Running the MIT-Scheme in Emacs</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>Based on the Ubuntu14 OS platform. I choose the x64-version mit-scheme source code.</p>
-
-<p><a href="http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.tar.gz">GNU&rsquo;S mit-scheme</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar xvf mit-scheme-9.2-x86-64.tar.gz
-</span><span class='line'><span class="nb">cd </span>mit-scheme-9.2/src/
-</span><span class='line'>apt-get install m4
-</span><span class='line'>./configure
-</span><span class='line'><span class="c">#Build the software:</span>
-</span><span class='line'>make compile-microcode
-</span><span class='line'>make install
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I changed the .emacs config file yet.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='elisp'><span class='line'><span class="c1">;;Always do syntax highlighting</span>
-</span><span class='line'><span class="p">(</span><span class="nv">global-font-lock-mode</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c1">;;Also highlight parens</span>
-</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">show-paren-delay</span> <span class="mi">0</span>
-</span><span class='line'>   <span class="nv">show-paren-style</span> <span class="ss">&#39;parenthesis</span><span class="p">)</span>
-</span><span class='line'><span class="p">(</span><span class="nv">show-paren-mode</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c1">;;This is the binary name of my scheme implementation</span>
-</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">scheme-program-name</span> <span class="s">&quot;mit-scheme&quot;</span><span class="p">)</span>
-</span><span class='line'>  
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When you setup mit-scheme finish. You should be restart the Emacs to reload your new configuration for this.
-And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it. Using the <code>C-x 2</code> to open a other window, running the <code>M+X run-scheme</code>.</p>
-
-<p>You get in the MIT-Scheme&rsquo;s REPL environment. Take a try <code>C-x C-e</code> to running the scheme code. and it should be return the resulte on the first window.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
-</span><span class='line'><span class="p">(</span><span class="nf">square</span> <span class="mi">9</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -863,6 +834,8 @@ And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/">How to Create a Draft Post With Octopress</a>
+    
     <a class="list-group-item " href="/blog/2016/12/01/docker-notes/">Dockerの仕事の記録</a>
     
     <a class="list-group-item " href="/blog/2016/12/01/explain-ruby-installation/">Explain Ruby Installation</a>
@@ -870,8 +843,6 @@ And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it
     <a class="list-group-item " href="/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language/">Jekyll 2.5.3 Error: Pygments Can't Parse Unknown Language</a>
     
     <a class="list-group-item " href="/blog/2016/11/30/about-preview-on-octopress/">About Preview on Octopress</a>
-    
-    <a class="list-group-item " href="/blog/2016/11/30/orid/">ORID</a>
     
   </div>
 </section>
@@ -991,7 +962,7 @@ And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it
     
     
     <a class="list-group-item " href="/blog/categories/octopress/index.html">
-        <span class="badge">4</span>
+        <span class="badge">5</span>
         octopress
       </a>
     
