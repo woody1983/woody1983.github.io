@@ -1,0 +1,12 @@
+---
+layout: post
+title: "Ruby Bits"
+date: 2016-12-05 02:05:29 +0000
+comments: true
+categories: [Ruby, CodeSchool]
+published: false
+---
+
+>Learn the core bits every Ruby programmer should know. This Ruby tutorial builds upon the basics to keep enhancing your Ruby knowledge.
+
+
