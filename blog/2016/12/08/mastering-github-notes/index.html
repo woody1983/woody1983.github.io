@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mastering Github Notes - Mutiny Theory</title>
+  <meta name="author" content="Johnny Hsu">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://mutiny.work/blog/2016/12/08/mastering-github-notes/">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/12/08/mastering-github-notes/">
+  <meta property="og:title" content="Mastering Github Notes - Mutiny Theory">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
+
+<!-- Add this for // Pick a Theme for Only One Page -->
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Mutiny Theory</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+
+		<li >
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">DevOps <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="/ansible">Ansible</a>
+                        <a href="/chef">Chef</a>
+			<a href="/vagrant">Vagrant</a>
+                     </li>
+                    </ul>
+                </li>
+
+
+		
+                <li >
+                    <a href="/about">About</a>
+                </li>
+   
+                <li >
+			<a href="/bookmark">Bookmark</a>
+		</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                    <input type="hidden" name="sitesearch" value="mutiny.work">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="Mutiny Theory" />
+    
+    <meta itemprop="url" content="http://mutiny.work" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-08T08:31:53+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Mastering Github Notes
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><p><img src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/large_badge/443/complete-mastering-github-e998c0ab56c79b9074ad5e3c1427691a.png" alt="codeschool" /></p>
+
+<h2>Level 1</h2>
+
+<p>相对比较Easy ,先fork <a href="https://github.com/deadlyvipers/dojo_rules">deadlyvipers/</a>这个Repo先
+然后提交一个 <code>introduction.md</code>的文件到<code>github/master</code>上 内容随便写写 不要为空即可</p>
+
+<h2>Level 1.6</h2>
+
+<h4>Task1/2</h4>
+
+<p>比较简单 就是提一个PR到<a href="https://github.com/deadlyvipers/dojo_rules">deadlyvipers/</a> create完毕以后直接sumit答案.</p>
+
+<h4>Task 2/2</h4>
+
+<p>这关比较容易stuck 留意一下你刚才提的PR中 codeschool-kiddo是怎么评论你的</p>
+
+<blockquote><p>Looks good! Could you also please mention your favorite Code School path in your introduction? This could be Ruby, JavaScript, HTML &amp; CSS, iOS or Electives.</p></blockquote>
+
+<p>所以要在introduction,md文件里面添加一些课程的path进去   比如 Ruby （下次试试不加 * 号  否则 Level2.2 Task 3/4会自动submit）
+update introduction.md</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git commit -am "Updated introduction.md"
+</span><span class='line'>git push origin master</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
+
+
+<p>然后1.6就过了</p>
+
+<h2>Level 1.8 &amp; 1.9</h2>
+
+<p>就是练习常用的CL命令   git remote add  &amp; git merge upstream/master</p>
+
+<h2>Level 2</h2>
+
+<p>先添加codeschool家的kiddo一个process权限</p>
+
+<blockquote><p>In your fork of &ldquo;dojo_rules&rdquo;, add the user &ldquo;codeschool-kiddo&rdquo; as a collaborator by granting Mastering Github access. Due to a change in the GitHub collaborator process, we&rsquo;ll need you to use this link rather than using the &ldquo;Collaborators&rdquo; section on GitHub.</p></blockquote>
+
+<h4>Task2/4</h4>
+
+<p>checkout一个新的branch  deadly_skills 不做任何改动  保持和master一致即可,然后push up</p>
+
+<h4>Task &frac34;</h4>
+
+<p>再更新一下introduction.md</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git commit -am "Added deadly skills"
+</span><span class='line'>push up</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Task 4/4 提一个PR</h4>
+
+<p>在自己的repo里面   base:master  form deadly_skills</p>
+
+<p>提完PR以后  submit以后   留意PR页面上  kiddo的一个comment
+<code>“Since you're becoming a GitHub master, could you also add "Killing history using git rebase" as one of your deadly skills?”</code>
+这句留在2.4的task去做的 别手欠 现在就给做了 这个course的kiddo相当不智能</p>
+
+<p>提交后 task过关</p>
+
+<h2>2.4 就一个Task</h2>
+
+<p>Open up the &ldquo;introduction.md&rdquo; file, add rebase to your list of deadly skills and save the file.
+Add and commit the file to your local git repository.
+dojo_rules (deadly_skills) $ git commit -am &ldquo;Added rebase to my list of deadly skills.&rdquo;</p>
+
+<p>这个上一关的task 4/4就做了  但此时的PR还没有merge！！</p>
+
+<h2>2.5 New Rules</h2>
+
+<p>task 1/3 We&rsquo;ll do all the work for this one! Just let us know your username.
+所以直接提交submit answer 以后  过一会儿后 你会发现你多了一个PR # <code>先不要记得merge</code></p>
+
+<ul>
+<li>Too many people are spilling coffee  #2</li>
+</ul>
+
+
+<p>这个到底要不要merge掉？ 因为后面task 3/3 是让你关闭这个的.</p>
+
+<h4>task 2/3</h4>
+
+<p>kiddo已经把所有的文件修改已经提交到你repo的new_rules这个branch中<br/>
+checkout master ,pull down以后  多了一个branch在origin</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@f6d3b13b9967:~/github/dojo_rules# git branch -a
+</span><span class='line'>  deadly_skills
+</span><span class='line'>* master
+</span><span class='line'>  remotes/origin/HEAD -&gt; origin/master
+</span><span class='line'>  remotes/origin/deadly_skills
+</span><span class='line'>  remotes/origin/gh-pages
+</span><span class='line'>  remotes/origin/master
+</span><span class='line'>  remotes/origin/new_rules</span></code></pre></td></tr></table></div></figure>
+
+
+<p>然后fixed掉  <code>dojo_rules.md</code> 里面的错误</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git commit -am "Fixed spelling errors"
+</span><span class='line'>git push origin new_rules</span></code></pre></td></tr></table></div></figure>
+
+
+<p>task 2/3 过关</p>
+
+<h4>task 3/3</h4>
+
+<p>你会发现 <code>Too many people are spilling coffee  #2</code>  这个PR里面你可以看到2次的commit
+merge掉以后submit 过关</p>
+
+<h2>2.7 Closing Pull Reuqests By Merging</h2>
+
+<p>就一个task  checkout master &amp; git pull
+然后将deadly_skills merge 到 master中</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dojo_rules (master)$ git merge --no-ff deadly_skills -m "Merging in deadly_skills"
+</span><span class='line'>git push</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个时候  git lg</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>*   061ed99 (HEAD, origin/master, origin/HEAD, master) Merging in deadly_skills
+</span><span class='line'>|\
+</span><span class='line'>| * 41bc851 (origin/deadly_skills, deadly_skills) Added rebase to my list of deadly ski
+</span><span class='line'>| * 7363494 Added deadly skills
+</span><span class='line'>* |   6c4f609 Merge pull request #2 from woody1983/new_rules
+</span><span class='line'>|\ \
+</span><span class='line'>| |/
+</span><span class='line'>|/|</span></code></pre></td></tr></table></div></figure>
+
+
+<p>你会发现 <code>#1 Added deadly skills</code> 这个PR已经被closed掉了</p>
+
+<p>看一下之前git log的线路</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>* 4db3fc6 (origin/new_rules, new_rules) Fixed spelling errors
+</span><span class='line'>* b87fa05 Added new rule about coffee
+</span><span class='line'>| * 41bc851 (origin/deadly_skills, deadly_skills) Added rebase to my list of deadly ski
+</span><span class='line'>| * 7363494 Added deadly skills
+</span><span class='line'>|/
+</span><span class='line'>* b39552c (HEAD, origin/master, origin/HEAD, master) Updated introduction.md
+</span><span class='line'>* d03a1b9 Added introduction.md
+</span><span class='line'>*   4a2cee3 Merge pull request #11 from githubteacher/master</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Level 2结束了</p>
+
+<h2>Level 3 Tag</h2>
+
+<p>这个是目前的log tree</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>*   061ed99 (HEAD, origin/master, origin/HEAD, master) Merging in deadly_skills
+</span><span class='line'>|\
+</span><span class='line'>| * 41bc851 (origin/deadly_skills, deadly_skills) Added rebase to my list of deadly ski
+</span><span class='line'>| * 7363494 Added deadly skills
+</span><span class='line'>* |   6c4f609 Merge pull request #2 from woody1983/new_rules
+</span><span class='line'>|\ \
+</span><span class='line'>| |/
+</span><span class='line'>|/|
+</span><span class='line'>| * 4db3fc6 (origin/new_rules, new_rules) Fixed spelling errors
+</span><span class='line'>| * b87fa05 Added new rule about coffee
+</span><span class='line'>|/
+</span><span class='line'>* b39552c Updated introduction.md
+</span><span class='line'>* d03a1b9 Added introduction.md</span></code></pre></td></tr></table></div></figure>
+
+
+<p>所以3.2的Task 是要找的</p>
+
+<p><code>*   061ed99 (HEAD, origin/master, origin/HEAD, master) Merging in deadly_skills</code>  ???</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>root@f6d3b13b9967:~/github/dojo_rules# git log
+</span><span class='line'>commit 061ed990496611ef5e61e455f317bad3725870f3
+</span><span class='line'>Merge: 6c4f609 41bc851
+</span><span class='line'>Author: woody1983 &lt;unix1983@gmail.com&gt;
+</span><span class='line'>Date:   Thu Dec 8 03:02:26 2016 +0000
+</span><span class='line'>
+</span><span class='line'>    Merging in deadly_skills
+</span><span class='line'>
+</span><span class='line'>git checkout master 
+</span><span class='line'>git log  #061ed990496611ef5e61e455f317bad3725870f3
+</span><span class='line'>git checkout 061ed990496611ef5e61e455f317bad3725870f3
+</span><span class='line'>root@f6d3b13b9967:~/github/dojo_rules# git tag -a v1.2.0 -m "Creating v1.2.0 tag."
+</span><span class='line'>root@f6d3b13b9967:~/github/dojo_rules# git push origin --tags
+</span><span class='line'>Username for 'https://github.com': woody1983
+</span><span class='line'>Password for 'https://woody1983@github.com':
+</span><span class='line'>Counting objects: 1, done.
+</span><span class='line'>Writing objects: 100% (1/1), 164 bytes | 0 bytes/s, done.
+</span><span class='line'>Total 1 (delta 0), reused 0 (delta 0)
+</span><span class='line'>To https://github.com/woody1983/dojo_rules.git
+</span><span class='line'> * [new tag]         v1.2.0 -&gt; v1.2.0</span></code></pre></td></tr></table></div></figure>
+
+
+<p>submit !!! YES!!! 成功了!!!</p>
+
+<h2>3.4</h2>
+
+<p>Task 1/5
+Checkout the v1.0.0 tag, use it to create release branch release_branch_1.0, and push to GitHub.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>| | *   61fef70 (tag: v1.0.0) Merge pull request #3 from deadlyvipers/kill_list
+</span><span class='line'>| | |\
+</span><span class='line'>| | | * 73f81f9 We dont need to kill Budd
+</span><span class='line'>| | | * 0f85e77 Initial kill list</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>git checkout v1.0.0</li>
+<li>git checkout -b release_branch_1.0</li>
+<li>git push origin release_branch_1.0</li>
+</ul>
+
+
+<h4>Task 2/5</h4>
+
+<p>replace the assassin names in kill_list.md</p>
+
+<ul>
+<li>git commit -m &ldquo;replace the assassin names in kill_list.md&rdquo;</li>
+<li>git push origin release_branch_1.0</li>
+</ul>
+
+
+<h4>Task 3/5</h4>
+
+<p>Tag the fixed commit as v1.0.1, and push the tag up to GitHub.</p>
+
+<ul>
+<li>git tag -a v1.0.1 -m &ldquo;Tagging for release.&rdquo;</li>
+<li>git push origin &ndash;tags</li>
+</ul>
+
+
+<h4>Task 4/5</h4>
+
+<p>Now that you&rsquo;ve created the v1.0.1 tag, merge the release branch into master.</p>
+
+<ul>
+<li>git checkout master</li>
+<li>git merge release_branch_1.0</li>
+<li>git push origin master</li>
+</ul>
+
+
+<h4>Task 5/5</h4>
+
+<p>Now that you&rsquo;ve merged release_branch_1.0 you can tidy up your repo by deleting the branch locally and pushing that change to GitHub.</p>
+
+<ul>
+<li>github branch -d release_branch_1.0</li>
+<li>git push origin :release_branch_1.0</li>
+</ul>
+
+
+<p>or</p>
+
+<ul>
+<li>git branch -D release_branch_1.0</li>
+</ul>
+
+
+<h2>3.6  Releases in Github</h2>
+
+<p>Go to the releases tab, click on the v1.2.0 (deadly skills) tag, click on &ldquo;Edit tag&rdquo; button, add a release title and description for the release. Save this badge locally and upload it in the binaries section (not attached to the description!). Once you&rsquo;re happy with your changes, hit &ldquo;Publish release&rdquo;.</p>
+
+<h2>Level 4 Issues</h2>
+
+<h4>Task &frac14;</h4>
+
+<p>去 settings and checking the &ldquo;Issues&rdquo; checkbox</p>
+
+<h4>Task 2/4</h4>
+
+<p>多了一个issue by kiddo</p>
+
+<blockquote><p>Go to your &ldquo;dojo_rules&rdquo; repository and you&rsquo;ll notice that we&rsquo;ve created an issue for you. Create a local feature branch named &ldquo;kill_list&rdquo;.Make the fix to our issue on this branch and be sure to include &ldquo;fixes #&rdquo; in your commit message, using the issue number from GitHub.</p></blockquote>
+
+<ul>
+<li>git commit -am &ldquo;fixes # Contribute to the Kill List #3&rdquo;</li>
+<li>git push origin kill_list</li>
+</ul>
+
+
+<h4>Task &frac34;</h4>
+
+<p>Create a pull request from your new &ldquo;kill_list&rdquo; branch back to &ldquo;master&rdquo;.</p>
+
+<h4>Task 4/4</h4>
+
+<p>We left a comment on your pull request giving you the A-OK. Go ahead and merge it back into master. You can use the Pull Request page on GitHub to make this easy. This will close the issue as well when your commit is added to master due to your commit message.</p>
+
+<p>fixes # 后面跟着的是 issue numbers
+PR一旦merge以后  该issue直接closed</p>
+
+<h2>4.4  Wiki Integration</h2>
+
+<h4>Task 1/3</h4>
+
+<p>Make sure the Wiki feature is enabled for your &ldquo;dojo_rules&rdquo; repository. It was enabled in the &ldquo;deadlyvipers/dojo_rules&rdquo; repository, so it should be for yours as well.
+wiki这个功能应该跟随 deadlyvipers/dojo_rules 这个repo下来的 没有的话 自己去setting</p>
+
+<h4>Task 2/3</h4>
+
+<p>update README.md</p>
+
+<p>Our &ldquo;README.md&rdquo; file on the master branch of our &ldquo;dojo_rules&rdquo; repository isn&rsquo;t very helpful. Update &ldquo;README.md&rdquo; to mention that &ldquo;All members should read the rules&rdquo;.</p>
+
+<p>Also include a link back to the deadlyvipers organization which started it all (&ldquo;<a href="https://github.com/deadlyvipers">https://github.com/deadlyvipers</a>&rdquo;).</p>
+
+<p><a href="https://help.github.com/articles/markdown-basics">Markdown 语法参考</a></p>
+
+<h4>Task 3/3</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[![Build Status](https://secure.travis-ci.org/rails/arel.svg?branch=master)](http://travis-ci.org/rails/arel)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>添加到wiki的homepage里面</p>
+
+<h4>4.6 Create a Github Page</h4>
+
+<h4>4.7 woody1983.github.io/dojo_rules</h4>
+
+<h2>Level 5</h2>
+
+<h3>5.2 Renaming a Repository</h3>
+
+<p>If you rename a repository, collaborators will have to update their:
+Nothing, they won’t have to update anything.</p>
+
+<h3>5.3 Default Settings</h3>
+
+<p>With the default settings, anyone can:
+Create and comment on issues and Modify your wiki</p>
+
+<h3>5.4 Collaborators</h3>
+
+<p>Collaborators  can Push to the project and merge pull requests.</p>
+
+<p>Planned or In-Progress Work
+If you want to see the work that needs to be done, you should check out the <strong>issues</strong><em>. If you want to see all the work that is being done and discussed you should check out the </em>pull requests__.</p>
+
+<p>If you want to stop someone from being able to commit to the master branch, instead of adding them as a collaborator you must ask them to   fork the repository to make changes.</p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Johnny Hsu</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-08T08:31:53+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/codeschool/'>codeschool</a>, <a class='category' href='/blog/categories/git/'>git</a>, <a class='category' href='/blog/categories/github/'>github</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/12/08/mastering-github-notes/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/12/08/mastering-github-notes/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/" title="Previous Post: How to Create a Draft Post With Octopress">&laquo; How to Create a Draft Post With Octopress</a></li>
+            
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h2>Comments</h2>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item active" href="/blog/2016/12/08/mastering-github-notes/">Mastering Github Notes</a>
+    
+    <a class="list-group-item " href="/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/">How to Create a Draft Post With Octopress</a>
+    
+    <a class="list-group-item " href="/blog/2016/12/01/docker-notes/">Dockerの仕事の記録</a>
+    
+    <a class="list-group-item " href="/blog/2016/12/01/explain-ruby-installation/">Explain Ruby Installation</a>
+    
+    <a class="list-group-item " href="/blog/2016/11/30/jekyll-2-dot-5-3-error-pygments-cant-parse-unknown-language/">Jekyll 2.5.3 Error: Pygments Can't Parse Unknown Language</a>
+    
+  </div>
+</section>
+
+
+
+
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Categories</h3>
+  </div>
+  <div class="list-group">
+    
+    
+    <a class="list-group-item " href="/blog/categories/emacs/index.html">
+        <span class="badge">5</span>
+        emacs
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/rails/index.html">
+        <span class="badge">1</span>
+        rails
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/env/index.html">
+        <span class="badge">1</span>
+        env
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/ubuntu/index.html">
+        <span class="badge">6</span>
+        ubuntu
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/docker/index.html">
+        <span class="badge">1</span>
+        docker
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/ansible/index.html">
+        <span class="badge">2</span>
+        ansible
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/linux/index.html">
+        <span class="badge">6</span>
+        linux
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/course/index.html">
+        <span class="badge">1</span>
+        course
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/debian/index.html">
+        <span class="badge">1</span>
+        debian
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/mysql/index.html">
+        <span class="badge">1</span>
+        mysql
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/vagrant/index.html">
+        <span class="badge">4</span>
+        vagrant
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/chef/index.html">
+        <span class="badge">6</span>
+        chef
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/puppet/index.html">
+        <span class="badge">1</span>
+        puppet
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/angular/index.html">
+        <span class="badge">1</span>
+        angular
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/jenkins/index.html">
+        <span class="badge">1</span>
+        jenkins
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/apache/index.html">
+        <span class="badge">1</span>
+        apache
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/ruby/index.html">
+        <span class="badge">3</span>
+        ruby
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/git/index.html">
+        <span class="badge">2</span>
+        git
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/octopress/index.html">
+        <span class="badge">5</span>
+        octopress
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/sicp/index.html">
+        <span class="badge">2</span>
+        sicp
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/lisp/index.html">
+        <span class="badge">3</span>
+        lisp
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/scheme/index.html">
+        <span class="badge">3</span>
+        scheme
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/note/index.html">
+        <span class="badge">1</span>
+        note
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/orid/index.html">
+        <span class="badge">1</span>
+        orid
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/codeschool/index.html">
+        <span class="badge">1</span>
+        codeschool
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/github/index.html">
+        <span class="badge">1</span>
+        github
+      </a>
+    
+  </div>
+</section>
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2016 - Johnny Hsu<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'woodyxu';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://mutiny.work/blog/2016/12/08/mastering-github-notes/';
+        var disqus_url = 'http://mutiny.work/blog/2016/12/08/mastering-github-notes/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr.js"></script>
+
+
+  </body>
+</html>
