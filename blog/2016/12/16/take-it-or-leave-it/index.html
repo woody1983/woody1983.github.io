@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SICP Ex1.3 - Mutiny Theory</title>
+  <title>Take It or Leave It - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/">
+  <link rel="canonical" href="http://mutiny.work/blog/2016/12/16/take-it-or-leave-it/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/">
-  <meta property="og:title" content="SICP Ex1.3 - Mutiny Theory">
+  <meta property="og:url" content="http://mutiny.work/blog/2016/12/16/take-it-or-leave-it/">
+  <meta property="og:title" content="Take It or Leave It - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
@@ -134,67 +134,81 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-08-01T01:43:09+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-16T03:22:58+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        SICP Ex1.3
+        Take It or Leave It
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><h2>Exercise 1.3</h2>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>刚看到一句话</p>
 
-<p>Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.</p>
+<blockquote><p>云谷禅师传授了凡居士准提咒持诵法，禅师并告诉他："……但能持准提咒，无记无数，不令间断，持得纯熟。于持中不持，于不持中持，到得念头不动，则灵验矣."</p></blockquote>
 
-<p><img src="http://i.imgur.com/QCLvX22.gif" alt="sicp" /></p>
+<p>这难道不就是学习的最佳状态吗？如果背诵NCE也能达到<code>[于持中不持，于不持中持]</code>我现在也差不多可以登天了。</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="nf">define</span>
-</span><span class='line'>  <span class="p">(</span><span class="nf">largest-two-square-sum</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
-</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">))</span>
-</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">y</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">z</span><span class="p">))</span>
-</span><span class='line'>   <span class="p">)</span>
-</span><span class='line'><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="nf">define</span>
-</span><span class='line'>  <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
-</span><span class='line'><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="nf">define</span>
-</span><span class='line'>  <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">square</span> <span class="nv">y</span><span class="p">))</span>
-</span><span class='line'><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)</span> <span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+<h3>读书</h3>
+
+<p>这整个2016年做的最差的一件事情，我甚至怀疑这种事情会发生在我身上，因为除了读书我不知道我的时间还可以花在什么其他的事情上面。太太给我买了一部Kindle Paperwhite3。里面的藏书差不多快接近100本了，完整看完一遍的不到5本。 看来 z.cn上面搞特价的页面还是少去看点微妙，也许2017年我应该把库存的图书都好好看一遍才对，不仅是要看 还要留下足够的笔迹。</p>
+
+<h3>身体</h3>
+
+<p>也许是年中做的手术有关，这一年的锻炼确实差的很多，没错 我整个2016年都很差 各种方面，每一件事情是自己满意的，能令太太满意的更不可能有了。体重现在94KG.恢复到80KG还有点距离。饮食自控的太差，也许是时候换一个饭盒或改变自己食谱的时候了。过年会考虑办张健身卡，主要是早上7点30到公司以后实在没什么事情可做，与其浪费时间不如在健身房里跑个10km. 毕竟Nike+ 也支持室内跑步的。</p>
+
+<h3>语言</h3>
+
+<p>日语还是没考试一丁点的计划，英语还停留在NCE-1 shit！！！</p>
+
+<h1>How to Change ?</h1>
+
+<p>过去的一周我几乎在找寻和复盘自己之前学习计划为什么一直失败的原因，现在总结下来</p>
+
+<ul>
+<li>没有一个可持续的计划表 可执行的</li>
+<li>所有计划的粒度都太理想化 有些根本没有粒度。</li>
+<li>严格执行 其实没有这一条 其余所有的都是白费的。</li>
+</ul>
 
 
+<p>在我看来一张2017年比较实际的计划应该是</p>
 
+<h2>多条任务线</h2>
+
+<p>我没写错，是要多条，因为作为家庭和社会中的一份子 不可能一年只做一件事情，又不是手工艺匠人。 但是最重要的一天是，任何事情 都不应该只是<code>线性</code>的 而应该是<code>网状</code>分布的。从一开始的全面空白 但后面慢慢讲block的颜色填深 这才是一个学习的进度。 根据<code>Bullet Journal</code>的观点 每一年的开始是要定下这一年可能会发生的或一定要做的几件事情。</p>
+
+<p>对于我而言</p>
+
+<ul>
+<li>语言关 这对于我来说意义太大</li>
+<li>驾照</li>
+<li>site build</li>
+<li>New Job Position</li>
+</ul>
+
+
+<h2>最小粒度</h2>
+
+<p>这个是之前都没有意识到的一个事情，为什么呢？ 因为只有执行粒度的明确制定后才能更好的制定计划和执行计划。 一天背一本书现实吗？不现实，因为粒度不对，一天背熟一个句子呢？貌似可以。 这就是最小粒度，要所有要做的事情的最小粒度整理好以后 开始执行并及时反馈自己 然后更新粒度。其余什么的都是鸡汤而已，再励志有P用，你做不到还不是白搭。</p>
+
+<h2>严格执行</h2>
+
+<p>必须要有一个时间表，任务列表，严格去做，这张表的第一版可能粒度都比较小，比如 一个单词 一个句子 一张卷子 更新一篇文章 一篇公众号推荐。但是必须去严格做，一开始就是因为粒度比较小 所有做起来的阻力也会比较少，但只要做，总会离自己的梦想和目的都进一步。</p>
+
+<h2>及时反馈 随时迭代更新</h2>
+
+<p>不断的更新粒度 来发现自己<code>当前</code>的学习能力有多少。</p>
+
+<h2>确保执行下去</h2>
+
+<p>这个如果只是一个口号的话，那写这一篇文章对于我而言一点意义都没有还不如玩游戏。对的，就是玩游戏，把玩游戏的事情也写进去，一张list完成以后后面的时间就是用来玩游戏的。反正对于我而言，真的是缺少一个可以合理正大光明毫不愧疚去肝游戏的借口！</p>
+
+<blockquote><p>好了 先扯这么多 后面想起什么再写上来。</p></blockquote>
 </div>
 
 
@@ -218,13 +232,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-08-01T01:43:09+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-16T03:22:58+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/lisp/'>lisp</a>, <a class='category' href='/blog/categories/scheme/'>scheme</a>, <a class='category' href='/blog/categories/sicp/'>sicp</a>
+    <a class='category' href='/blog/categories/essay/'>essay</a>
   
 </span>
 
@@ -233,7 +247,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/12/16/take-it-or-leave-it/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/12/16/take-it-or-leave-it/" >Tweet</a>
   
   
   
@@ -243,10 +257,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/07/25/running-the-mit-scheme-in-emacs/" title="Previous Post: Running the MIT-Scheme in Emacs">&laquo; Running the MIT-Scheme in Emacs</a></li>
+            <li class="previous"><a href="/blog/2016/12/08/mastering-github-notes/" title="Previous Post: Mastering Github notes">&laquo; Mastering Github notes</a></li>
             
-            
-            <li class="next"><a href="/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x/" title="Next Post: GNU Emacs and MIT Scheme on Mac OS X">GNU Emacs and MIT Scheme on Mac OS X &raquo;</a></li>
             
           </ul>
         
@@ -271,7 +283,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2016/12/16/take-it-or-leave-it/">Take It or Leave It</a>
+    <a class="list-group-item active" href="/blog/2016/12/16/take-it-or-leave-it/">Take It or Leave It</a>
     
     <a class="list-group-item " href="/blog/2016/12/08/mastering-github-notes/">Mastering Github Notes</a>
     
@@ -485,8 +497,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/';
-        var disqus_url = 'http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/';
+        var disqus_identifier = 'http://mutiny.work/blog/2016/12/16/take-it-or-leave-it/';
+        var disqus_url = 'http://mutiny.work/blog/2016/12/16/take-it-or-leave-it/';
         var disqus_script = 'embed.js';
       
     (function () {

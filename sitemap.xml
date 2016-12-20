@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://mutiny.work/blog/2016/12/16/take-it-or-leave-it/</loc>
+<lastmod>2016-12-16T03:22:58+00:00</lastmod>
+</url>
+<url>
 <loc>http://mutiny.work/blog/2016/12/08/mastering-github-notes/</loc>
 <lastmod>2016-12-08T08:31:53+00:00</lastmod>
 </url>
@@ -230,6 +234,9 @@
 </url>
 <url>
 <loc>http://mutiny.work/blog/categories/github/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/blog/categories/essay/</loc>
 </url>
 <url>
 <loc>http://mutiny.work/posts/2/</loc>
