@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Jquery | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/jquery/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2016-12-25T23:55:17+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A Simple jQuery Code]]></title>
+    <link href="http://mutiny.work/blog/2016/12/25/a-simple-jquery-code/"/>
+    <updated>2016-12-25T13:39:57+00:00</updated>
+    <id>http://mutiny.work/blog/2016/12/25/a-simple-jquery-code</id>
+    <content type="html"><![CDATA[<pre><code class="html">&lt;li class="confirmation"&gt;
+  &lt;h3&gt;Hawaiian Vacation&lt;/h3&gt;
+  &lt;button&gt;Flight details&lt;/button&gt;
+  &lt;div class="ticket"&gt;
+    &lt;a class="view-boarding-pass"&gt;View Boarding Pass&lt;/a&gt;
+    &lt;img src="http://mutiny.work/ticket-14836.png" /&gt;
+  &lt;/div&gt;
+&lt;/li&gt;
+</code></pre>
+
+<pre><code class="js">$('.confirmation').on('click','button', function(){
+  $(this).find('.ticket').slideDown();
+});
+
+$('.confirmation .view-boarding-pass').on('click', function(){
+  $(this).closest('ticket').find('img').show();
+});
+</code></pre>
+
+<p>But, If we need makeing a Ajax call.</p>
+
+<pre><code class="js">$('.confirmation').on('click','button', function(){
+  $.ajax('http://example.org/confirmation.html', {
+    success: function(response) {
+      $('.ticket').html(response).slideDown();
+    }
+  )};
+});
+// or $.ajax('confirmation.html')
+</code></pre>
+
+<p>Shorthand with $.get</p>
+
+<pre><code class="js">$.get('confirmation.html', function(response) {
+  $('.ticket').html(response).slideDown();
+});
+</code></pre>
+
+<h3>Sending parameters with requests</h3>
+
+<p>like this <code>confirmation.html?confNum=1234</code></p>
+
+<pre><code class="js">  $.ajax('http://example.org/confirmation.html', {
+    success: function(response) {
+      $('.ticket').html(response).slideDown();
+    },
+    data: { "confNum": 1234 }
+  )};
+</code></pre>
+
+<h3>Pulled from the HTML</h3>
+
+<p>``` html</p>
+
+<p><div class='ticket' data-confNum='1234'>
+```</p>
+
+<pre><code class="js">  $.ajax('http://example.org/confirmation.html', {
+    success: function(response) {
+      $('.ticket').html(response).slideDown();
+    },
+    data: { "confNum": $("ticket").data("confNum") }
+  )};
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
