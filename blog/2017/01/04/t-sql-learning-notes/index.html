@@ -147,7 +147,9 @@
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>讲真，这也算是一种温习.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -188,7 +190,9 @@
 <span class='line-number'>39</span>
 <span class='line-number'>40</span>
 <span class='line-number'>41</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span>  <span class="k">From</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="k">YEAR</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2007</span> <span class="k">and</span> <span class="k">MONTH</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span>
+</span><span class='line'><span class="k">From</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="k">YEAR</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2007</span> <span class="k">and</span> <span class="k">MONTH</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
 </span><span class='line'><span class="c1">-- 练习1 返回2007年6月的订单</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span> <span class="k">From</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="n">orderdate</span> <span class="o">=</span> <span class="n">eomonth</span><span class="p">(</span><span class="n">orderdate</span><span class="p">);</span>
@@ -231,6 +235,8 @@
 </span><span class='line'><span class="k">SELECT</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">LEN</span><span class="p">(</span><span class="n">lastname</span><span class="p">)</span> <span class="o">-</span> <span class="n">LEN</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">lastname</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="k">AS</span> <span class="n">numoccur</span> <span class="k">from</span> <span class="n">HR</span><span class="p">.</span><span class="n">Employees</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<blockquote><p>未完 持续更新中</p></blockquote>
 </div>
 
 

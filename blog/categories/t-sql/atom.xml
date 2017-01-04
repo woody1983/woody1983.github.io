@@ -4,7 +4,7 @@
   <title><![CDATA[Category: T-sql | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/t-sql/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-01-04T09:04:17+00:00</updated>
+  <updated>2017-01-04T09:07:46+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,7 +18,10 @@
     <link href="http://mutiny.work/blog/2017/01/04/t-sql-learning-notes/"/>
     <updated>2017-01-04T09:03:26+00:00</updated>
     <id>http://mutiny.work/blog/2017/01/04/t-sql-learning-notes</id>
-    <content type="html"><![CDATA[<pre><code class="sql">SELECT orderid,orderdate,custid,empid  From Sales.Orders where YEAR(orderdate) = 2007 and MONTH(orderdate) = 6;
+    <content type="html"><![CDATA[<p>讲真，这也算是一种温习.</p>
+
+<pre><code class="sql">SELECT orderid,orderdate,custid,empid  
+From Sales.Orders where YEAR(orderdate) = 2007 and MONTH(orderdate) = 6;
 -- 练习1 返回2007年6月的订单
 
 SELECT orderid,orderdate,custid,empid From Sales.Orders where orderdate = eomonth(orderdate);
@@ -60,6 +63,8 @@ SELECT REPLACE('2016-12-12','-','/'); -- 2016/12/12
 -- 计算lastname中e出现的次数 // thinking 将e变成空 len出来的字数会自动缩水 再由原来的长度来减
 SELECT lastname, LEN(lastname) - LEN(REPLACE(lastname,'e','')) AS numoccur from HR.Employees;
 </code></pre>
+
+<blockquote><p>未完 持续更新中</p></blockquote>
 ]]></content>
   </entry>
   
