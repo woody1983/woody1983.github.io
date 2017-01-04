@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2016-12-25T23:55:17+00:00</updated>
+  <updated>2017-01-04T09:04:17+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,98 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[T-SQL Learning Notes]]></title>
+    <link href="http://mutiny.work/blog/2017/01/04/t-sql-learning-notes/"/>
+    <updated>2017-01-04T09:03:26+00:00</updated>
+    <id>http://mutiny.work/blog/2017/01/04/t-sql-learning-notes</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span>  <span class="k">From</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="k">YEAR</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2007</span> <span class="k">and</span> <span class="k">MONTH</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span><span class='line'><span class="c1">-- 练习1 返回2007年6月的订单</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span> <span class="k">From</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="n">orderdate</span> <span class="o">=</span> <span class="n">eomonth</span><span class="p">(</span><span class="n">orderdate</span><span class="p">);</span>
+</span><span class='line'><span class="c1">-- 练习2 返回每个月的最后一天的订单</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">custid</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">city</span> <span class="k">FROM</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span> <span class="k">WHERE</span> <span class="n">region</span> <span class="o">=</span> <span class="n">N</span><span class="s1">&#39;WA&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">-- 这种写法我也实在不理解!! 不会return null的列 也不会return任何WA的列 仅此而已 直接写 =&#39;WA&#39;结果一样</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">custid</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">city</span> <span class="k">FROM</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span> <span class="k">WHERE</span> <span class="n">region</span> <span class="o">&lt;&gt;</span> <span class="n">N</span><span class="s1">&#39;WA&#39;</span><span class="p">;</span> <span class="c1">-- 非null和非WA的</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 字符排序</span>
+</span><span class='line'><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">hr</span><span class="p">.</span><span class="n">Employees</span> <span class="k">where</span> <span class="n">lastname</span> <span class="o">=</span> <span class="n">N</span><span class="s1">&#39;davis&#39;</span><span class="p">;</span> <span class="c1">-- 不区分大小写</span>
+</span><span class='line'><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">hr</span><span class="p">.</span><span class="n">Employees</span> <span class="k">where</span> <span class="n">lastname</span> <span class="k">collate</span> <span class="n">Latin1_General_CS_AS</span> <span class="o">=</span>  <span class="n">N</span><span class="s1">&#39;davis&#39;</span><span class="p">;</span> <span class="c1">-- return null</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 字符串连接</span>
+</span><span class='line'><span class="k">select</span> <span class="n">empid</span><span class="p">,</span> <span class="n">firstname</span> <span class="o">+</span> <span class="n">N</span><span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">lastname</span> <span class="k">As</span> <span class="n">fullname</span> <span class="k">from</span> <span class="n">hr</span><span class="p">.</span><span class="n">Employees</span><span class="p">;</span>
+</span><span class='line'><span class="k">select</span> <span class="n">custid</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">city</span><span class="p">,</span> <span class="n">country</span><span class="o">+</span><span class="n">N</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="n">region</span><span class="o">+</span><span class="n">N</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="n">city</span> <span class="k">As</span> <span class="k">location</span> <span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span><span class="p">;</span>
+</span><span class='line'><span class="cm">/*</span>
+</span><span class='line'><span class="cm">-- 标准SQL规定 连接NULL的结果应为NULL 所以只要任何一个row为null的话 location就会为null</span>
+</span><span class='line'><span class="cm">所以需要一个自动将null变为空字符串的函数来做这个拼接动作</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">select</span> <span class="n">custid</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">city</span><span class="p">,</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">country</span><span class="p">,</span><span class="n">N</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">region</span><span class="p">,</span><span class="n">N</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">city</span><span class="p">)</span> <span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span><span class="p">;</span>
+</span><span class='line'><span class="c1">-- 提取一个字符串</span>
+</span><span class='line'><span class="k">select</span> <span class="k">SUBSTRING</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">-- 从第一个开始取3个  abc...</span>
+</span><span class='line'><span class="c1">-- 左边3个 右边3个</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="k">LEFT</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="c1">-- len datalength 都会返回字符数量 后者不忽略空格</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">DATALENGTH</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;ABCDE &#39;</span><span class="p">);</span> <span class="c1">-- 12</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">DATALENGTH</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;abcde &#39;</span><span class="p">);</span> <span class="c1">-- 12 字节数</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">LEN</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;abcde &#39;</span><span class="p">);</span> <span class="c1">-- 5 字符数 and 忽略空格</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">LEN</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;abcde f&#39;</span><span class="p">);</span> <span class="c1">-- 7 不会忽略中间的空格!!!!!!</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 返回某个字符串在目标字符中第一次出现的位置</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">CHARINDEX</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;woody&#39;</span><span class="p">);</span> <span class="c1">-- 5</span>
+</span><span class='line'><span class="c1">-- 返回某种模式第一次出现的位置 所谓模式就似乎 0-9 a-z 或者其他正则</span>
+</span><span class='line'><span class="k">select</span> <span class="n">PATINDEX</span><span class="p">(</span><span class="s1">&#39;%[0-9]%&#39;</span><span class="p">,</span><span class="s1">&#39;abcde800efghijklmn&#39;</span><span class="p">);</span><span class="c1">-- 6</span>
+</span><span class='line'><span class="c1">-- replace</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="s1">&#39;2016-12-12&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;/&#39;</span><span class="p">);</span> <span class="c1">-- 2016/12/12</span>
+</span><span class='line'><span class="c1">-- 计算lastname中e出现的次数 // thinking 将e变成空 len出来的字数会自动缩水 再由原来的长度来减</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">LEN</span><span class="p">(</span><span class="n">lastname</span><span class="p">)</span> <span class="o">-</span> <span class="n">LEN</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">lastname</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="k">AS</span> <span class="n">numoccur</span> <span class="k">from</span> <span class="n">HR</span><span class="p">.</span><span class="n">Employees</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A Simple jQuery Code]]></title>
@@ -1687,41 +1779,6 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Attribute Precedence]]></title>
-    <link href="http://mutiny.work/blog/2016/07/19/attribute-precedence/"/>
-    <updated>2016-07-19T07:20:01+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/19/attribute-precedence</id>
-    <content type="html"><![CDATA[<p><img src="http://7xllrf.com1.z0.glb.clouddn.com/attributes.PNG" alt="Levels of precedence" /></p>
-
-<h2>Key Concepts</h2>
-
-<blockquote><p>Attributes are specific details about a node.</p></blockquote>
-
-<h3>Attributes describe</h3>
-
-<ul>
-<li>The current state of the node</li>
-<li>What the state of the node was at the end of the previous chef-client run</li>
-<li>What the state of the node should be at the end of the current chef-client run</li>
-</ul>
-
-
-<p>After the node object is rebuilt in the chef run,all attributes loaded in the chef-client are then compared. The node is updated based on attribute precedence and at the very end of the convergence(chef-client)the node object is uploaded to the chef server</p>
-
-<ul>
-<li>Node object defines the current state of the node(made up of attributes)</li>
-<li>Node object is stored on the chef server so that can be searched</li>
-<li>Node object is updated at each convergence</li>
-</ul>
-
-
-<p>If there are attributes with the same names then attributes precedence determines which attribute is applied to the node and the node object.</p>
-
-<blockquote><p>Thanks Linux Academy.</p></blockquote>
 ]]></content>
   </entry>
   

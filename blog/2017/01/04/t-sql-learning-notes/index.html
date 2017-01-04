@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Dockerの仕事の記録 - Mutiny Theory</title>
+  <title>T-SQL Learning Notes - Mutiny Theory</title>
   <meta name="author" content="Johnny Hsu">
 
   
@@ -14,22 +14,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://mutiny.work/blog/2016/12/01/docker-notes/">
+  <link rel="canonical" href="http://mutiny.work/blog/2017/01/04/t-sql-learning-notes/">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Mutiny Theory" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://mutiny.work/blog/2016/12/01/docker-notes/">
-  <meta property="og:title" content="Dockerの仕事の記録 - Mutiny Theory">
+  <meta property="og:url" content="http://mutiny.work/blog/2017/01/04/t-sql-learning-notes/">
+  <meta property="og:title" content="T-SQL Learning Notes - Mutiny Theory">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.1.3.min.js"></script>
 
 <!-- Add this for // Pick a Theme for Only One Page -->
 
-      <link href="http://bootswatch.com/flatly/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
 
 
 
@@ -133,106 +134,20 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-01T08:34:51+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-01-04T09:03:26+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        Dockerの仕事の記録
+        T-SQL Learning Notes
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><blockquote><p>今天遇到了一些比较古怪的事情，要记录下来免得以后再浪费我时间.</p></blockquote>
-
-<h2>Pick a Theme for Only One Page</h2>
-
-<p>这个功能很有意思 应该是这个theme作者留的一个彩蛋</p>
-
-<p><code>source/_includes/custom/head.html</code> 修改这个文件</p>
-
-<div><script src='https://gist.github.com/152806322884b65ded244daff2faba5c.js'></script>
-<noscript><pre><code>&lt;!-- ... --&gt;
-
-{% if page.bootstrap_theme_url %}
-  &lt;link href=&quot;{{ page.bootstrap_theme_url }}&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-{% else %}
-  &lt;link href=&quot;{{ root_url }}/assets/bootstrap/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-  &lt;link href=&quot;{{ root_url }}/assets/bootstrap/dist/css/bootstrap-theme.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-{% endif %}
-
-&lt;!-- ... --&gt;
-</code></pre></noscript></div>
-
-
-<h4>Example</h4>
-
-<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">---</span>
-</span><span class='line'><span class="ss">layout</span><span class="p">:</span> <span class="n">post</span>
-</span><span class='line'><span class="ss">bootstrap_theme_url</span><span class="p">:</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">bootswatch</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">flatly</span><span class="o">/</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">min</span><span class="o">.</span><span class="n">css</span>
-</span><span class='line'><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;pick a theme for only one page&quot;</span>
-</span><span class='line'><span class="ss">comments</span><span class="p">:</span> <span class="kp">true</span>
-</span><span class='line'><span class="ss">categories</span><span class="p">:</span> <span class="n">octopress</span>
-</span><span class='line'><span class="o">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<!-- more -->
-
-
-<h2>Docker container 关闭后再进入丢失path的问题</h2>
-
-<p>我今天重启了一下Docker的主机 然后重新login到container的时候报错</p>
-
-<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># rvm list</span>
-</span><span class='line'><span class="ss">bash</span><span class="p">:</span> <span class="ss">rvm</span><span class="p">:</span> <span class="n">command</span> <span class="ow">not</span> <span class="n">found</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Exo me? 逗我呢&hellip; <code>stackoverflow</code>查了一圈都没看到 估计是问题太easy了 然后回顾了一下<code>rvm</code>安装过程 可能是丢失了一个步骤 最后得知</p>
-
-<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># source /etc/profile.d/rvm.sh</span>
-</span><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># rvm list</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">rvm</span> <span class="n">rubies</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="n">ruby</span><span class="o">-</span><span class="mi">1</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="mi">3</span><span class="o">-</span><span class="n">p551</span> <span class="o">[</span> <span class="n">x86_64</span> <span class="o">]</span>
-</span><span class='line'><span class="o">=*</span> <span class="n">ruby</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">2</span> <span class="o">[</span> <span class="n">x86_64</span> <span class="o">]</span>
-</span><span class='line'>   <span class="n">ruby</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span> <span class="o">[</span> <span class="n">x86_64</span> <span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># =&gt; - current</span>
-</span><span class='line'><span class="c1"># =* - current &amp;&amp; default</span>
-</span><span class='line'><span class="c1">#  * - default</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Docker 编码|乱码问题</h2>
-
-<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="entry-content clearfix" itemprop="articleBody description"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -265,43 +180,57 @@
 <span class='line-number'>31</span>
 <span class='line-number'>32</span>
 <span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># locale</span>
-</span><span class='line'><span class="no">LANG</span><span class="o">=</span>
-</span><span class='line'><span class="no">LANGUAGE</span><span class="o">=</span>
-</span><span class='line'><span class="no">LC_CTYPE</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_NUMERIC</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_TIME</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_COLLATE</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_MONETARY</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_MESSAGES</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_PAPER</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_NAME</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_ADDRESS</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_TELEPHONE</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_MEASUREMENT</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_IDENTIFICATION</span><span class="o">=</span><span class="s2">&quot;POSIX&quot;</span>
-</span><span class='line'><span class="no">LC_ALL</span><span class="o">=</span>
-</span><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># export LANG=&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="n">root</span><span class="vi">@f6d3b13b9967</span><span class="ss">:/</span><span class="c1"># locale</span>
-</span><span class='line'><span class="no">LANG</span><span class="o">=</span><span class="n">en_US</span><span class="o">.</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
-</span><span class='line'><span class="no">LANGUAGE</span><span class="o">=</span>
-</span><span class='line'><span class="no">LC_CTYPE</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_NUMERIC</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_TIME</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_COLLATE</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_MONETARY</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_MESSAGES</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_PAPER</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_NAME</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_ADDRESS</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_TELEPHONE</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_MEASUREMENT</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_IDENTIFICATION</span><span class="o">=</span><span class="s2">&quot;en_US.UTF-8&quot;</span>
-</span><span class='line'><span class="no">LC_ALL</span><span class="o">=</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span>  <span class="k">From</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="k">YEAR</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2007</span> <span class="k">and</span> <span class="k">MONTH</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</span><span class='line'><span class="c1">-- 练习1 返回2007年6月的订单</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span> <span class="k">From</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="n">orderdate</span> <span class="o">=</span> <span class="n">eomonth</span><span class="p">(</span><span class="n">orderdate</span><span class="p">);</span>
+</span><span class='line'><span class="c1">-- 练习2 返回每个月的最后一天的订单</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">custid</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">city</span> <span class="k">FROM</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span> <span class="k">WHERE</span> <span class="n">region</span> <span class="o">=</span> <span class="n">N</span><span class="s1">&#39;WA&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">-- 这种写法我也实在不理解!! 不会return null的列 也不会return任何WA的列 仅此而已 直接写 =&#39;WA&#39;结果一样</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">custid</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">city</span> <span class="k">FROM</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span> <span class="k">WHERE</span> <span class="n">region</span> <span class="o">&lt;&gt;</span> <span class="n">N</span><span class="s1">&#39;WA&#39;</span><span class="p">;</span> <span class="c1">-- 非null和非WA的</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 字符排序</span>
+</span><span class='line'><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">hr</span><span class="p">.</span><span class="n">Employees</span> <span class="k">where</span> <span class="n">lastname</span> <span class="o">=</span> <span class="n">N</span><span class="s1">&#39;davis&#39;</span><span class="p">;</span> <span class="c1">-- 不区分大小写</span>
+</span><span class='line'><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">hr</span><span class="p">.</span><span class="n">Employees</span> <span class="k">where</span> <span class="n">lastname</span> <span class="k">collate</span> <span class="n">Latin1_General_CS_AS</span> <span class="o">=</span>  <span class="n">N</span><span class="s1">&#39;davis&#39;</span><span class="p">;</span> <span class="c1">-- return null</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 字符串连接</span>
+</span><span class='line'><span class="k">select</span> <span class="n">empid</span><span class="p">,</span> <span class="n">firstname</span> <span class="o">+</span> <span class="n">N</span><span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">lastname</span> <span class="k">As</span> <span class="n">fullname</span> <span class="k">from</span> <span class="n">hr</span><span class="p">.</span><span class="n">Employees</span><span class="p">;</span>
+</span><span class='line'><span class="k">select</span> <span class="n">custid</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">city</span><span class="p">,</span> <span class="n">country</span><span class="o">+</span><span class="n">N</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="n">region</span><span class="o">+</span><span class="n">N</span><span class="s1">&#39;,&#39;</span><span class="o">+</span><span class="n">city</span> <span class="k">As</span> <span class="k">location</span> <span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span><span class="p">;</span>
+</span><span class='line'><span class="cm">/*</span>
+</span><span class='line'><span class="cm">-- 标准SQL规定 连接NULL的结果应为NULL 所以只要任何一个row为null的话 location就会为null</span>
+</span><span class='line'><span class="cm">所以需要一个自动将null变为空字符串的函数来做这个拼接动作</span>
+</span><span class='line'><span class="cm">*/</span>
+</span><span class='line'><span class="k">select</span> <span class="n">custid</span><span class="p">,</span><span class="n">country</span><span class="p">,</span><span class="n">region</span><span class="p">,</span><span class="n">city</span><span class="p">,</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">country</span><span class="p">,</span><span class="n">N</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">region</span><span class="p">,</span><span class="n">N</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>  <span class="n">city</span><span class="p">)</span> <span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span><span class="p">;</span>
+</span><span class='line'><span class="c1">-- 提取一个字符串</span>
+</span><span class='line'><span class="k">select</span> <span class="k">SUBSTRING</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">-- 从第一个开始取3个  abc...</span>
+</span><span class='line'><span class="c1">-- 左边3个 右边3个</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="k">LEFT</span><span class="p">(</span><span class="s1">&#39;abcde&#39;</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span><span class='line'><span class="c1">-- len datalength 都会返回字符数量 后者不忽略空格</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">DATALENGTH</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;ABCDE &#39;</span><span class="p">);</span> <span class="c1">-- 12</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">DATALENGTH</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;abcde &#39;</span><span class="p">);</span> <span class="c1">-- 12 字节数</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">LEN</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;abcde &#39;</span><span class="p">);</span> <span class="c1">-- 5 字符数 and 忽略空格</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">LEN</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;abcde f&#39;</span><span class="p">);</span> <span class="c1">-- 7 不会忽略中间的空格!!!!!!</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 返回某个字符串在目标字符中第一次出现的位置</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">CHARINDEX</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;woody&#39;</span><span class="p">);</span> <span class="c1">-- 5</span>
+</span><span class='line'><span class="c1">-- 返回某种模式第一次出现的位置 所谓模式就似乎 0-9 a-z 或者其他正则</span>
+</span><span class='line'><span class="k">select</span> <span class="n">PATINDEX</span><span class="p">(</span><span class="s1">&#39;%[0-9]%&#39;</span><span class="p">,</span><span class="s1">&#39;abcde800efghijklmn&#39;</span><span class="p">);</span><span class="c1">-- 6</span>
+</span><span class='line'><span class="c1">-- replace</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="k">REPLACE</span><span class="p">(</span><span class="s1">&#39;2016-12-12&#39;</span><span class="p">,</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="s1">&#39;/&#39;</span><span class="p">);</span> <span class="c1">-- 2016/12/12</span>
+</span><span class='line'><span class="c1">-- 计算lastname中e出现的次数 // thinking 将e变成空 len出来的字数会自动缩水 再由原来的长度来减</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">lastname</span><span class="p">,</span> <span class="n">LEN</span><span class="p">(</span><span class="n">lastname</span><span class="p">)</span> <span class="o">-</span> <span class="n">LEN</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">lastname</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">))</span> <span class="k">AS</span> <span class="n">numoccur</span> <span class="k">from</span> <span class="n">HR</span><span class="p">.</span><span class="n">Employees</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-
-<p>懒得描述了~</p>
 </div>
 
 
@@ -325,13 +254,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-01T08:34:51+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2017-01-04T09:03:26+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+    <a class='category' href='/blog/categories/t-sql/'>t-sql</a>
   
 </span>
 
@@ -340,7 +269,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2016/12/01/docker-notes/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2016/12/01/docker-notes/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://mutiny.work/blog/2017/01/04/t-sql-learning-notes/" data-via="xiaoputi" data-counturl="http://mutiny.work/blog/2017/01/04/t-sql-learning-notes/" >Tweet</a>
   
   
   
@@ -350,10 +279,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2016/12/01/explain-ruby-installation/" title="Previous Post: Explain Ruby Installation">&laquo; Explain Ruby Installation</a></li>
+            <li class="previous"><a href="/blog/2016/12/25/a-simple-jquery-code/" title="Previous Post: A simple jQuery code">&laquo; A simple jQuery code</a></li>
             
-            
-            <li class="next"><a href="/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/" title="Next Post: How to Create a Draft Post With Octopress">How to Create a Draft Post With Octopress &raquo;</a></li>
             
           </ul>
         
@@ -378,7 +305,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2017/01/04/t-sql-learning-notes/">T-SQL Learning Notes</a>
+    <a class="list-group-item active" href="/blog/2017/01/04/t-sql-learning-notes/">T-SQL Learning Notes</a>
     
     <a class="list-group-item " href="/blog/2016/12/25/a-simple-jquery-code/">A Simple jQuery Code</a>
     
@@ -604,8 +531,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://mutiny.work/blog/2016/12/01/docker-notes/';
-        var disqus_url = 'http://mutiny.work/blog/2016/12/01/docker-notes/';
+        var disqus_identifier = 'http://mutiny.work/blog/2017/01/04/t-sql-learning-notes/';
+        var disqus_url = 'http://mutiny.work/blog/2017/01/04/t-sql-learning-notes/';
         var disqus_script = 'embed.js';
       
     (function () {
