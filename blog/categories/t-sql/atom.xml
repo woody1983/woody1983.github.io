@@ -4,7 +4,7 @@
   <title><![CDATA[Category: T-sql | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/t-sql/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-01-04T09:07:46+00:00</updated>
+  <updated>2017-01-24T03:45:30+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -19,6 +19,9 @@
     <updated>2017-01-04T09:03:26+00:00</updated>
     <id>http://mutiny.work/blog/2017/01/04/t-sql-learning-notes</id>
     <content type="html"><![CDATA[<p>讲真，这也算是一种温习.</p>
+
+<!-- more -->
+
 
 <pre><code class="sql">SELECT orderid,orderdate,custid,empid  
 From Sales.Orders where YEAR(orderdate) = 2007 and MONTH(orderdate) = 6;
