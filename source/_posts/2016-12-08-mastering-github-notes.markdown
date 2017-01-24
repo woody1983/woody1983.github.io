@@ -5,7 +5,7 @@ date: 2016-12-08 08:31:53 +0000
 comments: true
 categories: [CodeSchool, git, github]
 ---
-
+<!-- more -->
 ![codeschool](https://d1ffx7ull4987f.cloudfront.net/images/achievements/large_badge/443/complete-mastering-github-e998c0ab56c79b9074ad5e3c1427691a.png)
 
 ## Level 1

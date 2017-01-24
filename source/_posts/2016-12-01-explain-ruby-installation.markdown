@@ -6,7 +6,7 @@ date: 2016-12-01 00:20:15 +0000
 comments: true
 categories: Ruby
 ---
-
+<!-- more -->
 <div class="alert alert-info">
     <p>
       <span class="glyphicon glyphicon-info-sign"></span>

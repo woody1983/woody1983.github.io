@@ -6,7 +6,7 @@ date: 2016-12-01 08:34:51 +0000
 comments: true
 categories: [Octopress, Ruby]
 ---
-
+<!-- more -->
 >今天遇到了一些比较古怪的事情，要记录下来免得以后再浪费我时间.
 
 ## Pick a Theme for Only One Page 

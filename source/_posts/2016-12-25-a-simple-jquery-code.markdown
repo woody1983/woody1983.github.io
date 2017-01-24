@@ -5,7 +5,7 @@ date: 2016-12-25 21:39:57 +0800
 comments: true
 categories: jQuery
 ---
-
+<!-- more -->
 ``` html
 <li class="confirmation">
   <h3>Hawaiian Vacation</h3>

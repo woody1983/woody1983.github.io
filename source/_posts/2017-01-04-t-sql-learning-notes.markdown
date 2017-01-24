@@ -7,7 +7,7 @@ categories: T-SQL
 ---
 
 讲真，这也算是一种温习.
-
+<!-- more -->
 ``` sql
 SELECT orderid,orderdate,custid,empid  
 From Sales.Orders where YEAR(orderdate) = 2007 and MONTH(orderdate) = 6;

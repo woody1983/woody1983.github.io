@@ -5,7 +5,7 @@ date: 2016-12-05 23:49:46 +0000
 comments: true
 categories: Octopress
 ---
-
+<!-- more -->
 Insert `published: false into` the YAML frontmatter to make the post a draft. Here's an example:
 
 ``` yaml
