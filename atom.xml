@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-01-24T03:45:30+00:00</updated>
+  <updated>2017-01-24T05:27:56+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -119,7 +119,10 @@
     <link href="http://mutiny.work/blog/2016/12/25/a-simple-jquery-code/"/>
     <updated>2016-12-25T13:39:57+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/25/a-simple-jquery-code</id>
-    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -239,7 +242,12 @@
     <link href="http://mutiny.work/blog/2016/12/16/take-it-or-leave-it/"/>
     <updated>2016-12-16T03:22:58+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/16/take-it-or-leave-it</id>
-    <content type="html"><![CDATA[<p>刚看到一句话</p>
+    <content type="html"><![CDATA[<blockquote><p>于持中不持，于不持中持，到得念头不动，则灵验矣.</p></blockquote>
+
+<!-- more -->
+
+
+<p>刚看到一句话</p>
 
 <blockquote><p>云谷禅师传授了凡居士准提咒持诵法，禅师并告诉他："……但能持准提咒，无记无数，不令间断，持得纯熟。于持中不持，于不持中持，到得念头不动，则灵验矣."</p></blockquote>
 
@@ -309,7 +317,10 @@
     <link href="http://mutiny.work/blog/2016/12/08/mastering-github-notes/"/>
     <updated>2016-12-08T08:31:53+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/08/mastering-github-notes</id>
-    <content type="html"><![CDATA[<p><img src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/large_badge/443/complete-mastering-github-e998c0ab56c79b9074ad5e3c1427691a.png" alt="codeschool" /></p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p><img src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/large_badge/443/complete-mastering-github-e998c0ab56c79b9074ad5e3c1427691a.png" alt="codeschool" /></p>
 
 <h2>Level 1</h2>
 
@@ -731,7 +742,10 @@ If you want to see the work that needs to be done, you should check out the <str
     <link href="http://mutiny.work/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/"/>
     <updated>2016-12-05T23:49:46+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/05/how-to-create-a-draft-post-with-octopress</id>
-    <content type="html"><![CDATA[<p>Insert <code>published: false into</code> the YAML frontmatter to make the post a draft. Here&rsquo;s an example:</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>Insert <code>published: false into</code> the YAML frontmatter to make the post a draft. Here&rsquo;s an example:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -765,7 +779,10 @@ If you want to see the work that needs to be done, you should check out the <str
     <link href="http://mutiny.work/blog/2016/12/01/docker-notes/"/>
     <updated>2016-12-01T08:34:51+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/01/docker-notes</id>
-    <content type="html"><![CDATA[<blockquote><p>今天遇到了一些比较古怪的事情，要记录下来免得以后再浪费我时间.</p></blockquote>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<blockquote><p>今天遇到了一些比较古怪的事情，要记录下来免得以后再浪费我时间.</p></blockquote>
 
 <h2>Pick a Theme for Only One Page</h2>
 
@@ -929,7 +946,10 @@ If you want to see the work that needs to be done, you should check out the <str
     <link href="http://mutiny.work/blog/2016/12/01/explain-ruby-installation/"/>
     <updated>2016-12-01T00:20:15+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/01/explain-ruby-installation</id>
-    <content type="html"><![CDATA[<div class="alert alert-info">
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<div class="alert alert-info">
     <p>
       <span class="glyphicon glyphicon-info-sign"></span>
 在irb启动的时候加载一个rrbconfig的Ruby库 而RbConfig则是一个API接口，可以得到很多关于Ruby安装的内部变异的配置信息。

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-01-24T03:45:30+00:00</updated>
+  <updated>2017-01-24T05:27:56+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,7 +18,10 @@
     <link href="http://mutiny.work/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/"/>
     <updated>2016-12-05T23:49:46+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/05/how-to-create-a-draft-post-with-octopress</id>
-    <content type="html"><![CDATA[<p>Insert <code>published: false into</code> the YAML frontmatter to make the post a draft. Here&rsquo;s an example:</p>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>Insert <code>published: false into</code> the YAML frontmatter to make the post a draft. Here&rsquo;s an example:</p>
 
 <pre><code class="yaml">---
 layout: post
@@ -41,7 +44,10 @@ published: false
     <link href="http://mutiny.work/blog/2016/12/01/docker-notes/"/>
     <updated>2016-12-01T08:34:51+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/01/docker-notes</id>
-    <content type="html"><![CDATA[<blockquote><p>今天遇到了一些比较古怪的事情，要记录下来免得以后再浪费我时间.</p></blockquote>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<blockquote><p>今天遇到了一些比较古怪的事情，要记录下来免得以后再浪费我时间.</p></blockquote>
 
 <h2>Pick a Theme for Only One Page</h2>
 

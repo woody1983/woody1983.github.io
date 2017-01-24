@@ -191,120 +191,13 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;confirmation&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;h3&gt;</span>Hawaiian Vacation<span class="nt">&lt;/h3&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;button&gt;</span>Flight details<span class="nt">&lt;/button&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;ticket&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">&quot;view-boarding-pass&quot;</span><span class="nt">&gt;</span>View Boarding Pass<span class="nt">&lt;/a&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;/ticket-14836.png&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'><span class="nt">&lt;/li&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.confirmation&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;.ticket&#39;</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.confirmation .view-boarding-pass&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;ticket&#39;</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But, If we need makeing a Ajax call.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.confirmation&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;http://example.org/confirmation.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.ticket&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">();</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'>  <span class="p">)};</span>
-</span><span class='line'><span class="p">});</span>
-</span><span class='line'><span class="c1">// or $.ajax(&#39;confirmation.html&#39;)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Shorthand with $.get</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;confirmation.html&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.ticket&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">();</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Sending parameters with requests</h3>
-
-<p>like this <code>confirmation.html?confNum=1234</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;http://example.org/confirmation.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.ticket&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">();</span>
-</span><span class='line'>    <span class="p">},</span>
-</span><span class='line'>    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;confNum&quot;</span><span class="o">:</span> <span class="mi">1234</span> <span class="p">}</span>
-</span><span class='line'>  <span class="p">)};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Pulled from the HTML</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&#39;ticket&#39;</span> <span class="na">data-confNum=</span><span class="s">&#39;1234&#39;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'>  <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">(</span><span class="s1">&#39;http://example.org/confirmation.html&#39;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>      <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.ticket&#39;</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">response</span><span class="p">).</span><span class="nx">slideDown</span><span class="p">();</span>
-</span><span class='line'>    <span class="p">},</span>
-</span><span class='line'>    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;confNum&quot;</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;ticket&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s2">&quot;confNum&quot;</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>  <span class="p">)};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"></div>
   
+  
+    <footer>
+      <a class="read-more btn btn-default btn-small" href="/blog/2016/12/25/a-simple-jquery-code/">Read on &rarr;</a>
+      <!--  mmmmmm -->
+    </footer>
   
 
 
@@ -339,70 +232,15 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>刚看到一句话</p>
+  <div class="entry-content clearfix" itemprop="articleBody description"><blockquote><p>于持中不持，于不持中持，到得念头不动，则灵验矣.</p></blockquote>
 
-<blockquote><p>云谷禅师传授了凡居士准提咒持诵法，禅师并告诉他："……但能持准提咒，无记无数，不令间断，持得纯熟。于持中不持，于不持中持，到得念头不动，则灵验矣."</p></blockquote>
-
-<p>这难道不就是学习的最佳状态吗？如果背诵NCE也能达到<code>[于持中不持，于不持中持]</code>我现在也差不多可以登天了。</p>
-
-<h3>读书</h3>
-
-<p>这整个2016年做的最差的一件事情，我甚至怀疑这种事情会发生在我身上，因为除了读书我不知道我的时间还可以花在什么其他的事情上面。太太给我买了一部Kindle Paperwhite3。里面的藏书差不多快接近100本了，完整看完一遍的不到5本。 看来 z.cn上面搞特价的页面还是少去看点微妙，也许2017年我应该把库存的图书都好好看一遍才对，不仅是要看 还要留下足够的笔迹。</p>
-
-<h3>身体</h3>
-
-<p>也许是年中做的手术有关，这一年的锻炼确实差的很多，没错 我整个2016年都很差 各种方面，每一件事情是自己满意的，能令太太满意的更不可能有了。体重现在94KG.恢复到80KG还有点距离。饮食自控的太差，也许是时候换一个饭盒或改变自己食谱的时候了。过年会考虑办张健身卡，主要是早上7点30到公司以后实在没什么事情可做，与其浪费时间不如在健身房里跑个10km. 毕竟Nike+ 也支持室内跑步的。</p>
-
-<h3>语言</h3>
-
-<p>日语还是没考试一丁点的计划，英语还停留在NCE-1 shit！！！</p>
-
-<h1>How to Change ?</h1>
-
-<p>过去的一周我几乎在找寻和复盘自己之前学习计划为什么一直失败的原因，现在总结下来</p>
-
-<ul>
-<li>没有一个可持续的计划表 可执行的</li>
-<li>所有计划的粒度都太理想化 有些根本没有粒度。</li>
-<li>严格执行 其实没有这一条 其余所有的都是白费的。</li>
-</ul>
-
-
-<p>在我看来一张2017年比较实际的计划应该是</p>
-
-<h2>多条任务线</h2>
-
-<p>我没写错，是要多条，因为作为家庭和社会中的一份子 不可能一年只做一件事情，又不是手工艺匠人。 但是最重要的一天是，任何事情 都不应该只是<code>线性</code>的 而应该是<code>网状</code>分布的。从一开始的全面空白 但后面慢慢讲block的颜色填深 这才是一个学习的进度。 根据<code>Bullet Journal</code>的观点 每一年的开始是要定下这一年可能会发生的或一定要做的几件事情。</p>
-
-<p>对于我而言</p>
-
-<ul>
-<li>语言关 这对于我来说意义太大</li>
-<li>驾照</li>
-<li>site build</li>
-<li>New Job Position</li>
-</ul>
-
-
-<h2>最小粒度</h2>
-
-<p>这个是之前都没有意识到的一个事情，为什么呢？ 因为只有执行粒度的明确制定后才能更好的制定计划和执行计划。 一天背一本书现实吗？不现实，因为粒度不对，一天背熟一个句子呢？貌似可以。 这就是最小粒度，要所有要做的事情的最小粒度整理好以后 开始执行并及时反馈自己 然后更新粒度。其余什么的都是鸡汤而已，再励志有P用，你做不到还不是白搭。</p>
-
-<h2>严格执行</h2>
-
-<p>必须要有一个时间表，任务列表，严格去做，这张表的第一版可能粒度都比较小，比如 一个单词 一个句子 一张卷子 更新一篇文章 一篇公众号推荐。但是必须去严格做，一开始就是因为粒度比较小 所有做起来的阻力也会比较少，但只要做，总会离自己的梦想和目的都进一步。</p>
-
-<h2>及时反馈 随时迭代更新</h2>
-
-<p>不断的更新粒度 来发现自己<code>当前</code>的学习能力有多少。</p>
-
-<h2>确保执行下去</h2>
-
-<p>这个如果只是一个口号的话，那写这一篇文章对于我而言一点意义都没有还不如玩游戏。对的，就是玩游戏，把玩游戏的事情也写进去，一张list完成以后后面的时间就是用来玩游戏的。反正对于我而言，真的是缺少一个可以合理正大光明毫不愧疚去肝游戏的借口！</p>
-
-<blockquote><p>好了 先扯这么多 后面想起什么再写上来。</p></blockquote>
 </div>
   
+  
+    <footer>
+      <a class="read-more btn btn-default btn-small" href="/blog/2016/12/16/take-it-or-leave-it/">Read on &rarr;</a>
+      <!--  mmmmmm -->
+    </footer>
   
 
 
@@ -437,37 +275,7 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p><img src="https://d1ffx7ull4987f.cloudfront.net/images/achievements/large_badge/443/complete-mastering-github-e998c0ab56c79b9074ad5e3c1427691a.png" alt="codeschool" /></p>
-
-<h2>Level 1</h2>
-
-<p>相对比较Easy ,先fork <a href="https://github.com/deadlyvipers/dojo_rules">deadlyvipers/</a>这个Repo先
-然后提交一个 <code>introduction.md</code>的文件到<code>github/master</code>上 内容随便写写 不要为空即可</p>
-
-<h2>Level 1.6</h2>
-
-<h4>Task1/2</h4>
-
-<p>比较简单 就是提一个PR到<a href="https://github.com/deadlyvipers/dojo_rules">deadlyvipers/</a> create完毕以后直接sumit答案.</p>
-
-<h4>Task 2/2</h4>
-
-<p>这关比较容易stuck 留意一下你刚才提的PR中 codeschool-kiddo是怎么评论你的</p>
-
-<blockquote><p>Looks good! Could you also please mention your favorite Code School path in your introduction? This could be Ruby, JavaScript, HTML &amp; CSS, iOS or Electives.</p></blockquote>
-
-<p>所以要在introduction,md文件里面添加一些课程的path进去   比如 Ruby （下次试试不加 * 号  否则 Level2.2 Task 3/4会自动submit）
-update introduction.md</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git commit -am "Updated introduction.md"
-</span><span class='line'>git push origin master</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"></div>
   
   
     <footer>
@@ -508,34 +316,13 @@ update introduction.md</p>
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>Insert <code>published: false into</code> the YAML frontmatter to make the post a draft. Here&rsquo;s an example:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&#39;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Create</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">Draft</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">Octopress&#39;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2013-08-19 21:52</span>
-</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Learn how to create a draft post with the Octopress blogging framework</span>
-</span><span class='line'><span class="l-Scalar-Plain">keywords</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Octopress, yaml, draft, draft post, how to, tip</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
-</span><span class='line'><span class="l-Scalar-Plain">published</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Blog posted By <a href="http://sweetme.at/2013/08/19/how-to-create-a-draft-post-with-octopress/">Chris Simpkins</a></p>
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"></div>
   
+  
+    <footer>
+      <a class="read-more btn btn-default btn-small" href="/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/">Read on &rarr;</a>
+      <!--  mmmmmm -->
+    </footer>
   
 
 
@@ -570,48 +357,7 @@ update introduction.md</p>
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><blockquote><p>今天遇到了一些比较古怪的事情，要记录下来免得以后再浪费我时间.</p></blockquote>
-
-<h2>Pick a Theme for Only One Page</h2>
-
-<p>这个功能很有意思 应该是这个theme作者留的一个彩蛋</p>
-
-<p><code>source/_includes/custom/head.html</code> 修改这个文件</p>
-
-<div><script src='https://gist.github.com/152806322884b65ded244daff2faba5c.js'></script>
-<noscript><pre><code>&lt;!-- ... --&gt;
-
-{% if page.bootstrap_theme_url %}
-  &lt;link href=&quot;{{ page.bootstrap_theme_url }}&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-{% else %}
-  &lt;link href=&quot;{{ root_url }}/assets/bootstrap/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-  &lt;link href=&quot;{{ root_url }}/assets/bootstrap/dist/css/bootstrap-theme.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
-{% endif %}
-
-&lt;!-- ... --&gt;
-</code></pre></noscript></div>
-
-
-<h4>Example</h4>
-
-<figure class='code'><figcaption><span>example front </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">---</span>
-</span><span class='line'><span class="ss">layout</span><span class="p">:</span> <span class="n">post</span>
-</span><span class='line'><span class="ss">bootstrap_theme_url</span><span class="p">:</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">bootswatch</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">flatly</span><span class="o">/</span><span class="n">bootstrap</span><span class="o">.</span><span class="n">min</span><span class="o">.</span><span class="n">css</span>
-</span><span class='line'><span class="ss">title</span><span class="p">:</span> <span class="s2">&quot;pick a theme for only one page&quot;</span>
-</span><span class='line'><span class="ss">comments</span><span class="p">:</span> <span class="kp">true</span>
-</span><span class='line'><span class="ss">categories</span><span class="p">:</span> <span class="n">octopress</span>
-</span><span class='line'><span class="o">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"></div>
   
   
     <footer>
@@ -652,84 +398,7 @@ update introduction.md</p>
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><div class="alert alert-info">
-    <p>
-      <span class="glyphicon glyphicon-info-sign"></span>
-在irb启动的时候加载一个rrbconfig的Ruby库 而RbConfig则是一个API接口，可以得到很多关于Ruby安装的内部变异的配置信息。
-    </p>
-</div>
-
-
-<p><code>RbConfig::CONFIG</code> 是一个Hash类型的常量</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>root@mutiny:~# rvm 2.1.0
-</span><span class='line'>root@mutiny:~# ruby --version
-</span><span class='line'>ruby 2.1.0p0 (2013-12-25 revision 44422) [x86_64-linux]
-</span><span class='line'>root@mutiny:~# irb --simple-prompt -rrbconfig
-</span><span class='line'>&gt;&gt; RbConfig::CONFIG["bindir"]
-</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/bin"
-</span><span class='line'>&gt;&gt; RbConfig::CONFIG["rubylibdir"]
-</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0"
-</span><span class='line'>&gt;&gt; RbConfig::CONFIG["archdir"]
-</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/x86_64-linux"
-</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitedir"]
-</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby"
-</span><span class='line'>&gt;&gt; RbConfig::CONFIG["vendordir"]
-</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby"
-</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitelibdir"]
-</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0"
-</span><span class='line'>&gt;&gt; RbConfig::CONFIG["sitearchdir"]
-</span><span class='line'>=&gt; "/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0/x86_64-linux"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ruby标准库子目录rubylibdir 里面都是用ruby编写的小工具的源代码 没事可以上去看看
-C语言扩展目录 RbConfig::CONFIG[“archdir“]
-site_ruby是用来存储用户和管理员安装的第三方扩展库文件 该目录中也有用户自己写的程序文件以及下载的工具包
-gems目录 如果找到了site_ruby其实也找到了gems的安装目录</p>
-
-<h4>检查加载目录的方法</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>root@mutiny:~# ruby -e "puts $:"
-</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0
-</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby/2.1.0/x86_64-linux
-</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/site_ruby
-</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby/2.1.0
-</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby/2.1.0/x86_64-linux
-</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/vendor_ruby
-</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0
-</span><span class='line'>/usr/local/rvm/rubies/ruby-2.1.0/lib/ruby/2.1.0/x86_64-linux</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
+  <div class="entry-content clearfix" itemprop="articleBody description"></div>
   
   
     <footer>

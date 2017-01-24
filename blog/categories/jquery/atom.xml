@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jquery | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/jquery/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-01-24T03:45:30+00:00</updated>
+  <updated>2017-01-24T05:27:56+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,7 +18,10 @@
     <link href="http://mutiny.work/blog/2016/12/25/a-simple-jquery-code/"/>
     <updated>2016-12-25T13:39:57+00:00</updated>
     <id>http://mutiny.work/blog/2016/12/25/a-simple-jquery-code</id>
-    <content type="html"><![CDATA[<pre><code class="html">&lt;li class="confirmation"&gt;
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<pre><code class="html">&lt;li class="confirmation"&gt;
   &lt;h3&gt;Hawaiian Vacation&lt;/h3&gt;
   &lt;button&gt;Flight details&lt;/button&gt;
   &lt;div class="ticket"&gt;
