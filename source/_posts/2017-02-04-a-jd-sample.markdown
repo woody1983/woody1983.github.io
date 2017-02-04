@@ -1,5 +1,6 @@
 ---
 layout: post
+bootstrap_theme_url: http://bootswatch.com/flatly/bootstrap.min.css
 title: "A JD sample"
 date: 2017-02-04 07:52:30 +0000
 comments: true
