@@ -138,6 +138,72 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-11-30T03:55:32+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/11/30/orid/" itemprop="url">ORID</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h3>ORID 思考框架</h3>
+
+<p>Objective
+关于今天的工作 你记得什么？完成了什么？</p>
+
+<p>Reflective
+你要如何形容今天的情绪？
+今天的高峰是什么？
+今天的低点是什么？</p>
+
+<p>Interpretive
+我们今天学到了什么？
+今天一个重要的领悟是什么？</p>
+
+<p>Decisional
+我们会如何用一句话形容今天的工作？
+有哪些工作需要明天继续努力？</p>
+
+<p>遇到生活中的[bug] 就是做错的事情 记下来</p>
+
+<pre><code>为什么会发生这个的原因
+我做错了什么
+正确又该怎么办
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default btn-small" href="/blog/2016/11/30/orid/">Read on &rarr;</a>
+      <!--  mmmmmm -->
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-09-20T00:55:22+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -867,118 +933,6 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-19T07:42:33+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/19/html-templates-dynamically-with-chef/" itemprop="url">HTML Templates Dynamically With Chef</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>Change the Recipes file</p>
-
-<figure class='code'><figcaption><span>recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">template</span> <span class="s2">&quot;/content/sites/</span><span class="si">#{</span><span class="n">sitename</span><span class="si">}</span><span class="s2">/index.html&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">source</span> <span class="s2">&quot;index.html.erb&quot;</span>
-</span><span class='line'>  <span class="n">mode</span> <span class="s2">&quot;0644&quot;</span>
-</span><span class='line'>  <span class="n">variables</span><span class="p">(</span>
-</span><span class='line'>      <span class="ss">:site_title</span> <span class="o">=&gt;</span> <span class="n">data</span><span class="o">[</span><span class="s2">&quot;site_title&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>      <span class="ss">:comingsoon</span> <span class="o">=&gt;</span> <span class="s2">&quot;Coming Soon!&quot;</span>
-</span><span class='line'>  <span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Adding something about HTMl element</p>
-
-<figure class='code'><figcaption><span>attributes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="s2">&quot;site_title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832 websites coming soon&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832.mylabserver.com&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>  
-</span><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832b&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="s2">&quot;site_title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b websites coming soon!&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b.mylabserver.com&quot;</span>
-</span><span class='line'><span class="p">}</span>          
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>templates/default/index.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">&lt;html&gt;</span>
-</span><span class='line'><span class="x">  &lt;head&gt;</span>
-</span><span class='line'><span class="x">      &lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@site_title</span> <span class="cp">%&gt;</span><span class="x">&lt;/title&gt;</span>
-</span><span class='line'><span class="x">  &lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">&lt;body&gt;</span>
-</span><span class='line'><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@site_title</span> <span class="cp">%&gt;</span><span class="x">&lt;/h1&gt;</span>
-</span><span class='line'><span class="x">  &lt;h2&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@comingsoon</span> <span class="cp">%&gt;</span><span class="x">&lt;/h2&gt;</span>
-</span><span class='line'><span class="x">&lt;/body&gt;</span>
-</span><span class='line'><span class="x">&lt;/html&gt;</span>
-</span><span class='line'><span class="x">          </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1002,6 +956,8 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2017/02/04/a-jd-sample/">A JD Sample</a>
+    
     <a class="list-group-item " href="/blog/2017/01/04/t-sql-learning-notes/">T-SQL Learning Notes</a>
     
     <a class="list-group-item " href="/blog/2016/12/25/a-simple-jquery-code/">A Simple jQuery Code</a>
@@ -1009,8 +965,6 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
     <a class="list-group-item " href="/blog/2016/12/16/take-it-or-leave-it/">Take It or Leave It</a>
     
     <a class="list-group-item " href="/blog/2016/12/08/mastering-github-notes/">Mastering Github Notes</a>
-    
-    <a class="list-group-item " href="/blog/2016/12/05/how-to-create-a-draft-post-with-octopress/">How to Create a Draft Post With Octopress</a>
     
   </div>
 </section>
@@ -1154,7 +1108,7 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
     
     
     <a class="list-group-item " href="/blog/categories/note/index.html">
-        <span class="badge">1</span>
+        <span class="badge">2</span>
         note
       </a>
     

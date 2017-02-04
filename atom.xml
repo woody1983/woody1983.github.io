@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-01-24T05:27:56+00:00</updated>
+  <updated>2017-02-04T07:54:01+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A JD Sample]]></title>
+    <link href="http://mutiny.work/blog/2017/02/04/a-jd-sample/"/>
+    <updated>2017-02-04T07:52:30+00:00</updated>
+    <id>http://mutiny.work/blog/2017/02/04/a-jd-sample</id>
+    <content type="html"><![CDATA[<p>随便看看</p>
+
+<!-- more -->
+
+
+<h3>工作职责：</h3>
+
+<ul>
+<li>1、运营分析，输出业务分析报告，对业务问题进行深入分析，为公司运营决策、产品方向、销售策略提供数据支持；</li>
+<li>2、全业务线业务指标体系建设，通过监控分析及时发现业务问题；</li>
+<li>3、沉淀分析思路与框架，构建数据分析体系、推动数据化运营工作； 提炼数据产品需求，推动数据产品落地；</li>
+<li>4、与相关团队协作（运营团队、数据产品团队）组织数据分析培训、落实数据化运营理念；</li>
+</ul>
+
+
+<h3>任职资格：</h3>
+
+<ul>
+<li>1、本科学历，5年以上相关经验；硕士学历，3年以上相关经验；</li>
+<li>2、熟练独立编写商业数据分析报告，及时发现和分析其中隐含的变化和问题；</li>
+<li>3、熟练掌握SASSPSSR等分析工具、数据分析技术（聚类分析、回归分析、决策树等）；</li>
+<li>4、互联网行业（电子商务、门户网站、社区网站..）经验3年以上者优先考虑；</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[T-SQL Learning Notes]]></title>
@@ -1724,90 +1756,6 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
 
 
 <p>So that all. Easy</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[HTML Templates Dynamically With Chef]]></title>
-    <link href="http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef/"/>
-    <updated>2016-07-19T07:42:33+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/19/html-templates-dynamically-with-chef</id>
-    <content type="html"><![CDATA[<p>Change the Recipes file</p>
-
-<figure class='code'><figcaption><span>recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">template</span> <span class="s2">&quot;/content/sites/</span><span class="si">#{</span><span class="n">sitename</span><span class="si">}</span><span class="s2">/index.html&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">source</span> <span class="s2">&quot;index.html.erb&quot;</span>
-</span><span class='line'>  <span class="n">mode</span> <span class="s2">&quot;0644&quot;</span>
-</span><span class='line'>  <span class="n">variables</span><span class="p">(</span>
-</span><span class='line'>      <span class="ss">:site_title</span> <span class="o">=&gt;</span> <span class="n">data</span><span class="o">[</span><span class="s2">&quot;site_title&quot;</span><span class="o">]</span><span class="p">,</span>
-</span><span class='line'>      <span class="ss">:comingsoon</span> <span class="o">=&gt;</span> <span class="s2">&quot;Coming Soon!&quot;</span>
-</span><span class='line'>  <span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Adding something about HTMl element</p>
-
-<figure class='code'><figcaption><span>attributes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="s2">&quot;site_title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832 websites coming soon&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832.mylabserver.com&quot;</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'>  
-</span><span class='line'><span class="n">default</span><span class="o">[</span><span class="s2">&quot;apache&quot;</span><span class="o">][</span><span class="s2">&quot;sites&quot;</span><span class="o">][</span><span class="s2">&quot;johnny-hsu19832b&quot;</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>  <span class="s2">&quot;site_title&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b websites coming soon!&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;port&quot;</span> <span class="o">=&gt;</span> <span class="mi">80</span><span class="p">,</span>
-</span><span class='line'>  <span class="s2">&quot;domain&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;johnny-hsu19832b.mylabserver.com&quot;</span>
-</span><span class='line'><span class="p">}</span>          
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>templates/default/index.html.erb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='erb'><span class='line'><span class="x">&lt;html&gt;</span>
-</span><span class='line'><span class="x">  &lt;head&gt;</span>
-</span><span class='line'><span class="x">      &lt;title&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@site_title</span> <span class="cp">%&gt;</span><span class="x">&lt;/title&gt;</span>
-</span><span class='line'><span class="x">  &lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="x">&lt;body&gt;</span>
-</span><span class='line'><span class="x">  &lt;h1&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@site_title</span> <span class="cp">%&gt;</span><span class="x">&lt;/h1&gt;</span>
-</span><span class='line'><span class="x">  &lt;h2&gt;</span><span class="cp">&lt;%=</span> <span class="vi">@comingsoon</span> <span class="cp">%&gt;</span><span class="x">&lt;/h2&gt;</span>
-</span><span class='line'><span class="x">&lt;/body&gt;</span>
-</span><span class='line'><span class="x">&lt;/html&gt;</span>
-</span><span class='line'><span class="x">          </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   
