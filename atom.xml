@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-02-06T02:29:02+00:00</updated>
+  <updated>2017-02-06T08:01:59+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,127 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Exercises T-SQL #Character 2]]></title>
+    <link href="http://mutiny.work/blog/2017/02/06/exercises-t-sql-number-character-2/"/>
+    <updated>2017-02-06T08:00:41+00:00</updated>
+    <id>http://mutiny.work/blog/2017/02/06/exercises-t-sql-number-character-2</id>
+    <content type="html"><![CDATA[<p>Exercises sample Query</p>
+
+<!-- more -->
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="c1">-- 练习1</span>
+</span><span class='line'><span class="c1">-- 返回2007年6月份的订单</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="k">YEAR</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2007</span> <span class="k">and</span> <span class="k">MONTH</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span><span class="o">=</span><span class="mi">6</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 练习2</span>
+</span><span class='line'><span class="c1">-- 返回每个月最后一天的订单</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">orderid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">custid</span><span class="p">,</span><span class="n">empid</span> <span class="k">FROM</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span> <span class="k">where</span> <span class="n">orderdate</span> <span class="o">=</span> <span class="n">EOMONTH</span><span class="p">(</span><span class="n">orderdate</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 练习3</span>
+</span><span class='line'><span class="c1">-- 返回姓氏包含字母a两次以上的雇员</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">HR</span><span class="p">.</span><span class="n">Employees</span> <span class="k">where</span> <span class="p">(</span><span class="n">LEN</span><span class="p">(</span><span class="n">lastname</span><span class="p">)</span> <span class="o">-</span> <span class="n">LEN</span><span class="p">(</span><span class="k">REPLACE</span><span class="p">(</span><span class="n">lastname</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)))</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 练习4 </span>
+</span><span class='line'><span class="c1">-- 返回总价大于10 000 的订单 按照总价排序</span>
+</span><span class='line'><span class="k">exec</span> <span class="n">sys</span><span class="p">.</span><span class="n">sp_help</span> <span class="o">@</span><span class="n">objname</span> <span class="o">=</span> <span class="n">N</span><span class="s1">&#39;Sales.OrderDetails&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">select</span> <span class="n">orderid</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">qty</span> <span class="o">*</span> <span class="n">unitprice</span><span class="p">)</span> <span class="k">as</span> <span class="n">totalvalue</span>  <span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">OrderDetails</span>
+</span><span class='line'><span class="k">group</span> <span class="k">by</span> <span class="n">orderid</span>  <span class="k">having</span> <span class="k">sum</span><span class="p">(</span><span class="n">qty</span> <span class="o">*</span> <span class="n">unitprice</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">10000</span> <span class="k">order</span> <span class="k">by</span> <span class="k">sum</span><span class="p">(</span><span class="n">qty</span> <span class="o">*</span> <span class="n">unitprice</span><span class="p">)</span> <span class="k">desc</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 练习5</span>
+</span><span class='line'><span class="c1">-- 返回2007年中平均运费最高的3个国家</span>
+</span><span class='line'><span class="k">select</span> <span class="n">top</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">shipcountry</span><span class="p">,</span> <span class="k">avg</span><span class="p">(</span><span class="n">freight</span><span class="p">)</span> <span class="k">AS</span> <span class="n">avgfreight</span>
+</span><span class='line'><span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span>
+</span><span class='line'><span class="k">where</span>   <span class="k">YEAR</span><span class="p">(</span><span class="n">orderdate</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2007</span> <span class="k">group</span> <span class="k">by</span> <span class="n">shipcountry</span> <span class="k">order</span> <span class="k">by</span> <span class="k">avg</span><span class="p">(</span><span class="n">freight</span><span class="p">)</span> <span class="k">desc</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 练习6</span>
+</span><span class='line'><span class="c1">-- 分别对每个客户的订单按订单日期排序</span>
+</span><span class='line'><span class="c1">-- 要用到窗口函数 </span>
+</span><span class='line'><span class="k">select</span> <span class="n">custid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">orderid</span><span class="p">,</span>
+</span><span class='line'><span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span><span class="p">(</span><span class="n">partition</span> <span class="k">by</span> <span class="n">custid</span> <span class="k">order</span> <span class="k">by</span> <span class="n">orderdate</span><span class="p">,</span> <span class="n">custid</span> <span class="p">)</span> <span class="k">as</span> <span class="n">rownum</span>
+</span><span class='line'><span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- debug // ROW_NUMBER() OVER(order by custid) // 按照custid排序 rownum为连续计数 1-830</span>
+</span><span class='line'><span class="k">select</span> <span class="n">custid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">orderid</span><span class="p">,</span><span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span><span class="p">(</span><span class="k">order</span> <span class="k">by</span> <span class="n">custid</span><span class="p">)</span> <span class="k">as</span> <span class="n">rownum</span>  <span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span><span class="p">;</span>
+</span><span class='line'><span class="c1">-- debug // partition 按照custid分别计算行号 每一个custid对应的order 则需要单独order by排序</span>
+</span><span class='line'><span class="k">select</span> <span class="n">custid</span><span class="p">,</span><span class="n">orderdate</span><span class="p">,</span><span class="n">orderid</span><span class="p">,</span><span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span><span class="p">(</span><span class="n">partition</span> <span class="k">by</span> <span class="n">custid</span> <span class="k">order</span> <span class="k">by</span> <span class="n">orderid</span><span class="p">)</span> <span class="k">as</span> <span class="n">rownum</span>  <span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Orders</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 练习7</span>
+</span><span class='line'><span class="c1">-- 推测性别 Ms. Mrs.-Female / Mr - Male</span>
+</span><span class='line'><span class="k">SELECT</span> <span class="n">empid</span><span class="p">,</span><span class="n">firstname</span><span class="p">,</span><span class="n">lastname</span><span class="p">,</span><span class="n">titleofcourtesy</span><span class="p">,</span>
+</span><span class='line'><span class="k">case</span>
+</span><span class='line'><span class="k">when</span> <span class="n">titleofcourtesy</span> <span class="o">=</span> <span class="s1">&#39;Mr.&#39;</span> <span class="k">then</span> <span class="s1">&#39;Male&#39;</span>
+</span><span class='line'><span class="k">when</span> <span class="n">titleofcourtesy</span> <span class="o">=</span> <span class="s1">&#39;Ms.&#39;</span> <span class="k">then</span> <span class="s1">&#39;Female&#39;</span>
+</span><span class='line'><span class="k">when</span> <span class="n">titleofcourtesy</span> <span class="o">=</span> <span class="s1">&#39;Mrs.&#39;</span> <span class="k">then</span> <span class="s1">&#39;Female&#39;</span>
+</span><span class='line'><span class="k">else</span> <span class="s1">&#39;Unknown&#39;</span>
+</span><span class='line'><span class="k">END</span> <span class="k">AS</span> <span class="n">gender</span> <span class="k">from</span> <span class="n">hr</span><span class="p">.</span><span class="n">Employees</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 练习8</span>
+</span><span class='line'><span class="c1">-- 查询customers 返回id和地区 按地区排序输出行 具有null标记的行最后进行排序</span>
+</span><span class='line'><span class="c1">-- region 要作为第二个排序列 第一个0和1 只是用来降序null</span>
+</span><span class='line'><span class="k">select</span> <span class="n">custid</span><span class="p">,</span><span class="n">region</span> <span class="k">from</span> <span class="n">Sales</span><span class="p">.</span><span class="n">Customers</span> <span class="k">order</span> <span class="k">by</span> <span class="k">case</span> <span class="k">when</span> <span class="n">region</span> <span class="k">is</span> <span class="k">null</span> <span class="k">then</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">end</span> <span class="p">,</span><span class="n">region</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A JD Sample]]></title>
@@ -1714,48 +1835,6 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
 </span><span class='line'>rake deploy
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Recipe Includes and Dependencies]]></title>
-    <link href="http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies/"/>
-    <updated>2016-07-20T09:03:23+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/20/recipe-includes-and-dependencies</id>
-    <content type="html"><![CDATA[<p>Create a new cookbook</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>knife cookbook create php</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Change the Recipes</p>
-
-<figure class='code'><figcaption><span>php/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s2">&quot;php&quot;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Change the apache cookbook&rsquo;s metadata</p>
-
-<figure class='code'><figcaption><span>apache/metadata.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">### Added this</span>
-</span><span class='line'><span class="n">depends</span> <span class="s2">&quot;php&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>apache/recipes/default.rb</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">include_recipe</span> <span class="s2">&quot;php::default&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>So that all. Easy</p>
 ]]></content>
   </entry>
   
