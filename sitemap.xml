@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://mutiny.work/blog/2017/02/14/dream-in-canada-2017-2018/</loc>
+<lastmod>2017-02-14T09:14:52+00:00</lastmod>
+</url>
+<url>
 <loc>http://mutiny.work/blog/2017/02/06/exercises-t-sql-number-character-2/</loc>
 <lastmod>2017-02-06T08:00:41+00:00</lastmod>
 </url>
@@ -259,6 +263,9 @@
 </url>
 <url>
 <loc>http://mutiny.work/blog/categories/t-sql/</loc>
+</url>
+<url>
+<loc>http://mutiny.work/blog/categories/canada/</loc>
 </url>
 <url>
 <loc>http://mutiny.work/posts/2/</loc>

@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-02-06T08:01:59+00:00</updated>
+  <updated>2017-02-14T09:20:45+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dream in Canada 2017-2018]]></title>
+    <link href="http://mutiny.work/blog/2017/02/14/dream-in-canada-2017-2018/"/>
+    <updated>2017-02-14T09:14:52+00:00</updated>
+    <id>http://mutiny.work/blog/2017/02/14/dream-in-canada-2017-2018</id>
+    <content type="html"><![CDATA[<p>始于一场对话</p>
+
+<!-- more -->
+
+
+<p>送走了Canada友人 一个快10年没见的老朋友 聊了很多，有很多是在网络和媒体根本没可能看到的新闻和事实。</p>
+
+<p>参考<a href="http://ww2.flyabroadvisa.com/noc/">Canada NOC</a>后发现原来自己的职业一直在上面，还属于紧缺行业。Nice</p>
+
+<p><code>2172 A 数据库分析师和数据管理员 Database analysts and data administrators</code></p>
+
+<p>怎么说呢，现在奋斗的目标比以往都更加明确了。2018年之前拿到自考的独立本科和学士学位，职业移民和留学两步骤都可以走起来。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Exercises T-SQL #Character 2]]></title>
@@ -1791,50 +1811,6 @@ In this case, I want use the org-mode to manage my two credit card&rsquo;s infor
 <h4>Thanks SACHA, Thanks for your shared information and knowledge.</h4>
 
 <p><a href="http://sachachua.com/blog/">Sacha Blog</a> Living an Awesome Life.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rake Gen_deploy Rejected in Octopress]]></title>
-    <link href="http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress/"/>
-    <updated>2016-07-20T15:07:53+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/20/rake-gen-deploy-rejected-in-octopress</id>
-    <content type="html"><![CDATA[<p>I cloned my octopress blog Repository based on the github.pages.
-So , When i run <code>rake deploy</code> then I got a Error about</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">## Pushing generated _deploy website</span>
-</span><span class='line'>To https://github.com/woody1983/woody1983.github.io.git
-</span><span class='line'> ! <span class="o">[</span>rejected<span class="o">]</span>        master -&gt; master <span class="o">(</span>non-fast-forward<span class="o">)</span>
-</span><span class='line'>error: failed to push some refs to <span class="s1">&#39;https://github.com/woody1983/woody1983.github.io.git&#39;</span>
-</span><span class='line'>hint: Updates were rejected because the tip of your current branch is behind
-</span><span class='line'>hint: its remote counterpart. Integrate the remote changes <span class="o">(</span>e.g.
-</span><span class='line'>hint: <span class="s1">&#39;git pull ...&#39;</span><span class="o">)</span> before pushing again.
-</span><span class='line'>hint: See the <span class="s1">&#39;Note about fast-forwards&#39;</span> in <span class="s1">&#39;git push --help&#39;</span> <span class="k">for</span> details.
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I Googled a lot and finally solved this problem.</p>
-
-<p>Change the current directory</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>octopress/_deploy
-</span><span class='line'>git pull origin master
-</span><span class='line'><span class="nb">cd</span> ..
-</span><span class='line'>rake deploy
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
