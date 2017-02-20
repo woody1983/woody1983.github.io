@@ -29,7 +29,17 @@
                     </ul>
                 </li>
 
+                <li {% if page.navbar == 'SQL' %}class="active"{% endif %}>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">SQL <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="{{ root_url }}/sql-programming-style">SQL Programming.Style</a>
+                        <a href="{{ root_url }}/t-sql">T-SQL Fundamentals</a>
+                     </li>
+                    </ul>
+                </li>
 
+<!-- source/sql-programming.style -->
 		
                 <li {% if page.navbar == 'About' %}class="active"{% endif %}>
                     <a href="{{ root_url }}/about">About</a>
