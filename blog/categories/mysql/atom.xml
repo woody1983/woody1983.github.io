@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Mysql | Mutiny Theory]]></title>
   <link href="http://mutiny.work/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-02-20T03:02:56+00:00</updated>
+  <updated>2017-02-22T07:50:22+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL Replication #1236 Error]]></title>
+    <link href="http://mutiny.work/blog/2017/02/22/mysql-repl-1236-error/"/>
+    <updated>2017-02-22T07:46:47+00:00</updated>
+    <id>http://mutiny.work/blog/2017/02/22/mysql-repl-1236-error</id>
+    <content type="html"><![CDATA[<p>Last_IO_Errno: 1236</p>
+
+<blockquote><p>Last_IO_Error: Got fatal error 1236 from master when reading data from binary log: &lsquo;Client requested master to start replication from impossible position&rsquo;</p></blockquote>
+
+<p>解决方案就是跳到下一个Log</p>
+
+<pre><code>slave stop;
+CHANGE MASTER TO
+    MASTER_LOG_FILE='master-bin.000073',
+    MASTER_LOG_POS=0
+;
+slave start;
+show slave statusG
+</code></pre>
+
+<p>via <a href="http://blog.ez2learn.com/2011/11/28/mysql-1236-solution/">筆記: MySQL replication 問題 Client requested master to start replication from impossible position 解法</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ansible DB Deployment Outline]]></title>

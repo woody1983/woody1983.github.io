@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-02-20T03:02:56+00:00</updated>
+  <updated>2017-02-22T07:50:22+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL Replication #1236 Error]]></title>
+    <link href="http://mutiny.work/blog/2017/02/22/mysql-repl-1236-error/"/>
+    <updated>2017-02-22T07:46:47+00:00</updated>
+    <id>http://mutiny.work/blog/2017/02/22/mysql-repl-1236-error</id>
+    <content type="html"><![CDATA[<p>Last_IO_Errno: 1236</p>
+
+<blockquote><p>Last_IO_Error: Got fatal error 1236 from master when reading data from binary log: &lsquo;Client requested master to start replication from impossible position&rsquo;</p></blockquote>
+
+<p>解决方案就是跳到下一个Log</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>slave stop;
+</span><span class='line'>CHANGE MASTER TO
+</span><span class='line'>    MASTER_LOG_FILE='master-bin.000073',
+</span><span class='line'>    MASTER_LOG_POS=0
+</span><span class='line'>;
+</span><span class='line'>slave start;
+</span><span class='line'>show slave statusG</span></code></pre></td></tr></table></div></figure>
+
+
+<p>via <a href="http://blog.ez2learn.com/2011/11/28/mysql-1236-solution/">筆記: MySQL replication 問題 Client requested master to start replication from impossible position 解法</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[About Career]]></title>
@@ -1614,69 +1645,6 @@ gems目录 如果找到了site_ruby其实也找到了gems的安装目录</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Running the MIT-Scheme in Emacs]]></title>
-    <link href="http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs/"/>
-    <updated>2016-07-25T07:07:18+00:00</updated>
-    <id>http://mutiny.work/blog/2016/07/25/running-the-mit-scheme-in-emacs</id>
-    <content type="html"><![CDATA[<p>Based on the Ubuntu14 OS platform. I choose the x64-version mit-scheme source code.</p>
-
-<p><a href="http://ftp.gnu.org/gnu/mit-scheme/stable.pkg/9.2/mit-scheme-9.2-x86-64.tar.gz">GNU&rsquo;S mit-scheme</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>tar xvf mit-scheme-9.2-x86-64.tar.gz
-</span><span class='line'><span class="nb">cd </span>mit-scheme-9.2/src/
-</span><span class='line'>apt-get install m4
-</span><span class='line'>./configure
-</span><span class='line'><span class="c">#Build the software:</span>
-</span><span class='line'>make compile-microcode
-</span><span class='line'>make install
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I changed the .emacs config file yet.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='elisp'><span class='line'><span class="c1">;;Always do syntax highlighting</span>
-</span><span class='line'><span class="p">(</span><span class="nv">global-font-lock-mode</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c1">;;Also highlight parens</span>
-</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">show-paren-delay</span> <span class="mi">0</span>
-</span><span class='line'>   <span class="nv">show-paren-style</span> <span class="ss">&#39;parenthesis</span><span class="p">)</span>
-</span><span class='line'><span class="p">(</span><span class="nv">show-paren-mode</span> <span class="mi">1</span><span class="p">)</span>
-</span><span class='line'><span class="c1">;;This is the binary name of my scheme implementation</span>
-</span><span class='line'><span class="p">(</span><span class="k">setq</span> <span class="nv">scheme-program-name</span> <span class="s">&quot;mit-scheme&quot;</span><span class="p">)</span>
-</span><span class='line'>  
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When you setup mit-scheme finish. You should be restart the Emacs to reload your new configuration for this.
-And Create a new lisp file, like &lsquo;test.scm&rsquo;, using the emacs open it. Using the <code>C-x 2</code> to open a other window, running the <code>M+X run-scheme</code>.</p>
-
-<p>You get in the MIT-Scheme&rsquo;s REPL environment. Take a try <code>C-x C-e</code> to running the scheme code. and it should be return the resulte on the first window.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">))</span>
-</span><span class='line'><span class="p">(</span><span class="nf">square</span> <span class="mi">9</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
