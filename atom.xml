@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-02-22T07:50:22+00:00</updated>
+  <updated>2017-02-22T07:53:12+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -18,9 +18,12 @@
     <link href="http://mutiny.work/blog/2017/02/22/mysql-repl-1236-error/"/>
     <updated>2017-02-22T07:46:47+00:00</updated>
     <id>http://mutiny.work/blog/2017/02/22/mysql-repl-1236-error</id>
-    <content type="html"><![CDATA[<p>Last_IO_Errno: 1236</p>
+    <content type="html"><![CDATA[<div class="alert alert-info">
+Last_IO_Errno: 1236
+<p>Last_IO_Error: Got fatal error 1236 from master when reading data from binary log: 'Client requested master to start replication from impossible position'
+</p>
+</div>
 
-<blockquote><p>Last_IO_Error: Got fatal error 1236 from master when reading data from binary log: &lsquo;Client requested master to start replication from impossible position&rsquo;</p></blockquote>
 
 <p>解决方案就是跳到下一个Log</p>
 
