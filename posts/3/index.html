@@ -149,6 +149,90 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-08-01T01:43:09+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/08/01/sicp-ex1-dot-5/" itemprop="url">SICP Ex1.3</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><h2>Exercise 1.3</h2>
+
+<p>Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.</p>
+
+<p><img src="http://i.imgur.com/QCLvX22.gif" alt="sicp" /></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">largest-two-square-sum</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">y</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">z</span><span class="p">))</span>
+</span><span class='line'>   <span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nf">define</span>
+</span><span class='line'>  <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">square</span> <span class="nv">y</span><span class="p">))</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)</span> <span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-25T07:07:18+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -1024,140 +1108,6 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-07-15T04:22:21+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/07/15/install-jenkins-on-centos-7/" itemprop="url">Install Jenkins on CentOS 7</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><h3>First thing, ensure your server'8080 port is free</h3>
-
-<figure class='code'><figcaption><span>Download JDK by wget</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget --no-check-certificate --no-cookies --header <span class="s2">&quot;Cookie: oraclelicense=accept-securebackup-cookie&quot;</span> <span class="se">\</span>
-</span><span class='line'> http://download.oracle.com/otn-pub/java/jdk/8u25-b17/jdk-8u25-linux-x64.rpm
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>sudo root</p>
-
-<figure class='code'><figcaption><span>Installing JDK</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$rpm</span> -Uvh jdk-8u25-linux-x64.rpm
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Configuration JDK</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000
-</span><span class='line'>alternatives --install /usr/bin/javac javac /usr/java/latest/bin/javac 200000
-</span><span class='line'>alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
-</span><span class='line'>
-</span><span class='line'>alternatives --config java
-</span><span class='line'><span class="c">#Enter</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">#---Check or Verify</span>
-</span><span class='line'>java -version
-</span><span class='line'>javac -version
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>/etc/rc.d/rc.local</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
-</span><span class='line'><span class="c"># THIS FILE IS ADDED FOR COMPATIBILITY PURPOSES</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># It is highly advisable to create own systemd services or udev rules</span>
-</span><span class='line'><span class="c"># to run scripts during boot instead of using this file.</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># In contrast to previous versions due to parallel execution during boot</span>
-</span><span class='line'><span class="c"># this script will NOT be run after all other services.</span>
-</span><span class='line'><span class="c">#</span>
-</span><span class='line'><span class="c"># Please note that you must run &#39;chmod +x /etc/rc.d/rc.local&#39; to ensure</span>
-</span><span class='line'><span class="c"># that this script will be executed during boot.</span>
-</span><span class='line'>
-</span><span class='line'>touch /var/lock/subsys/local
-</span><span class='line'><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/usr/java/latest&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Installing Jenkins</h3>
-
-<figure class='code'><figcaption><span>Get Repo for Jenkins</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
-</span><span class='line'>sudo rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
-</span><span class='line'>yum install jenkins
-</span><span class='line'>
-</span><span class='line'><span class="c">#Setup</span>
-</span><span class='line'>systemctl <span class="nb">enable </span>jenkins.service
-</span><span class='line'>
-</span><span class='line'><span class="c">#Restart</span>
-</span><span class='line'>systemctl restart jenkins.service
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Take a look at <a href="http://localhost:8080">http://localhost:8080</a></p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1181,6 +1131,8 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2017/03/10/march-first-week/">March First Week</a>
+    
     <a class="list-group-item " href="/blog/2017/02/22/mysql-repl-1236-error/">MySQL Replication #1236 Error</a>
     
     <a class="list-group-item " href="/blog/2017/02/20/about-career/">About Career</a>
@@ -1188,8 +1140,6 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
     <a class="list-group-item " href="/blog/2017/02/15/focus-number-quarterly-results/">Focus #Quarterly Results</a>
     
     <a class="list-group-item " href="/blog/2017/02/14/dream-in-canada-2017-2018/">Dream in Canada 2017-2018</a>
-    
-    <a class="list-group-item " href="/blog/2017/02/06/exercises-t-sql-number-character-2/">Exercises T-SQL #Character 2</a>
     
   </div>
 </section>
@@ -1383,6 +1333,12 @@ So , When i run <code>rake deploy</code> then I got a Error about</p>
     <a class="list-group-item " href="/blog/categories/results/index.html">
         <span class="badge">1</span>
         results
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/notes/index.html">
+        <span class="badge">1</span>
+        notes
       </a>
     
   </div>

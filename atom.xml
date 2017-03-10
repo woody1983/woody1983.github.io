@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-02-22T07:53:12+00:00</updated>
+  <updated>2017-03-10T08:08:48+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[March First Week]]></title>
+    <link href="http://mutiny.work/blog/2017/03/10/march-first-week/"/>
+    <updated>2017-03-10T08:06:51+00:00</updated>
+    <id>http://mutiny.work/blog/2017/03/10/march-first-week</id>
+    <content type="html"><![CDATA[<p>三月的第一周， 自考报名结束一共六门</p>
+
+<ul>
+<li>马克斯主义基本原理</li>
+<li>中国近代史纲要</li>
+<li>数据库系统原理</li>
+<li>管理经济学</li>
+<li>运筹学</li>
+<li>操作系统概论</li>
+</ul>
+
+
+<p>科目二过关.  4/18考完最后一门之前应该没什么时间去娱乐了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL Replication #1236 Error]]></title>
@@ -1593,62 +1614,6 @@ gems目录 如果找到了site_ruby其实也找到了gems的安装目录</p>
 
 
 <p>Invoke the Scheme process by <code>'M-x run-scheme'</code>. Send the Scheme buffer to the Scheme process by <code>'M-o'</code> and now you are able to run Scheme programs from Emacs.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[SICP Ex1.3]]></title>
-    <link href="http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5/"/>
-    <updated>2016-08-01T01:43:09+00:00</updated>
-    <id>http://mutiny.work/blog/2016/08/01/sicp-ex1-dot-5</id>
-    <content type="html"><![CDATA[<h2>Exercise 1.3</h2>
-
-<p>Define a procedure that takes three numbers as arguments and returns the sum of the squares of the two larger numbers.</p>
-
-<p><img src="http://i.imgur.com/QCLvX22.gif" alt="sicp" /></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="nf">define</span>
-</span><span class='line'>  <span class="p">(</span><span class="nf">largest-two-square-sum</span> <span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">))</span>
-</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">y</span> <span class="nv">z</span><span class="p">))</span>
-</span><span class='line'>      <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">y</span> <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">z</span><span class="p">))</span>
-</span><span class='line'>   <span class="p">)</span>
-</span><span class='line'><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="nf">define</span>
-</span><span class='line'>  <span class="p">(</span><span class="nf">larger</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">x</span> <span class="nv">y</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
-</span><span class='line'><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="nf">define</span>
-</span><span class='line'>  <span class="p">(</span><span class="nf">sum-of-squares</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nf">square</span> <span class="nv">y</span><span class="p">))</span>
-</span><span class='line'><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">square</span> <span class="nv">x</span><span class="p">)(</span><span class="nb">* </span><span class="nv">x</span> <span class="nv">x</span><span class="p">)</span> <span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   

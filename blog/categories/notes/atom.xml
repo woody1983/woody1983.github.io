@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Notes | Mutiny Theory]]></title>
+  <link href="http://mutiny.work/blog/categories/notes/atom.xml" rel="self"/>
+  <link href="http://mutiny.work/"/>
+  <updated>2017-03-10T08:08:48+00:00</updated>
+  <id>http://mutiny.work/</id>
+  <author>
+    <name><![CDATA[Johnny Hsu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[March First Week]]></title>
+    <link href="http://mutiny.work/blog/2017/03/10/march-first-week/"/>
+    <updated>2017-03-10T08:06:51+00:00</updated>
+    <id>http://mutiny.work/blog/2017/03/10/march-first-week</id>
+    <content type="html"><![CDATA[<p>三月的第一周， 自考报名结束一共六门</p>
+
+<ul>
+<li>马克斯主义基本原理</li>
+<li>中国近代史纲要</li>
+<li>数据库系统原理</li>
+<li>管理经济学</li>
+<li>运筹学</li>
+<li>操作系统概论</li>
+</ul>
+
+
+<p>科目二过关.  4/18考完最后一门之前应该没什么时间去娱乐了。</p>
+]]></content>
+  </entry>
+  
+</feed>
