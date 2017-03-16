@@ -149,6 +149,49 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-16T03:22:58+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/12/16/take-it-or-leave-it/" itemprop="url">Take It or Leave It</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><blockquote><p>于持中不持，于不持中持，到得念头不动，则灵验矣.</p></blockquote>
+
+</div>
+  
+  
+    <footer>
+      <a class="read-more btn btn-default btn-small" href="/blog/2016/12/16/take-it-or-leave-it/">Read on &rarr;</a>
+      <!--  mmmmmm -->
+    </footer>
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-12-08T08:31:53+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -555,91 +598,6 @@
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2016-08-01T06:37:51+00:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x/" itemprop="url">GNU Emacs and MIT Scheme on Mac OS X</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>First, download the MIT/GNU Scheme binary for Mac OS X and copy it to your Applications directory. Then configure Emacs to use the downloaded binary by adding the following lines to your <code>.emacs</code>.</p>
-
-<p><img src="http://i.imgur.com/1ZGjEDn.jpg" alt="sicp" /></p>
-
-<p>Via: <a href="http://praveen.kumar.in/2011/03/06/gnu-emacs-and-mit-scheme-on-mac-os-x/">Praveen&rsquo;s Blog</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="nf">setq</span> <span class="nv">scheme-program-name</span> <span class="s">&quot;/Applications/mit-scheme.app/Contents/Resources/mit-scheme&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;xscheme</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="c1">; Compute the square root of a given number using successive</span>
-</span><span class='line'><span class="c1">; approximation.</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">sqrt </span><span class="nv">value</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">is-good-enough?</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nb">* </span><span class="nv">guess</span> <span class="nv">guess</span><span class="p">)</span> <span class="nv">value</span><span class="p">))</span> <span class="mf">0.0000001</span><span class="p">))</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">try</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">is-good-enough?</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
-</span><span class='line'>        <span class="nv">guess</span>
-</span><span class='line'>        <span class="p">(</span><span class="nf">try</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="nv">guess</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">value</span> <span class="nv">guess</span><span class="p">))</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">value</span><span class="p">)))</span>
-</span><span class='line'>                  
-</span><span class='line'><span class="p">(</span><span class="nf">try</span> <span class="mi">1</span> <span class="nv">value</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="nb">sqrt </span><span class="mf">4.0</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Invoke the Scheme process by <code>'M-x run-scheme'</code>. Send the Scheme buffer to the Scheme process by <code>'M-o'</code> and now you are able to run Scheme programs from Emacs.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -663,6 +621,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2017/03/16/glory-of-the-king/">王者荣耀 随笔</a>
+    
     <a class="list-group-item " href="/blog/2017/03/10/march-first-week/">March First Week</a>
     
     <a class="list-group-item " href="/blog/2017/02/22/mysql-repl-1236-error/">MySQL Replication #1236 Error</a>
@@ -670,8 +630,6 @@
     <a class="list-group-item " href="/blog/2017/02/20/about-career/">About Career</a>
     
     <a class="list-group-item " href="/blog/2017/02/15/focus-number-quarterly-results/">Focus #Quarterly Results</a>
-    
-    <a class="list-group-item " href="/blog/2017/02/14/dream-in-canada-2017-2018/">Dream in Canada 2017-2018</a>
     
   </div>
 </section>
@@ -871,6 +829,12 @@
     <a class="list-group-item " href="/blog/categories/notes/index.html">
         <span class="badge">1</span>
         notes
+      </a>
+    
+    
+    <a class="list-group-item " href="/blog/categories/game/index.html">
+        <span class="badge">1</span>
+        game
       </a>
     
   </div>

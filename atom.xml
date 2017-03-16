@@ -4,7 +4,7 @@
   <title><![CDATA[Mutiny Theory]]></title>
   <link href="http://mutiny.work/atom.xml" rel="self"/>
   <link href="http://mutiny.work/"/>
-  <updated>2017-03-10T08:12:23+00:00</updated>
+  <updated>2017-03-16T06:25:59+00:00</updated>
   <id>http://mutiny.work/</id>
   <author>
     <name><![CDATA[Johnny Hsu]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[王者荣耀 随笔]]></title>
+    <link href="http://mutiny.work/blog/2017/03/16/glory-of-the-king/"/>
+    <updated>2017-03-16T06:16:55+00:00</updated>
+    <id>http://mutiny.work/blog/2017/03/16/glory-of-the-king</id>
+    <content type="html"><![CDATA[<p>闲的蛋疼 越是到考试的时候越想玩游戏。</p>
+
+<p>放点资料 等考完试再看吧</p>
+
+<ul>
+<li><a href="http://pvp.qq.com/webplat/info/news_version3/15592/15748/15749/15753/m12014/201510/392239.shtml">孙膑出装推荐</a></li>
+<li><a href="http://www.askci.com/news/life/20160415/1617116373.shtml">控制流孙膑的玩法</a></li>
+<li><a href="http://www.18touch.com/zz201601.html">庄周 5V5</a></li>
+<li><a href="https://gl.baidu.com/view/4b2683acb307e87101f696f5">达摩 5V5</a></li>
+<li><a href="https://gl.baidu.com/view/f81081aff242336c1fb95e10">达摩团战技巧</a></li>
+<li><a href="http://www.18touch.com/wzry11062.html">扁鹊攻略</a></li>
+<li><a href="http://pvp.qq.com/web201605/wallpaper.shtml">壁纸/桌面</a></li>
+<li><a href="http://www.18touch.com/wangzherongyaohu1489456737.html">花木兰双形态</a></li>
+</ul>
+
+
+<p>最近超喜欢的一首诗 来自苏轼的<strong>《定风波》</strong></p>
+
+<h4>定风波</h4>
+
+<p><em>三月七日，沙湖道中遇雨。雨具先去，同行皆狼狈，余独不觉，已而遂晴，故作此词。</em></p>
+
+<blockquote><p>莫听穿林打叶声，何妨吟啸且徐行。竹杖芒鞋轻胜马，谁怕？一蓑烟雨任平生。
+料峭春风吹酒醒，微冷，山头斜照却相迎。回首向来萧瑟处，归去，也无风雨也无晴。</p></blockquote>
+
+<p><img src="http://qn.18touch.com/uploads/20170314/1489461226139718.png" alt="花木兰" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[March First Week]]></title>
@@ -1559,63 +1593,6 @@ gems目录 如果找到了site_ruby其实也找到了gems的安装目录</p>
 <blockquote><p>We have now considered the elements of programming: We have used primitive arithmetic operations, we have combined these operations, and we have abstracted these composite operations by defining them as compound procedures.</p>
 
 <p>But that is not enough to enable us to say that we know how to program. Our situation is analogous to that of someone who has learned the rules for now the pieces move in chess but knows nothing of typical <strong>openings</strong>, <strong>tactics</strong>, or <strong>strategy</strong>. Like the novice chess player, we don&rsquo;t yet know the common patterns of usage in the domain. We lack the knowledge of which moves are worth making (which  procedures are worth defining) We lack the experience to predict the consequences of making a move (executing a procedure).</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[GNU Emacs and MIT Scheme on Mac OS X]]></title>
-    <link href="http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x/"/>
-    <updated>2016-08-01T06:37:51+00:00</updated>
-    <id>http://mutiny.work/blog/2016/08/01/gnu-emacs-and-mit-scheme-on-mac-os-x</id>
-    <content type="html"><![CDATA[<p>First, download the MIT/GNU Scheme binary for Mac OS X and copy it to your Applications directory. Then configure Emacs to use the downloaded binary by adding the following lines to your <code>.emacs</code>.</p>
-
-<p><img src="http://i.imgur.com/1ZGjEDn.jpg" alt="sicp" /></p>
-
-<p>Via: <a href="http://praveen.kumar.in/2011/03/06/gnu-emacs-and-mit-scheme-on-mac-os-x/">Praveen&rsquo;s Blog</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="p">(</span><span class="nf">setq</span> <span class="nv">scheme-program-name</span> <span class="s">&quot;/Applications/mit-scheme.app/Contents/Resources/mit-scheme&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;xscheme</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='scheme'><span class='line'><span class="c1">; Compute the square root of a given number using successive</span>
-</span><span class='line'><span class="c1">; approximation.</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nb">sqrt </span><span class="nv">value</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">is-good-enough?</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">(</span><span class="nb">&lt; </span><span class="p">(</span><span class="nb">abs </span><span class="p">(</span><span class="nb">- </span><span class="p">(</span><span class="nb">* </span><span class="nv">guess</span> <span class="nv">guess</span><span class="p">)</span> <span class="nv">value</span><span class="p">))</span> <span class="mf">0.0000001</span><span class="p">))</span>
-</span><span class='line'>  
-</span><span class='line'>  <span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">try</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">is-good-enough?</span> <span class="nv">guess</span> <span class="nv">value</span><span class="p">)</span>
-</span><span class='line'>        <span class="nv">guess</span>
-</span><span class='line'>        <span class="p">(</span><span class="nf">try</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">+ </span><span class="nv">guess</span> <span class="p">(</span><span class="nb">/ </span><span class="nv">value</span> <span class="nv">guess</span><span class="p">))</span> <span class="mi">2</span><span class="p">)</span> <span class="nv">value</span><span class="p">)))</span>
-</span><span class='line'>                  
-</span><span class='line'><span class="p">(</span><span class="nf">try</span> <span class="mi">1</span> <span class="nv">value</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="nb">sqrt </span><span class="mf">4.0</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Invoke the Scheme process by <code>'M-x run-scheme'</code>. Send the Scheme buffer to the Scheme process by <code>'M-o'</code> and now you are able to run Scheme programs from Emacs.</p>
 ]]></content>
   </entry>
   
